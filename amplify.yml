@@ -6,6 +6,6 @@ frontend:
         - npm install
         - npm run build
   artifacts:
-    baseDirectory: dist
+    baseDirectory: dist/front-end
     files:
       - '**/*'

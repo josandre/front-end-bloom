@@ -17,7 +17,7 @@ jobs:
         run: npm install -g @aws-amplify/cli
 
       - name: Configure Amplify
-        run: amplify configure  # This step might require some interactive setup
+        run: amplify configure
 
       - name: Deploy to Amplify
         run: amplify publish

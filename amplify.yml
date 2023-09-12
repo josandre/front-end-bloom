@@ -4,7 +4,8 @@ frontend:
     build:
       commands:
         - npm install
-        - npm run build
+        - npm run build:$BUILD_ENV
+        - echo "TWITCH_CLIENT_ID=$TWITCH_CLIENT_ID" >> backend/.env
   artifacts:
     baseDirectory: dist/front-end
     files:

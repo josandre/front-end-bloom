@@ -1,9 +1,6 @@
 version: 1
 frontend:
   phases:
-    prebuild:
-      commands:
-        - amplifyPush --simple
     build:
       commands:
         - npm install

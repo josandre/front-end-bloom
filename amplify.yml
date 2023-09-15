@@ -5,6 +5,7 @@ frontend:
       commands:
         - npm install
         - npm run build
+        - echo "AMPLIFY_SKIP_BACKEND_BUILD=AMPLIFY_SKIP_BACKEND_BUILD" >> backend/.env
   artifacts:
     baseDirectory: dist/front-end
     files:

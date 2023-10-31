@@ -1,0 +1,80 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="'Chips'" [items]="['UI']" [active_item]="'Chips'"></app-breadcrumb>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+          <div class="header">
+            <h2>Basic chips</h2>
+
+          </div>
+          <div class="body">
+            <mat-chip-list aria-label="Fish selection">
+              <mat-chip>One fish</mat-chip>
+              <mat-chip>Two fish</mat-chip>
+              <mat-chip color="accent" selected>Accent fish</mat-chip>
+              <mat-chip color="warn">Warn fish</mat-chip>
+            </mat-chip-list>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+          <div class="header">
+            <h2>Chips Autocomplete</h2>
+
+          </div>
+          <div class="body">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+          <div class="header">
+            <h2>Chips avatar</h2>
+          </div>
+          <div class="body">
+            <mat-chip-list aria-label="Dog selection">
+              <mat-chip>
+                <img matChipAvatar src="../../../assets/images/user/user1.jpg" alt="User image" />
+                Dog one
+              </mat-chip>
+              <mat-chip color="primary">
+                <img matChipAvatar src="../../../assets/images/user/user3.jpg" alt="User image" />
+                Dog two
+              </mat-chip>
+              <mat-chip color="accent">
+                <img matChipAvatar src="../../../assets/images/user/user2.jpg" alt="User image" />
+                Dog three
+              </mat-chip>
+            </mat-chip-list>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+        <div class="card">
+          <div class="header">
+            <h2>Stacked chips</h2>
+          </div>
+          <div class="body">
+            <mat-chip-list class="mat-mdc-chip-set-stacked" aria-label="Color selection">
+              <mat-chip *ngFor="let chip of availableColors" selected>
+                {{chip.name}}
+              </mat-chip>
+            </mat-chip-list>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

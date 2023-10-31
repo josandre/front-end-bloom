@@ -4,6 +4,8 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {API_URL} from "../../../config";
 import {User} from "@core/models/user";
+import { jwtDecode } from "jwt-decode";
+
 
 @Injectable({
   providedIn: 'root',
@@ -21,17 +23,24 @@ export class AuthService {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
+
   public get currentUserValue(): User {
     return this.currentUserSubject.value;
   }
 
-  login(username: string, password: string) {
-    console.log(username, password)
+  login(username: string, password: string): Observable<User> {
     const url = `${this.baseUrl}/authenticate`;
-     this.http.post<AuthenticationResponse>(url, {
+     return this.http.post<AuthenticationResponse>(url, {
       username,
       password,
-    }, )
+    }, ).pipe(map((r) => {
+       const decodedToken = jwtDecode(r.token);
+       const currentUser = new User({...decodedToken, token: r.token})
+
+       this.currentUserSubject.next(currentUser)
+
+       return currentUser
+     }))
   }
 
   logout() {
@@ -39,7 +48,6 @@ export class AuthService {
     this.currentUserSubject.next(this.currentUserValue);
     return of({ success: false });
   }
-
 }
 
 class AuthenticationResponse {

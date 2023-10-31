@@ -17,15 +17,4 @@ export class UserService {
     const url = `${this.baseUrl}/doctor`
     return this.http.post(url, specialist);
   }
-
-  login(username: string, password: string) {
-    console.log(username, password)
-    const url = `${this.baseUrl}/authenticate`;
-    return this.http.post(url, {
-      username,
-      password,
-    })
-
-  }
-
 }

@@ -5,8 +5,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import {AuthService} from "@core";
-import {UserService} from "../signup/services/User.service";
+import {AuthService, Role} from "@core";
+
 
 @Component({
   selector: 'app-signin',
@@ -19,7 +19,7 @@ export class SigninComponent implements OnInit {
   loading = false;
   error = '';
   hide = true;
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private authService: AuthService, private userservice : UserService) {}
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private authService: AuthService) {}
 
   ngOnInit() {
     this.authForm = this.formBuilder.group({
@@ -32,20 +32,6 @@ export class SigninComponent implements OnInit {
     return this.authForm.controls;
   }
 
-  // adminSet() {
-  //   this.authForm.get('username')?.setValue('admin@hospital.org');
-  //   this.authForm.get('password')?.setValue('admin@123');
-  // }
-  //
-  // doctorSet() {
-  //   this.authForm.get('username')?.setValue('doctor@hospital.org');
-  //   this.authForm.get('password')?.setValue('doctor@123');
-  // }
-  //
-  // patientSet() {
-  //   this.authForm.get('username')?.setValue('patient@hospital.org');
-  //   this.authForm.get('password')?.setValue('patient@123');
-  // }
 
   onSubmit() {
     this.submitted = true;
@@ -55,10 +41,21 @@ export class SigninComponent implements OnInit {
     console.log(this.authForm.valid)
 
     if(this.authForm.valid){
-      this.userservice.login(this.f['username'].value, this.f['password'].value)
+      this.authService.login(this.f['username'].value, this.f['password'].value)
         .subscribe({
           next: (res) => {
-            console.log(res)
+            const role = res.role;
+
+            if (role === Role.All || role === Role.Admin) {
+              this.router.navigate(['/admin/dashboard/main']);
+            } else if (role === Role.Doctor) {
+              this.router.navigate(['/doctor/dashboard']);
+            } else if (role === Role.Patient) {
+              this.router.navigate(['/patient/dashboard']);
+            } else {
+              this.router.navigate(['/authentication/signin']);
+            }
+            this.loading = false;
           },
           error: (error) => {
             this.error = error;
@@ -67,73 +64,9 @@ export class SigninComponent implements OnInit {
           }
         })
 
-      // this.authService
-      //   .login(this.f['username'].value, this.f['password'].value)
-      //   .subscribe({
-      //     next: (res) => {
-      //       console.log(res)
-      //       // if (res) {
-      //       //   setTimeout(() => {
-      //       //     const role = this.authService.currentUserValue.role;
-      //       //     if (role === Role.All || role === Role.Admin) {
-      //       //       this.router.navigate(['/admin/dashboard/main']);
-      //       //     } else if (role === Role.Doctor) {
-      //       //       this.router.navigate(['/doctor/dashboard']);
-      //       //     } else if (role === Role.Patient) {
-      //       //       this.router.navigate(['/patient/dashboard']);
-      //       //     } else {
-      //       //       this.router.navigate(['/authentication/signin']);
-      //       //     }
-      //       //     this.loading = false;
-      //       //   }, 1000);
-      //       // } else {
-      //       //   this.error = 'Invalid Login';
-      //       // }
-      //     },
-      //     error: (error) => {
-      //       this.error = error;
-      //       this.submitted = false;
-      //       this.loading = false;
-      //     },
-      //   });
 
     }else{
       // this.error = 'Username and Password not valid !';
     }
-
-    // if (this.authForm.invalid) {
-    //   this.error = 'Username and Password not valid !';
-    //   return;
-    // } else {
-    //   this.subs.sink = this.authService
-    //     .login(this.f['username'].value, this.f['password'].value)
-    //     .subscribe({
-    //       next: (res) => {
-    //         console.log(res)
-            // if (res) {
-            //   setTimeout(() => {
-            //     const role = this.authService.currentUserValue.role;
-            //     if (role === Role.All || role === Role.Admin) {
-            //       this.router.navigate(['/admin/dashboard/main']);
-            //     } else if (role === Role.Doctor) {
-            //       this.router.navigate(['/doctor/dashboard']);
-            //     } else if (role === Role.Patient) {
-            //       this.router.navigate(['/patient/dashboard']);
-            //     } else {
-            //       this.router.navigate(['/authentication/signin']);
-            //     }
-            //     this.loading = false;
-            //   }, 1000);
-            // } else {
-            //   this.error = 'Invalid Login';
-            // }
-    //       },
-    //       error: (error) => {
-    //         this.error = error;
-    //         this.submitted = false;
-    //         this.loading = false;
-    //       },
-    //     });
-    // }
   }
 }

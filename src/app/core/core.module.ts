@@ -6,9 +6,10 @@ import { AuthService } from './service/auth.service';
 import { throwIfAlreadyLoaded } from './guard/module-import.guard';
 import { DirectionService } from './service/direction.service';
 
+
 @NgModule({
   declarations: [],
-  imports: [CommonModule],
+  imports: [CommonModule, ],
   providers: [RightSidebarService, AuthGuard, AuthService, DirectionService],
 })
 export class CoreModule {

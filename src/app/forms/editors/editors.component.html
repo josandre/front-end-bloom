@@ -1,0 +1,25 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="'Editors'" [items]="['Form']" [active_item]="'Editors'"></app-breadcrumb>
+    </div>
+    <!-- CKEditor -->
+    <div class="row clearfix">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="header">
+            <h2>
+              <strong>Ckeditor</strong>
+            </h2>
+
+          </div>
+          <div class="body">
+            <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- #END# CKEditor -->
+  </div>
+</section>

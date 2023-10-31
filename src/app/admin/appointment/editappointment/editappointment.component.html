@@ -1,0 +1,179 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="'Edit Appointment'" [items]="['Appointment']" [active_item]="'Edit'"></app-breadcrumb>
+    </div>
+    <div class="row clearfix">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2>Edit Appointment</h2>
+
+          </div>
+          <div class="body">
+            <form class="m-4" [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-label>First name</mat-label>
+                    <input matInput formControlName="first" required>
+                    <mat-error *ngIf="bookingForm.get('first')!.hasError('required')">
+                      First name is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-label>Last name</mat-label>
+                    <input matInput formControlName="last">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-label>Gender</mat-label>
+                    <mat-select formControlName="gender" required>
+                      <mat-option [value]="'male'">
+                        Male
+                      </mat-option>
+                      <mat-option [value]="'female'">
+                        Female
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="bookingForm.get('gender')!.hasError('required')">
+                      Gender is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-label>Mobile</mat-label>
+                    <input matInput formControlName="mobile" type="number" required>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-label>Address</mat-label>
+                    <textarea matInput formControlName="address"></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" required>
+                    <mat-error *ngIf="bookingForm.get('email')!.hasError('email') && bookingForm.get('email')!.touched">
+                      Please enter a valid email address
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-label>Date Of Birth</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="dob" required>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="bookingForm.get('dob')!.hasError('required')">
+                      Please select date
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <h2 class="card-inside-title">Appointment Details</h2>
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-label>Consulting Doctor</mat-label>
+                    <mat-select formControlName="doctor" required>
+                      <mat-option [value]="'Dr.Rajesh'">
+                        Dr.Rajesh
+                      </mat-option>
+                      <mat-option [value]="'Dr.Sarah Smith'">
+                        Dr.Sarah Smith
+                      </mat-option>
+                      <mat-option [value]="'Dr.Jay Soni'">
+                        Dr.Jay Soni
+                      </mat-option>
+                      <mat-option [value]="'Dr.Pooja Patel'">
+                        Dr.Pooja Patel
+                      </mat-option>
+                      <mat-option [value]="'other'">
+                        Other
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="bookingForm.get('doctor')!.hasError('required')">
+                      Select Any Doctor
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-label>Date Of Appointment</mat-label>
+                    <input matInput [matDatepicker]="picker1" formControlName="doa" required>
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                    <mat-error *ngIf="bookingForm.get('doa')!.hasError('required')">
+                      Please select a date
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <label>Time Of Appointment:</label>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+                  <mat-button-toggle-group name="timeSlot" aria-label="Time Slot" class="mb-5"
+                    formControlName="timeSlot">
+                    <mat-button-toggle value="slot1">10:30-11:00</mat-button-toggle>
+                    <mat-button-toggle value="slot2">11:00-11:30</mat-button-toggle>
+                    <mat-button-toggle value="slot3" [disabled]="isDisabled">11:30-12:00</mat-button-toggle>
+                    <mat-button-toggle value="slot4">12:00-12:30</mat-button-toggle>
+                    <mat-button-toggle value="slot5">12:30-01:00</mat-button-toggle>
+                    <mat-button-toggle value="slot6">03:30-04:00</mat-button-toggle>
+                    <mat-button-toggle value="slot7">04:00-04:30</mat-button-toggle>
+                    <mat-button-toggle value="slot8">04:30-05:00</mat-button-toggle>
+                    <mat-button-toggle value="slot9">05:00-05:30</mat-button-toggle>
+                    <mat-button-toggle value="slot10">05:30-06:00</mat-button-toggle>
+                  </mat-button-toggle-group>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-label>Injury/Contion</mat-label>
+                    <textarea matInput formControlName="injury"></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-label>Note</mat-label>
+                    <textarea matInput formControlName="note"></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5">
+                  <label>Upload</label>
+                  <app-file-upload formControlName="uploadFile"></app-file-upload>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+                  <button class="btn-space" [disabled]="!bookingForm.valid " mat-raised-button
+                    color="primary">Submit</button>
+                  <button type="button" mat-raised-button color="warn">Cancel</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

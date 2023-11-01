@@ -24,6 +24,7 @@ import {
 
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { PublicModule } from './public/public.module';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -56,6 +57,7 @@ export function createTranslateLoader(http: HttpClient) {
     // core & shared
     CoreModule,
     SharedModule,
+    PublicModule
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { PublicRoutingModule } from './public-routing.module';
 import { LandingComponent } from './landing/landing.component';
 
+import { CarouselModule } from 'ngx-owl-carousel-o';
+
 
 @NgModule({
   declarations: [
@@ -11,7 +13,8 @@ import { LandingComponent } from './landing/landing.component';
   ],
   imports: [
     CommonModule,
-    PublicRoutingModule
+    CarouselModule,
+    PublicRoutingModule,
   ]
 })
 export class PublicModule { }

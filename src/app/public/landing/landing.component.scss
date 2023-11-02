@@ -178,6 +178,7 @@
   .services {
     background-color: #f5f5f5;
     padding: 10rem 0;
+
     .services-content {
       .sub-title {
         position: relative;
@@ -255,6 +256,7 @@
         display: flex;
         align-items: flex-end;
         gap: 1rem;
+
         i {
           width: 80px;
           height: 80px;
@@ -268,16 +270,185 @@
           background-color: #fff;
           box-shadow: 0 15px 35px #0000001a;
         }
+
         h4 {
           margin-bottom: 1rem;
           font-size: 2rem;
           font-weight: 500;
         }
+
         span {
           font-weight: 500;
           color: #6a6c72;
           font-size: 1.2rem;
           padding-left: 0.3rem;
+        }
+      }
+    }
+    .services-image {
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .about {
+    background-color: #f5f5f5;
+    padding: 10rem 0;
+
+    .about-content {
+      padding-left: 5rem;
+      .sub-title {
+        position: relative;
+        margin-bottom: 15px;
+        border-radius: 50px;
+        display: inline-block;
+        padding: 10px 20px 10px 42px;
+        color: #6a6c72;
+        background-color: #ffffff;
+        box-shadow: #959da526 0 8px 24px;
+        font-size: 15px;
+        font-weight: 500;
+
+        i {
+          transform: translateY(-50%);
+          position: absolute;
+          color: map-get($colors, 'complement');
+          left: 1.5rem;
+          top: 50%;
+        }
+      }
+
+      h3 {
+        font-size: 3rem !important;
+        margin-bottom: 0;
+        max-width: 700px;
+        line-height: 1.3;
+        margin-bottom: 1rem;
+
+        span {
+          color: map-get($colors, 'complement');
+        }
+      }
+
+      p {
+        color: #6a6c72;
+        font-size: 1rem;
+        margin-bottom: 15px;
+        line-height: 1.8;
+      }
+
+    }
+    .about-image {
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .reviews {
+    padding: 8rem 0;
+
+    .section-title-warp {
+      margin-bottom: 5rem;
+      position: relative;
+
+      span {
+        position: relative;
+        margin-bottom: 15px;
+        border-radius: 50px;
+        display: inline-block;
+        padding: 10px 20px 10px 42px;
+        color: #6a6c72;
+        background-color: #ffffff;
+        box-shadow: #959da526 0 8px 24px;
+        font-size: 15px;
+        font-weight: 500;
+
+        i {
+          transform: translateY(-50%);
+          position: absolute;
+          color: map-get($colors, 'complement');
+          left: 1.5rem;
+          top: 50%;
+        }
+      }
+
+      h2 {
+        font-size: 4rem;
+        margin-bottom: 0;
+        max-width: 700px;
+        line-height: 1.3;
+      }
+    }
+
+    .reviews-wrapper {
+      margin: 0 -1rem;
+      .review-item {
+        padding: 0 1rem;
+        .review-card {
+          background-color: #Fff;
+          padding: 2rem 1rem 1rem;
+          border-radius: 1rem;
+          position: relative;
+          margin-bottom: 1rem;
+          margin-top: 1.5rem;
+          box-shadow: #959da533 0 8px 24px;
+
+          .icon {
+            top: -35px;
+            left: 30px;
+            z-index: 1;
+            position: absolute;
+
+            i {
+              box-shadow: #11111a0f 0 0 16px;
+              background-color: #fff;
+              color: map-get($colors, 'complement');
+              display: inline-block;
+              text-align: center;
+              border-radius: 50%;
+              line-height: 78px;
+              font-size: 30px;
+              height: 70px;
+              width: 70px;
+            }
+          }
+
+          p {
+            color: #6a6c72;
+            font-size: 1rem;
+            margin: 2rem 0 1rem;
+            line-height: 1.8;
+          }
+
+          .review-info {
+            margin-top: 25px;
+            position: relative;
+            padding-left: 75px;
+
+            img {
+              transform: translateY(-50%);
+              display: inline-block;
+              border-radius: 50%;
+              position: absolute;
+              height: 58px;
+              width: 58px;
+              top: 50%;
+              left: 0;
+            }
+
+            h3 {
+              margin-bottom: 5px;
+              font-size: 20px;
+              font-weight: 500;
+            }
+
+            span {
+              font-size: 15px;
+              color: #6a6c72;
+            }
+          }
         }
       }
     }

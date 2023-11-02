@@ -54,6 +54,7 @@
     "ngx-echarts": "^8.0.1",
     "ngx-gauge": "^5.0.0",
     "ngx-mask": "^13.2.1",
+    "ngx-owl-carousel-o": "^7.0.4",
     "ngx-scrollbar": "^9.0.2",
     "rxjs": "~7.5.0",
     "subsink": "^1.0.2",

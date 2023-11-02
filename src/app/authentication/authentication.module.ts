@@ -10,6 +10,8 @@ import { LockedComponent } from './locked/locked.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@shared';
+
+
 @NgModule({
   declarations: [
     Page500Component,

@@ -9,6 +9,7 @@ import {Speciality} from "./models/Speciality";
 import {Specialist} from "./models/Specialist";
 import {UserService} from "./services/User.service";
 import {User} from "./models/User";
+import {MatSnackBar} from "@angular/material/snack-bar";
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -21,11 +22,11 @@ export class SignupComponent implements OnInit {
   hide = true;
   chide = true;
   specialist: Speciality[] = [
-    {value: 'therapist', viewValue: 'therapist'},
+    {value: 'therapist', viewValue:  'psychiatrist'},
     {value: 'psychology', viewValue: 'psychology'},
   ];
 
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private userService: UserService) {}
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private userService: UserService, private snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.authForm = this.formBuilder.group({
@@ -75,8 +76,6 @@ export class SignupComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    console.log(this.authForm.valid);
-    console.log(this.authForm.value);
     if(this.authForm.valid){
       const specialist : Specialist = new Specialist({
           college : this.authForm.controls['college'].value,
@@ -93,18 +92,34 @@ export class SignupComponent implements OnInit {
       )
 
       this.userService.doctorsRegister(specialist).subscribe((res) => {
-        console.log("user added")
+        console.log(res)
+        switch (res){
 
+          case 200:{
+            this.openSnackBar("User added", "Close" );
+            this.router.navigate(['authentication/signin']);
+            break;
+          }
+        }
 
-      }, () => {
-        console.log("bad")
+      }, error => {
+        switch (error.error) {
+          case 409:{
+            this.openSnackBar("Your email is already registered", "Close" );
+            break;
+
+          }
+
+          case 404:{
+            this.openSnackBar("The user is not acceptable", "Close" );
+            break;
+          }
+        }
       })
     }
+  }
 
-    // if (this.authForm.invalid) {
-    //   return;
-    // } else {
-    //   this.router.navigate(['/admin/dashboard/main']);
-    // }
+  openSnackBar(message: string, action: string){
+    this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'end'})
   }
 }

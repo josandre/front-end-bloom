@@ -15,7 +15,10 @@ export class LandingComponent implements OnInit {
   searchForm: FormGroup;
   filteredDoctorsItems: Doctor[] = [];
   uniqueProfessions: string[] = [];
+  reviewItems = REVIEWS;
+  doctorsItems = PROVITIONAL_DOCTORS;
 
+  //Opciones de carusel de reviews
   customOptions: OwlOptions = {
     loop: true,
     autoplay: true,
@@ -42,9 +45,6 @@ export class LandingComponent implements OnInit {
     nav: false
   };
 
-  reviewItems = REVIEWS;
-  doctorsItems = PROVITIONAL_DOCTORS;
-
   constructor(private router: Router) { }
 
   ngOnInit(): void {
@@ -56,11 +56,13 @@ export class LandingComponent implements OnInit {
     this.applyFilter(); // Aplica el filtro inicialmente para cargar todos los doctores
   }
 
+  //Carga las profesiones de los doctores
   private populateProfessions(): void {
     const professionsSet = new Set(this.doctorsItems.map(doctor => doctor.profession));
     this.uniqueProfessions = Array.from(professionsSet);
   }
 
+  //Filtrado de doctores
   applyFilter(): void {
     const searchText = this.normalizeText(this.searchForm.get('inputField')?.value || '');
     const profession = this.normalizeText(this.searchForm.get('selectField')?.value || '');
@@ -70,12 +72,14 @@ export class LandingComponent implements OnInit {
       const matchesProfession = !profession || this.normalizeText(doctor.profession).includes(profession);
       return matchesName && matchesProfession;
     });
-  }
+  } 
   
+  //Normaliza el texto para que no haya problemas con las tildes
   normalizeText(text: string): string {
     return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
   }
 
+  //Navegación a la página de login
   navigateToLogin(): void {
     this.router.navigate(['/authentication/signin']);
   }

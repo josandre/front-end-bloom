@@ -237,13 +237,13 @@
         </p>
       </div>
       <div class="controls">
-        <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="searchForm">
           <div class="row">
             <div class="col-lg-8 col-md-12">
               <div class="search-bar">
                 <mat-form-field class="example-full-width" appearance="outline">
                   <mat-label>Buscar...</mat-label>
-                  <input matInput formControlName="inputField" placeholder="Buscar">
+                  <input matInput formControlName="inputField" placeholder="Buscar" (keyup)="applyFilter()">
                   <mat-icon matSuffix>search</mat-icon>
                 </mat-form-field>
               </div>
@@ -252,9 +252,11 @@
               <div class="filter">
                 <mat-form-field class="example-full-width" appearance="outline">
                   <mat-label>Profesión</mat-label>
-                  <mat-select formControlName="selectField">
-                    <mat-option value="option1">Psicólogo</mat-option>
-                    <mat-option value="option2">Dentista</mat-option>
+                  <mat-select formControlName="selectField" (selectionChange)="applyFilter()">
+                    <mat-option value="">Todos</mat-option> <!-- Añade esta línea -->
+                    <mat-option *ngFor="let profession of uniqueProfessions" [value]="profession">
+                      {{ profession }}
+                    </mat-option>
                   </mat-select>
                 </mat-form-field>
               </div>
@@ -263,19 +265,20 @@
         </form>
       </div>
       <div class="professionals-wrapper">
-        <div class="doctor-card">
+        <div class="doctor-card" *ngFor="let item of filteredDoctorsItems">
           <div class="single-doctor">
             <a class="d-block">
-              <img src="assets/images/banner/doctor-1.jpg" alt="doctor-image">
+              <img [src]="item.image" alt="doctor-image">
             </a>
             <div class="doctor-content">
-              <h3>
-                Dr. Johnson Melbourne
-              </h3>
-              <span>Prosthodontics Dentist</span>
+              <h3>{{ item.name }}</h3>
+              <span>{{ item.profession }}</span>
             </div>
           </div>
         </div>
+        <p *ngIf="filteredDoctorsItems.length === 0" class="no-results-message">
+          No se encontraron resultados.
+        </p>
       </div>
     </div>
   </div>

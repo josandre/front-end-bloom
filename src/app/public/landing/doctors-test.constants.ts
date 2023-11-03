@@ -1,4 +1,4 @@
-export const PROVITIONAL_DOCTORS = [
+export const PROVITIONAL_DOCTORS: Doctor[] = [
   {
     name: 'Dr. Álvaro Sánchez',
     image: 'assets/images/banner/doctor-1.jpg',
@@ -7,7 +7,7 @@ export const PROVITIONAL_DOCTORS = [
   {
     name: 'Dr. Enrique Torres',
     image: 'assets/images/banner/doctor-1.jpg',
-    profession: 'Psicóloga',
+    profession: 'Psicólogo',
   },
   {
     name: 'Dra. Carmen Gómez',
@@ -15,3 +15,9 @@ export const PROVITIONAL_DOCTORS = [
     profession: 'Psicóloga Clínica',
   },
 ];
+
+export interface Doctor {
+  name: string;
+  image: string;
+  profession: string;
+}

@@ -366,7 +366,7 @@
   }
 
   .professionals {
-    padding: 8rem 0;
+    padding: 8rem 0 0;
 
     .section-title-warp {
       margin-bottom: 2rem;
@@ -424,7 +424,8 @@
       flex-wrap: wrap;
       gap: 2rem;
       .doctor-card {
-        width: 33.33%;
+        width: calc(33.33% - 2rem);
+        animation: fadeIn 1s ease-out; 
         .single-doctor {
           text-align: center;
           margin-bottom: 25px;
@@ -457,10 +458,18 @@
         }
       }
     }
+
+    .no-results-message {
+      text-align: center;
+      margin-top: 20px;
+      font-style: italic;
+      color: #666; // O cualquier color que prefieras
+    }    
+    
   }
 
   .reviews {
-    padding: 8rem 0;
+    padding: 3rem 0 8rem;
 
     .section-title-warp {
       margin-bottom: 5rem;
@@ -586,4 +595,9 @@
       }
     }
   }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }

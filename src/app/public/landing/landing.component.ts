@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { REVIEWS } from './reviews.constants';
-import { FormGroup, FormControl } from '@angular/forms';
+import { PROVITIONAL_DOCTORS, Doctor  } from './doctors-test.constants';
 
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss']
 })
+
 export class LandingComponent implements OnInit {
-
   searchForm: FormGroup;
+  filteredDoctorsItems: Doctor[] = [];
+  uniqueProfessions: string[] = [];
 
-  // Opciones para ngx-owl-carousel-o
   customOptions: OwlOptions = {
     loop: true,
     autoplay: true,
@@ -40,25 +42,42 @@ export class LandingComponent implements OnInit {
     nav: false
   };
 
-  //Constante REVIEWS importada de reviews.constants.ts
   reviewItems = REVIEWS;
+  doctorsItems = PROVITIONAL_DOCTORS;
 
   constructor(private router: Router) { }
-
-  navigateToLogin() {
-    this.router.navigate(['/authentication/signin']);  // Cambia esta ruta a la ruta correcta de login si es necesario
-  }
 
   ngOnInit(): void {
     this.searchForm = new FormGroup({
       inputField: new FormControl(''),
       selectField: new FormControl('')
     });
+    this.populateProfessions();
+    this.applyFilter(); // Aplica el filtro inicialmente para cargar todos los doctores
   }
 
-  onSubmit() {
-    // Lógica al enviar el formulario
-    console.log(this.searchForm.value);
+  private populateProfessions(): void {
+    const professionsSet = new Set(this.doctorsItems.map(doctor => doctor.profession));
+    this.uniqueProfessions = Array.from(professionsSet);
+  }
+
+  applyFilter(): void {
+    const searchText = this.normalizeText(this.searchForm.get('inputField')?.value || '');
+    const profession = this.normalizeText(this.searchForm.get('selectField')?.value || '');
+  
+    this.filteredDoctorsItems = this.doctorsItems.filter(doctor => {
+      const matchesName = this.normalizeText(doctor.name).includes(searchText);
+      const matchesProfession = !profession || this.normalizeText(doctor.profession).includes(profession);
+      return matchesName && matchesProfession;
+    });
+  }
+  
+  normalizeText(text: string): string {
+    return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  }
+
+  navigateToLogin(): void {
+    this.router.navigate(['/authentication/signin']);
   }
 
 }

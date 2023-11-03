@@ -224,6 +224,61 @@
 
     </div>
   </div>
+  <div class="professionals">
+    <div class="container">
+      <div class="section-title-warp">
+        <span class="sub-title">
+          <i class="fas fa-hashtag"></i> Nuestros prefesionales
+        </span>
+        <h2>Algunos de nuestros profesionales que <small> confían en nosotros</small></h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua.
+        </p>
+      </div>
+      <div class="controls">
+        <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="col-lg-8 col-md-12">
+              <div class="search-bar">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Buscar...</mat-label>
+                  <input matInput formControlName="inputField" placeholder="Buscar">
+                  <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+              <div class="filter">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Profesión</mat-label>
+                  <mat-select formControlName="selectField">
+                    <mat-option value="option1">Psicólogo</mat-option>
+                    <mat-option value="option2">Dentista</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="professionals-wrapper">
+        <div class="doctor-card">
+          <div class="single-doctor">
+            <a class="d-block">
+              <img src="assets/images/banner/doctor-1.jpg" alt="doctor-image">
+            </a>
+            <div class="doctor-content">
+              <h3>
+                Dr. Johnson Melbourne
+              </h3>
+              <span>Prosthodontics Dentist</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="reviews">
     <div class="container">
       <div class="section-title-warp">

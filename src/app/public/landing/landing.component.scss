@@ -105,6 +105,7 @@
 
     .about-content {
       padding-right: 8rem;
+
       .sub-title {
         position: relative;
         margin-bottom: 15px;
@@ -146,6 +147,7 @@
       }
 
     }
+
     .about-image {
       img {
         width: 100%;
@@ -187,18 +189,20 @@
         max-width: 700px;
         line-height: 1.2;
         margin-bottom: 1rem;
+
         small {
           color: map-get($colors, 'complement');
           font-size: 3rem !important;
         }
       }
-      
+
       p {
         color: #6a6c72;
         font-size: 1.1rem;
         margin-bottom: 15px;
         line-height: 1.8;
       }
+
       margin-bottom: 4rem;
     }
 
@@ -353,9 +357,104 @@
         }
       }
     }
+
     .services-image {
       img {
         width: 100%;
+      }
+    }
+  }
+
+  .professionals {
+    padding: 8rem 0;
+
+    .section-title-warp {
+      margin-bottom: 2rem;
+      position: relative;
+
+      span {
+        position: relative;
+        margin-bottom: 15px;
+        border-radius: 50px;
+        display: inline-block;
+        padding: 10px 20px 10px 42px;
+        color: #6a6c72;
+        background-color: #ffffff;
+        box-shadow: #959da526 0 8px 24px;
+        font-size: 15px;
+        font-weight: 500;
+
+        i {
+          transform: translateY(-50%);
+          position: absolute;
+          color: map-get($colors, 'complement');
+          left: 1.5rem;
+          top: 50%;
+        }
+      }
+
+      h2 {
+        font-size: 3rem !important;
+        margin-bottom: 0;
+        max-width: 800px;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+
+        small {
+          color: map-get($colors, 'complement');
+          font-size: 3rem !important;
+        }
+      }
+
+      p {
+        color: #6a6c72;
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+        line-height: 1.8;
+        max-width: 40rem;
+      }
+    }
+
+    .controls {
+      margin-bottom: 3rem;
+    }
+
+    .professionals-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      .doctor-card {
+        width: 33.33%;
+        .single-doctor {
+          text-align: center;
+          margin-bottom: 25px;
+          transition: .5s;
+          background-color: #fff;
+          img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px 10px 0 0;
+          }
+
+          .doctor-content {
+            padding: 30px;
+            border-radius: 0 0 10px 10px;
+            border-bottom: 2px solid map-get($colors, 'complement');
+            box-shadow: #959da533 0 8px 24px;
+
+            h3 {
+              margin-bottom: 8px;
+              font-size: 1.6rem !important;
+              font-weight: 500 !important;
+            }
+
+            span {
+              color: #6a6c72;
+              display: inline-block;
+              font-size: 1.3rem;
+            }
+          }
+        }
       }
     }
   }
@@ -412,8 +511,10 @@
 
     .reviews-wrapper {
       margin: 0 -1rem;
+
       .review-item {
         padding: 0 1rem;
+
         .review-card {
           background-color: #Fff;
           padding: 2rem 1rem 1rem;
@@ -426,6 +527,7 @@
           display: flex;
           flex-direction: column;
           justify-content: space-between;
+
           .icon {
             top: -35px;
             left: 30px;

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { REVIEWS } from './reviews.constants';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-landing',
@@ -9,7 +10,9 @@ import { REVIEWS } from './reviews.constants';
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent implements OnInit {
-  
+
+  searchForm: FormGroup;
+
   // Opciones para ngx-owl-carousel-o
   customOptions: OwlOptions = {
     loop: true,
@@ -47,6 +50,15 @@ export class LandingComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.searchForm = new FormGroup({
+      inputField: new FormControl(''),
+      selectField: new FormControl('')
+    });
+  }
+
+  onSubmit() {
+    // Lógica al enviar el formulario
+    console.log(this.searchForm.value);
   }
 
 }

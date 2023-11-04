@@ -5,7 +5,17 @@ import { AuthGuard } from './core/guard/auth.guard';
 import { Role } from './core/models/role';
 import { AuthLayoutComponent } from './layout/app-layout/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './layout/app-layout/main-layout/main-layout.component';
+
 const routes: Routes = [
+  // Redirección a 'public' cuando se visite la raíz
+  { path: '', redirectTo: '/public', pathMatch: 'full' },
+
+  // Ruta para el módulo 'public'
+  {
+    path: 'public',
+    loadChildren: () => import('./public/public.module').then(m => m.PublicModule),
+  },
+
   {
     path: '',
     component: MainLayoutComponent,

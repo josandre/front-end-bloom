@@ -1,0 +1,20 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-header-landing',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
+})
+export class HeaderComponent implements OnInit {
+
+  constructor(private router: Router) { }
+
+  ngOnInit(): void {
+  }
+
+  //Navegación a la página de login
+  navigateToLogin(): void {
+    this.router.navigate(['/authentication/signin']);
+  }
+}

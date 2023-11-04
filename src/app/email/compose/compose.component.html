@@ -102,29 +102,35 @@
             </div>
             <div class="row">
               <div class="col-lg-12">
-                <form class="composeForm">
+                <form class="composeForm" [formGroup]="formGroup" >
+
                   <div class="form-line">
                     <mat-form-field class="example-full-width" appearance="outline">
                       <mat-label>TO</mat-label>
+<!--                      meter usuario-->
                       <input matInput id="email_address">
                     </mat-form-field>
                   </div>
+
                   <div class="form-line">
                     <mat-form-field class="example-full-width" appearance="outline">
-                      <mat-label>Subject</mat-label>
-                      <input matInput id="subject">
+                      <mat-label>Title</mat-label>
+                      <input matInput id="title" formControlName="title" >
                     </mat-form-field>
                   </div>
-                  <ckeditor [editor]="Editor" data="<p>Hello world!</p>"></ckeditor>
+
+                  <ckeditor #richEditor [editor]="editor" [data]="data"></ckeditor>
+
                   <div class="compose-editor m-t-20">
                     <div id="summernote"></div>
                     <input type="file" class="default" multiple>
                   </div>
+
                 </form>
               </div>
               <div class="col-lg-12">
                 <div class="m-l-25 m-b-20">
-                  <button mat-flat-button color="primary" class="msr-2">Send</button>
+                  <button mat-flat-button color="primary" class="msr-2" (click)="onSubmit()">Send</button>
                   <button mat-flat-button color="warn">Discard</button>
                 </div>
               </div>

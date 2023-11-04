@@ -1,0 +1,12 @@
+<div class="memory-card">
+    <div class="memory-card-inner" [class.memory-card-flip]="memoryCard?.selected === true || memoryCard?.paired">
+        <!--Front part of the card, display back image here-->
+        <div class="memory-card-front">
+        </div>
+
+        <!--Back part of the card, display the values here-->
+        <div class="memory-card-back">
+            <p>{{memoryCard?.value}}</p>
+        </div>        
+    </div>
+</div>

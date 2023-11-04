@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
@@ -24,6 +25,8 @@ import {
 
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { MemoryGameComponent } from './resources/games/memory-game/memory-game.component';
+import { MemoryCardComponent } from './resources/games/memory-game/memory-card/memory-card.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -38,6 +41,8 @@ export function createTranslateLoader(http: HttpClient) {
     RightSidebarComponent,
     AuthLayoutComponent,
     MainLayoutComponent,
+    MemoryGameComponent,
+    MemoryCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,6 +61,8 @@ export function createTranslateLoader(http: HttpClient) {
     // core & shared
     CoreModule,
     SharedModule,
+    // forms
+    FormsModule
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

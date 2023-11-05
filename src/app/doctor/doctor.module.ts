@@ -16,9 +16,11 @@ import { SettingsComponent } from './settings/settings.component';
 import { AppointmentsService } from './appointments/appointments.service';
 import { ComponentsModule } from '@shared/components/components.module';
 import { SharedModule } from '@shared';
+import {SignupPatientComponent} from "./patients/signupPatient/signup-patient.component";
 
 @NgModule({
   declarations: [
+    SignupPatientComponent,
     DashboardComponent,
     AppointmentsComponent,
     FormComponent,

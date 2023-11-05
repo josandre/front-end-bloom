@@ -6,9 +6,6 @@ import { AddPatientComponent } from './add-patient/add-patient.component';
 import { AllpatientsComponent } from './allpatients/allpatients.component';
 import { EditPatientComponent } from './edit-patient/edit-patient.component';
 import { PatientProfileComponent } from './patient-profile/patient-profile.component';
-import { DeleteComponent } from './allpatients/dialog/delete/delete.component';
-import { FormDialogComponent } from './allpatients/dialog/form-dialog/form-dialog.component';
-import { PatientService } from './allpatients/patient.service';
 import { ComponentsModule } from '@shared/components/components.module';
 import { SharedModule } from '@shared';
 
@@ -18,8 +15,6 @@ import { SharedModule } from '@shared';
     AllpatientsComponent,
     EditPatientComponent,
     PatientProfileComponent,
-    DeleteComponent,
-    FormDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +24,6 @@ import { SharedModule } from '@shared';
     ComponentsModule,
     SharedModule,
   ],
-  providers: [PatientService],
+  providers: [],
 })
 export class PatientsModule {}

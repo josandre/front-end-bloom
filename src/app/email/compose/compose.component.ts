@@ -3,6 +3,7 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ResourceService} from "../services/Resource.Service";
 import {Resource} from "../models/Resource";
+
 @Component({
   selector: 'app-compose',
   templateUrl: './compose.component.html',
@@ -16,7 +17,7 @@ export class ComposeComponent {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
 
   readonly formGroup = new FormGroup({
-    title: new FormControl("", {
+      resourcetitle: new FormControl("", {
       validators: [Validators.required],
       updateOn: 'submit'
     }),
@@ -29,15 +30,17 @@ export class ComposeComponent {
   constructor(private readonly resourceService: ResourceService) {}
 
   onSubmit(){
-    // const title = this.formGroup.controls['title'].value;
+    let resourcetitle  = (<HTMLInputElement>document.getElementById('resourcetitle')).value;
+
     if (this.editor && this.editor.editorInstance) {
       const content = this.editor.editorInstance.getData();
       const fecha = new Date();
       const resource = new Resource({
-        title: 'Titulo de prueba',
+        title: resourcetitle,
         content: content,
         date: fecha
       });
+
       this.resourceService.resourceRegister(resource).subscribe(
         data => {
           console.log(data);

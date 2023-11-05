@@ -18,6 +18,8 @@ export class ResourceService {
     const currentUser = this.authenticationService.currentUserValue;
     const URL = `${this.baseUrl}/resource/add`;
 
+    console.log(currentUser);
+
     return this.http.post<Resource>(URL, resource, {headers: {'Authorization':  `Bearer ${currentUser.token}`}});
   }
 

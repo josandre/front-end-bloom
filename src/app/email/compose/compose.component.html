@@ -2,82 +2,48 @@
   <div class="content-block">
     <div class="block-header">
       <!-- breadcrumb -->
-      <app-breadcrumb [title]="'Compose'" [items]="['Email']" [active_item]="'Compose'"></app-breadcrumb>
+      <app-breadcrumb [title]="'Compose'" [items]="['Resource']" [active_item]="'Compose'"></app-breadcrumb>
     </div>
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
         <div class="card">
           <div class="body">
             <div id="mail-nav">
-              <button type="button" class="btn btn-success waves-effect m-b-15">COMPOSE</button>
-              <ul class="" id="mail-folders">
-                <li class="active">
-                  <a href="inbox.html" title="Inbox">Inbox
-                    <span class="badge bg-orange">6</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="javascript:;" title="Sent">Sent</a>
-                </li>
-                <li>
-                  <a href="javascript:;" title="Draft">Draft</a>
-                </li>
-                <li>
-                  <a href="javascript:;" title="Bin">Bin</a>
-                </li>
-                <li>
-                  <a href="javascript:;" title="Important">Important</a>
-                </li>
-                <li>
-                  <a href="javascript:;" title="Starred">Starred</a>
-                </li>
-              </ul>
-              <h5 class="b-b p-10 text-strong">Labels</h5>
-              <ul class="" id="mail-labels">
-                <li>
-                  <a href="javascript:;">
-                    <i class="material-icons col-red">local_offer</i>Family</a>
-                </li>
-                <li>
-                  <a href="javascript:;">
-                    <i class="material-icons col-blue">local_offer</i>Work</a>
-                </li>
-                <li>
-                  <a href="javascript:;">
-                    <i class="material-icons col-orange">local_offer</i>Shop</a>
-                </li>
-                <li>
-                  <a href="javascript:;">
-                    <i class="material-icons col-cyan">local_offer</i>Themeforest</a>
-                </li>
-                <li>
-                  <a href="javascript:;">
-                    <i class="material-icons col-blue">local_offer</i>Google</a>
-                </li>
-              </ul>
-              <h5 class="b-b p-10 text-strong">Online</h5>
+              <button type="button" class="btn btn-success waves-effect m-b-15">Tag All</button>
+              <h5 class="b-b p-10 text-strong">My Patients</h5>
               <ul class="online-user" id="online-offline">
                 <li>
-                  <a href="javascript:;">
-                    <i class="material-icons col-green" title="Online">brightness_1</i>Sachin</a>
+                  <mat-checkbox  class="m-r-15" color="primary">
+                    <a href="javascript:;">
+                      <i class="material-icons col-green" title="Online">brightness_1</i>Sachin</a>
+                  </mat-checkbox>
                 </li>
                 <li>
-                  <a href="javascript:;">
-                    <i class="material-icons col-indigo" title="Off Line">brightness_1</i>John
-                    Smith
-                  </a>
+                  <mat-checkbox  class="m-r-15" color="primary">
+                    <a href="javascript:;">
+                      <i class="material-icons col-indigo" title="Off Line">brightness_1</i>John
+                      Smith
+                    </a>
+                  </mat-checkbox>
+
                 </li>
                 <li>
-                  <a href="javascript:;">
-                    <i class="material-icons col-orange" title="Away">brightness_1</i>Askay</a>
+                  <mat-checkbox  class="m-r-15" color="primary">
+                    <a href="javascript:;">
+                      <i class="material-icons col-orange" title="Away">brightness_1</i>Askay</a>
+                  </mat-checkbox>
                 </li>
                 <li>
-                  <a href="javascript:;">
-                    <i class="material-icons col-indigo" title="Off Line">brightness_1</i>Dhavan</a>
+                  <mat-checkbox  class="m-r-15" color="primary">
+                    <a href="javascript:;">
+                      <i class="material-icons col-indigo" title="Off Line">brightness_1</i>Dhavan</a>
+                  </mat-checkbox>
                 </li>
                 <li>
-                  <a href="javascript:;">
-                    <i class="material-icons col-indigo" title="Off Line">brightness_1</i>Lee</a>
+                  <mat-checkbox  class="m-r-15" color="primary">
+                    <a href="javascript:;">
+                      <i class="material-icons col-indigo" title="Off Line">brightness_1</i>Lee</a>
+                  </mat-checkbox>
                 </li>
               </ul>
             </div>
@@ -93,7 +59,7 @@
                   <tr>
                     <th colspan="1">
                       <div class="inbox-header">
-                        Compose New Message
+                        Compose New Resource
                       </div>
                     </th>
                   </tr>
@@ -106,31 +72,28 @@
 
                   <div class="form-line">
                     <mat-form-field class="example-full-width" appearance="outline">
-                      <mat-label>TO</mat-label>
-<!--                      meter usuario-->
-                      <input matInput id="email_address">
-                    </mat-form-field>
-                  </div>
-
-                  <div class="form-line">
-                    <mat-form-field class="example-full-width" appearance="outline">
                       <mat-label>Title</mat-label>
-                      <input matInput id="title" formControlName="title" >
+                      <input matInput id="resourcetitle" formControlName="resourcetitle" >
                     </mat-form-field>
                   </div>
 
                   <ckeditor #richEditor [editor]="editor" [data]="data"></ckeditor>
 
-                  <div class="compose-editor m-t-20">
-                    <div id="summernote"></div>
-                    <input type="file" class="default" multiple>
-                  </div>
+
+
+<!--addfile button-->
+<!--                  <div class="compose-editor m-t-20">-->
+<!--                    <div id="summernote"></div>-->
+<!--                    <input type="file" class="default" multiple>-->
+<!--                  </div>-->
+
+
 
                 </form>
               </div>
               <div class="col-lg-12">
                 <div class="m-l-25 m-b-20">
-                  <button mat-flat-button color="primary" class="msr-2" (click)="onSubmit()">Send</button>
+                  <button mat-flat-button color="primary" class="msr-2" (click)="onSubmit()">Post</button>
                   <button mat-flat-button color="warn">Discard</button>
                 </div>
               </div>
@@ -138,6 +101,7 @@
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>

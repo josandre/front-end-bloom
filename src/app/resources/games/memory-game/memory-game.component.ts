@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MemoryCard } from '../logic/memory-card';
+import { AuthService } from '@core';
 
 interface MemoryGameDifficulty {
   value: number;
@@ -22,19 +23,19 @@ export class MemoryGameComponent implements OnInit {
   Difficulties = {
     VeryEasy: {
       id:0, 
-      cards: 14
+      cards: 8
     },
     Easy: {
       id:1, 
-      cards: 18
+      cards: 10
     },
     Medium: {
       id:2, 
-      cards: 20
+      cards: 18
     },
     High: {
       id:3, 
-      cards: 24
+      cards: 22
     },
     VeryHigh: {
       id:4, 
@@ -44,11 +45,11 @@ export class MemoryGameComponent implements OnInit {
 
   // Game state
   difficulties: MemoryGameDifficulty[] = [
-    { value: this.Difficulties.VeryEasy.cards, viewValue: 'Very Easy' },
-    { value: this.Difficulties.Easy.cards, viewValue: 'Easy' },
-    { value: this.Difficulties.Medium.cards, viewValue: 'Medium' },
-    { value: this.Difficulties.High.cards, viewValue: 'High' },
-    { value: this.Difficulties.VeryHigh.cards, viewValue: 'Very High' }
+    { value: this.Difficulties.VeryEasy.cards, viewValue: 'MENUITEMS.GAMES-SECTION.DIFFICULTIES.VERY-EASY' },
+    { value: this.Difficulties.Easy.cards, viewValue: 'MENUITEMS.GAMES-SECTION.DIFFICULTIES.EASY' },
+    { value: this.Difficulties.Medium.cards, viewValue: 'MENUITEMS.GAMES-SECTION.DIFFICULTIES.MEDIUM' },
+    { value: this.Difficulties.High.cards, viewValue: 'MENUITEMS.GAMES-SECTION.DIFFICULTIES.HIGH' },
+    { value: this.Difficulties.VeryHigh.cards, viewValue: 'MENUITEMS.GAMES-SECTION.DIFFICULTIES.VERY-HIGH' }
   ]
 
   gameState: number = this.GameStates.InitialScreen;
@@ -65,7 +66,13 @@ export class MemoryGameComponent implements OnInit {
   gameFinished: boolean = false;
   gameLocked: boolean = false;   // Variable used to lock player input when clearing the selection
 
+  constructor(private readonly authService:AuthService) {
+
+  }
+
   ngOnInit(): void {
+    // Get user
+    console.log(this.authService.currentUserValue);
     this.goToMenu();
   }
 

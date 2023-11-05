@@ -1,86 +1,88 @@
-<div>
-    <div class="game-container">
-        <h1>Memory Game</h1>
-        <!--Gane board-->
-        <div>
+<section class="content">
+    <div class="content-block">
+        <div class="game-container">
+            <h1>{{'MENUITEMS.GAMES-SECTION.MEMORY-GAME.TITLE' | translate}}</h1>
+            <!--Gane board-->
             <div>
-                <button mat-flat-button color="primary" (click)="goToMenu()">Difficulty</button>
-                <button mat-flat-button color="primary" (click)="goToScores()">Scores</button>
-            </div>
-            
-            <div class="memory-game-board">
-                <app-memory-card class="memory-card-container"
-                *ngFor="let card of cards; let i = index"
-                [memoryCard]="card"
-                (click)="selectCard(i)">
-                </app-memory-card>
-            </div>
-        </div> 
-
-        <!--Initial Screen Difficuly dialog-->
-        <div 
-        *ngIf="gameState === GameStates.InitialScreen"
-        class="game-menu-dialog">
-            <div class="card dialog-card">
-                <h6>Select Difficulty</h6>
-                <form>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Difficulty</mat-label>
-                        <mat-select [(ngModel)]="cardsNumber" name="food">
-                            <mat-option *ngFor="let difficulty of difficulties" [value]="difficulty.value">
-                                {{difficulty.viewValue}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </form>
-                
-                <button mat-flat-button color="primary" (click)="newGame()">Start New Game</button>
-                <button mat-flat-button color="primary" (click)="returnToGame()">Go back</button>
-            </div>
-        </div>        
-
-        <!--Win dialog-->
-        <div 
-        *ngIf="gameState === GameStates.ResultsScreen"
-        class="game-menu-dialog">
-            <div class="card dialog-card">
-                <!--Current Score-->
                 <div>
-                    <h3>Your Score</h3>
-                    <p>0000</p>
-                </div>
-
-                <!--Scores History-->
-                <div>
-                    <h3>Scores</h3>
-                    <p>0000</p>
-                    <p>0000</p>
-                    <p>0000</p>
-                    <p>0000</p>
-                    <p>0000</p>
+                    <button mat-flat-button color="primary" (click)="goToMenu()">{{'MENUITEMS.GAMES-SECTION.DIFFICULTY' | translate}}</button>
+                    <button mat-flat-button color="primary" (click)="goToScores()">{{'MENUITEMS.GAMES-SECTION.SCORES' | translate}}</button>
                 </div>
                 
-                <button mat-flat-button color="primary" (click)="returnToGame()">Go back</button>
-            </div>
-        </div>
-
-        <!--Scores-->
-        <div 
-        *ngIf="gameState === GameStates.ScoresScreen"
-        class="game-menu-dialog">
-            <div class="card dialog-card">
-                <h2>Scores</h2>
-                <!--Scores History-->
-                <div>
-                    <p>0000</p>
-                    <p>0000</p>
-                    <p>0000</p>
-                    <p>0000</p>
-                    <p>0000</p>
+                <div class="memory-game-board">
+                    <app-memory-card class="memory-card-container"
+                    *ngFor="let card of cards; let i = index"
+                    [memoryCard]="card"
+                    (click)="selectCard(i)">
+                    </app-memory-card>
                 </div>
-                
-                <button mat-flat-button color="primary" (click)="returnToGame()">Go back</button>
+            </div> 
+    
+            <!--Initial Screen Difficuly dialog-->
+            <div 
+            *ngIf="gameState === GameStates.InitialScreen"
+            class="game-menu-dialog">
+                <div class="card dialog-card">
+                    <h6>{{'MENUITEMS.GAMES-SECTION.SELECT-DIFFICULTY' | translate}}</h6>
+                    <form>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>{{'MENUITEMS.GAMES-SECTION.DIFFICULTY' | translate}}</mat-label>
+                            <mat-select [(ngModel)]="cardsNumber" name="cardsNumber">
+                                <mat-option *ngFor="let difficulty of difficulties" [value]="difficulty.value">
+                                    {{difficulty.viewValue | translate}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </form>
+                    
+                    <button mat-flat-button color="primary" (click)="newGame()">{{'MENUITEMS.GAMES-SECTION.START-NEW-GAME' | translate}}</button>
+                    <button mat-flat-button color="primary" (click)="returnToGame()">{{'MENUITEMS.GAMES-SECTION.GO-BACK' | translate}}</button>
+                </div>
+            </div>        
+    
+            <!--Win dialog-->
+            <div 
+            *ngIf="gameState === GameStates.ResultsScreen"
+            class="game-menu-dialog">
+                <div class="card dialog-card">
+                    <!--Current Score-->
+                    <div>
+                        <h3>{{'MENUITEMS.GAMES-SECTION.YOUR-SCORE' | translate}}</h3>
+                        <p>0000</p>
+                    </div>
+    
+                    <!--Scores History-->
+                    <div>
+                        <h3>{{'MENUITEMS.GAMES-SECTION.SCORES' | translate}}</h3>
+                        <p>0000</p>
+                        <p>0000</p>
+                        <p>0000</p>
+                        <p>0000</p>
+                        <p>0000</p>
+                    </div>
+                    
+                    <button mat-flat-button color="primary" (click)="returnToGame()">{{'MENUITEMS.GAMES-SECTION.GO-BACK' | translate}}</button>
+                </div>
             </div>
-        </div>
-    </div>    
-</div>
+    
+            <!--Scores-->
+            <div 
+            *ngIf="gameState === GameStates.ScoresScreen"
+            class="game-menu-dialog">
+                <div class="card dialog-card">
+                    <h2>Scores</h2>
+                    <!--Scores History-->
+                    <div>
+                        <p>0000</p>
+                        <p>0000</p>
+                        <p>0000</p>
+                        <p>0000</p>
+                        <p>0000</p>
+                    </div>
+                    
+                    <button mat-flat-button color="primary" (click)="returnToGame()">Go back</button>
+                </div>
+            </div>
+        </div>    
+    </div>
+</section>

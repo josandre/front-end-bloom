@@ -135,6 +135,33 @@
     },
     "CONTACTS": {
       "TEXT": "Contactos"
+    },
+    "GAMES-SECTION": {
+      "TITLE": "Sección de Juegos",
+      "DESCRIPTION": "Bienvenido a la Sección de Juegos, aquí puedes seleccionar diferentes juegos para jugar.",     
+      "PLAY-NOW": "Jugar ahora",
+      "COMING-SOON": "Muy pronto",
+      "DIFFICULTY": "Dificultad",
+      "SELECT-DIFFICULTY": "Seleccionar Dificultad",
+      "SCORES": "Puntajes",
+      "YOUR-SCORE": "Tu Puntaje",
+      "START-NEW-GAME": "Comenzar Nuevo Juego",
+      "GO-BACK": "Volver",
+      "DIFFICULTIES": {
+        "VERY-EASY": "Muy fácil",
+        "EASY": "Fácil",
+        "MEDIUM": "Media",
+        "HIGH": "Alta",
+        "VERY-HIGH": "Muy alta"
+      },
+      "MEMORY-GAME": {
+        "TITLE": "Juego de Memoria",
+        "DESCRIPTION": "Prueba tu memoria en este juego de emparejar cartas"
+      },
+      "PUZZLE-GAME": {
+        "TITLE": "Juego de Rompecabezas",
+        "DESCRIPTION": "Prueba tu agilidad en este juego de rompecabezas"
+      }
     }
   }
 }

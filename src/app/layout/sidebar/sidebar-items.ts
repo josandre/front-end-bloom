@@ -664,10 +664,24 @@ export const ROUTES: RouteInfo[] = [
     role: ['Doctor'],
     submenu: [],
   },
+  //////////////////
   // Patient Modules
+  //////////////////
   {
     path: '/patient/dashboard',
     title: 'MENUITEMS.PATIENT.DASHBOARD',
+    iconType: 'material-icons-two-tone',
+    icon: 'space_dashboard',
+    class: '',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    role: ['Patient'],
+    submenu: [],
+  },
+  {
+    path: '/games-section',
+    title: 'MENUITEMS.GAMES-SECTION.TITLE',
     iconType: 'material-icons-two-tone',
     icon: 'space_dashboard',
     class: '',
@@ -800,7 +814,6 @@ export const ROUTES: RouteInfo[] = [
   },
 
   // Common Modules
-
   {
     path: '',
     title: 'Apps',

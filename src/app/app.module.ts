@@ -28,6 +28,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 import { MemoryGameComponent } from './resources/games/memory-game/memory-game.component';
 import { MemoryCardComponent } from './resources/games/memory-game/memory-card/memory-card.component';
 import { PublicModule } from './public/public.module';
+import { GamesSectionComponent } from './resources/games-section/games-section.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -44,6 +45,7 @@ export function createTranslateLoader(http: HttpClient) {
     MainLayoutComponent,
     MemoryGameComponent,
     MemoryCardComponent,
+    GamesSectionComponent,
   ],
   imports: [
     MatSnackBarModule,

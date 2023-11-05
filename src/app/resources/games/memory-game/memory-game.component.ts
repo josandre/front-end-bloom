@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MemoryCard } from '../logic/memory-card';
 import { AuthService } from '@core';
+import { GameScoreService } from '../services/game-score.service';
 
 interface MemoryGameDifficulty {
   value: number;
+  cardsNumber: number;
   viewValue: string;
 }
 
@@ -20,41 +22,22 @@ export class MemoryGameComponent implements OnInit {
     ResultsScreen: 2,
     ScoresScreen: 3
   }
-  Difficulties = {
-    VeryEasy: {
-      id:0, 
-      cards: 8
-    },
-    Easy: {
-      id:1, 
-      cards: 10
-    },
-    Medium: {
-      id:2, 
-      cards: 18
-    },
-    High: {
-      id:3, 
-      cards: 22
-    },
-    VeryHigh: {
-      id:4, 
-      cards: 28
-    }
-  }
 
   // Game state
   difficulties: MemoryGameDifficulty[] = [
-    { value: this.Difficulties.VeryEasy.cards, viewValue: 'MENUITEMS.GAMES-SECTION.DIFFICULTIES.VERY-EASY' },
-    { value: this.Difficulties.Easy.cards, viewValue: 'MENUITEMS.GAMES-SECTION.DIFFICULTIES.EASY' },
-    { value: this.Difficulties.Medium.cards, viewValue: 'MENUITEMS.GAMES-SECTION.DIFFICULTIES.MEDIUM' },
-    { value: this.Difficulties.High.cards, viewValue: 'MENUITEMS.GAMES-SECTION.DIFFICULTIES.HIGH' },
-    { value: this.Difficulties.VeryHigh.cards, viewValue: 'MENUITEMS.GAMES-SECTION.DIFFICULTIES.VERY-HIGH' }
-  ]
-
+    { value: 0, cardsNumber: 8, viewValue: 'MENUITEMS.GAMES-SECTION.DIFFICULTIES.VERY-EASY' },
+    { value: 1, cardsNumber: 10, viewValue: 'MENUITEMS.GAMES-SECTION.DIFFICULTIES.EASY' },
+    { value: 2, cardsNumber: 18, viewValue: 'MENUITEMS.GAMES-SECTION.DIFFICULTIES.MEDIUM' },
+    { value: 3, cardsNumber: 22, viewValue: 'MENUITEMS.GAMES-SECTION.DIFFICULTIES.HARD' },
+    { value: 4, cardsNumber: 28, viewValue: 'MENUITEMS.GAMES-SECTION.DIFFICULTIES.VERY-HARD' }
+  ];
   gameState: number = this.GameStates.InitialScreen;
 
+  // User info
+  currentUser?:any;
+
   // Difficulty settings
+  difficultySelected: number = 1;
   cardsNumber: number = 0;
   cards?: MemoryCard[] = Array(this.cardsNumber).fill(null);
 
@@ -63,42 +46,98 @@ export class MemoryGameComponent implements OnInit {
   secondCard?: MemoryCard;
 
   // Game state variables
+  currentScore:number = 0;
   gameFinished: boolean = false;
   gameLocked: boolean = false;   // Variable used to lock player input when clearing the selection
 
-  constructor(private readonly authService:AuthService) {
-
-  }
+  constructor(private readonly authService:AuthService, private readonly gameScoreService:GameScoreService) {}
 
   ngOnInit(): void {
     // Get user
-    console.log(this.authService.currentUserValue);
+    this.currentUser = this.authService.currentUserValue;
     this.goToMenu();
   }
 
-  // This function shows the menu to choose difficulty
+  /**
+   *  This function shows the menu to choose difficulty
+   */
   goToMenu(): void {
     this.gameState = this.GameStates.InitialScreen;
   }
 
-  // This function shows the menu with the scores for this user
+  /**
+   * This function shows the menu with the scores for this user
+   */
   goToScores(): void {
     this.gameState = this.GameStates.ScoresScreen;
+    
   }
 
-  // This function is used to go back to the game without starting a new game
+  /**
+   * This function shows the results menu
+   */
+  goToResults(): void {    
+    const newScore = {
+      "difficulty": this.difficultySelected,
+      "score": this.currentScore,
+      "user": {
+        "id": this.currentUser?.id
+      },
+      "game": {
+        "id": 1
+      }
+    };
+
+    console.log('SAVING!');
+    console.log(newScore);
+    // Make sure the score is saved
+    this.gameScoreService.saveUserScore(newScore).
+    subscribe(
+      data => {
+        console.log(data);
+        this.gameState = this.GameStates.ResultsScreen;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  /**
+   * This function is used to go back to the game without starting a new game
+   */
   returnToGame(): void {
     this.gameState = this.GameStates.Gameplay;
   }
 
-  //This function starts a new game
+  /**
+   * Find the number of cards assigned to a selected difficulty
+   * @returns 
+   */
+  getCardsFromDifficulty(): number {
+    let cardsNumber:number = 0;
+    
+    if (this.difficultySelected >= 0 && this.difficultySelected < this.difficulties.length) {
+      cardsNumber = this.difficulties[this.difficultySelected].cardsNumber;
+    }
+
+    return cardsNumber;
+  }
+
+  /**
+   * This function starts a new game
+   */
   newGame(): void {
+    this.cardsNumber = this.getCardsFromDifficulty();
+
+    // Check if the number of cards is an even number
     if (this.cardsNumber % 2 != 0) {
       return;
     }
 
     // Restart game state
     this.gameState = this.GameStates.Gameplay;
+    this.currentScore = 0;
 
     // Fill available cards
     this.cards = Array(this.cardsNumber);
@@ -132,7 +171,10 @@ export class MemoryGameComponent implements OnInit {
     }
   }
 
-  // This function is called when the player clicks a card
+  /**
+   * This function is called when the player clicks a card
+   * @param cardIndex The index of the selected card
+   */
   async selectCard(cardIndex: number) {
     if (this.gameLocked) {
       return;
@@ -145,11 +187,12 @@ export class MemoryGameComponent implements OnInit {
         return;
       }
 
-      console.log(this.cards[cardIndex]);
       if (!this.firstCard) {
+        // The user is selecting the first card
         this.firstCard = this.cards[cardIndex];
         this.firstCard.selected = true;
       } else {
+        // The user is selecting the second card
         this.secondCard = this.cards[cardIndex];
         this.secondCard.selected = true;
         
@@ -165,6 +208,10 @@ export class MemoryGameComponent implements OnInit {
     }
   }
 
+  /**
+   * This function determines if the selected cards have the same symbol
+   * @returns true if both cards have the same symbol
+   */
   areCardsPaired(): boolean {
     // Check if the selected cards have the same value
     if (this.firstCard && this.secondCard) {
@@ -180,7 +227,9 @@ export class MemoryGameComponent implements OnInit {
     return false;
   }
 
-  // This function is called when the player flips 2 cards
+  /**
+   * This function is called when the player flips 2 cards
+   */
   clearSelection(): void {
     // Deselect all cards
     if (this.cards) {
@@ -193,10 +242,14 @@ export class MemoryGameComponent implements OnInit {
     this.firstCard = undefined;
     this.secondCard = undefined;
 
+    // Check for win conditions and unlock the game
     this.checkWinCondition();
     this.gameLocked = false;
   }
 
+  /**
+   * This function checks if all the cards are paired, if so then the game ends and the results menu is displayed
+   */
   checkWinCondition(): void {
     let win: boolean = true;
 
@@ -209,9 +262,11 @@ export class MemoryGameComponent implements OnInit {
       }
     }
 
+    // Go to results
     if (win) {
-      // Go to results
-      this.gameState = this.GameStates.ResultsScreen;
+      this.goToResults();
+    } else {
+      this.currentScore++;
     }
   }
 }

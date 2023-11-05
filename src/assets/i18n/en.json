@@ -145,14 +145,15 @@
       "SELECT-DIFFICULTY": "Select Difficulty",
       "SCORES": "Scores",
       "YOUR-SCORE": "Your Score",
+      "NO-SCORES": "No scores available",
       "START-NEW-GAME": "Start New Game",
       "GO-BACK": "Go Back",
       "DIFFICULTIES": {
         "VERY-EASY": "Very easy",
         "EASY": "Easy",
         "MEDIUM": "Medium",
-        "HIGH": "High",
-        "VERY-HIGH": "Very high"
+        "HARD": "Hard",
+        "VERY-HARD": "Very hard"
       },
       "MEMORY-GAME": {
         "TITLE": "Memory Game",

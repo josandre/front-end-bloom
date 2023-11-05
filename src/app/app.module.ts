@@ -29,6 +29,7 @@ import { MemoryGameComponent } from './resources/games/memory-game/memory-game.c
 import { MemoryCardComponent } from './resources/games/memory-game/memory-card/memory-card.component';
 import { PublicModule } from './public/public.module';
 import { GamesSectionComponent } from './resources/games-section/games-section.component';
+import { ScoresListComponent } from './resources/games/scores-list/scores-list.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -46,6 +47,7 @@ export function createTranslateLoader(http: HttpClient) {
     MemoryGameComponent,
     MemoryCardComponent,
     GamesSectionComponent,
+    ScoresListComponent,
   ],
   imports: [
     MatSnackBarModule,

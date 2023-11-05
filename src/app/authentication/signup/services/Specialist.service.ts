@@ -2,13 +2,14 @@ import {Injectable} from "@angular/core";
 import {API_URL} from "../../../../config";
 import {HttpClient} from "@angular/common/http";
 import {Specialist} from "../models/Specialist";
+import {AuthService} from "@core";
 
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class UserService {
+export class SpecialistService {
   private readonly baseUrl = API_URL;
 
   constructor(private readonly http: HttpClient) {}

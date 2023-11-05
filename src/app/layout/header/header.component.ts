@@ -35,6 +35,7 @@ export class HeaderComponent
 {
   public config!: InConfiguration;
   userImg?: string;
+  userName: string;
   homePage?: string;
   isNavbarCollapsed = true;
   flagvalue: string | string[] | undefined;
@@ -53,7 +54,8 @@ export class HeaderComponent
     private configService: ConfigService,
     private authService: AuthService,
     private router: Router,
-    public languageService: LanguageService
+    public languageService: LanguageService,
+
   ) {
     super();
   }
@@ -115,6 +117,7 @@ export class HeaderComponent
     },
   ];
   ngOnInit() {
+    this.userName = this.authService.currentUserValue.firstName +  " " + this.authService.currentUserValue.lastName;
     this.config = this.configService.configData;
     const userRole = this.authService.currentUserValue.role;
     this.userImg = this.authService.currentUserValue.img;

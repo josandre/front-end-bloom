@@ -141,6 +141,7 @@ export class DashboardComponent implements OnInit {
     this.chart1();
     this.chart2();
     this.chart3();
+    console.log()
   }
   private chart1() {
     this.areaChartOptions = {

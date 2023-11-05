@@ -98,7 +98,7 @@
         "ISSUED-ITEMS": "Artículos emitidos"
       }
     },
-    "DOCTOR": {    
+    "DOCTOR": {
         "DASHBOARD": "Tablero",
         "APPOINTMENTS": "Equipo",
         "DOCTORS": "Doctoras",
@@ -106,7 +106,7 @@
         "SETTINGS": "Configuraciones",
         "CHAT": "Charla"
     },
-    "PATIENT": {    
+    "PATIENT": {
       "TEXT": "Paciente",
       "DASHBOARD": "Tablero",
       "APPOINTMENTS": {

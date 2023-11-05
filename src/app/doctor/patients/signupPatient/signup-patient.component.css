@@ -1,0 +1,12 @@
+.sections{
+  display: flex;
+  justify-content: space-between;
+}
+
+.auth-wrapper {
+  width: 490px;
+}
+
+::ng-deep snack-bar-container simple-snack-bar .mat-simple-snackbar-action {
+  color: white;
+}

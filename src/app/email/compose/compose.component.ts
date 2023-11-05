@@ -17,7 +17,7 @@ export class ComposeComponent {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
 
   readonly formGroup = new FormGroup({
-      resourcetitle: new FormControl("", {
+    title: new FormControl("", {
       validators: [Validators.required],
       updateOn: 'submit'
     }),
@@ -30,7 +30,7 @@ export class ComposeComponent {
   constructor(private readonly resourceService: ResourceService) {}
 
   onSubmit(){
-    let resourcetitle  = (<HTMLInputElement>document.getElementById('resourcetitle')).value;
+    let resourcetitle  = this.formGroup.controls['title'].value;
 
     if (this.editor && this.editor.editorInstance) {
       const content = this.editor.editorInstance.getData();

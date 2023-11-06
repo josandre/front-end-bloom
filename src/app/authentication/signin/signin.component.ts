@@ -38,7 +38,6 @@ export class SigninComponent implements OnInit {
     this.loading = true;
     this.error = '';
 
-    console.log(this.authForm.valid)
 
     if(this.authForm.valid){
       this.authService.login(this.f['username'].value, this.f['password'].value)
@@ -58,15 +57,11 @@ export class SigninComponent implements OnInit {
             this.loading = false;
           },
           error: (error) => {
-            this.error = error;
+            this.error = "unauthorized";
             this.submitted = false;
             this.loading = false;
           }
         })
-
-
-    }else{
-      // this.error = 'Username and Password not valid !';
     }
   }
 }

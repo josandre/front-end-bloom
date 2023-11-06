@@ -1,1 +1,10 @@
+.section-header{
 
+  display: flex;
+  justify-content: space-between;
+
+  .btn-create-patient{
+    height: 38px;
+    margin-top: 20px;
+  }
+}

@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import {Speciality} from "./models/Speciality";
 import {Specialist} from "./models/Specialist";
-import {UserService} from "./services/User.service";
+import {SpecialistService} from "./services/Specialist.service";
 import {User} from "./models/User";
 import {MatSnackBar} from "@angular/material/snack-bar";
 @Component({
@@ -26,7 +26,7 @@ export class SignupComponent implements OnInit {
     {value: 'psychology', viewValue: 'psychology'},
   ];
 
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private userService: UserService, private snackBar: MatSnackBar) {}
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private userService: SpecialistService, private snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.authForm = this.formBuilder.group({

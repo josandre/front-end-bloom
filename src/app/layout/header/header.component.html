@@ -5,8 +5,7 @@
         (click)="isNavbarCollapsed = !isNavbarCollapsed" aria-expanded="false"></a>
       <a href="#" onClick="return false;" class="bars" (click)="mobileMenuSidebarOpen($event,'overlay-open')"></a>
       <a class="navbar-brand" routerLink={{homePage}}>
-        <img src="assets/images/logo.png" alt="" />
-        <span class="logo-name">Cliniva</span>
+        <span class="logo-name">Bloom</span>
       </a>
     </div>
     <div class="collapse navbar-collapse" [ngClass]="isNavbarCollapsed ? '' : 'show'">
@@ -88,8 +87,7 @@
         <li class="nav-item user_profile">
           <button mat-button [matMenuTriggerFor]="profilemenu">
             <div class="chip dropdown-toggle" ngbDropdownToggle class="">
-              <span>Ella Jones</span>
-              <img src="{{userImg}}" class="user_img" width="32" height="32" alt="User">
+              <span>{{this.userName}}</span>
             </div>
           </button>
           <mat-menu #profilemenu="matMenu" class="profile-menu">

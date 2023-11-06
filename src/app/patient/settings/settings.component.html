@@ -10,22 +10,22 @@
           <strong>Security</strong> Settings</h2>
       </div>
         <!-- breadcrumb -->
-        <div class="body" >
+        <div class="body" [formGroup]="passwordForm" (ngSubmit)="onSubmitPassword()">
           <div class="example-container">
             <mat-form-field class="example-full-width mb-3" appearance="outline">
-              <mat-label>Contrasena actual</mat-label>
-              <input matInput>
+              <mat-label>Current password</mat-label>
+              <input matInput formControlName="currentPasword">
             </mat-form-field>
             <mat-form-field class="example-full-width mb-3" appearance="outline">
-              <mat-label>Nueva Contrasena</mat-label>
-              <input matInput type="password">
+              <mat-label>New password</mat-label>
+              <input matInput type="password" formControlName="newPassword">
             </mat-form-field>
             <mat-form-field class="example-full-width mb-3" appearance="outline">
-              <mat-label>Confirmar contrasena</mat-label>
-              <input matInput type="password">
+              <mat-label>Confirm Password</mat-label>
+              <input matInput type="password" formControlName="confirmPasword">
             </mat-form-field>
           </div>
-          <button mat-raised-button color="primary">Guardar</button>
+          <button mat-raised-button color="primary">Save</button>
         </div>
     </div>
     <div class="card">
@@ -33,61 +33,33 @@
         <h2>
           <strong>Account</strong> Settings</h2>
       </div>
-      <div class="body" [formGroup]="userUpdateForm">
+      <div class="body" [formGroup]="userUpdateForm" (ngSubmit)="onSubmit()">
         <div class="row clearfix">
-          <div class="col-lg-6 col-md-12">
+          <div class="col-lg-4 col-md-12">
             <div class="form-group">
               <mat-form-field class="example-full-width mb-3" appearance="outline">
-                <mat-label>Nombre</mat-label>
+                <mat-label>Name</mat-label>
                 <input matInput formControlName="name" >
               </mat-form-field>
             </div>
           </div>
-          <div class="col-lg-6 col-md-12">
+          <div class="col-lg-4 col-md-12">
             <div class="form-group">
               <mat-form-field class="example-full-width mb-3" appearance="outline">
-                <mat-label>Apellido</mat-label>
+                <mat-label>Las Name</mat-label>
                 <input matInput formControlName="lastName">
               </mat-form-field>
             </div>
           </div>
           <div class="col-lg-4 col-md-12">
             <div class="form-group">
-              <mat-label>provincia</mat-label>
-              <input matInput formControlName="province">
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-12">
-            <div class="form-group">
               <mat-form-field class="example-full-width mb-3" appearance="outline">
-                <mat-label>canton</mat-label>
-                <input matInput formControlName="canton">
-              <!--
- <mat-select formControlName="canton">
-                  <mat-option [value]="'A-'">
-                    canton-
-                  </mat-option>
-                </mat-select>
-              --> 
+                <mat-label>User Name</mat-label>
+                <input matInput formControlName="userName">
               </mat-form-field>
             </div>
           </div>
-          <div class="col-lg-4 col-md-12">
-            <div class="form-group">
-              <mat-form-field class="example-full-width mb-3" appearance="outline">
-                <mat-label>distrito</mat-label>
-                <input matInput formControlName="district">
-               <!--
-<mat-select formControlName="district">
-                  <mat-option [value]="'A-'">
-                    Distrito-
-                  </mat-option>
-                </mat-select>
-               --> 
-              </mat-form-field>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-12">
+          <div class="col-lg-4 col-md-12">          
             <div class="form-group">
               <mat-form-field class="example-full-width mb-3" appearance="outline">
                 <mat-label>Email</mat-label>
@@ -95,27 +67,36 @@
               </mat-form-field>
             </div>
           </div>
+
           <div class="col-lg-4 col-md-12">
             <div class="form-group">
               <mat-form-field class="example-full-width mb-3" appearance="outline">
-                <mat-label>Telefono</mat-label>
+                <mat-label>Citizen Id</mat-label>
+                <input matInput formControlName="citizenId">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-12">
+            <div class="form-group">
+              <mat-form-field class="example-full-width mb-3" appearance="outline">
+                <mat-label>Phone</mat-label>
                 <input matInput formControlName="phone">
               </mat-form-field>
             </div>
           </div>
-          <div class="col-lg-4 col-md-12">
+
+
+
+          <div class="col-md-12">
             <div class="form-group">
               <mat-form-field class="example-full-width mb-3" appearance="outline">
-                <mat-label>Nombre de usuaio</mat-label>
-                <input matInput formControlName="userName">
+                <mat-label>Address</mat-label>
+                <textarea matInput formControlName="address"></textarea>
               </mat-form-field>
             </div>
           </div>
           <div class="col-md-12">
-
-          </div>
-          <div class="col-md-12">
-            <button mat-raised-button color="primary">Guardar Cambios</button>
+            <button mat-raised-button color="primary">Save</button>
           </div>
         </div>
       </div>

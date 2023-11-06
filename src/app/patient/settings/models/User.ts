@@ -1,8 +1,5 @@
 export class User{
     id: number;
-    canton: string;
-    district: string;
-    province : string;
     email: string;
     isActive: boolean;
     lastName: string;
@@ -11,6 +8,7 @@ export class User{
     phone: string;
     userName: string;
     citizenId:number;
+    address:string;
     
 
     constructor(partial?:Partial<User>) {

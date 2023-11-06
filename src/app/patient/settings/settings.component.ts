@@ -3,9 +3,13 @@ import {FormBuilder,FormGroup,FormControl,Validators,} from '@angular/forms';
 import { UserService } from './service/user.service';
 import { BehaviorSubject,Observable } from 'rxjs';
 import {User} from "../../patient/settings/models/User";
+import {Password} from "../../patient/settings/models/Password";
+
 import{ProvinciaI,CantonI} from "./models/model.intercafe"
 import { DataService } from './service/data.service';
 import { AuthService } from '@core';
+import {MatSnackBar} from "@angular/material/snack-bar";
+
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
@@ -14,22 +18,23 @@ import { AuthService } from '@core';
 })
 export class SettingsComponent implements OnInit {
   public currentUser=this.userService.getDataUser(); 
- // public selectedProvincia:ProvinciaI={id:1,nombre:"San José"};
-  //public provincias:ProvinciaI[]=this.data.getProvincias();
-  //public cantones:CantonI[]=this.data.getCantones();
   passwordForm: FormGroup;
   userUpdateForm:FormGroup;
  
-  constructor(private formBuilder: FormBuilder, private userService:UserService,private data: DataService, private auth:AuthService) {
+  constructor(private formBuilder: FormBuilder, private userService:UserService,private data: DataService, private auth:AuthService,private snackBar: MatSnackBar) {
+    this.initFormUser();
+    this.initFormPass();
+  }
+  initFormUser(){
     this.userUpdateForm = this.formBuilder.group({
-      userName: new FormControl(userService.currentUserValue.name, {
+      userName: new FormControl("", {
         validators:[Validators.required]
       }),
       lastName: new FormControl("", {
         validators:[Validators.required]
       }),
         email: new FormControl("", {
-        validators:[Validators.required]
+        validators:[Validators.required, Validators.email]
       }),
       name: new FormControl("", {
         validators:[Validators.required]
@@ -37,36 +42,39 @@ export class SettingsComponent implements OnInit {
       phone: new FormControl("", {
         validators:[Validators.required]
       }),
-      canton: new FormControl("", {
-        validators:[Validators.required]
-      }),
-      district: new FormControl("", {
-        validators:[Validators.required]
-      }),
-      province: new FormControl("", {
-        validators:[Validators.required]
-      }),
       citizenId: new FormControl("", {
         validators:[Validators.required]
       }),
-
+      address: new FormControl("", {
+        validators:[Validators.required]
+      }),
+    });
+  }
+  initFormPass(){
+    this.passwordForm = this.formBuilder.group({
+      currentPassword: new FormControl("", {
+        validators:[Validators.required]
+      }),
+      newPassword: new FormControl("", {
+        validators:[Validators.required]
+      }),
+        confirmPassword: new FormControl("", {
+        validators:[Validators.required]
+      })
     });
   }
   ngOnInit() {
     this.userService.getDataUser().subscribe(
     (user: User) => {
-      // Manejar los datos del usuario recibidos en 'user'
       console.log('Datos del usuario:', user);
       this.userUpdateForm.controls['email'].setValue(user.email);
-      this.userUpdateForm.controls['canton'].setValue(user.canton);
-      this.userUpdateForm.controls['district'].setValue(user.district);
-      this.userUpdateForm.controls['province'].setValue(user.province);
       this.userUpdateForm.controls['lastName'].setValue(user.lastName);
       this.userUpdateForm.controls['name'].setValue(user.name);
       this.userUpdateForm.controls['phone'].setValue(user.phone);
       this.userUpdateForm.controls['userName'].setValue(user.userName);
+      this.userUpdateForm.controls['citizenId'].setValue(user.citizenId);
+      this.userUpdateForm.controls['address'].setValue(user.address);
     }, error => {
-      // Manejar errores en caso de que ocurran
       console.error('Error al obtener datos del usuario:', error);
     });
     console.log("soy el id "+this.auth.currentUserValue.id)
@@ -74,16 +82,53 @@ export class SettingsComponent implements OnInit {
   onSubmit(){
     if(this.userUpdateForm.valid){
       const user: User=new User({
-        canton: this.userUpdateForm.controls['canton'].value,
-        district:this.userUpdateForm.controls['district'].value,
-        province :this.userUpdateForm.controls['province'].value,
         email: this.userUpdateForm.controls['email'].value,
         lastName: this.userUpdateForm.controls['lastName'].value,
         name: this.userUpdateForm.controls['name'].value,
         phone: this.userUpdateForm.controls['phone'].value,
-        userName: this.userUpdateForm.controls['userName'].value
+        userName: this.userUpdateForm.controls['userName'].value,
+        citizenId: this.userUpdateForm.controls['citizenId'].value,
+        address: this.userUpdateForm.controls['address'].value,
+
       })
-      console.log(user+ " soy la modificacion ")
+
+      this.userService.updateUser(user).subscribe((res) => {
+        switch (res) {
+          case 200:{
+            this.openSnackBar("User updated", "Close");
+            break;
+          }
+        }
+      }, error => {
+          this.openSnackBar("The user was not updated", "Close" );
+
+          })
+  }
+  }
+  onSubmitPassword(){
+    if(this.passwordForm.valid){
+      const password :Password=new Password({
+        currentPassword: this.passwordForm.controls['currentPassword'].value,
+        newPassword:this.passwordForm.controls['newPassword'].value
+      })
+      this.userService.updatePassword(password).subscribe((res) => {
+        switch (res) {
+          case 200:{
+            this.openSnackBar("User updated", "Close");
+            break;
+          }
+        }
+      }, error => {
+        switch (error.error) {
+          case 404:{
+            this.openSnackBar("Current password does not match", "Close" );
+            break;
+          }
+        }
+          })
     }
+  }
+  openSnackBar(message: string, action: string){
+    this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'end'})
   }
 }

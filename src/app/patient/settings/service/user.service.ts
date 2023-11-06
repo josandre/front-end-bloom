@@ -1,30 +1,39 @@
 import { Injectable } from '@angular/core';
 import {API_URL} from "../../../../config";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient,HttpHeaders} from "@angular/common/http";
 import {User} from "../../settings/models/User";
+import {Password} from "../../settings/models/Password";
+
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { RecordsRoutingModule } from 'app/admin/records/records-routing.module';
+import { AuthService } from '@core';
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-
-  private currentUserSubject: BehaviorSubject<User>;
-  public currentUser: Observable<User>;
   private readonly baseUrl = API_URL;
 
-  constructor(private http: HttpClient) { 
-    this.currentUserSubject = new BehaviorSubject<User>(
-      JSON.parse(localStorage.getItem('currentUser') || '{}')
-    );
-    this.currentUser = this.currentUserSubject.asObservable();
+  constructor(private http: HttpClient,private auth:AuthService) { 
+    
   }
-  public get currentUserValue(): User {
-    return this.currentUserSubject.value;
-  }
+
   getDataUser():Observable<User>{
-    const url = `${this.baseUrl}/user/${1}`;
+    const url = `${this.baseUrl}/user/${this.auth.currentUserValue.id}`;
     
     return this.http.get<User>(url);
+  }
+  updateUser(user:User){
+    const url = `${this.baseUrl}/user/${this.auth.currentUserValue.id}/user`;
+    const userId = this.auth.currentUserValue.id;
+    const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.auth.currentUserValue.token)
+    console.log(userId)
+    return this.http.put(url, user, {headers: header});
+  }
+  updatePassword(password:Password){
+    const url = `${this.baseUrl}/changePassword/${this.auth.currentUserValue.id}/password`;
+    const userId = this.auth.currentUserValue.id;
+    const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.auth.currentUserValue.token)
+    console.log(userId)
+    return this.http.put(url, password, {headers: header});
   }
 }

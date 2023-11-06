@@ -17,13 +17,14 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   providers:[DataService]
 })
 export class SettingsComponent implements OnInit {
-  public currentUser=this.userService.getDataUser(); 
   passwordForm: FormGroup;
   userUpdateForm:FormGroup;
+  password:Password;
  
   constructor(private formBuilder: FormBuilder, private userService:UserService,private data: DataService, private auth:AuthService,private snackBar: MatSnackBar) {
     this.initFormUser();
     this.initFormPass();
+    
   }
   initFormUser(){
     this.userUpdateForm = this.formBuilder.group({
@@ -77,7 +78,7 @@ export class SettingsComponent implements OnInit {
     }, error => {
       console.error('Error al obtener datos del usuario:', error);
     });
-    console.log("soy el id "+this.auth.currentUserValue.id)
+
 }
   onSubmit(){
     if(this.userUpdateForm.valid){

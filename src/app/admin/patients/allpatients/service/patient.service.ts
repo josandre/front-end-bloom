@@ -10,13 +10,13 @@ import {AuthService} from "@core";
 })
 export class PatientService {
   private readonly baseUrl = API_URL;
-
   constructor(private httpClient: HttpClient, private readonly authService : AuthService) {}
 
 
   getAllPatients(): Observable<Patient[]> {
+    const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.authService.currentUserValue.token)
     const url = `${this.baseUrl}/patients-system`
-    return this.httpClient.get<Patient[]>(url);
+    return this.httpClient.get<Patient[]>(url, {headers: header});
   }
 
   changeState(id: number){

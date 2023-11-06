@@ -4,8 +4,6 @@ import { UserService } from './service/user.service';
 import { BehaviorSubject,Observable } from 'rxjs';
 import {User} from "../../patient/settings/models/User";
 import {Password} from "../../patient/settings/models/Password";
-
-import{ProvinciaI,CantonI} from "./models/model.intercafe"
 import { DataService } from './service/data.service';
 import { AuthService } from '@core';
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -14,7 +12,6 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss'],
-  providers:[DataService]
 })
 export class SettingsComponent implements OnInit {
   passwordForm: FormGroup;
@@ -34,7 +31,7 @@ export class SettingsComponent implements OnInit {
       lastName: new FormControl("", {
         validators:[Validators.required]
       }),
-        email: new FormControl("", {
+        email: new FormControl({ value: '', disabled: true } , {
         validators:[Validators.required, Validators.email]
       }),
       name: new FormControl("", {
@@ -43,7 +40,7 @@ export class SettingsComponent implements OnInit {
       phone: new FormControl("", {
         validators:[Validators.required]
       }),
-      citizenId: new FormControl("", {
+      citizenId: new FormControl({ value: '', disabled: true } ,{
         validators:[Validators.required]
       }),
       address: new FormControl("", {

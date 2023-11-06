@@ -1,14 +1,14 @@
 export class User{
     id: number;
     email: string;
-    isActive: boolean;
+    isActive?: boolean;
     lastName: string;
     name: string;
-    password: string;
-    phone: string;
+    password?: string;
+    phone?: string;
     userName: string;
     citizenId:number;
-    address:string;
+    address?:string;
     
 
     constructor(partial?:Partial<User>) {

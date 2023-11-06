@@ -1,25 +1,22 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component,  OnInit, ViewChild } from '@angular/core';
 
-import { HttpClient } from '@angular/common/http';
-import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Patient } from './models/patient.model';
-import { DataSource } from '@angular/cdk/collections';
+
 import {
   MatSnackBar,
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
-import { BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+
 import { SelectionModel } from '@angular/cdk/collections';
 import {
   TableExportUtil,
   TableElement,
   UnsubscribeOnDestroyAdapter,
 } from '@shared';
-import { formatDate } from '@angular/common';
+
 import {PatientService} from "./service/patient.service";
 import {MatTableDataSource} from "@angular/material/table";
 
@@ -81,9 +78,9 @@ export class AllpatientsComponent
    this.dataSource.filter = filterText;
   }
 
-  // export table data in excel file
+
   exportExcel() {
-    // key name with space add in brackets
+
     const exportData: Partial<TableElement>[] =
       this.dataSource.filteredData.map((x) => ({
         Name: x.userName,

@@ -50,7 +50,7 @@
                 <!-- UserName Column -->
                 <ng-container matColumnDef="username">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Username</mat-header-cell>
-                  <mat-cell *matCellDef="let row"> <span class="mobile-label">Username:</span>{{row.username}}</mat-cell>
+                  <mat-cell *matCellDef="let row"> <span class="mobile-label">Username:</span>{{row.name +  " " + row.lastName}}</mat-cell>
                 </ng-container>
 
                 <!-- actions -->

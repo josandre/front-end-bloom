@@ -10,6 +10,7 @@ import { SharedModule } from '@shared';
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import {NgApexchartsModule} from "ng-apexcharts";
 import {NgScrollbarModule} from "ngx-scrollbar";
+import {UiModule} from "../ui/ui.module";
 @NgModule({
   declarations: [ComposeComponent, InboxComponent, ReadMailComponent],
     imports: [
@@ -21,6 +22,7 @@ import {NgScrollbarModule} from "ngx-scrollbar";
         DragDropModule,
         NgApexchartsModule,
         NgScrollbarModule,
+        UiModule,
     ],
 })
 export class EmailModule {}

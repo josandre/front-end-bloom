@@ -17,13 +17,21 @@ export class ResourceService {
   resourceRegister(resource: Resource): Observable<Resource>{
     const currentUser = this.authenticationService.currentUserValue;
     const URL = `${this.baseUrl}/resource/add`;
-
-    console.log(currentUser);
-
+    resource.specialist = JSON.parse(`{"id":${currentUser.id}}`);
     return this.http.post<Resource>(URL, resource, {headers: {'Authorization':  `Bearer ${currentUser.token}`}});
   }
 
+  getResourceList(): Observable<Resource[]>{
+      const currentUser = this.authenticationService.currentUserValue;
+      const URL = `${this.baseUrl}/resource/getByMedId/${currentUser.id}`;
+      return this.http.get<Resource[]>(URL, {headers: {'Authorization':  `Bearer ${currentUser.token}`}})
 
+  }
 
+  getResourceById(id: number): Observable<Resource>{
+    const currentUser = this.authenticationService.currentUserValue;
+    const URL = `${this.baseUrl}/resource/getById/${id}`;
+    return this.http.get<Resource>(URL, {headers: {'Authorization':  `Bearer ${currentUser.token}`}})
+  }
 
 }

@@ -30,7 +30,7 @@ export class ComposeComponent {
   constructor(private readonly resourceService: ResourceService) {}
 
   onSubmit(){
-    let resourcetitle  = this.formGroup.controls['title'].value;
+    const resourcetitle  = this.formGroup.controls['title'].value;
 
     if (this.editor && this.editor.editorInstance) {
       const content = this.editor.editorInstance.getData();

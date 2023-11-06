@@ -105,7 +105,7 @@ export class AlldoctorsComponent
   }
 
   setState(row: Doctor){
-    row.isActive = !row.isActive
+    row.active = !row.active
       this.doctorService.changeState(row.id).subscribe(() => {
           this.openSnackBar("Doctor state changed", "Close")
       }, () => {

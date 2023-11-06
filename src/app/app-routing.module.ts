@@ -5,6 +5,8 @@ import { AuthGuard } from './core/guard/auth.guard';
 import { Role } from './core/models/role';
 import { AuthLayoutComponent } from './layout/app-layout/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './layout/app-layout/main-layout/main-layout.component';
+import { GamesSectionComponent } from './resources/games-section/games-section.component';
+import { MemoryGameComponent } from './resources/games/memory-game/memory-game.component';
 
 const routes: Routes = [
   // Redirección a 'public' cuando se visite la raíz
@@ -127,6 +129,18 @@ const routes: Routes = [
             (m) => m.MultilevelModule
           ),
       },
+      ///////////////////
+      // Games Section //
+      ///////////////////
+      {
+        path: 'games-section',
+        component: GamesSectionComponent
+      },
+      {
+        path: 'memory-game',
+        component: MemoryGameComponent
+      }
+      ///////////////////
     ],
   },
   {

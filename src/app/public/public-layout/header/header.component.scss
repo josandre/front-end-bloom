@@ -545,3 +545,9 @@ nav#cssmenu ul {
 img {
   width: 100%;
 }
+
+@media only screen and (max-width: 1024px) {
+  header {
+    display: none;
+  }
+}

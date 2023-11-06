@@ -2,13 +2,14 @@ import {Injectable} from "@angular/core";
 import {API_URL} from "../../../../config";
 import {HttpClient} from "@angular/common/http";
 import {Specialist} from "../models/Specialist";
-import {Observable} from "rxjs";
+import {AuthService} from "@core";
+
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class UserService {
+export class SpecialistService {
   private readonly baseUrl = API_URL;
 
   constructor(private readonly http: HttpClient) {}
@@ -17,15 +18,4 @@ export class UserService {
     const url = `${this.baseUrl}/doctor`
     return this.http.post(url, specialist);
   }
-
-  login(username: string, password: string) {
-    console.log(username, password)
-    const url = `${this.baseUrl}/authenticate`;
-    return this.http.post(url, {
-      username,
-      password,
-    })
-
-  }
-
 }

@@ -851,7 +851,7 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     path: '',
-    title: 'Email',
+    title: 'Resources',
     iconType: 'material-icons-two-tone',
     icon: 'email',
     class: 'menu-toggle',
@@ -862,7 +862,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: [
       {
         path: '/email/inbox',
-        title: 'Inbox',
+        title: 'My Resources',
         iconType: '',
         icon: '',
         class: 'ml-menu',
@@ -884,18 +884,18 @@ export const ROUTES: RouteInfo[] = [
         role: [''],
         submenu: [],
       },
-      {
-        path: '/email/read-mail',
-        title: 'Read Email',
-        iconType: '',
-        icon: '',
-        class: 'ml-menu',
-        groupTitle: false,
-        badge: '',
-        badgeClass: '',
-        role: [''],
-        submenu: [],
-      },
+      // {
+      //   path: '/email/read-mail',
+      //   title: 'Read Resource',
+      //   iconType: '',
+      //   icon: '',
+      //   class: 'ml-menu',
+      //   groupTitle: false,
+      //   badge: '',
+      //   badgeClass: '',
+      //   role: [''],
+      //   submenu: [],
+      // },
     ],
   },
   {

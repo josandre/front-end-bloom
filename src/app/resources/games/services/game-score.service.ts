@@ -19,7 +19,7 @@ export class GameScoreService {
    * @param userID The identifier for the user
    * @returns a list of objects that contain game score data
    */
-  getUserScores(gameID:number, difficulty:number, userID:number) : Observable<object> {
+  getUserScores(gameID:number, difficulty:number, userID:number) : Observable<any> {
     return this.http.get(`${GAME_SCORE_ENDPOINT}/${gameID}/${difficulty}/${userID}`);
   }
 
@@ -28,7 +28,7 @@ export class GameScoreService {
    * @param data info about the new score, this contains user, game, difficulty and score
    * @returns the data saved in the database
    */
-  saveUserScore(data:{difficulty:number, score:number, user:{id:number}, game:{id:number}}) {
+  saveUserScore(data:{difficulty:number, score:number, user:{id:number}, game:{id:number}}) : Observable<any> {
     return this.http.post(GAME_SCORE_ENDPOINT, data);
   }
 }

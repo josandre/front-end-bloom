@@ -93,12 +93,13 @@ export class MemoryGameComponent implements OnInit {
     // Make sure the score is saved
     this.gameScoreService.saveUserScore(newScore).
     subscribe(
-      data => {
-        console.log(data);
+      response => {
+        console.log(response);
         this.gameState = this.GameStates.ResultsScreen;
       },
       error => {
         console.log(error);
+        this.gameState = this.GameStates.ResultsScreen;
       }
     );
   }
@@ -261,12 +262,11 @@ export class MemoryGameComponent implements OnInit {
         }
       }
     }
+    this.currentScore++;
 
     // Go to results
     if (win) {
       this.goToResults();
-    } else {
-      this.currentScore++;
     }
   }
 }

@@ -135,6 +135,34 @@
     },
     "CONTACTS": {
       "TEXT": "Contacts"
+    },
+    "GAMES-SECTION": {
+      "TITLE": "Games Section",
+      "DESCRIPTION": "Welcome to the Games Section, here you can select from multiple games to play",
+      "PLAY-NOW": "Play Now",
+      "COMING-SOON": "Coming Soon",
+      "DIFFICULTY": "Difficulty",
+      "SELECT-DIFFICULTY": "Select Difficulty",
+      "SCORES": "Scores",
+      "YOUR-SCORE": "Your Score",
+      "NO-SCORES": "No scores available",
+      "START-NEW-GAME": "Start New Game",
+      "GO-BACK": "Go Back",
+      "DIFFICULTIES": {
+        "VERY-EASY": "Very easy",
+        "EASY": "Easy",
+        "MEDIUM": "Medium",
+        "HARD": "Hard",
+        "VERY-HARD": "Very hard"
+      },
+      "MEMORY-GAME": {
+        "TITLE": "Memory Game",
+        "DESCRIPTION": "Test your memory in this card matching game"
+      },
+      "PUZZLE-GAME": {
+        "TITLE": "Puzzle Game",
+        "DESCRIPTION": "Test your agility in this puzzle game"
+      }
     }
   }
 }

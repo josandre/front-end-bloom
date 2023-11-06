@@ -1,0 +1,79 @@
+<section class="content">
+    <div class="content-block">
+        <div class="game-container">
+            <h1>{{ 'MENUITEMS.GAMES-SECTION.MEMORY-GAME.TITLE' | translate }}</h1>
+            <!--Gane board-->
+            <div>
+                <div>
+                    <button mat-flat-button color="primary" (click)="goToMenu()">{{ 'MENUITEMS.GAMES-SECTION.DIFFICULTY' | translate }}</button>
+                    <button mat-flat-button color="primary" (click)="goToScores()">{{ 'MENUITEMS.GAMES-SECTION.SCORES' | translate }}</button>
+                </div>
+                
+                <div class="m-t-20">
+                    <h5>{{ 'MENUITEMS.GAMES-SECTION.YOUR-SCORE' | translate }}: {{ currentScore }}</h5>
+                </div>
+
+                <div class="memory-game-board">
+                    <app-memory-card class="memory-card-container"
+                    *ngFor="let card of cards; let i = index"
+                    [memoryCard]="card"
+                    (click)="selectCard(i)">
+                    </app-memory-card>
+                </div>
+            </div> 
+    
+            <!--Initial Screen Difficuly dialog-->
+            <div 
+            *ngIf="gameState === GameStates.InitialScreen"
+            class="game-menu-dialog">
+                <div class="card dialog-card">
+                    <h1>{{ 'MENUITEMS.GAMES-SECTION.SELECT-DIFFICULTY' | translate }}</h1>
+                    <form>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>{{ 'MENUITEMS.GAMES-SECTION.DIFFICULTY' | translate }}</mat-label>
+                            <mat-select [(ngModel)]="difficultySelected" name="difficultySelected">
+                                <mat-option *ngFor="let difficulty of difficulties" [value]="difficulty.value">
+                                    {{ difficulty.viewValue | translate }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </form>
+                    
+                    <button mat-flat-button color="primary" (click)="newGame()">{{ 'MENUITEMS.GAMES-SECTION.START-NEW-GAME' | translate }}</button>
+                    <button mat-flat-button color="primary" (click)="returnToGame()">{{ 'MENUITEMS.GAMES-SECTION.GO-BACK' | translate }}</button>
+                </div>
+            </div>        
+    
+            <!--Win dialog-->
+            <div 
+            *ngIf="gameState === GameStates.ResultsScreen"
+            class="game-menu-dialog">
+                <div class="card dialog-card">
+                    <!--Current Score-->
+                    <div>
+                        <h3>{{ 'MENUITEMS.GAMES-SECTION.YOUR-SCORE' | translate }}: {{ currentScore }}</h3>
+                    </div>
+    
+                    <!--Scores History-->
+                    <app-scores-list [gameID]="1" [userID]="currentUser.id" [difficulty]="difficultySelected" [difficultyLabel]="difficulties[difficultySelected].viewValue"></app-scores-list>
+                    
+                    <!--Go back button-->
+                    <button mat-flat-button color="primary" (click)="returnToGame()">{{ 'MENUITEMS.GAMES-SECTION.GO-BACK' | translate }}</button>
+                </div>
+            </div>
+    
+            <!--Scores-->
+            <div 
+            *ngIf="gameState === GameStates.ScoresScreen"
+            class="game-menu-dialog">
+                <div class="card dialog-card">
+                    <!--Scores History-->
+                    <app-scores-list [gameID]="1" [userID]="currentUser.id" [difficulty]="difficultySelected" [difficultyLabel]="difficulties[difficultySelected].viewValue"></app-scores-list>
+                    
+                    <!--Go back button-->
+                    <button mat-flat-button color="primary" (click)="returnToGame()">{{ 'MENUITEMS.GAMES-SECTION.GO-BACK' | translate }}</button>
+                </div>
+            </div>
+        </div>    
+    </div>
+</section>

@@ -1,0 +1,14 @@
+{
+    "provincias":[
+        {
+        "id":1,
+        "nombre":"San José"
+        },
+        {
+            "id":2,
+            "nombre":"Alajuela"
+        }
+    ]
+
+}
+	

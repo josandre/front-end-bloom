@@ -10,6 +10,8 @@ export class User{
     password: string;
     phone: string;
     userName: string;
+    citizenId:number;
+    
 
     constructor(partial?:Partial<User>) {
         if(partial){

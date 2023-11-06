@@ -3,6 +3,7 @@ import {API_URL} from "../../../../config";
 import {HttpClient} from "@angular/common/http";
 import {User} from "../../settings/models/User";
 import { BehaviorSubject, Observable, of } from 'rxjs';
+import { RecordsRoutingModule } from 'app/admin/records/records-routing.module';
 @Injectable({
   providedIn: 'root'
 })
@@ -21,7 +22,9 @@ export class UserService {
   public get currentUserValue(): User {
     return this.currentUserSubject.value;
   }
-  modificar(datos:User){
-
+  getDataUser():Observable<User>{
+    const url = `${this.baseUrl}/user/${1}`;
+    
+    return this.http.get<User>(url);
   }
 }

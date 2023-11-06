@@ -8,8 +8,8 @@
     </div>
 
 
-    <div class="row" *ngFor="let patient of patients">
-      <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" *ngFor="let patient of patients">
         <div class="card py-3 py-md-3">
           <div class=" d-flex justify-content-between px-3 px-md-4">
             <img src="assets/images/user/usrbig1.jpg" height="55sspx" width="55px" alt="" class="rounded-circle">
@@ -23,7 +23,7 @@
             <div><i class="fas fa-map-marker-alt pt-3 psr-3"></i>{{ patient.address}}</div>
             <div><i class="fas fa-phone pt-3 psr-3"></i>{{ patient.phone}}</div>
           </div>
-          <hr class="light-hr">
+          <hr class="light-hr">#paginator                                                           
           <div class="d-flex justify-content-between px-3 px-md-4">
           </div>
           <hr class="light-hr">

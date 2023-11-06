@@ -664,9 +664,7 @@ export const ROUTES: RouteInfo[] = [
     role: ['Doctor'],
     submenu: [],
   },
-  //////////////////
   // Patient Modules
-  //////////////////
   {
     path: '/patient/dashboard',
     title: 'MENUITEMS.PATIENT.DASHBOARD',
@@ -814,18 +812,19 @@ export const ROUTES: RouteInfo[] = [
   },
 
   // Common Modules
-  {
-    path: '',
-    title: 'Apps',
-    iconType: '',
-    icon: '',
-    class: '',
-    groupTitle: true,
-    badge: '',
-    badgeClass: '',
-    role: ['Admin', 'Doctor'],
-    submenu: [],
-  },
+
+  // {
+  //   path: '',
+  //   title: 'Apps',
+  //   iconType: '',
+  //   icon: '',
+  //   class: '',
+  //   groupTitle: true,
+  //   badge: '',
+  //   badgeClass: '',
+  //   role: ['Admin', 'Doctor'],
+  //   submenu: [],
+  // },
   {
     path: 'calendar',
     title: 'Calendar',
@@ -835,7 +834,7 @@ export const ROUTES: RouteInfo[] = [
     groupTitle: false,
     badge: 'New',
     badgeClass: 'badge bg-blue sidebar-badge float-end',
-    role: ['Admin', 'Doctor'],
+    role: ['Doctor'],
     submenu: [],
   },
   {
@@ -847,7 +846,7 @@ export const ROUTES: RouteInfo[] = [
     groupTitle: false,
     badge: '',
     badgeClass: '',
-    role: ['Admin', 'Doctor'],
+    role: ['Patient', 'Doctor'],
     submenu: [],
   },
   {
@@ -859,7 +858,7 @@ export const ROUTES: RouteInfo[] = [
     groupTitle: false,
     badge: '',
     badgeClass: '',
-    role: ['Admin', 'Doctor'],
+    role: ['Patient'],
     submenu: [],
   },
   {
@@ -871,7 +870,7 @@ export const ROUTES: RouteInfo[] = [
     groupTitle: false,
     badge: '',
     badgeClass: '',
-    role: ['Admin', 'Doctor'],
+    role: ['Doctor'],
     submenu: [
       {
         path: '/email/inbox',

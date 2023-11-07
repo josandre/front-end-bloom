@@ -31,6 +31,9 @@ header {
 .header-top {
   padding: 12px 0px 15px 0px;
   background: map-get($colors, 'complement');
+  .row {
+    display: none;
+  }
 }
 
 .left_info ul li {
@@ -94,6 +97,9 @@ header i.fa.fa-mobile {
     font-weight: 500;
     padding: 15px 40px;
     margin-left: 2rem;
+    @media only screen and (max-width: 1024px) {
+      display: none;
+    }
   }
 }
 
@@ -104,6 +110,10 @@ nav#cssmenu ul {
   margin-top: 13px;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  li {
+    flex: 1 0 3rem;
+  }
 }
 
 .logo {
@@ -113,6 +123,9 @@ nav#cssmenu ul {
   font: 18px verdana;
   background-color: gray;
   float: left;
+  @media only screen and (max-width: 1024px) {
+    display: none;
+  }
 }
 
 .logo img {
@@ -341,6 +354,7 @@ nav#cssmenu ul {
     width: 100%;
     border-top: 1px solid #444;
     float: left;
+
   }
 
   #cssmenu ul li:hover {
@@ -547,7 +561,5 @@ img {
 }
 
 @media only screen and (max-width: 1024px) {
-  header {
-    display: none;
-  }
+
 }

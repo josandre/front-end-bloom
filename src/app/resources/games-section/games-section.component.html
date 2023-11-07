@@ -1,0 +1,32 @@
+<section class="content">
+    <div class="content-block">
+        <h1 class="page-title">{{'MENUITEMS.GAMES-SECTION.TITLE' | translate}}</h1>
+        <p>{{'MENUITEMS.GAMES-SECTION.DESCRIPTION' | translate}}</p>
+
+        <div class="game-cards-container">
+            <!--TODO: Populate this cards using info from the database-->
+            <div class="game-card">
+                <h3>{{'MENUITEMS.GAMES-SECTION.MEMORY-GAME.TITLE' | translate}}</h3>
+                
+                <!--Game Image-->
+                <div class="game-card-image">   
+                </div>
+                
+                <p>{{'MENUITEMS.GAMES-SECTION.MEMORY-GAME.DESCRIPTION' | translate}}</p>
+                <button mat-flat-button color="primary" routerLink="/memory-game">{{'MENUITEMS.GAMES-SECTION.PLAY-NOW' | translate}}</button>
+            </div>
+    
+            <div class="game-card">
+                <h3>{{'MENUITEMS.GAMES-SECTION.PUZZLE-GAME.TITLE' | translate}}</h3>
+
+                <!--Game Image-->
+                <div class="game-card-image">    
+                </div>
+
+                <p>{{'MENUITEMS.GAMES-SECTION.PUZZLE-GAME.DESCRIPTION' | translate}}</p>
+                <button mat-flat-button color="primary" disabled="true">{{'MENUITEMS.GAMES-SECTION.COMING-SOON' | translate}}</button>
+            </div>
+        </div>
+
+    </div>
+</section>

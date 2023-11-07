@@ -1,0 +1,11 @@
+.scores-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    height: 230px;
+
+    .scores-list {
+        width: 100%;
+    }
+}

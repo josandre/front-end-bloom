@@ -25,35 +25,38 @@ import { BottomSheetOverviewExampleSheetComponent } from './bottom-sheet/bottom-
 import { ComponentsModule } from '@shared/components/components.module';
 import { SharedModule } from '@shared';
 @NgModule({
-  declarations: [
-    AlertsComponent,
-    BadgeComponent,
-    ButtonsComponent,
-    CardsComponent,
-    DialogsComponent,
-    HelperClassesComponent,
-    LabelsComponent,
-    ListGroupComponent,
-    ModalComponent,
-    PreloadersComponent,
-    ProgressbarsComponent,
-    TabsComponent,
-    TypographyComponent,
-    ChipsComponent,
-    BottomSheetComponent,
-    SnackbarComponent,
-    ExpansionPanelComponent,
-    SimpleDialogComponent,
-    DialogformComponent,
-    BottomSheetOverviewExampleSheetComponent,
-  ],
-  imports: [
-    CommonModule,
-    UiRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    ComponentsModule,
-    SharedModule,
-  ],
+    declarations: [
+        AlertsComponent,
+        BadgeComponent,
+        ButtonsComponent,
+        CardsComponent,
+        DialogsComponent,
+        HelperClassesComponent,
+        LabelsComponent,
+        ListGroupComponent,
+        ModalComponent,
+        PreloadersComponent,
+        ProgressbarsComponent,
+        TabsComponent,
+        TypographyComponent,
+        ChipsComponent,
+        BottomSheetComponent,
+        SnackbarComponent,
+        ExpansionPanelComponent,
+        SimpleDialogComponent,
+        DialogformComponent,
+        BottomSheetOverviewExampleSheetComponent,
+    ],
+    imports: [
+        CommonModule,
+        UiRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        ComponentsModule,
+        SharedModule,
+    ],
+    exports: [
+        PreloadersComponent
+    ]
 })
 export class UiModule {}

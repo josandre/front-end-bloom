@@ -14,13 +14,12 @@ import { AuthService } from '@core';
 export class DoctorService {
   private readonly baseUrl = API_URL;
 
-  constructor(private http: HttpClient,private auth:AuthService) { 
-    
+  constructor(private http: HttpClient,private auth:AuthService) {
+
   }
 
   getDataUser():Observable<Specialist>{
     const url = `${this.baseUrl}/doctor/${this.auth.currentUserValue.id}`;
-    
     return this.http.get<Specialist>(url);
   }
   updateDoctor(user:Specialist){
@@ -30,9 +29,9 @@ export class DoctorService {
     console.log(userId)
     return this.http.put(url, user, {headers: header});
   }
-  updatePassword(password:Password){
-    const url = `${this.baseUrl}/changePassword/${this.auth.currentUserValue.id}/password`;
-    const userId = this.auth.currentUserValue.id;
+
+  updatePassword(password: Password, userId?: number){
+    const url = `${this.baseUrl}/changePassword/${userId}/password`;
     const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.auth.currentUserValue.token)
     console.log(userId)
     return this.http.put(url, password, {headers: header});

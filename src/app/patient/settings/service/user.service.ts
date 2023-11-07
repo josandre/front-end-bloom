@@ -4,8 +4,7 @@ import {HttpClient,HttpHeaders} from "@angular/common/http";
 import {User} from "../../settings/models/User";
 import {Password} from "../../settings/models/Password";
 
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { RecordsRoutingModule } from 'app/admin/records/records-routing.module';
+import {  Observable } from 'rxjs';
 import { AuthService } from '@core';
 @Injectable({
   providedIn: 'root'
@@ -13,15 +12,15 @@ import { AuthService } from '@core';
 export class UserService {
   private readonly baseUrl = API_URL;
 
-  constructor(private http: HttpClient,private auth:AuthService) { 
-    
+  constructor(private http: HttpClient,private auth:AuthService) {
+
   }
 
   getDataUser():Observable<User>{
     const url = `${this.baseUrl}/user/${this.auth.currentUserValue.id}`;
-    
     return this.http.get<User>(url);
   }
+
   updateUser(user:User){
     const url = `${this.baseUrl}/user/${this.auth.currentUserValue.id}/user`;
     const userId = this.auth.currentUserValue.id;
@@ -29,6 +28,7 @@ export class UserService {
     console.log(userId)
     return this.http.put(url, user, {headers: header});
   }
+
   updatePassword(password:Password){
     const url = `${this.baseUrl}/changePassword/${this.auth.currentUserValue.id}/password`;
     const userId = this.auth.currentUserValue.id;

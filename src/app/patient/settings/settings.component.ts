@@ -1,7 +1,6 @@
 import { Component,OnInit } from '@angular/core';
-import {FormBuilder,FormGroup,FormControl,Validators,} from '@angular/forms';
+import {FormBuilder, FormGroup, FormControl, Validators, ValidatorFn,} from '@angular/forms';
 import { UserService } from './service/user.service';
-import { BehaviorSubject,Observable } from 'rxjs';
 import {User} from "../../patient/settings/models/User";
 import {Password} from "../../patient/settings/models/Password";
 import { DataService } from './service/data.service';
@@ -17,12 +16,13 @@ export class SettingsComponent implements OnInit {
   passwordForm: FormGroup;
   userUpdateForm:FormGroup;
   password:Password;
- 
+
   constructor(private formBuilder: FormBuilder, private userService:UserService,private data: DataService, private auth:AuthService,private snackBar: MatSnackBar) {
     this.initFormUser();
     this.initFormPass();
-    
+
   }
+
   initFormUser(){
     this.userUpdateForm = this.formBuilder.group({
       userName: new FormControl("", {
@@ -49,6 +49,7 @@ export class SettingsComponent implements OnInit {
     });
   }
   initFormPass(){
+
     this.passwordForm = this.formBuilder.group({
       currentPassword: new FormControl("", {
         validators:[Validators.required]
@@ -57,10 +58,11 @@ export class SettingsComponent implements OnInit {
         validators:[Validators.required]
       }),
         confirmPassword: new FormControl("", {
-        validators:[Validators.required]
+        validators:[Validators.required,  this.validatePassword()]
       })
     });
   }
+
   ngOnInit() {
     this.userService.getDataUser().subscribe(
     (user: User) => {
@@ -77,8 +79,28 @@ export class SettingsComponent implements OnInit {
     });
 
 }
+
+
+  validatePassword(): ValidatorFn {
+    return (): { [key: string]: boolean } | null => {
+      if(!this.passwordForm) {
+        return null;
+      }
+
+      const password = this.passwordForm.controls['newPassword'].value;
+      const passwordConfirmation = this.passwordForm.controls['confirmPassword'].value;
+
+      if(password === passwordConfirmation){
+        return null;
+      }
+
+      return {passwordMatch: true}
+    }
+  }
+
   onSubmit(){
     if(this.userUpdateForm.valid){
+
       const user: User=new User({
         email: this.userUpdateForm.controls['email'].value,
         lastName: this.userUpdateForm.controls['lastName'].value,

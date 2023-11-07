@@ -16,6 +16,7 @@ import {
   ApexGrid,
   ApexTitleSubtitle,
 } from 'ng-apexcharts';
+import {AuthService} from "@core";
 export type areaChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
@@ -76,9 +77,12 @@ export class DashboardComponent implements OnInit {
   public radialChartOptions!: Partial<radialChartOptions>;
   public restRateChartOptions!: Partial<restRateChartOptions>;
   public performanceRateChartOptions!: Partial<performanceRateChartOptions>;
+  name: string
 
-  constructor() {}
+
+  constructor(private readonly authService: AuthService) {}
   ngOnInit() {
+    this.name = this.authService.currentUserValue.firstName + " " + this.authService.currentUserValue.lastName
     this.chart1();
     this.chart2();
     this.chart3();

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { API_URL } from '../../../../config';
+import {AuthService} from "@core";
 
 const GAME_SCORE_ENDPOINT:string = API_URL + '/game-score';
 
@@ -10,7 +11,8 @@ const GAME_SCORE_ENDPOINT:string = API_URL + '/game-score';
 })
 export class GameScoreService {
 
-  constructor(private http:HttpClient) { }
+
+  constructor(private http:HttpClient, private readonly authService: AuthService) { }
 
   /**
    * Use this function to retrieve all of the user scores on a specified game and difficulty level
@@ -20,7 +22,8 @@ export class GameScoreService {
    * @returns a list of objects that contain game score data
    */
   getUserScores(gameID:number, difficulty:number, userID:number) : Observable<any> {
-    return this.http.get(`${GAME_SCORE_ENDPOINT}/${gameID}/${difficulty}/${userID}`);
+    const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.authService.currentUserValue.token)
+    return this.http.get(`${GAME_SCORE_ENDPOINT}/${gameID}/${difficulty}/${userID}`, {headers: header});
   }
 
   /**
@@ -29,6 +32,7 @@ export class GameScoreService {
    * @returns the data saved in the database
    */
   saveUserScore(data:{difficulty:number, score:number, user:{id:number}, game:{id:number}}) : Observable<any> {
-    return this.http.post(GAME_SCORE_ENDPOINT, data);
+    const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.authService.currentUserValue.token)
+    return this.http.post(GAME_SCORE_ENDPOINT, data, {headers: header});
   }
 }

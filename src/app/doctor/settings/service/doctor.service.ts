@@ -18,9 +18,10 @@ export class DoctorService {
 
   }
 
-  getDataUser():Observable<Specialist>{
+  getDataUser():Observable<Specialist>{ 
     const url = `${this.baseUrl}/doctor/${this.auth.currentUserValue.id}`;
-    return this.http.get<Specialist>(url);
+    const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.auth.currentUserValue.token)
+    return this.http.get<Specialist>(url,{headers: header});
   }
   updateDoctor(user:Specialist){
     const url = `${this.baseUrl}/doctor/${this.auth.currentUserValue.id}/doctorUpdate`;

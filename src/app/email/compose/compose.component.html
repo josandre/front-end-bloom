@@ -11,40 +11,19 @@
             <div id="mail-nav">
               <button type="button" class="btn btn-success waves-effect m-b-15">Tag All</button>
               <h5 class="b-b p-10 text-strong">My Patients</h5>
-              <ul class="online-user" id="online-offline">
+              <div *ngIf="!flag">
+                <mat-spinner></mat-spinner>
+              </div>
+              <ul class="online-user" id="online-offline" *ngFor="let p of patientsList">
                 <li>
-                  <mat-checkbox  class="m-r-15" color="primary">
-                    <a href="javascript:;">
-                      <i class="material-icons col-green" title="Online">brightness_1</i>Sachin</a>
+                  <mat-checkbox  class="m-r-15" color="primary" id="{{p.id}}" (click)="onCheck(p.id)">
+                      <i class="material-icons col-green" title="Online" *ngIf="p.role.id === 1">brightness_1</i>
+                      <i class="material-icons col-indigo" title="Online" *ngIf="p.role.id === 2">brightness_1</i>
+                      <i class="material-icons col-orange" title="Online" *ngIf="p.role.id === 3">brightness_1</i>
+                      {{p.name}} {{p.lastName}}
                   </mat-checkbox>
                 </li>
-                <li>
-                  <mat-checkbox  class="m-r-15" color="primary">
-                    <a href="javascript:;">
-                      <i class="material-icons col-indigo" title="Off Line">brightness_1</i>John
-                      Smith
-                    </a>
-                  </mat-checkbox>
 
-                </li>
-                <li>
-                  <mat-checkbox  class="m-r-15" color="primary">
-                    <a href="javascript:;">
-                      <i class="material-icons col-orange" title="Away">brightness_1</i>Askay</a>
-                  </mat-checkbox>
-                </li>
-                <li>
-                  <mat-checkbox  class="m-r-15" color="primary">
-                    <a href="javascript:;">
-                      <i class="material-icons col-indigo" title="Off Line">brightness_1</i>Dhavan</a>
-                  </mat-checkbox>
-                </li>
-                <li>
-                  <mat-checkbox  class="m-r-15" color="primary">
-                    <a href="javascript:;">
-                      <i class="material-icons col-indigo" title="Off Line">brightness_1</i>Lee</a>
-                  </mat-checkbox>
-                </li>
               </ul>
             </div>
           </div>

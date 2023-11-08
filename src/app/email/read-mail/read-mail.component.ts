@@ -14,7 +14,8 @@ export class ReadMailComponent implements OnInit{
     "date": Date.prototype,
     "title":'',
     "content": '',
-    specialist: ''
+    "specialist": '',
+    "users": JSON.parse('')
   };
   flag: boolean = false;
   ngOnInit() {

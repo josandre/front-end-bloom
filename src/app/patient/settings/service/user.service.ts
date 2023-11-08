@@ -18,7 +18,8 @@ export class UserService {
 
   getDataUser():Observable<User>{
     const url = `${this.baseUrl}/user/${this.auth.currentUserValue.id}`;
-    return this.http.get<User>(url);
+    const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.auth.currentUserValue.token)
+    return this.http.get<User>(url,{headers: header});
   }
 
   updateUser(user:User){

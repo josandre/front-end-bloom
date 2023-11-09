@@ -131,10 +131,12 @@ export class SettingsComponent implements OnInit {
         currentPassword: this.passwordForm.controls['currentPassword'].value,
         newPassword:this.passwordForm.controls['newPassword'].value
       })
+      
       this.userService.updatePassword(password).subscribe((res) => {
         switch (res) {
           case 200:{
             this.openSnackBar("User updated", "Close");
+            //this.passwordForm.reset();
             break;
           }
         }

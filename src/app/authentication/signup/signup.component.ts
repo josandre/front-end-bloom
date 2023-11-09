@@ -81,7 +81,7 @@ export class SignupComponent implements OnInit {
           college : this.authForm.controls['college'].value,
           location: this.authForm.controls['location'].value,
           medicalId: this.authForm.controls['medicalId'].value,
-          speciality: this.authForm.controls['medicalId'].value,
+          speciality: this.authForm.controls['speciality'].value,
           user: new User({
             email: this.authForm.controls['email'].value,
             lastName: this.authForm.controls['lastName'].value,

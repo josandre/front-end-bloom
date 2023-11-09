@@ -22,5 +22,4 @@ export class InboxComponent implements OnInit{
     sessionStorage.setItem('resourseId', id.toString());
   }
 
-
 }

@@ -7,7 +7,7 @@ export class Doctor {
   phone: string;
   password: string;
   email: string;
-  isActive: boolean;
+  active: boolean;
   userName: string;
 
   constructor(partial?: Partial<Doctor>) {

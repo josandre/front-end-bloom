@@ -1,0 +1,15 @@
+{
+    "cantones":[
+        {
+        "id":1,
+        "provinciaId":1,
+        "nombre":"Central"
+        },
+        {
+            "id":2,
+            "provinciaId":1,
+            "nombre":"Escazú"
+        }
+    ]
+
+}

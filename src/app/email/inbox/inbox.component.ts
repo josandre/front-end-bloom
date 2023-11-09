@@ -61,6 +61,11 @@ export class InboxComponent implements OnInit{
       switch (res) {
         case 200:{
           this.openSnackBar("Resource deleted", "Close");
+          // Usar filter para crear una nueva lista que excluya los objetos con los IDs a eliminar
+          this.resourcesList = this.resourcesList.filter(resource => !this.selectedResourceIds.includes(resource.id));
+          this.originalResourcesList=[...this.resourcesList]
+          this.selectedResourceIds = [];
+          // Restablecer la tabla para mostrar todos los datos
           break;
         }
       }

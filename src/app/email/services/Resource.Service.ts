@@ -36,7 +36,7 @@ export class ResourceService {
   deleteResourse(idsResourses: number[]){
     const currentUser =this.authenticationService.currentUserValue;
     const URL = `${this.baseUrl}/resource/delete/listIds`;
-    const header = new HttpHeaders().set("Authorization", 'Bearer ${currentUser.token' + currentUser.token)
+    const header = new HttpHeaders().set("Authorization", 'Bearer ' + currentUser.token)
 
     return this.http.delete(URL, {headers: header, body: idsResourses});
   }

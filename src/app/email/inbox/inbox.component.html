@@ -16,19 +16,11 @@
 
                     <th colspan="3">
                       <div class="inbox-header">
-                        <div class="mail-option no-pad-left">
+                        <div class="mail-option no-pad-right">
                           <div class="email-btn-group m-l-15">
+
                             <button mat-icon-button aria-label="Example icon-button with a heart icon">
-                              <mat-icon>archive</mat-icon>
-                            </button>
-                            <button mat-icon-button aria-label="Example icon-button with a heart icon">
-                              <mat-icon>error</mat-icon>
-                            </button>
-                            <button mat-icon-button aria-label="Example icon-button with a heart icon">
-                              <mat-icon>delete</mat-icon>
-                            </button>
-                            <button mat-icon-button aria-label="Example icon-button with a heart icon">
-                              <mat-icon>folder</mat-icon>
+                              <mat-icon>delete</mat-icon> Delete
                             </button>
 
                           </div>
@@ -51,6 +43,9 @@
                   <td class="max-texts" > Post date </td>
 
                 </tr>
+                  <div *ngIf="!flag" >
+                    <mat-spinner></mat-spinner>
+                  </div>
 
                   <tr *ngFor="let r of resourcesList">
                     <td class="tbl-checkbox">

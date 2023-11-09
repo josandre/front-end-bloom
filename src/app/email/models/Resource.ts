@@ -4,7 +4,7 @@ export class Resource{
   title: string;
   content: string;
   specialist: string;
-  users: JSON;
+  users: string;
   constructor(partial: Partial<Resource>) {
     if (partial) {
       Object.assign(this, partial);

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ResourceService} from "../services/Resource.Service";
 import {Resource} from "../models/Resource";
+import {User} from "../models/User";
 @Component({
   selector: 'app-read-mail',
   templateUrl: './read-mail.component.html',
@@ -9,14 +10,8 @@ import {Resource} from "../models/Resource";
 export class ReadMailComponent implements OnInit{
   constructor(private readonly resourceService: ResourceService) {  }
   id: string|null;
-  resource: Resource = {
-    "id": 0,
-    "date": Date.prototype,
-    "title":'',
-    "content": '',
-    "specialist": '',
-    "users": JSON.parse('')
-  };
+  resource: Resource;
+  patientsList: User[];
   flag: boolean = false;
   ngOnInit() {
     this.id = sessionStorage.getItem('resourseId');
@@ -25,6 +20,7 @@ export class ReadMailComponent implements OnInit{
       this.resourceService.getResourceById(parseInt(this.id)).subscribe(
         data => {
           this.resource = data;
+          this.patientsList = JSON.parse(JSON.stringify(data.users));
           sessionStorage.removeItem('resourceId');
           sessionStorage.clear();
           this.flag = true;

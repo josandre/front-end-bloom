@@ -12,9 +12,14 @@ export class InboxComponent implements OnInit{
 
   resourcesList: Resource[];
 
+  flag: boolean = false;
+
   ngOnInit(){
     this.resourceService.getResourceList().subscribe(
-      resources =>{ this.resourcesList = resources;}
+      resources =>{
+        this.resourcesList = resources;
+        this.flag = true;
+      }
     )
   }
 

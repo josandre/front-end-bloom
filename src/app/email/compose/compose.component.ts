@@ -4,9 +4,9 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ResourceService} from "../services/Resource.Service";
 import {Resource} from "../models/Resource";
 import {User} from "../models/User";
-import {newArray} from "@angular/compiler/src/util";
-import _default from "chart.js/dist/plugins/plugin.tooltip";
-import numbers = _default.defaults.animations.numbers;
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-compose',
@@ -20,6 +20,7 @@ export class ComposeComponent implements OnInit{
   data: string = "";
   flag: boolean = false;
 
+
   readonly formGroup = new FormGroup({
     title: new FormControl("", {
       validators: [Validators.required],
@@ -31,17 +32,20 @@ export class ComposeComponent implements OnInit{
     })
   })
 
-  constructor(private readonly resourceService: ResourceService) {}
+  constructor(private readonly resourceService: ResourceService, private router: Router, private snackBar: MatSnackBar) {}
 
   patientsList: User[];
-  checkedList: string[] = [];
-  idJson: string = '';
+  checkedList: Array<number> = [];
+  jsoniedList: Array<string> = [];
+  checks = document.querySelectorAll(".check");
   ngOnInit(){
     this.resourceService.getMyPatients().subscribe(
       patients =>{ this.patientsList = patients;
         this.flag = true;},
       error => {console.log(error)}
     )
+
+
   }
 
   onSubmit(){
@@ -53,38 +57,54 @@ export class ComposeComponent implements OnInit{
       const resource = new Resource({
         title: resourcetitle,
         content: content,
-        date: fecha
+        date: fecha,
+        users: JSON.parse(this.patientListToJson())
       });
 
-      this.resourceService.resourceRegister(resource).subscribe(
-        data => {
-          console.log(data);
-        },
-        error => {
-          console.log(error);
+      this.resourceService.resourceRegister(resource).subscribe((res: NonNullable<unknown>) => {
+        switch (res) {
+          case 200:{
+            this.openSnackBar("Resource added successfully", "Close");
+            this.router.navigate(['/email/inbox']);
+            break;
+          }
         }
-      )
+      }, error => {
+        switch (error.error) {
+          case 404:
+            this.openSnackBar("The resource was not added", "Close" );
+            this.router.navigate(['/email/inbox']);
+            break;
+        }
+      })
     }
   }
-
   onCheck(id: number){
-    console.log(id);
-    this.idJson  = JSON.stringify(`{"id":${id.toString()}}`);
-    console.log(this.idJson);
-    if (this.checkedList.includes(this.idJson)){
-      this.removePatient(this.idJson);
-      console.log("removing");
+
+    if (this.checkedList.includes(id)){
+      this.removePatient(id);
     }else{
-      this.checkedList.push(this.idJson);
-      console.log("failed to remove");
+      this.checkedList.push(id);
     }
-    console.log(`the list ATM: ${JSON.stringify(this.checkedList)}`);
+    this.patientListToJson();
   }
 
-  removePatient(id: string){
+  removePatient(id: number){
     this.checkedList.forEach( (item, index) => {
       if(item === id) this.checkedList.splice(index,1);
     });
+  }
+
+  patientListToJson(): string{
+    this.jsoniedList = [];
+    this.checkedList.forEach((node) =>{
+      this.jsoniedList.push(JSON.parse(`{"id":${node}}`));
+    });
+    return JSON.stringify(this.jsoniedList);
+  }
+
+  openSnackBar(message: string, action: string){
+    this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'end'})
   }
 
 }

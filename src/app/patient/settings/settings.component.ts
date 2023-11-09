@@ -3,8 +3,6 @@ import {FormBuilder, FormGroup, FormControl, Validators, ValidatorFn,} from '@an
 import { UserService } from './service/user.service';
 import {User} from "../../patient/settings/models/User";
 import {Password} from "../../patient/settings/models/Password";
-import { DataService } from './service/data.service';
-import { AuthService } from '@core';
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
@@ -17,7 +15,7 @@ export class SettingsComponent implements OnInit {
   userUpdateForm:FormGroup;
   password:Password;
 
-  constructor(private formBuilder: FormBuilder, private userService:UserService,private data: DataService, private auth:AuthService,private snackBar: MatSnackBar) {
+  constructor(private formBuilder: FormBuilder, private userService:UserService,private snackBar: MatSnackBar) {
     this.initFormUser();
     this.initFormPass();
 
@@ -123,7 +121,7 @@ export class SettingsComponent implements OnInit {
           this.openSnackBar("The user was not updated", "Close" );
 
           })
-  }
+    }
   }
   onSubmitPassword(){
     if(this.passwordForm.valid){

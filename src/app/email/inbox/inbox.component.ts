@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ResourceService} from "../services/Resource.Service";
 import {Resource} from "../models/Resource";
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-inbox',
   templateUrl: './inbox.component.html',
@@ -8,7 +9,7 @@ import {Resource} from "../models/Resource";
 })
 export class InboxComponent implements OnInit{
 
-  constructor(private readonly resourceService: ResourceService) {
+  constructor(private readonly resourceService: ResourceService,private snackBar: MatSnackBar) {
     this.selectedResourceIds=[];
     }
 
@@ -55,8 +56,21 @@ export class InboxComponent implements OnInit{
 
     }
   }
-  deleteResourse(){
-    
+  deleteResource(){
+    this.resourceService.deleteResourse(this.selectedResourceIds).subscribe((res) => {
+      switch (res) {
+        case 200:{
+          this.openSnackBar("Resource deleted", "Close");
+          break;
+        }
+      }
+    }, error => {
+        this.openSnackBar("Something went wrong", "Close" );
+
+        })
+  }
+  openSnackBar(message: string, action: string){
+    this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'end'})
   }
 
 }

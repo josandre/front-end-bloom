@@ -33,5 +33,12 @@ export class ResourceService {
     const URL = `${this.baseUrl}/resource/getById/${id}`;
     return this.http.get<Resource>(URL, {headers: {'Authorization':  `Bearer ${currentUser.token}`}})
   }
+  deleteResourse(idsResourses: number[]){
+    const currentUser =this.authenticationService.currentUserValue;
+    const URL = `${this.baseUrl}/resource/delete/listIds`;
+    const header = new HttpHeaders().set("Authorization", 'Bearer ${currentUser.token' + currentUser.token)
+
+    return this.http.delete(URL, {headers: header, body: idsResourses});
+  }
 
 }

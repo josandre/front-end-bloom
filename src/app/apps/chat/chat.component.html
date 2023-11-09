@@ -12,118 +12,122 @@
               <div class="form-line m-b-15">
                 <input type="text" class="form-control" placeholder="Search..." />
               </div>
-              <div class="tab-content">
+              <div class="spinner">
+                <mat-spinner *ngIf="isLoading"> </mat-spinner>
+              </div>
+
+              <div class="tab-content" *ngFor="let conversation of conversations">
                 <ng-scrollbar style="height: 590px" visibility="hover">
                   <div id="chat_user">
                     <ul class="chat-list list-unstyled m-b-0">
                       <li class="clearfix active">
                         <img src="assets/images/user/user1.jpg" alt="avatar">
                         <div class="about">
-                          <div class="name">William Smith</div>
+                          <div class="name">{{conversation.name + " " + conversation.lastName}}</div>
                           <div class="status">
                             <i class="material-icons offline">fiber_manual_record</i>
                             left 7 mins ago </div>
                         </div>
                       </li>
-                      <li class="clearfix ">
-                        <img src="assets/images/user/user2.jpg" alt="avatar">
-                        <div class="about">
-                          <div class="name">Martha Williams</div>
-                          <div class="status">
-                            <i class="material-icons offline">fiber_manual_record</i>
-                            online </div>
-                        </div>
-                      </li>
-                      <li class="clearfix">
-                        <img src="assets/images/user/user3.jpg" alt="avatar">
-                        <div class="about">
-                          <div class="name">Joseph Clark</div>
-                          <div class="status">
-                            <i class="material-icons online">fiber_manual_record</i>
-                            online </div>
-                        </div>
-                      </li>
-                      <li class="clearfix">
-                        <img src="assets/images/user/user4.jpg" alt="avatar">
-                        <div class="about">
-                          <div class="name">Nancy Taylor</div>
-                          <div class="status">
-                            <i class="material-icons online">fiber_manual_record</i>
-                            online </div>
-                        </div>
-                      </li>
-                      <li class="clearfix">
-                        <img src="assets/images/user/user5.jpg" alt="avatar">
-                        <div class="about">
-                          <div class="name">Margaret Wilson</div>
-                          <div class="status">
-                            <i class="material-icons online">fiber_manual_record</i>
-                            online </div>
-                        </div>
-                      </li>
-                      <li class="clearfix">
-                        <img src="assets/images/user/user6.jpg" alt="avatar">
-                        <div class="about">
-                          <div class="name">Joseph Jones</div>
-                          <div class="status">
-                            <i class="material-icons offline">fiber_manual_record</i>
-                            left 30 mins ago </div>
-                        </div>
-                      </li>
-                      <li class="clearfix">
-                        <img src="assets/images/user/user7.jpg" alt="avatar">
-                        <div class="about">
-                          <div class="name">Jane Brown</div>
-                          <div class="status">
-                            <i class="material-icons offline">fiber_manual_record</i>
-                            left 10 hours ago </div>
-                        </div>
-                      </li>
-                      <li class="clearfix">
-                        <img src="assets/images/user/user8.jpg" alt="avatar">
-                        <div class="about">
-                          <div class="name">Eliza Johnson</div>
-                          <div class="status">
-                            <i class="material-icons online">fiber_manual_record</i>
-                            online </div>
-                        </div>
-                      </li>
-                      <li class="clearfix">
-                        <img src="assets/images/user/user3.jpg" alt="avatar">
-                        <div class="about">
-                          <div class="name">Mike Clark</div>
-                          <div class="status">
-                            <i class="material-icons online">fiber_manual_record</i>
-                            online </div>
-                        </div>
-                      </li>
-                      <li class="clearfix">
-                        <img src="assets/images/user/user4.jpg" alt="avatar">
-                        <div class="about">
-                          <div class="name">Ann Henry</div>
-                          <div class="status">
-                            <i class="material-icons online">fiber_manual_record</i>
-                            online </div>
-                        </div>
-                      </li>
-                      <li class="clearfix">
-                        <img src="assets/images/user/user5.jpg" alt="avatar">
-                        <div class="about">
-                          <div class="name">Nancy Smith</div>
-                          <div class="status">
-                            <i class="material-icons online">fiber_manual_record</i>
-                            online </div>
-                        </div>
-                      </li>
-                      <li class="clearfix">
-                        <img src="assets/images/user/user9.jpg" alt="avatar">
-                        <div class="about">
-                          <div class="name">David Wilson</div>
-                          <div class="status">
-                            <i class="material-icons offline">fiber_manual_record</i>
-                            offline since Oct 28 </div>
-                        </div>
-                      </li>
+<!--                      <li class="clearfix ">-->
+<!--                        <img src="assets/images/user/user2.jpg" alt="avatar">-->
+<!--                        <div class="about">-->
+<!--                          <div class="name">Martha Williams</div>-->
+<!--                          <div class="status">-->
+<!--                            <i class="material-icons offline">fiber_manual_record</i>-->
+<!--                            online </div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                      <li class="clearfix">-->
+<!--                        <img src="assets/images/user/user3.jpg" alt="avatar">-->
+<!--                        <div class="about">-->
+<!--                          <div class="name">Joseph Clark</div>-->
+<!--                          <div class="status">-->
+<!--                            <i class="material-icons online">fiber_manual_record</i>-->
+<!--                            online </div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                      <li class="clearfix">-->
+<!--                        <img src="assets/images/user/user4.jpg" alt="avatar">-->
+<!--                        <div class="about">-->
+<!--                          <div class="name">Nancy Taylor</div>-->
+<!--                          <div class="status">-->
+<!--                            <i class="material-icons online">fiber_manual_record</i>-->
+<!--                            online </div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                      <li class="clearfix">-->
+<!--                        <img src="assets/images/user/user5.jpg" alt="avatar">-->
+<!--                        <div class="about">-->
+<!--                          <div class="name">Margaret Wilson</div>-->
+<!--                          <div class="status">-->
+<!--                            <i class="material-icons online">fiber_manual_record</i>-->
+<!--                            online </div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                      <li class="clearfix">-->
+<!--                        <img src="assets/images/user/user6.jpg" alt="avatar">-->
+<!--                        <div class="about">-->
+<!--                          <div class="name">Joseph Jones</div>-->
+<!--                          <div class="status">-->
+<!--                            <i class="material-icons offline">fiber_manual_record</i>-->
+<!--                            left 30 mins ago </div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                      <li class="clearfix">-->
+<!--                        <img src="assets/images/user/user7.jpg" alt="avatar">-->
+<!--                        <div class="about">-->
+<!--                          <div class="name">Jane Brown</div>-->
+<!--                          <div class="status">-->
+<!--                            <i class="material-icons offline">fiber_manual_record</i>-->
+<!--                            left 10 hours ago </div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                      <li class="clearfix">-->
+<!--                        <img src="assets/images/user/user8.jpg" alt="avatar">-->
+<!--                        <div class="about">-->
+<!--                          <div class="name">Eliza Johnson</div>-->
+<!--                          <div class="status">-->
+<!--                            <i class="material-icons online">fiber_manual_record</i>-->
+<!--                            online </div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                      <li class="clearfix">-->
+<!--                        <img src="assets/images/user/user3.jpg" alt="avatar">-->
+<!--                        <div class="about">-->
+<!--                          <div class="name">Mike Clark</div>-->
+<!--                          <div class="status">-->
+<!--                            <i class="material-icons online">fiber_manual_record</i>-->
+<!--                            online </div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                      <li class="clearfix">-->
+<!--                        <img src="assets/images/user/user4.jpg" alt="avatar">-->
+<!--                        <div class="about">-->
+<!--                          <div class="name">Ann Henry</div>-->
+<!--                          <div class="status">-->
+<!--                            <i class="material-icons online">fiber_manual_record</i>-->
+<!--                            online </div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                      <li class="clearfix">-->
+<!--                        <img src="assets/images/user/user5.jpg" alt="avatar">-->
+<!--                        <div class="about">-->
+<!--                          <div class="name">Nancy Smith</div>-->
+<!--                          <div class="status">-->
+<!--                            <i class="material-icons online">fiber_manual_record</i>-->
+<!--                            online </div>-->
+<!--                        </div>-->
+<!--                      </li>-->
+<!--                      <li class="clearfix">-->
+<!--                        <img src="assets/images/user/user9.jpg" alt="avatar">-->
+<!--                        <div class="about">-->
+<!--                          <div class="name">David Wilson</div>-->
+<!--                          <div class="status">-->
+<!--                            <i class="material-icons offline">fiber_manual_record</i>-->
+<!--                            offline since Oct 28 </div>-->
+<!--                        </div>-->
+<!--                      </li>-->
                     </ul>
                   </div>
                 </ng-scrollbar>

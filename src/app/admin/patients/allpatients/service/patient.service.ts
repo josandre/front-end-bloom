@@ -13,8 +13,9 @@ export class PatientService {
   constructor(private httpClient: HttpClient, private readonly authService : AuthService) {}
 
   getAllPatients(): Observable<Patient[]> {
-    const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.authService.currentUserValue.token)
-    const url = `${this.baseUrl}/patients-system`
+    const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.authService.currentUserValue.token);
+    const url = `${this.baseUrl}/patients`;
+
     return this.httpClient.get<Patient[]>(url, {headers: header});
   }
 
@@ -23,5 +24,4 @@ export class PatientService {
     const url = `${this.baseUrl}/changeStatusUser/${id}`
     return this.httpClient.put(url, {}, {headers: header});
   }
-
 }

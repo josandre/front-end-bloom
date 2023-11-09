@@ -1,5 +1,7 @@
 export class Patient {
   id: number;
+  lastName: string;
+  name: string;
   userName: string;
   active: boolean;
 

@@ -31,7 +31,9 @@ export class AllpatientsComponent
 {
   displayedColumns = [
     'id',
-    'userName',
+    'lastName',
+    'name',
+    'username',
     'actions'
   ];
 
@@ -64,6 +66,9 @@ export class AllpatientsComponent
     this.loading = true
     this.patientService.getAllPatients().subscribe({
       next: (patients) => {
+        patients.forEach(patient => {
+          patient.name = this.maskName(patient.name);
+        })
         this.dataSource = new MatTableDataSource<Patient>(patients)
         this.loading = false
       },
@@ -80,7 +85,6 @@ export class AllpatientsComponent
 
 
   exportExcel() {
-
     const exportData: Partial<TableElement>[] =
       this.dataSource.filteredData.map((x) => ({
         Name: x.userName,
@@ -114,6 +118,10 @@ export class AllpatientsComponent
 
   openSnackBar(message: string, action: string){
     this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'end'})
+  }
+
+  private maskName(name: string): string {
+    return name.replace(/./g, '*');
   }
 }
 

@@ -32,6 +32,8 @@ export class AlldoctorsComponent
 {
   displayedColumns = [
     'id',
+    'lastName',
+    'name',
     'username',
     'actions'
   ];

@@ -3,11 +3,11 @@ import {ResourceService} from "../services/Resource.Service";
 import {Resource} from "../models/Resource";
 import {User} from "../models/User";
 @Component({
-  selector: 'app-read-mail',
-  templateUrl: './read-mail.component.html',
-  styleUrls: ['./read-mail.component.scss'],
+  selector: 'app-read-resource',
+  templateUrl: './read-resource.component.html',
+  styleUrls: ['./read-resource.component.scss'],
 })
-export class ReadMailComponent implements OnInit{
+export class ReadResourceComponent implements OnInit{
   constructor(private readonly resourceService: ResourceService) {  }
   id: string|null;
   resource: Resource;

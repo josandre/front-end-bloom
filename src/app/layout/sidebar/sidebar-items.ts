@@ -863,7 +863,7 @@ export const ROUTES: RouteInfo[] = [
       // },
       {
         path: '',
-        title: 'Resource',
+        title: 'Resources',
         iconType: 'material-icons-two-tone',
         icon: 'edit_note',
         class: 'menu-toggle',
@@ -873,8 +873,8 @@ export const ROUTES: RouteInfo[] = [
         role: ['Doctor'],
         submenu: [
           {
-            path: '/email/inbox',
-            title: 'Resources list',
+            path: '/resource/my-resources',
+            title: 'My resources list',
             iconType: '',
             icon: '',
             class: 'ml-menu',
@@ -885,7 +885,7 @@ export const ROUTES: RouteInfo[] = [
             submenu: [],
           },
           {
-            path: '/email/compose',
+            path: '/resource/compose',
             title: 'Create',
             iconType: '',
             icon: '',
@@ -910,6 +910,18 @@ export const ROUTES: RouteInfo[] = [
           // },
         ],
       },
+  {
+    path: '/resource/my-resources',
+    title: 'My Resources',
+    iconType: 'material-icons-two-tone',
+    icon: 'edit_note',
+    class: '',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    role: ['Patient'],
+    submenu: [],
+  },
       // {
       //   path: '',
       //   title: 'More Apps',

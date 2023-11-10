@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EmailRoutingModule } from './email-routing.module';
-import { ComposeComponent } from './compose/compose.component';
-import { InboxComponent } from './inbox/inbox.component';
-import { ReadMailComponent } from './read-mail/read-mail.component';
+import { ResourceRoutingModule } from './resource-routing.module';
+import { ComposeResourceComponent } from './compose/compose.component';
+import { MyResourcesComponent } from './myResources/myResources.component';
+import { ReadResourceComponent } from './read-resource/read-resource.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { ComponentsModule } from '@shared/components/components.module';
 import { SharedModule } from '@shared';
@@ -11,11 +11,12 @@ import {DragDropModule} from "@angular/cdk/drag-drop";
 import {NgApexchartsModule} from "ng-apexcharts";
 import {NgScrollbarModule} from "ngx-scrollbar";
 import {UiModule} from "../ui/ui.module";
+import { ModifyComponent } from './modify/modify.component';
 @NgModule({
-  declarations: [ComposeComponent, InboxComponent, ReadMailComponent],
+  declarations: [ComposeResourceComponent, MyResourcesComponent, ReadResourceComponent, ModifyComponent],
     imports: [
         CommonModule,
-        EmailRoutingModule,
+        ResourceRoutingModule,
         CKEditorModule,
         ComponentsModule,
         SharedModule,
@@ -25,4 +26,4 @@ import {UiModule} from "../ui/ui.module";
         UiModule,
     ],
 })
-export class EmailModule {}
+export class ResourceModule {}

@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
-import { ReadMailComponent } from "./read-mail.component";
-describe("ReadMailComponent", () => {
-  let component: ReadMailComponent;
-  let fixture: ComponentFixture<ReadMailComponent>;
+import { MyResourcesComponent } from "./myResources.component";
+describe("InboxComponent", () => {
+  let component: MyResourcesComponent;
+  let fixture: ComponentFixture<MyResourcesComponent>;
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        declarations: [ReadMailComponent],
+        declarations: [MyResourcesComponent],
       }).compileComponents();
     })
   );
   beforeEach(() => {
-    fixture = TestBed.createComponent(ReadMailComponent);
+    fixture = TestBed.createComponent(MyResourcesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

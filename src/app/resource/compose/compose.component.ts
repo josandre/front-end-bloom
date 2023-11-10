@@ -9,11 +9,11 @@ import {Router} from "@angular/router";
 
 
 @Component({
-  selector: 'app-compose',
+  selector: 'app-compose-resource',
   templateUrl: './compose.component.html',
   styleUrls: ['./compose.component.scss'],
 })
-export class ComposeComponent implements OnInit{
+export class ComposeResourceComponent implements OnInit{
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @ViewChild('richEditor', {static: false})
   public editor: any = ClassicEditor;

@@ -3,10 +3,10 @@ import {ResourceService} from "../services/Resource.Service";
 import {Resource} from "../models/Resource";
 @Component({
   selector: 'app-inbox',
-  templateUrl: './inbox.component.html',
-  styleUrls: ['./inbox.component.scss'],
+  templateUrl: './myResources.component.html',
+  styleUrls: ['./myResources.component.scss'],
 })
-export class InboxComponent implements OnInit{
+export class MyResourcesComponent implements OnInit{
 
   constructor(private readonly resourceService: ResourceService) {  }
 

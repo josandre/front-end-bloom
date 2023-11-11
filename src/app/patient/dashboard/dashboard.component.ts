@@ -19,6 +19,8 @@ import {
   ApexFill
 } from 'ng-apexcharts';
 import {AuthService} from "@core";
+import { AXIENTY_PROGRESS } from './provitionals/anxiety-progress';
+import { RECORDED_ATTACKS } from './provitionals/recorded-attacks';
 
 export type anxietyScaleDataOptions = {
   series: ApexAxisChartSeries;
@@ -73,15 +75,18 @@ export class DashboardComponent implements OnInit {
     this.name = this.authService.currentUserValue.firstName + " " + this.authService.currentUserValue.lastName
     
     this.initAnxietyProgress();
-    this.initrecordedAttacks();
+    this.initRecordedAttacks();
   }
 
   private initAnxietyProgress() {
+    const levelsData = AXIENTY_PROGRESS.map(a => a.level);
+    const datesData = AXIENTY_PROGRESS.map(a => a.date);
+
     this.anxietyScaleDataOptions = {
       series: [
         {
           name: 'Nivel de Ansiedad del paciente',
-          data: [5, 4, 3, 4, 3, 2, 3, 1],
+          data: levelsData,
         },
       ],
       chart: {
@@ -116,7 +121,7 @@ export class DashboardComponent implements OnInit {
         strokeDashArray: 1,
       },
       xaxis: {
-        categories: ['1 de junio', '6 de junio', '12 de junio', '30 de junio', '12 de julio', '26 de julio', '30 de julio', '2 de agosto'],
+        categories: datesData,
         title: {
           text: 'Sesiones',
         },
@@ -137,12 +142,16 @@ export class DashboardComponent implements OnInit {
       },
     };
   }
-  private initrecordedAttacks() {
+  private initRecordedAttacks() {
+    
+    const attackCounts = RECORDED_ATTACKS.map(a => a.count);
+    const attackDates = RECORDED_ATTACKS.map(a => a.date);
+
     this.recordedAttacksOptions = {
       series: [
         {
           name: 'Ataques de Ansiedad',
-          data: [3, 4, 5, 6, 2, 1, 2, 3, 4, 5, 6, 7, 1 ]
+          data: attackCounts
         },
       ],
       chart: {
@@ -166,21 +175,7 @@ export class DashboardComponent implements OnInit {
         colors: ['transparent'],
       },
       xaxis: {
-        categories: [
-          '1 de junio',
-          '6 de junio',
-          '12 de junio',
-          '30 de junio',
-          '12 de julio',
-          '26 de julio',
-          '30 de julio',
-          '2 de agosto',
-          '1 de junio',
-          '6 de junio',
-          '12 de junio',
-          '30 de junio',
-          '12 de julio',
-        ],
+        categories: attackDates,
         labels: {
           style: {
             colors: '#9aa0ac',

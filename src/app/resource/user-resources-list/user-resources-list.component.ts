@@ -1,12 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {ResourceService} from "../services/Resource.Service";
 import {Resource} from "../models/Resource";
+
 @Component({
-  selector: 'app-inbox',
-  templateUrl: './myResources.component.html',
-  styleUrls: ['./myResources.component.scss'],
+  selector: 'app-user-resources-list',
+  templateUrl: './user-resources-list.component.html',
+  styleUrls: ['./user-resources-list.component.scss']
 })
-export class MyResourcesComponent implements OnInit{
+export class UserResourcesListComponent implements OnInit {
 
   constructor(private readonly resourceService: ResourceService) {  }
 
@@ -15,7 +16,7 @@ export class MyResourcesComponent implements OnInit{
   flag: boolean = false;
 
   ngOnInit(){
-    this.resourceService.getResourceList().subscribe(
+    this.resourceService.getResourcesbyUserId().subscribe(
       resources =>{
         this.resourcesList = resources;
         this.flag = true;
@@ -23,8 +24,7 @@ export class MyResourcesComponent implements OnInit{
     )
   }
 
-  sessionResource(id: number){
+  readResource(id: number){
     sessionStorage.setItem('resourseId', id.toString());
   }
-
 }

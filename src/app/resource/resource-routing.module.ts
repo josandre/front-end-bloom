@@ -4,6 +4,7 @@ import { MyResourcesComponent } from "./myResources/myResources.component";
 import { ComposeResourceComponent } from "./compose/compose.component";
 import { ReadResourceComponent } from "./read-resource/read-resource.component";
 import { ModifyComponent } from "./modify/modify.component";
+import { UserResourcesListComponent } from "./user-resources-list/user-resources-list.component";
 const routes: Routes = [
   {
     path: "my-resources",
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: "modify",
     component:ModifyComponent
+  },
+  {
+    path: "user-resources-list",
+    component:UserResourcesListComponent
   },
 ];
 @NgModule({

@@ -16,11 +16,14 @@
 
                     <th colspan="3">
                       <div class="inbox-header">
-                        <div class="mail-option no-pad-right">
+                        <div class="mail-option no-pad-left">
                           <div class="email-btn-group m-l-15">
 
                             <button mat-icon-button aria-label="Example icon-button with a heart icon">
-                              <mat-icon>delete</mat-icon> Delete
+                              <mat-icon>keyboard_return</mat-icon>
+                            </button>
+                            <button mat-icon-button aria-label="Example icon-button with a heart icon">
+                              <mat-icon>delete</mat-icon>
                             </button>
 
                           </div>
@@ -32,10 +35,8 @@
                 </thead>
                 <tbody>
                 <tr >
-                  <td class="tbl-checkbox">
-
-                  </td>
-
+                  <td class="tbl-checkbox"></td>
+                  <td class="hidden-xs" >Edit</td>
                   <td class="hidden-xs" >Title</td>
 
                   <td class="max-texts">Content</td>
@@ -50,12 +51,13 @@
                   <tr *ngFor="let r of resourcesList">
                     <td class="tbl-checkbox">
                       <mat-checkbox class="example-margin"></mat-checkbox>
-                    </td>
-
+                    </td >
+                    <td>
+                      <a routerLink="/resource/modify" (click)="sessionResource(r.id)"><mat-icon>edit</mat-icon></a>
                     <td class="hidden-xs" >{{r.title}}</td>
 
                     <td class="max-texts">
-                      <a routerLink="/resource/read-resource" (click)="readResource(r.id)"  [innerHTML]="r.content.substring(0,200)"></a>
+                      <a routerLink="/resource/read-resource" (click)="sessionResource(r.id)" [innerHTML]="r.content.substring(0,200)"></a>
                     </td>
 
                     <td class="max-texts" > {{r.date}} </td>

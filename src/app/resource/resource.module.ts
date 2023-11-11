@@ -12,8 +12,9 @@ import {NgApexchartsModule} from "ng-apexcharts";
 import {NgScrollbarModule} from "ngx-scrollbar";
 import {UiModule} from "../ui/ui.module";
 import { ModifyComponent } from './modify/modify.component';
+import { UserResourcesListComponent } from './user-resources-list/user-resources-list.component';
 @NgModule({
-  declarations: [ComposeResourceComponent, MyResourcesComponent, ReadResourceComponent, ModifyComponent],
+  declarations: [ComposeResourceComponent, MyResourcesComponent, ReadResourceComponent, ModifyComponent, UserResourcesListComponent],
     imports: [
         CommonModule,
         ResourceRoutingModule,

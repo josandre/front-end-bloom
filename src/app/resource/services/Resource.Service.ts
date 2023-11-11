@@ -42,4 +42,20 @@ export class ResourceService {
     return this.http.get<User[]>(URL, {headers: {'Authorization':  `Bearer ${currentUser.token}`}})
   }
 
+  getResourcesbyUserId(): Observable<Resource[]>{
+    const currentUser = this.authenticationService.currentUserValue;
+    const URL = `${this.baseUrl}/resource/getAllByUserId/${currentUser.id}`;
+    return this.http.get<Resource[]>(URL, {headers: {'Authorization':  `Bearer ${currentUser.token}`}})
+  }
+
+  getRole(): string{
+    const currentUser  = this.authenticationService.currentUserValue;
+    return currentUser.role;
+  }
+  resourceUpdate(resource: Resource, id : number): Observable<Resource>{
+    const currentUser = this.authenticationService.currentUserValue;
+    const URL = `${this.baseUrl}/resource/update/${id}`;
+    return this.http.put<Resource>(URL, resource, {headers: {'Authorization':  `Bearer ${currentUser.token}`}});
+  }
+
 }

@@ -911,7 +911,7 @@ export const ROUTES: RouteInfo[] = [
         ],
       },
   {
-    path: '/resource/my-resources',
+    path: '/resource/user-resources-list',
     title: 'My Resources',
     iconType: 'material-icons-two-tone',
     icon: 'edit_note',

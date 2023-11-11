@@ -13,9 +13,9 @@ export class ReadResourceComponent implements OnInit{
   resource: Resource;
   patientsList: User[];
   flag: boolean = false;
+  role = this.resourceService.getRole();
   ngOnInit() {
     this.id = sessionStorage.getItem('resourseId');
-
     if(this.id != null) {
       this.resourceService.getResourceById(parseInt(this.id)).subscribe(
         data => {

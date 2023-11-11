@@ -65,7 +65,7 @@ export class ComposeResourceComponent implements OnInit{
         switch (res) {
           case 200:{
             this.openSnackBar("Resource added successfully", "Close");
-            this.router.navigate(['/email/inbox']);
+            this.router.navigate(['/resource/my-resources']);
             break;
           }
         }
@@ -73,7 +73,7 @@ export class ComposeResourceComponent implements OnInit{
         switch (error.error) {
           case 404:
             this.openSnackBar("The resource was not added", "Close" );
-            this.router.navigate(['/email/inbox']);
+            this.router.navigate(['/resource/my-resources']);
             break;
         }
       })
@@ -98,7 +98,9 @@ export class ComposeResourceComponent implements OnInit{
   patientListToJson(): string{
     this.jsoniedList = [];
     this.checkedList.forEach((node) =>{
-      this.jsoniedList.push(JSON.parse(`{"id":${node}}`));
+      this.jsoniedList.push(JSON.parse(
+        `{"id":${node}}`
+      ));
     });
     return JSON.stringify(this.jsoniedList);
   }

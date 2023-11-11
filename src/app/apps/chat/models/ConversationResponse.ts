@@ -4,7 +4,7 @@ import {Conversation} from "./Conversation";
 export class ConversationResponse{
   statusCode: string;
   status: string;
-  conversationList: Array<Conversation>;
+  list: Array<Conversation>;
 
   constructor(partial?:Partial<ConversationResponse>) {
     if(partial){

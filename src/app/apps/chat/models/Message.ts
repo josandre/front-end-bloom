@@ -6,6 +6,7 @@ export class Message{
   receiverId: number;
   date: Date;
   message: String;
+  senderName: String;
 
   constructor(partial?: Partial<Message>) {
     if(partial) {

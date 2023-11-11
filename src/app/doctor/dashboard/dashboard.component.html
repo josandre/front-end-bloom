@@ -140,32 +140,24 @@
             <div class="table-responsive m-t-15">
               <table class="table align-items-center">
                 <tbody>
-                  <tr>
-                    <td><i class="fa fa-circle col-green msr-2"></i> Nivel 1</td>
-                    <td>2 Pacientes</td>
-                    <td class="col-green">5%</td>
-                  </tr>
-                  <tr>
-                    <td><i class="fa fa-circle col-cyan msr-2"></i>Nivel 2</td>
-                    <td>7 Pacientes</td>
-                    <td class="col-green">15%</td>
-                  </tr>
-                  <tr>
-                    <td><i class="fa fa-circle col-blue msr-2"></i>Nivel 3</td>
-                    <td>4 Pacientes</td>
-                    <td class="col-green">8%</td>
-                  </tr>
-                  <tr>
-                    <td><i class="fa fa-circle col-yellow msr-2"></i>Nivel 4</td>
-                    <td>14 Pacientes</td>
-                    <td class="col-orange">25%</td>
-                  </tr>
-                  <tr>
-                    <td><i class="fa fa-circle col-orange msr-2"></i>Nivel 5</td>
-                    <td>20 Pacientes</td>
-                    <td class="col-orange">36%</td>
-                  </tr>
+                  <ng-container *ngFor="let level of levels; let i = index">
+                    <tr>
+                      <td>
+                        <i class="fa fa-circle" 
+                           [class.col-green]="i === 0" 
+                           [class.col-cyan]="i === 1" 
+                           [class.col-blue]="i === 2" 
+                           [class.col-yellow]="i === 3" 
+                           [class.col-orange]="i === 4"
+                           msr-2></i>
+                        Nivel {{ level.level }}
+                      </td>
+                      <td>{{ level.patients }} Pacientes</td>
+                      <td>{{ percentages[i] }}%</td>
+                    </tr>
+                  </ng-container>
                 </tbody>
+                
               </table>
             </div>
           </div>

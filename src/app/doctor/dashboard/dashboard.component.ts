@@ -16,6 +16,8 @@ import {
   ApexResponsive,
 } from 'ng-apexcharts';
 import {AuthService} from "@core";
+import { TOP_ANSIETY_CASES } from './provitionals/top-anxiety-cases';
+import { Group, LEVELS } from './provitionals/anxiety-level-group';
 
 export type topAnxietyCases = {
   series: ApexAxisChartSeries;
@@ -52,21 +54,36 @@ export class DashboardComponent implements OnInit {
   
   public topAnxietyCasesOptions: Partial<topAnxietyCases>;
   public anxietyLevelGroupingOptions: Partial<anxietyLevelGroupingChart>;
+
+  public levels = LEVELS;
+  public percentages: number[] = [];
+
   name: string
   
   constructor(private readonly authService: AuthService) {}
 
   ngOnInit() {
     this.name = this.authService.currentUserValue.firstName + " " + this.authService.currentUserValue.lastName
+    this.percentages = this.calculatePercentages(LEVELS);
 
     this.initTopAnxietyCases();
     this.initAnxietyLevelGroupingChart();
   }
+
+  private calculatePercentages(levels: Group[]): number[] {
+    const totalPatients = levels.reduce((sum, level) => sum + level.patients, 0);
+    return levels.map(level => parseFloat(((level.patients / totalPatients) * 100).toFixed(1)));
+  }
+
   private initTopAnxietyCases() {
+
+    const categories = TOP_ANSIETY_CASES.map(c => c.name);
+    const seriesData = TOP_ANSIETY_CASES.map(c => c.cases);
+  
     this.topAnxietyCasesOptions = {
       series: [
         {
-          data: [120, 90, 85, 50, 30, 20, 19, 14, 10, 5]
+          data: seriesData
         }
       ],
       chart: {
@@ -117,18 +134,7 @@ export class DashboardComponent implements OnInit {
         colors: ["#fff"]
       },
       xaxis: {
-        categories: [
-          "Paciente",
-          "Paciente",
-          "Paciente",
-          "Paciente",
-          "Paciente",
-          "Paciente",
-          "Paciente",
-          "Paciente",
-          "Paciente",
-          "Paciente"
-        ]
+        categories: categories
       },
       yaxis: {
         labels: {
@@ -160,8 +166,11 @@ export class DashboardComponent implements OnInit {
     };
   }
   private initAnxietyLevelGroupingChart() {
+
+    const percentages = this.calculatePercentages(LEVELS);
+
     this.anxietyLevelGroupingOptions = {
-      series: [5, 15, 18, 25, 36],
+      series: percentages,
       chart: {
         type: 'pie',
         width: 270,

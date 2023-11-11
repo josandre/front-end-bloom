@@ -163,6 +163,9 @@
         "TITLE": "Puzzle Game",
         "DESCRIPTION": "Test your agility in this puzzle game"
       }
+    },
+    "PROGRESS-SECTION": {
+      "TITLE": "Progreso Medico"
     }
   }
 }

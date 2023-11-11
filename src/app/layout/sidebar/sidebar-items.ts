@@ -690,6 +690,18 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
       // {
+      //   path: '/progress-section',
+      //   title: 'MENUITEMS.PROGRESS-SECTION.TITLE',
+      //   iconType: 'material-icons-two-tone',
+      //   icon: 'healing',
+      //   class: '',
+      //   groupTitle: false,
+      //   badge: '',
+      //   badgeClass: '',
+      //   role: ['Patient'],
+      //   submenu: [],
+      // },
+      // {
       //   path: '',
       //   title: 'MENUITEMS.PATIENT.APPOINTMENTS.TEXT',
       //   iconType: 'material-icons-two-tone',

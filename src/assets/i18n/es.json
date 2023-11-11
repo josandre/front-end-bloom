@@ -163,6 +163,9 @@
         "TITLE": "Juego de Rompecabezas",
         "DESCRIPTION": "Prueba tu agilidad en este juego de rompecabezas"
       }
+    },
+    "PROGRESS-SECTION": {
+      "TITLE": "Progreso Medico"
     }
   }
 }

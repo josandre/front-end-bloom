@@ -1,8 +1,10 @@
 export class Conversation{
   id: number;
   date: Date;
-  name: String
-  lastName: String
+  name: String;
+  lastName: String;
+  senderId: number;
+  receiverId: number;
 
   constructor(partial?: Partial<Conversation>) {
     if(partial){

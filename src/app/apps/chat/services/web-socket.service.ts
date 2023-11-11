@@ -1,15 +1,28 @@
 import {Injectable} from "@angular/core";
 import {Message} from "../models/Message";
 import {AuthService} from "@core";
+import {Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class WebSocketService{
-  websocket : WebSocket;
-  chatMessages: Message[] = [];
+  private websocket : WebSocket;
+  private readonly chatMessages: Map<number, Message[]> = new Map<number, Message[]>();
+
+  messageReceived$: Subject<MessageReceivedNotification> = new Subject<MessageReceivedNotification>();
 
   constructor(private readonly authService: AuthService) {}
+
+  addConversationsIntoDict(conversationId: number, messages: Message[]) {
+    console.log(messages, "loaded")
+    this.chatMessages.set(conversationId, messages)
+  }
+
+  getConversationMessages(conversationId: number): Message[] | undefined {
+    console.log(this.chatMessages)
+    return this.chatMessages.get(conversationId);
+  }
 
   public openWebSocket() {
     const currentUser = this.authService.currentUserValue
@@ -23,10 +36,17 @@ export class WebSocketService{
     this.websocket.onmessage = (event)=> {
       const message = JSON.parse(event.data);
 
-      console.log(message, 'message ready to add')
-      this.chatMessages.push(message)
-      console.log("chat messages: ", this.chatMessages)
-      //create message endpoint
+      const existingMessages = this.chatMessages.get(message.conversationId) ?? [];
+      this.chatMessages.set(message.conversationId, [...existingMessages, message])
+
+      const messageReceivedNotification = {
+        conversationId: message.conversationId,
+        messages: this.getConversationMessages(message.conversationId) ?? []
+      }
+
+      // Notify to subscribers that I got new message
+      console.log("NOTIFICANDO")
+      this.messageReceived$.next(messageReceivedNotification)
     }
 
     this.websocket.onclose = (event) => {
@@ -38,12 +58,15 @@ export class WebSocketService{
     const currentUser = this.authService.currentUserValue
     message.senderId = currentUser.actualUserId ?? currentUser.id
 
-    console.log("create message")
-    console.log(message)
     this.websocket.send(JSON.stringify(message))
   }
 
   public closeWebSocket(){
     this.websocket.close()
   }
+}
+
+interface MessageReceivedNotification {
+  conversationId: number,
+  messages: Message[]
 }

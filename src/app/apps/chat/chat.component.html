@@ -12,21 +12,20 @@
               <div class="form-line m-b-15">
                 <input type="text" class="form-control" placeholder="Search..." />
               </div>
-              <div class="spinner">
-                <mat-spinner *ngIf="isLoading"> </mat-spinner>
-              </div>
-
               <div class="tab-content"  >
                 <ng-scrollbar style="height: 590px" visibility="hover">
+                  <div class="spinner" *ngIf="!conversationSelected && isLoading">
+                    <div class="img">
+                      <img  class="gif" src="assets/gif/loading-bloom.gif" alt="avatar">
+                    </div>
+                    <div class="text">{{"We are reading your conversations..."}}</div>
+                  </div>
                   <div id="chat_user" >
                     <ul class="chat-list list-unstyled m-b-0" *ngFor="let conversation of conversations">
-                      <li class="clearfix active" >
+                      <li class="clearfix active" (click)="getConversationInformation(conversation)" >
                         <img src="assets/images/user/user1.jpg" alt="avatar">
                         <div class="about">
                           <div class="name">{{conversation.name + " " + conversation.lastName}}</div>
-                          <div class="status">
-                            <i class="material-icons offline">fiber_manual_record</i>
-                            left 7 mins ago </div>
                         </div>
                       </li>
                     </ul>
@@ -37,45 +36,56 @@
           </div>
         </div>
       </div>
-      <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+
+      <div class="spinner col-xs-12 col-sm-12 col-md-9 col-lg-9 card select" *ngIf="!conversationSelected && !isLoading">
+        <div class="img">
+          <img  class="gif" src="assets/gif/bloom-blink.gif" alt="avatar">
+        </div>
+        <div class="text">{{"Select a conversation"}}</div>
+      </div>
+
+
+      <div class="spinner col-xs-12 col-sm-12 col-md-9 col-lg-9 card select" *ngIf="isConversationSelected && isLoading">
+        <div class="img">
+          <img  class="gif" src="assets/gif/full-loading-bloom.gif" alt="avatar">
+        </div>
+        <div class="text">{{"Loading conversation messages..."}}</div>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9" *ngIf="isConversationSelected && !isLoading">
         <div class="card">
           <div class="chat">
             <div class="chat-header clearfix">
-              <img src="assets/images/user/user2.jpg" alt="avatar">
+              <img src="assets/images/user.png" alt="avatar">
               <div class="chat-about">
-                <div class="chat-with">Maria Smith</div>
-                <div class="chat-num-messages">2 new messages</div>
+                <div class="chat-with">{{conversationSelected.name + " " + conversationSelected.lastName}}</div>
               </div>
             </div>
-            <ng-scrollbar style="height: 450px" visibility="hover">
-              <form [formGroup]="authForm" (ngSubmit)="sendMessage()" >
-                <div class="chat-history" id="chat-conversation">
-                  <ul>
-                    <li class="clearfix" *ngFor="let message of webSocketService.chatMessages">
-                      <!--                    if I am the sender i need text-end-->
-                      <div class="message-data text-end">
-                      <span class="message-data-time">10:10 AM, Today
-                      </span>
-                        &nbsp; &nbsp;
-                        <span class="message-data-name">Maria</span>
-                      </div>
-                      <div class="message other-message float-end"> {{message.message}} </div>
-                    </li>
-<!--                    <li>-->
-<!--                      <div class="message-data">-->
-<!--                        <span class="message-data-name">Robert </span>-->
-<!--                        <span class="message-data-time">10:12 AM, Today</span>-->
-<!--                      </div>-->
-<!--                      <div class="message my-message">-->
-<!--                        <p>Its good. We completed almost all task assign by our manager.</p>-->
-<!--                        <div class="row">-->
-<!--                        </div>-->
-<!--                      </div>-->
-<!--                    </li>-->
-                  </ul>
-                </div>
 
-                <div class="chat-message clearfix">
+              <form [formGroup]="authForm" (ngSubmit)="sendMessage()" >
+                <ng-scrollbar style="height: 450px" visibility="hover">
+                  <div class="chat-history" id="chat-conversation">
+                    <ul>
+                      <li class="clearfix" *ngFor="let message of messagesList">
+
+                        <div class="message-data " [class.text-end]="message.senderId == userInSystem()">
+                        <span class="message-data-time">{{getDate(message.date)}}
+                        </span>
+                          &nbsp; &nbsp;
+                          <span class="message-data-name">{{message.senderName}}</span>
+                        </div>
+                        <div
+                          class="message"
+                          [class.other-message]="message.senderId == userInSystem()"
+                          [class.my-message]="message.senderId != userInSystem()"
+                          [class.float-end]="message.senderId == userInSystem()">
+                            {{message.message}}
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </ng-scrollbar>
+                <div  class="chat-message clearfix">
                   <div class="form-group">
                     <div class="form-line">
                       <mat-form-field class="example-full-width" appearance="outline"
@@ -92,13 +102,12 @@
                   <div class="chat-upload">
                     <button
                       mat-mini-fab class="bg-deep-orange msr-2"
-                      type="submit">
+                      type="submit" >
                       <i class="material-icons">send</i>
                     </button>
                   </div>
                 </div>
               </form>
-            </ng-scrollbar>
           </div>
         </div>
       </div>

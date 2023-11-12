@@ -4,10 +4,10 @@ import {Resource} from "../models/Resource";
 import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-inbox',
-  templateUrl: './inbox.component.html',
-  styleUrls: ['./inbox.component.scss'],
+  templateUrl: './myResources.component.html',
+  styleUrls: ['./myResources.component.scss'],
 })
-export class InboxComponent implements OnInit{
+export class MyResourcesComponent implements OnInit{
 
   constructor(private readonly resourceService: ResourceService,private snackBar: MatSnackBar) {
     this.selectedResourceIds=[];
@@ -17,15 +17,20 @@ export class InboxComponent implements OnInit{
   originalResourcesList: Resource[];
   selectedResourceIds: number[];
 
+  flag: boolean = false;
+
   ngOnInit(){
     this.resourceService.getResourceList().subscribe(
       resources =>{ 
         this.resourcesList = resources;
-        this.originalResourcesList=[...resources]}
+        this.originalResourcesList=[...resources]
+        this.flag = true;
+      }
+        
     )
   }
 
-  readResource(id: number){
+  sessionResource(id: number){
     sessionStorage.setItem('resourseId', id.toString());
   }
   applyFilter(filterValue: any) {

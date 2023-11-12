@@ -68,9 +68,9 @@ const routes: Routes = [
           import('./contacts/contacts.module').then((m) => m.ContactsModule),
       },
       {
-        path: 'email',
+        path: 'resource',
         loadChildren: () =>
-          import('./email/email.module').then((m) => m.EmailModule),
+          import('./resource/resource.module').then((m) => m.ResourceModule),
       },
       {
         path: 'apps',

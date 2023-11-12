@@ -1,0 +1,81 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <br>
+      <h1>{{'MENUITEMS.RESOURCES.COMPOSE' | translate}}</h1>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <div class="card">
+          <div class="body">
+            <div id="mail-nav">
+
+              <h5 class="b-b p-10 text-strong">{{'MENUITEMS.RESOURCES.MY-PATIENTS' | translate}}</h5>
+              <div *ngIf="!flag" >
+                <mat-spinner></mat-spinner>
+              </div>
+
+              <ul class="online-user" id="online-offline" *ngFor="let p of patientsList">
+                <li>
+                  <mat-checkbox  class="m-r-15 check" color="primary" id="{{p.id}}" (click)="onCheck(p.id)">
+                      <i class="material-icons col-green" title="Online" *ngIf="p.role.id === 1">brightness_1</i>
+                      <i class="material-icons col-indigo" title="Online" *ngIf="p.role.id === 2">brightness_1</i>
+                      <i class="material-icons col-orange" title="Online" *ngIf="p.role.id === 3">brightness_1</i>
+                      {{p.name}} {{p.lastName}}
+                  </mat-checkbox>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+        <div class="card">
+          <div class="boxs mail_listing">
+            <div class="inbox-center table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th colspan="1">
+                      <div class="inbox-header">
+                        {{'MENUITEMS.RESOURCES.COMPOSE' | translate}}
+                      </div>
+                    </th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <form class="composeForm" [formGroup]="formGroup" (submit)="onSubmit()">
+
+                  <div class="form-line">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                      <mat-label>{{'MENUITEMS.RESOURCES.TITLE' | translate}}</mat-label>
+                      <input matInput  formControlName="title" >
+                    </mat-form-field>
+                  </div>
+
+                  <ckeditor #richEditor [editor]="editor" [data]="data"></ckeditor>
+                  <br>
+                  <div class="col-lg-12">
+                    <div class="m-l-25 m-b-20">
+                      <button mat-flat-button color="primary" class="msr-2">{{'MENUITEMS.RESOURCES.POST' | translate}}</button>
+
+                    </div>
+                  </div>
+
+                </form>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

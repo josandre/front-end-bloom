@@ -9,7 +9,7 @@ export class MedicalRecord {
   lastUpdate: Date;
   patient: Patient;
   medicalHistories: MedicalHistory[];
-  anxietyTypes: AnxietyType[];
+  anxietyTypes: Set<AnxietyType>;
 
   constructor(partial?: Partial<MedicalRecord>) {
     if(partial){

@@ -9,6 +9,7 @@ import { MedicalRecordService } from './service/medicalrecord.service';
 
 import { MedicalRecord } from './model/MedicalRecord';
 import { Patient } from '../model/Patient';
+import { AnxietyType } from './model/AnxietyType';
 
 @Component({
   selector: 'app-profile',
@@ -18,6 +19,7 @@ import { Patient } from '../model/Patient';
 export class ProfileComponent {
   medicalRecord: MedicalRecord | undefined;
   patient: Patient | undefined;
+  anxieties = new Set<string>();
 
 
   constructor(public medicalRecordService: MedicalRecordService,
@@ -32,6 +34,13 @@ export class ProfileComponent {
       .subscribe(
         data => {
           this.medicalRecord = data;
+
+          this.medicalRecord.anxietyTypes.forEach((anxiety => {
+            this.anxieties.add(anxiety.anxietyType);
+          }));
+
+
+          console.log(this.anxieties);
           
           if (this.medicalRecord.familyMedicalHistory === null) {
             this.openSnackBar("Family medical history has yet to be filled out", "Close");
@@ -63,17 +72,17 @@ export class ProfileComponent {
   }
 
 
-  keywords = new Set(['angular', 'how-to', 'tutorial']);
   formControl = new FormControl({disabled: true});
 
   addKeywordFromInput(event: MatChipInputEvent) {
     if (event.value) {
-      this.keywords.add(event.value);
+      const anxietyType = new AnxietyType({anxietyType: event.value})
+      this.anxieties.add(event.value);
       event.chipInput!.clear();
     }
   }
 
   removeKeyword(keyword: string) {
-    this.keywords.delete(keyword);
+    this.anxieties?.delete(keyword);
   }
 }

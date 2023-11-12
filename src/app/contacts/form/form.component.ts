@@ -44,7 +44,7 @@ export class FormComponent {
       this.isDetails = true;
     } else {
       this.isDetails = false;
-      this.dialogTitle = 'New Contacts';
+      this.dialogTitle = 'Nuevo contacto';
       const blankObject = {} as Contacts;
       this.contacts = new Contacts(blankObject);
       this.contactsForm = this.createContactForm();

@@ -37,12 +37,9 @@ export class ContactsComponent
   filterToggle = false;
   displayedColumns = [
     'select',
-    'img',
     'name',
     'email',
-    'mobile',
-    'birthDate',
-    'address',
+    'relation',
     'actions',
   ];
   exampleDatabase?: ContactsService;
@@ -102,16 +99,6 @@ export class ContactsComponent
           'center'
         );
       }
-    });
-  }
-  detailsCall(row: Contacts) {
-    this.dialog.open(FormComponent, {
-      data: {
-        contacts: row,
-        action: 'details',
-      },
-      height: '70%',
-      width: '35%',
     });
   }
   toggleStar(row: Contacts) {
@@ -346,9 +333,6 @@ export class ExampleDataSource extends DataSource<Contacts> {
           break;
         case 'birthDate':
           [propertyA, propertyB] = [a.birthDate, b.birthDate];
-          break;
-        case 'address':
-          [propertyA, propertyB] = [a.address, b.address];
           break;
       }
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;

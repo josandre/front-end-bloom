@@ -17,6 +17,7 @@ import { AppointmentsService } from './appointments/appointments.service';
 import { ComponentsModule } from '@shared/components/components.module';
 import { SharedModule } from '@shared';
 import {SignupPatientComponent} from "./patients/signupPatient/signup-patient.component";
+import { ProfileComponent } from './patients/medicalrecord/profile.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import {SignupPatientComponent} from "./patients/signupPatient/signup-patient.co
     DoctorsComponent,
     PatientsComponent,
     SettingsComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,

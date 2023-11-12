@@ -307,6 +307,18 @@ export const ROUTES: RouteInfo[] = [
           // },
         ],
       },
+      {
+        path: '/tables/basic-table',
+        title: 'Resource',
+        iconType: 'material-icons-two-tone',
+        icon: 'edit_note',
+        class: '',
+        groupTitle: false,
+        badge: '',
+        badgeClass: '',
+        role: ['Admin'],
+        submenu: [],
+      },
       // {
       //   path: '',
       //   title: 'MENUITEMS.ROOMS.TEXT',

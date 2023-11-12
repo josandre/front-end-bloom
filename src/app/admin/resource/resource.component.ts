@@ -5,11 +5,11 @@ import { Resource } from './models/Resource';
 
 
 @Component({
-  selector: 'app-basic-table',
-  templateUrl: './basic-table.component.html',
-  styleUrls: ['./basic-table.component.scss'],
+  selector: 'app-resource',
+  templateUrl: './resource.component.html',
+  styleUrls: ['./resource.component.scss']
 })
-export class BasicTableComponent implements OnInit {
+export class ResourceComponent implements OnInit {
 
   constructor(private readonly resourceService: ResourceService,private snackBar: MatSnackBar) {
     this.selectedResourceIds=[];
@@ -81,4 +81,3 @@ export class BasicTableComponent implements OnInit {
   }
 
 }
-

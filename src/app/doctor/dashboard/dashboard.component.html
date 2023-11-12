@@ -38,12 +38,28 @@
                 <h5 class="float-end">Recursos compartidos</h5>
               </div>
               <div class="m-r-10 m-l-10">
-                <h3 class="font-weight-bold float-end mb-0"> 2</h3>
+                <h3 class="font-weight-bold float-end mb-0">
+                  <ng-container *ngIf="isLoadingResources; else dataLoadedResources">
+                    <div class="preloader pl-size-sm">
+                      <div class="spinner-layer pl-cyan">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>
+                  <ng-template #dataLoadedResources>
+                    {{ resourceCounts }} <!-- Agrega la variable que contiene el conteo de recursos aquí -->
+                  </ng-template>
+                </h3>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </div>      
       <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <div class="card card-statistic-2">
           <div class="clearfix">
@@ -72,12 +88,29 @@
                 <h5 class="float-end">Pacientes activos</h5>
               </div>
               <div class="m-r-10 m-l-10">
-                <h3 class="font-weight-bold float-end mb-0">3</h3>
+                <h3 class="font-weight-bold float-end mb-0">
+                  <ng-container *ngIf="isLoadingPatients; else dataLoaded">
+                    <div class="preloader pl-size-sm">
+                      <div class="spinner-layer pl-cyan">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>
+                  <ng-template #dataLoaded>
+                    {{ patientCounts.active_patients }}
+                  </ng-template>
+                </h3>
               </div>
             </div>
           </div>
         </div>
       </div>
+      
       <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <div class="card card-statistic-2">
           <div class="clearfix">
@@ -89,12 +122,28 @@
                 <h5 class="float-end">Pacientes registrados</h5>
               </div>
               <div class="m-r-10 m-l-10">
-                <h3 class="font-weight-bold float-end mb-0"> 129</h3>
+                <h3 class="font-weight-bold float-end mb-0">
+                  <ng-container *ngIf="isLoadingPatients; else dataLoadedTotalPatients">
+                    <div class="preloader pl-size-sm">
+                      <div class="spinner-layer pl-cyan">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>
+                  <ng-template #dataLoadedTotalPatients>
+                    {{ patientCounts.total_patients }}
+                  </ng-template>
+                </h3>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </div>     
     </div>
     <!-- #END# Widgets -->
     <div class="row">

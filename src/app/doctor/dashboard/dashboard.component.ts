@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   ChartComponent,
@@ -15,9 +14,11 @@ import {
   ApexTitleSubtitle,
   ApexResponsive,
 } from 'ng-apexcharts';
-import {AuthService} from "@core";
+import { AuthService } from "@core";
 import { TOP_ANSIETY_CASES } from './provitionals/top-anxiety-cases';
 import { Group, LEVELS } from './provitionals/anxiety-level-group';
+import { PatientCounts } from '../models/dashboard';
+import { DashboardDoctorService } from '../services/dashboard.service';
 
 export type topAnxietyCases = {
   series: ApexAxisChartSeries;
@@ -58,13 +59,45 @@ export class DashboardComponent implements OnInit {
   public levels = LEVELS;
   public percentages: number[] = [];
 
-  name: string
-  
-  constructor(private readonly authService: AuthService) {}
+  name: string;
+  public patientCounts: PatientCounts;
+  public resourceCounts: Number; 
+  public isLoadingPatients = true;
+  public isLoadingResources = true; // Variable para la carga de recursos
+
+  constructor(
+    private readonly authService: AuthService,
+    private dashboardService: DashboardDoctorService
+  ) {}
 
   ngOnInit() {
     this.name = this.authService.currentUserValue.firstName + " " + this.authService.currentUserValue.lastName
     this.percentages = this.calculatePercentages(LEVELS);
+
+    // Llamar al servicio y manejar la carga de datos de pacientes
+    this.dashboardService.getCountPatients().subscribe(
+      (data) => {
+        this.patientCounts = data;
+        this.isLoadingPatients = false; // Cuando los datos llegan, no estamos cargando más
+      },
+      (error) => {
+        console.error('Error al obtener datos de pacientes:', error);
+        this.isLoadingPatients = false; // En caso de error, también dejamos de cargar
+      }
+    );
+
+    // Llamar al servicio de recursos y manejar la carga de datos de recursos
+    this.dashboardService.getCountResources().subscribe(
+      (data) => {
+        console.log(data)
+        this.resourceCounts = data;
+        this.isLoadingResources = false; // Cuando los datos llegan, no estamos cargando más
+      },
+      (error) => {
+        console.error('Error al obtener datos de recursos:', error);
+        this.isLoadingResources = false; // En caso de error, también dejamos de cargar
+      }
+    );
 
     this.initTopAnxietyCases();
     this.initAnxietyLevelGroupingChart();
@@ -74,6 +107,7 @@ export class DashboardComponent implements OnInit {
     const totalPatients = levels.reduce((sum, level) => sum + level.patients, 0);
     return levels.map(level => parseFloat(((level.patients / totalPatients) * 100).toFixed(1)));
   }
+
 
   private initTopAnxietyCases() {
 

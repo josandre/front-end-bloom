@@ -254,8 +254,8 @@
                   <mat-label>Profesión</mat-label>
                   <mat-select formControlName="selectField" (selectionChange)="applyFilter()">
                     <mat-option value="">Todos</mat-option> <!-- Añade esta línea -->
-                    <mat-option *ngFor="let profession of uniqueProfessions" [value]="profession">
-                      {{ profession }}
+                    <mat-option *ngFor="let role of uniqueRoles" [value]="role">
+                      {{ role }}
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
@@ -272,7 +272,7 @@
             </a>
             <div class="doctor-content">
               <h3>{{ item.name }}</h3>
-              <span>{{ item.profession }}</span>
+              <span>{{ item.role }}</span>
             </div>
           </div>
         </div>

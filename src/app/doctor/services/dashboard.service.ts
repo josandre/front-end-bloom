@@ -1,37 +1,36 @@
-import {Injectable} from "@angular/core";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {API_URL} from "../../../config";
-import {Observable} from "rxjs";
-import {AuthService} from "@core";
-import { Resource } from "../models/user";
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { AuthService } from "@core";
+import { API_URL } from "../../../config";
+import { PatientCounts } from "../models/dashboard";
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class ResourceService {
+export class DashboardDoctorService {
   private readonly baseUrl = API_URL;
+  private readonly currentUser;
 
-  constructor(private readonly http: HttpClient, private authenticationService: AuthService) {}
-
-  resourceRegister(resource: Resource): Observable<Resource>{
-    const currentUser = this.authenticationService.currentUserValue;
-    const URL = `${this.baseUrl}/resource/add`;
-    resource.specialist = JSON.parse(`{"id":${currentUser.id}}`);
-    return this.http.post<Resource>(URL, resource, {headers: {'Authorization':  `Bearer ${currentUser.token}`}});
+  constructor(
+    private readonly http: HttpClient,
+    private authenticationService: AuthService
+  ) {
+    this.currentUser = this.authenticationService.currentUserValue;
   }
 
-  getResourceList(): Observable<Resource[]>{
-      const currentUser = this.authenticationService.currentUserValue;
-      const URL = `${this.baseUrl}/resource/getByMedId/${currentUser.id}`;
-      return this.http.get<Resource[]>(URL, {headers: {'Authorization':  `Bearer ${currentUser.token}`}})
-
+  getCountPatients(): Observable<PatientCounts> {
+    const URL = `${this.baseUrl}/count-patients/${this.currentUser.id}`;
+    return this.http.get<PatientCounts>(URL, {
+      headers: { 'Authorization':  `Bearer ${this.currentUser.token}` }
+    });
   }
 
-  getResourceById(id: number): Observable<Resource>{
-    const currentUser = this.authenticationService.currentUserValue;
-    const URL = `${this.baseUrl}/resource/getById/${id}`;
-    return this.http.get<Resource>(URL, {headers: {'Authorization':  `Bearer ${currentUser.token}`}})
+  getCountResources(): Observable<number> {
+    const URL = `${this.baseUrl}/resource/countByMedId/${this.currentUser.id}`;
+    return this.http.get<number>(URL, {
+      headers: { 'Authorization':  `Bearer ${this.currentUser.token}` }
+    });
   }
-
 }

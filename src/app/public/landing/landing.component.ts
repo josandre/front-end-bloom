@@ -14,7 +14,7 @@ import { PROVITIONAL_DOCTORS, Doctor  } from './doctors-test.constants';
 export class LandingComponent implements OnInit {
   searchForm: FormGroup;
   filteredDoctorsItems: Doctor[] = [];
-  uniqueProfessions: string[] = [];
+  uniqueRoles: string[] = [];
   reviewItems = REVIEWS;
   doctorsItems = PROVITIONAL_DOCTORS;
 
@@ -52,24 +52,24 @@ export class LandingComponent implements OnInit {
       inputField: new FormControl(''),
       selectField: new FormControl('')
     });
-    this.populateProfessions();
+    this.populateRoles();
     this.applyFilter(); // Aplica el filtro inicialmente para cargar todos los doctores
   }
 
   //Carga las profesiones de los doctores
-  private populateProfessions(): void {
-    const professionsSet = new Set(this.doctorsItems.map(doctor => doctor.profession));
-    this.uniqueProfessions = Array.from(professionsSet);
+  private populateRoles(): void {
+    const roleSet = new Set(this.doctorsItems.map(doctor => doctor.role));
+    this.uniqueRoles = Array.from(roleSet);
   }
 
   //Filtrado de doctores
   applyFilter(): void {
     const searchText = this.normalizeText(this.searchForm.get('inputField')?.value || '');
-    const profession = this.normalizeText(this.searchForm.get('selectField')?.value || '');
+    const role = this.normalizeText(this.searchForm.get('selectField')?.value || '');
   
     this.filteredDoctorsItems = this.doctorsItems.filter(doctor => {
       const matchesName = this.normalizeText(doctor.name).includes(searchText);
-      const matchesProfession = !profession || this.normalizeText(doctor.profession).includes(profession);
+      const matchesProfession = !role || this.normalizeText(doctor.role).includes(role);
       return matchesName && matchesProfession;
     });
   } 

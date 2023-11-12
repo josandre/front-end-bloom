@@ -65,7 +65,7 @@
 
                   <tr *ngFor="let r of resourcesList">
                     <td class="tbl-checkbox">
-                      <mat-checkbox class="example-margin"></mat-checkbox>
+                      <mat-checkbox class="example-margin" (click)="readResourceCheck(r.id)"></mat-checkbox>
                     </td >
                     <td>
                       <a routerLink="/resource/modify" (click)="sessionResource(r.id)"><mat-icon>edit</mat-icon></a>

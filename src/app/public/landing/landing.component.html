@@ -265,6 +265,21 @@
         </form>
       </div>
       <div class="professionals-wrapper">
+        <!-- Mostrar preloader si isLoading es true -->
+        <div *ngIf="isLoading">
+          <div class="preloader pl-size-xl">
+            <div class="spinner-layer pl-cyan">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Mostrar lista de doctores si isLoading es false -->
         <div class="doctor-card" *ngFor="let item of filteredDoctorsItems">
           <div class="single-doctor">
             <a class="d-block">
@@ -276,10 +291,13 @@
             </div>
           </div>
         </div>
-        <p *ngIf="filteredDoctorsItems.length === 0" class="no-results-message">
+        
+        <!-- Mostrar mensaje si no hay resultados y isLoading es false -->
+        <p *ngIf="filteredDoctorsItems.length === 0 && !isLoading" class="no-results-message">
           No se encontraron resultados.
         </p>
       </div>
+      
     </div>
   </div>
   <div class="reviews" id="reviews">

@@ -21,6 +21,7 @@ import {
 import {AuthService} from "@core";
 import { AXIENTY_PROGRESS } from './provitionals/anxiety-progress';
 import { RECORDED_ATTACKS } from './provitionals/recorded-attacks';
+import { TranslateService } from '@ngx-translate/core';
 
 export type anxietyScaleDataOptions = {
   series: ApexAxisChartSeries;
@@ -70,7 +71,15 @@ export class DashboardComponent implements OnInit {
   name: string
 
 
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private translate: TranslateService  
+  ) {}
+
+  changeLanguage(lang: string) {
+    this.translate.use(lang);
+  }
+
   ngOnInit() {
     this.name = this.authService.currentUserValue.firstName + " " + this.authService.currentUserValue.lastName
     

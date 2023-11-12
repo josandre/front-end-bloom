@@ -15,13 +15,11 @@
               </div>
               <div class="col-md-8 wellcome-text">
                 <h4 class="font-20 weight-500 mb-2">
-                  Welcome back <div class="weight-600 font-30 col-blue pt-1">{{name + "!"}}</div>
+                  {{ 'DASHBOARD_PATIENT.WELLCOME_TITLE' | translate }} <div class="weight-600 font-30 col-blue pt-1">{{name + "!"}}</div>
                 </h4>
-                <p class="font-16 max-width-600">We would like to take this opportunity to welcome you to our practice
-                  and to thank you
-                  for choosing our physicians to participate in your healthcare. We look forward to
-                  providing you with personalized, comprehensive health care focusing on wellness and
-                  prevention.</p>
+                <p class="font-16 max-width-600">
+                  {{ 'DASHBOARD_PATIENT.WELLCOME_TEXT' | translate }}
+                </p>
               </div>
             </div>
           </div>
@@ -37,10 +35,10 @@
             </div>
             <div class="card-right">
               <div>
-                <h5 class="float-end"> Nivel Actual de Ansiedad</h5>
+                <h5 class="float-end"> {{ 'DASHBOARD_PATIENT.CURRENT_ANXIETY_LEVEL' | translate }}</h5>
               </div>
               <div class="col-green">
-                <h3 class="font-weight-bold float-end mb-0"> Nivel 1 </h3>
+                <h3 class="font-weight-bold float-end mb-0"> {{ 'DASHBOARD_PATIENT.LEVEL_1' | translate }} </h3>
               </div>
             </div>
           </div>
@@ -58,7 +56,7 @@
             </div>
             <div class="card-right">
               <div>
-                <h5 class="float-end">Total de ataques registrados</h5>
+                <h5 class="float-end">{{ 'DASHBOARD_PATIENT.TOTAL_ATTACKS_RECORDED' | translate }}</h5>
               </div>
               <div class="col-green">
                 <h3 class="font-weight-bold float-end mb-0">12</h3>
@@ -79,10 +77,10 @@
             </div>
             <div class="card-right">
               <div>
-                <h5 class="float-end">Ultimo ataque de ansiedad</h5>
+                <h5 class="float-end">{{ 'DASHBOARD_PATIENT.LAST_ANXIETY_ATTACK' | translate }}</h5>
               </div>
               <div class="col-green">
-                <h4 class="font-weight-bold float-end mb-0 attack-day">Lunes 3 de Noviembre </h4>
+                <h4 class="font-weight-bold float-end mb-0 attack-day">{{ 'DASHBOARD_PATIENT.LAST_ATTACK_DATE' | translate }}</h4>
               </div>
             </div>
           </div>
@@ -100,10 +98,10 @@
             </div>
             <div class="card-right">
               <div>
-                <h5 class="float-end"> Días sin ataques</h5>
+                <h5 class="float-end">{{ 'DASHBOARD_PATIENT.DAYS_WITHOUT_ATTACKS' | translate }}</h5>
               </div>
               <div class="col-green">
-                <h3 class="font-weight-bold float-end mb-0"> 38</h3>
+                <h3 class="font-weight-bold float-end mb-0">38</h3>
               </div>
             </div>
           </div>
@@ -119,8 +117,8 @@
         <div class="card">
           <div class="card-body">
             <div class="float-start">
-              <h6 class="text-muted"> Grafica de progreso en el nivel de ansiedad</h6>
-              <h5>  <span class="text-muted font-12">Por sesion realizada</span> </h5>
+              <h6 class="text-muted">{{ 'DASHBOARD_PATIENT.ANXIETY_LEVEL_PROGRESS_CHART' | translate }}</h6>
+              <h5> <span class="text-muted font-12">{{ 'DASHBOARD_PATIENT.PER_SESSION' | translate }}</span> </h5>
             </div>
             <div class="mb-5">
               <apx-chart [series]="anxietyScaleDataOptions.series!" [chart]="anxietyScaleDataOptions.chart!"
@@ -137,8 +135,8 @@
         <div class="card">
           <div class="card-body">
             <div class="float-start">
-              <h6 class="text-muted">Historico de ataques registrados</h6>
-              <h5><span class="text-muted font-12">Por fecha</span></h5>
+              <h6 class="text-muted">{{ 'DASHBOARD_PATIENT.RECORDED_ATTACKS_HISTORY' | translate }}</h6>
+              <h5><span class="text-muted font-12">{{ 'DASHBOARD_PATIENT.BY_DATE' | translate }}</span></h5>
             </div>
             <div class="mb-5">
               <apx-chart [series]="recordedAttacksOptions.series!" [chart]="recordedAttacksOptions.chart!"

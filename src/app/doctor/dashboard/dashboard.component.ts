@@ -19,6 +19,7 @@ import { TOP_ANSIETY_CASES } from './provitionals/top-anxiety-cases';
 import { Group, LEVELS } from './provitionals/anxiety-level-group';
 import { PatientCounts } from '../models/dashboard';
 import { DashboardDoctorService } from '../services/dashboard.service';
+import { TranslateService } from '@ngx-translate/core';
 
 export type topAnxietyCases = {
   series: ApexAxisChartSeries;
@@ -67,8 +68,13 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private readonly authService: AuthService,
-    private dashboardService: DashboardDoctorService
+    private dashboardService: DashboardDoctorService,
+    private translate: TranslateService
   ) {}
+
+  changeLanguage(lang: string) {
+    this.translate.use(lang);
+  }
 
   ngOnInit() {
     this.name = this.authService.currentUserValue.firstName + " " + this.authService.currentUserValue.lastName

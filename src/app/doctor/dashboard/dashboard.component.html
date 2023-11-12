@@ -15,10 +15,11 @@
               </div>
               <div class="col-md-8">
                 <h4 class="font-20 weight-500 mb-2">
-                  Welcome back <div class="weight-600 font-30 col-blue pt-1"> {{name + "!"}}</div>
+                  {{ 'DASHBOARD_DOCTOR.WELLCOME_TITLE' | translate }}
+                  <div class="weight-600 font-30 col-blue pt-1">{{ name + "!" }}</div>
                 </h4>
                 <p class="font-16 max-width-600">
-                  Cada día trae una nueva oportunidad para impactar vidas. Estamos emocionados por las experiencias y logros que nos esperan. <br> ¡Su dedicación y pasión hacen una gran diferencia!.
+                  {{ 'DASHBOARD_DOCTOR.WELLCOME_TEXT' | translate }}
                 </p>
               </div>
             </div>
@@ -35,7 +36,7 @@
             </div>
             <div class="card-right">
               <div>
-                <h5 class="float-end">Recursos compartidos</h5>
+                <h5 class="float-end">{{ 'DASHBOARD_DOCTOR.RESOURCES' | translate }}</h5>
               </div>
               <div class="m-r-10 m-l-10">
                 <h3 class="font-weight-bold float-end mb-0">
@@ -52,7 +53,7 @@
                     </div>
                   </ng-container>
                   <ng-template #dataLoadedResources>
-                    {{ resourceCounts }} <!-- Agrega la variable que contiene el conteo de recursos aquí -->
+                    {{ resourceCounts }}
                   </ng-template>
                 </h3>
               </div>
@@ -68,10 +69,10 @@
             </div>
             <div class="card-right">
               <div>
-                <h5 class="float-end">Aumentos de nivel ansiedad</h5>
+                <h5 class="float-end">{{ 'DASHBOARD_DOCTOR.INCREASED_ANXIETY_LEVELS' | translate }}</h5>
               </div>
               <div class="m-r-10 m-l-10">
-                <h3 class="font-weight-bold float-end mb-0"> 5</h3>
+                <h3 class="font-weight-bold float-end mb-0">5</h3>
               </div>
             </div>
           </div>
@@ -85,7 +86,7 @@
             </div>
             <div class="card-right">
               <div>
-                <h5 class="float-end">Pacientes activos</h5>
+                <h5 class="float-end">{{ 'DASHBOARD_DOCTOR.ACTIVE_PATIENTS' | translate }}</h5>
               </div>
               <div class="m-r-10 m-l-10">
                 <h3 class="font-weight-bold float-end mb-0">
@@ -119,7 +120,7 @@
             </div>
             <div class="card-right">
               <div>
-                <h5 class="float-end">Pacientes registrados</h5>
+                <h5 class="float-end">{{ 'DASHBOARD_DOCTOR.REGISTERED_PATIENTS' | translate }}</h5>
               </div>
               <div class="m-r-10 m-l-10">
                 <h3 class="font-weight-bold float-end mb-0">
@@ -151,7 +152,7 @@
         <div class="card" style="height: calc(100% - 24px);">
           <div class="card-body">
             <div class="float-start">
-              <h6 class="text-muted">Pacientes con mayores ataques de ansiedad registrados</h6>
+              <h6 class="text-muted">{{ 'DASHBOARD_DOCTOR.PATIENTS_WITH_HIGHEST_ANXIETY_ATTACKS' | translate }}</h6>
               <h5> <span class="text-muted font-12"></span></h5>
             </div>
             <div class="mb-5">
@@ -175,7 +176,7 @@
       <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
         <div class="card">
           <div class="header">
-            <h2>Grafica de agrupación de pacientes por nivel de ansiedad</h2>
+            <h2>{{ 'DASHBOARD_DOCTOR.PATIENT_GROUPING_CHART' | translate }}</h2>
           </div>
           <div class="body">
             <div id="chart">
@@ -199,14 +200,13 @@
                            [class.col-yellow]="i === 3" 
                            [class.col-orange]="i === 4"
                            msr-2></i>
-                        Nivel {{ level.level }}
+                           {{ 'DASHBOARD_DOCTOR.LEVEL' | translate }}  {{ level.level }}
                       </td>
-                      <td>{{ level.patients }} Pacientes</td>
+                      <td>{{ level.patients }} {{ 'DASHBOARD_DOCTOR.PATIENTS' | translate }} </td>
                       <td>{{ percentages[i] }}%</td>
                     </tr>
                   </ng-container>
                 </tbody>
-                
               </table>
             </div>
           </div>

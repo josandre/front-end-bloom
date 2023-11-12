@@ -254,8 +254,8 @@
                   <mat-label>Profesión</mat-label>
                   <mat-select formControlName="selectField" (selectionChange)="applyFilter()">
                     <mat-option value="">Todos</mat-option> <!-- Añade esta línea -->
-                    <mat-option *ngFor="let profession of uniqueProfessions" [value]="profession">
-                      {{ profession }}
+                    <mat-option *ngFor="let role of uniqueRoles" [value]="role">
+                      {{ role }}
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
@@ -265,6 +265,21 @@
         </form>
       </div>
       <div class="professionals-wrapper">
+        <!-- Mostrar preloader si isLoading es true -->
+        <div *ngIf="isLoading">
+          <div class="preloader pl-size-xl">
+            <div class="spinner-layer pl-cyan">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Mostrar lista de doctores si isLoading es false -->
         <div class="doctor-card" *ngFor="let item of filteredDoctorsItems">
           <div class="single-doctor">
             <a class="d-block">
@@ -272,14 +287,17 @@
             </a>
             <div class="doctor-content">
               <h3>{{ item.name }}</h3>
-              <span>{{ item.profession }}</span>
+              <span>{{ item.role }}</span>
             </div>
           </div>
         </div>
-        <p *ngIf="filteredDoctorsItems.length === 0" class="no-results-message">
+        
+        <!-- Mostrar mensaje si no hay resultados y isLoading es false -->
+        <p *ngIf="filteredDoctorsItems.length === 0 && !isLoading" class="no-results-message">
           No se encontraron resultados.
         </p>
       </div>
+      
     </div>
   </div>
   <div class="reviews" id="reviews">

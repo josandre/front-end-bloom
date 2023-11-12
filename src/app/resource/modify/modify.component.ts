@@ -37,9 +37,9 @@ export class ModifyComponent implements OnInit {
   })
   constructor(private readonly resourceService: ResourceService, private router: Router, private snackBar: MatSnackBar) {}
   ngOnInit(){
+
     this.resourceService.getMyPatients().subscribe(
       patients =>{ this.patientsList = patients;
-        console.log(patients);
         this.flag = true;},
       error => {console.log(error)}
     )
@@ -59,7 +59,6 @@ export class ModifyComponent implements OnInit {
     }else{
       console.log("resourse id was null");
     }
-
   }
   onSubmit(){
     const resourcetitle  = this.formGroup.controls['title'].value;
@@ -120,7 +119,7 @@ export class ModifyComponent implements OnInit {
   }
 
   openSnackBar(message: string, action: string){
-    this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'end'})
+    this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'center', duration: 3000} )
   }
 
 }

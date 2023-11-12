@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ResourceService} from "../services/Resource.Service";
 import {Resource} from "../models/Resource";
+
 @Component({
   selector: 'app-inbox',
   templateUrl: './myResources.component.html',
@@ -15,6 +16,7 @@ export class MyResourcesComponent implements OnInit{
   flag: boolean = false;
 
   ngOnInit(){
+
     this.resourceService.getResourceList().subscribe(
       resources =>{
         this.resourcesList = resources;

@@ -11,6 +11,7 @@ import { MedicalRecordsComponent } from './medical-records/medical-records.compo
 import { BillingComponent } from './billing/billing.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ComponentsModule } from '@shared/components/components.module';
+import { TranslateModule } from '@ngx-translate/core'; 
 import { SharedModule } from '@shared';
 
 @NgModule({
@@ -32,6 +33,7 @@ import { SharedModule } from '@shared';
     NgScrollbarModule,
     ComponentsModule,
     SharedModule,
+    TranslateModule,
   ],
 })
 export class PatientModule {}

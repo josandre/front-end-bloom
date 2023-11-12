@@ -98,7 +98,7 @@
         "ISSUED-ITEMS": "Issued Items"
       }
     },
-    "DOCTOR": {    
+    "DOCTOR": {
         "DASHBOARD": "Dashboard",
         "APPOINTMENTS": "Appointments",
         "DOCTORS": "Doctors",
@@ -106,7 +106,7 @@
         "SETTINGS": "Settings",
         "CHAT": "Chat"
     },
-    "PATIENT": {    
+    "PATIENT": {
       "TEXT": "Patient",
       "DASHBOARD": "Dashboard",
       "APPOINTMENTS": {
@@ -163,6 +163,23 @@
         "TITLE": "Puzzle Game",
         "DESCRIPTION": "Test your agility in this puzzle game"
       }
+    },
+    "RESOURCES": {
+      "RESOURCES": "Resources",
+      "MY-RESOURCES": "My Resources",
+      "READ": "Read Resource",
+      "CREATE": "Create Resource",
+      "MODIFY": "Modify Resource",
+      "MY-PATIENTS": "My Patients",
+      "POST": "Save",
+      "COMPOSE": "Create New Resource",
+      "TITLE": "Title",
+      "EDIT": "Edit",
+      "CONTENT": "Content",
+      "DATE": "Date",
+      "SHOWING": "Showing",
+      "ASSIGN": "Assigned to:",
+      "LOGOUT": "Logout"
     }
   }
 }

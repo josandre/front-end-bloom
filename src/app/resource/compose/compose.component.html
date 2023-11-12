@@ -2,7 +2,8 @@
   <div class="content-block">
     <div class="block-header">
       <!-- breadcrumb -->
-      <app-breadcrumb [title]="'Compose'" [items]="['Resource']" [active_item]="'Compose'"></app-breadcrumb>
+      <br>
+      <h1>{{'MENUITEMS.RESOURCES.COMPOSE' | translate}}</h1>
     </div>
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
@@ -10,7 +11,7 @@
           <div class="body">
             <div id="mail-nav">
 
-              <h5 class="b-b p-10 text-strong">My Patients</h5>
+              <h5 class="b-b p-10 text-strong">{{'MENUITEMS.RESOURCES.MY-PATIENTS' | translate}}</h5>
               <div *ngIf="!flag" >
                 <mat-spinner></mat-spinner>
               </div>
@@ -39,7 +40,7 @@
                   <tr>
                     <th colspan="1">
                       <div class="inbox-header">
-                        Compose New Resource
+                        {{'MENUITEMS.RESOURCES.COMPOSE' | translate}}
                       </div>
                     </th>
                   </tr>
@@ -52,7 +53,7 @@
 
                   <div class="form-line">
                     <mat-form-field class="example-full-width" appearance="outline">
-                      <mat-label>Title</mat-label>
+                      <mat-label>{{'MENUITEMS.RESOURCES.TITLE' | translate}}</mat-label>
                       <input matInput  formControlName="title" >
                     </mat-form-field>
                   </div>
@@ -61,7 +62,7 @@
                   <br>
                   <div class="col-lg-12">
                     <div class="m-l-25 m-b-20">
-                      <button mat-flat-button color="primary" class="msr-2">Post</button>
+                      <button mat-flat-button color="primary" class="msr-2">{{'MENUITEMS.RESOURCES.POST' | translate}}</button>
 
                     </div>
                   </div>

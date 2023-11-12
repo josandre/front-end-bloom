@@ -2,7 +2,8 @@
   <div class="content-block">
     <div class="block-header">
       <!-- breadcrumb -->
-      <app-breadcrumb [title]="'Resources'" [items]="['My Resources']" [active_item]="'List'"></app-breadcrumb>
+      <br>
+      <h1>{{'MENUITEMS.RESOURCES.MY-RESOURCES' | translate}}</h1>
     </div>
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -30,11 +31,11 @@
 
                   </td>
 
-                  <td class="hidden-xs" >Title</td>
+                  <td class="hidden-xs" >{{'MENUITEMS.RESOURCES.TITLE' | translate}}</td>
 
-                  <td class="max-texts">Content</td>
+                  <td class="max-texts">{{'MENUITEMS.RESOURCES.CONTENT' | translate}}</td>
 
-                  <td class="max-texts" > Post date </td>
+                  <td class="max-texts" > {{'MENUITEMS.RESOURCES.DATE' | translate}} </td>
 
                 </tr>
                 <div *ngIf="!flag" >
@@ -42,10 +43,10 @@
                 </div>
 
                 <tr *ngFor="let r of resourcesList">
-                  <td class="tbl-checkbox">
-                    <mat-checkbox class="example-margin"></mat-checkbox>
-                  </td>
-
+<!--                  <td class="tbl-checkbox">-->
+<!--                    <mat-checkbox class="example-margin"></mat-checkbox>-->
+<!--                  </td>-->
+                  <td></td>
                   <td class="hidden-xs" >{{r.title}}</td>
 
                   <td class="max-texts">
@@ -61,7 +62,7 @@
             </div>
             <div class="row">
               <div class="col-sm-7 ">
-                <p class="p-15">Showing 1 - 15 of 200</p>
+                <p class="p-15">{{'MENUITEMS.RESOURCES.SHOWING' | translate}} 1 - 15 of 200</p>
               </div>
               <div class="col-sm-5 text-end">
                 <div class="float-end">

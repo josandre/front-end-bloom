@@ -863,7 +863,7 @@ export const ROUTES: RouteInfo[] = [
       // },
       {
         path: '',
-        title: 'Resources',
+        title: 'MENUITEMS.RESOURCES.RESOURCES' ,
         iconType: 'material-icons-two-tone',
         icon: 'edit_note',
         class: 'menu-toggle',
@@ -874,7 +874,7 @@ export const ROUTES: RouteInfo[] = [
         submenu: [
           {
             path: '/resource/my-resources',
-            title: 'My resources list',
+            title: 'MENUITEMS.RESOURCES.MY-RESOURCES',
             iconType: '',
             icon: '',
             class: 'ml-menu',
@@ -886,7 +886,7 @@ export const ROUTES: RouteInfo[] = [
           },
           {
             path: '/resource/compose',
-            title: 'Create',
+            title: 'MENUITEMS.RESOURCES.CREATE',
             iconType: '',
             icon: '',
             class: 'ml-menu',
@@ -912,7 +912,7 @@ export const ROUTES: RouteInfo[] = [
       },
   {
     path: '/resource/user-resources-list',
-    title: 'My Resources',
+    title: 'MENUITEMS.RESOURCES.MY-RESOURCES',
     iconType: 'material-icons-two-tone',
     icon: 'edit_note',
     class: '',

@@ -35,18 +35,14 @@
                       <div class="inbox-header">
                         <div class="mail-option no-pad-left">
                           <div class="email-btn-group m-l-15">
+
                             <button mat-icon-button aria-label="Example icon-button with a heart icon">
-                              <mat-icon>archive</mat-icon>
-                            </button>
-                            <button mat-icon-button aria-label="Example icon-button with a heart icon">
-                              <mat-icon>error</mat-icon>
+                              <mat-icon>keyboard_return</mat-icon>
                             </button>
                             <button mat-icon-button aria-label="Example icon-button with a heart icon" (click)="deleteResource()">
                               <mat-icon>delete</mat-icon>
                             </button>
-                            <button mat-icon-button aria-label="Example icon-button with a heart icon">
-                              <mat-icon>folder</mat-icon>
-                            </button>
+                     
 
                           </div>
                         </div>
@@ -85,23 +81,12 @@
                 </tbody>
               </table>
             </div>
-            <div class="row">
-              <div class="col-sm-7 ">
-                <p class="p-15">Showing 1 - 15 of 200</p>
+                <!-- Loading spinner -->
+              <div *ngIf="loading" class="tbl-spinner">
+                <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
+                </mat-progress-spinner>
               </div>
-              <div class="col-sm-5 text-end">
-                <div class="float-end">
-                  <div class="email-btn-group m-l-15">
-                    <button mat-icon-button aria-label="Example icon-button with a heart icon">
-                      <mat-icon>navigate_before</mat-icon>
-                    </button>
-                    <button mat-icon-button aria-label="Example icon-button with a heart icon">
-                      <mat-icon>navigate_next</mat-icon>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+           
           </div>
         </div>
       </div>

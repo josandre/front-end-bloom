@@ -18,10 +18,12 @@ export class BasicTableComponent implements OnInit {
   resourcesList: Resource[];
   originalResourcesList: Resource[];
   selectedResourceIds: number[];
+  loading:Boolean=true;
 
   ngOnInit(){
     this.resourceService.getResourceList().subscribe(
       resources =>{ 
+        this.loading=false
         this.resourcesList = resources;
         this.originalResourcesList=[...resources]}
     )

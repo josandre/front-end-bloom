@@ -15,7 +15,7 @@ export class MedicalRecordService {
   private readonly baseUrl = API_URL;
 
   constructor(private readonly http: HttpClient,
-    private readonly authService: AuthService) { }
+              private readonly authService: AuthService) { }
 
   getMedicalRecordByPatient(patientId: number): Observable<MedicalRecord> {
     const doctorId = this.authService.currentUserValue.id;

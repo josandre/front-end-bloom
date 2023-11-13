@@ -46,31 +46,24 @@
             <!-- Anxieties -->
             <mat-tab label="Anxieties">
               <div class="p-4">
-
-
                 <form>
                   <mat-form-field class="example-chip-list" appearance="fill">
-                    <mat-label>Video keywords</mat-label>
-                    <mat-chip-list #chipList aria-label="Video keywords" multiple [formControl]="anxitiesControl">
+                    <mat-label>{{ patient?.name }}'s anxieties</mat-label>
+                    <mat-chip-list #chipList aria-label="anxieties" multiple [formControl]="anxitiesControl">
                       <mat-chip *ngFor="let anxiety of anxieties" [selected]="anxiety" [value]="anxiety"
                         (removed)="removeKeyword(anxiety)">
                         {{ anxiety }}
                       </mat-chip>
-                      <input placeholder="New keyword..." [matChipInputFor]="chipList"
+                      <input placeholder="New anxiety type..." [matChipInputFor]="chipList"
                         (matChipInputTokenEnd)="addKeywordFromInput($event)">
                     </mat-chip-list>
                   </mat-form-field>
                   <div class="example-button-container" *ngIf="medicalRecord != null">
-                    <button mat-raised-button (click)="anxitiesControl.enable()"><mat-icon>edit</mat-icon></button>
-                    <button mat-raised-button (click)="anxitiesControl.disable()">Save</button>
+                    <button mat-mini-fab color="primary" (click)="anxitiesControl.enable()"><mat-icon>edit</mat-icon></button>
+                    <button mat-raised-button	(click)="anxitiesControl.disable()">Quit</button>
                   </div>
                 </form>
-
-
-
               </div>
-
-
             </mat-tab>
           </mat-tab-group>
         </div>

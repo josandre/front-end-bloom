@@ -16,11 +16,13 @@ import {filter} from "rxjs";
 export class ChatComponent implements OnInit, OnDestroy{
   hideRequiredControl = new FormControl(false);
   conversations : Array<Conversation>
+  conversationList: Array<Conversation>
   isLoading : boolean = true;
   authForm!: FormGroup;
   conversationSelected: Conversation
   messagesList : Array<Message> | undefined
   isConversationSelected: boolean = false;
+  word= '';
 
 
   constructor(private readonly messageService: MessageService, private formBuilder: FormBuilder,private readonly conversationService: ConversationService, public webSocketService: WebSocketService, private readonly authService: AuthService) {}
@@ -48,6 +50,7 @@ export class ChatComponent implements OnInit, OnDestroy{
   private loadConversations(){
     this.conversationService.getConversationsByUserId().subscribe((conversationResponse) => {
       this.conversations = conversationResponse.list;
+      this.conversationList = this.conversations;
       this.isLoading = false;
     })
   }
@@ -117,5 +120,15 @@ export class ChatComponent implements OnInit, OnDestroy{
   private addZeroToNumber(value: number): string
   {
     return value < 10 ? `0${value}` : value.toString()
+  }
+
+  filter(word: string){
+    if(word == ''){
+      this.conversations = this.conversationList;
+    }else {
+      this.conversations = this.conversations.filter((c) => {
+        return c.name.toLowerCase().includes(word.toLowerCase()) || c.lastName.toLowerCase().includes(word.toLowerCase())
+      })
+    }
   }
 }

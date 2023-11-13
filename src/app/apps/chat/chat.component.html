@@ -10,7 +10,7 @@
           <div class="body">
             <div id="plist" class="people-list">
               <div class="form-line m-b-15">
-                <input type="text" class="form-control" placeholder="Search..." />
+                <input type="text" class="form-control" [ngModel]="word" (ngModelChange)="filter($event)" placeholder="Search..." />
               </div>
               <div class="tab-content"  >
                 <ng-scrollbar style="height: 590px" visibility="hover">

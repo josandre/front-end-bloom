@@ -83,6 +83,11 @@ export class ProfileComponent implements OnInit {
 
   addKeywordFromInput(event: MatChipInputEvent) {
     if (event.value) {
+      if (this.anxieties.has(event.value)) {
+        this.openSnackBar("This anxiety type already exits", "Close");
+        return;
+      }
+
       this.anxieties.add(event.value);
 
       const anxietyType: AnxietyType = new AnxietyType({
@@ -114,6 +119,25 @@ export class ProfileComponent implements OnInit {
 
   removeKeyword(keyword: string) {
     this.anxieties?.delete(keyword);
+
+    this.anxietyTypeService.deleteAnxietyType(this.medicalRecordId, keyword)
+    .subscribe(
+      (response) => {
+        switch (response) {
+          case 200: {
+            this.openSnackBar("Anxiety type has been deleted successfully!", "Close")
+            break;
+          }
+        }
+      },
+      error => {
+        switch (error.status) {
+          case 400: {
+            this.openSnackBar("Something went wrong while trying to delete anxiety type", "Try again");
+            break;
+          }
+        }
+      });
   }
 
   openSnackBar(message: string, action: string) {

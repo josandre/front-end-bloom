@@ -10,9 +10,9 @@
         <div class="card">
           <div class="m-b-20">
             <div class="contact-grid">
-              <div class="profile-header bg-dark pt-3">
+              <div class="profile-header bg-blue pt-3">
                 <div class="user-name">{{ patient?.name }} {{ patient?.lastName }}</div>
-                <div class="name-center">Software Engineer</div>
+                <div class="name-center">{{ patient?.email }}</div>
               </div>
               <img src="assets/images/user/usrbig3.jpg" class="user-img" alt="">
               <p>
@@ -54,7 +54,7 @@
                     <mat-chip-list #chipList aria-label="Video keywords" multiple [formControl]="anxitiesControl">
                       <mat-chip *ngFor="let anxiety of anxieties" [selected]="anxiety" [value]="anxiety"
                         (removed)="removeKeyword(anxiety)">
-                        {{anxiety}}
+                        {{ anxiety }}
                       </mat-chip>
                       <input placeholder="New keyword..." [matChipInputFor]="chipList"
                         (matChipInputTokenEnd)="addKeywordFromInput($event)">

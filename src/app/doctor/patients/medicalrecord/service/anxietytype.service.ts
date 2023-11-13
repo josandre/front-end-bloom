@@ -22,4 +22,12 @@ export class AnxietyTypeService {
 
     return this.http.post(url, anxietyType, { headers: header });
   }
+
+  deleteAnxietyType(medicalRecordId: number, anxietyType: string) {
+    const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.authService.currentUserValue.token);
+    const url = `${this.baseUrl}/anxiety-types/${medicalRecordId}/${anxietyType}`;
+
+
+    return this.http.delete(url, { headers: header });
+  }
 }

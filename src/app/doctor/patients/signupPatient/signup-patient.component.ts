@@ -75,6 +75,8 @@ export class SignupPatientComponent implements OnInit{
       console.log(patient)
 
       this.patientService.registerPatient(patient).subscribe((res) => {
+        console.log(res)
+
         switch (res) {
           case 200:{
             this.openSnackBar("Patient added", "Close")

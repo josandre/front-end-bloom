@@ -25,11 +25,11 @@ export class MedicalRecordService {
     return this.http.get<MedicalRecord>(url, { headers: header });
   }
 
-  updateMedicalRecord(medicalRecord: MedicalRecord) {
+  updateMedicalRecord(medicalRecord: MedicalRecord, medicalRecordId: number) {
     const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.authService.currentUserValue.token);
-    const url = `${this.baseUrl}/medical-records/${medicalRecord.id}`;
+    const url = `${this.baseUrl}/medical-records/${medicalRecordId}`;
 
-    return this.http.put<MedicalRecord>(url, medicalRecord, { headers: header });
+    return this.http.put(url, medicalRecord, { headers: header });
   }
 
   getPatient(patientId: number): Observable<Patient> {

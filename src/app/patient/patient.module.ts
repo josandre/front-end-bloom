@@ -12,7 +12,7 @@ import { BillingComponent } from './billing/billing.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ComponentsModule } from '@shared/components/components.module';
 import { SharedModule } from '@shared';
-
+import { PatientProfileComponent } from './patient-profile/patient-profile.component';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -20,6 +20,7 @@ import { SharedModule } from '@shared';
     MedicalRecordsComponent,
     BillingComponent,
     SettingsComponent,
+    PatientProfileComponent,
   ],
   imports: [
     CommonModule,

@@ -6,6 +6,7 @@ import { PrescriptionsComponent } from "./prescriptions/prescriptions.component"
 import { MedicalRecordsComponent } from "./medical-records/medical-records.component";
 import { BillingComponent } from "./billing/billing.component";
 import { SettingsComponent } from "./settings/settings.component";
+import { PatientProfileComponent } from "./patient-profile/patient-profile.component";
 const routes: Routes = [
   {
     path: "dashboard",
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: "settings",
     component: SettingsComponent,
+  },
+  {
+    path: "patient-profile",
+    component: PatientProfileComponent,
   },
   { path: "**", component: Page404Component },
 ];

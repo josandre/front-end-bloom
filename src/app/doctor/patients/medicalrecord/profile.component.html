@@ -1,214 +1,220 @@
-<section class="content" [(ngModel)]="medicalRecord">
-  <div class="content-block">
-    <div class="block-header">
-      <!-- breadcrumb -->
-      <app-breadcrumb [title]="'Profile'" [items]="['Extra']" [active_item]="'Profile'"></app-breadcrumb>
-    </div>
-    <!-- Your content goes here  -->
-    <div class="row clearfix" [(ngModel)]="patient">
-      <div class="col-lg-4 col-md-12">
-        <div class="card">
-          <div class="m-b-20">
-            <div class="contact-grid">
-              <div class="profile-header bg-blue pt-3">
-                <div class="user-name">{{ patient?.name }} {{ patient?.lastName }}</div>
-                <div class="name-center">{{ patient?.email }}</div>
-              </div>
-              <img src="assets/images/user/usrbig3.jpg" class="user-img" alt="">
-              <p>
-                {{ patient?.address }}
-              </p>
-              <div>
-                <span class="phone">
-                  <i class="material-icons">phone</i>{{ patient?.phone }}</span>
+<section class="content" [(ngModel)]="medicalRecord" [(ngModel)]="patient">
+  <div *ngIf="medicalRecord != null && patient != null;">
+    <div class="content-block">
+      <div class="block-header">
+        <!-- breadcrumb -->
+        <app-breadcrumb [title]="'Profile'" [items]="['Extra']" [active_item]="'Profile'"></app-breadcrumb>
+      </div>
+      <!-- Your content goes here  -->
+      <div class="row clearfix">
+        <div class="col-lg-4 col-md-12">
+          <div class="card">
+            <div class="m-b-20">
+              <div class="contact-grid">
+                <div class="profile-header bg-blue pt-3">
+                  <div class="user-name">{{ patient.name }} {{ patient.lastName }}</div>
+                  <div class="name-center">{{ patient.email }}</div>
+                </div>
+                <img src="assets/images/user/usrbig3.jpg" class="user-img" alt="">
+                <p>
+                  {{ patient.address }}
+                </p>
+                <div>
+                  <span class="phone">
+                    <i class="material-icons">phone</i>{{ patient.phone }}</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
 
-        <div class="card">
-          <mat-tab-group mat-align-tabs="start">
+          <div class="card">
+            <mat-tab-group mat-align-tabs="start">
 
-            <!-- Family medical record -->
-            <mat-tab label="Family Medical History">
-              <div class="p-4">
-                <p class="text-default">{{ medicalRecord?.familyMedicalHistory }}</p>
-                <small class="text-muted">Email address: </small>
-                <p>john@gmail.com</p>
-                <hr>
-                <small class="text-muted">Phone: </small>
-                <p>+91 1234567890</p>
-                <hr>
-              </div>
-            </mat-tab>
+              <!-- Family medical record -->
+              <mat-tab label="Family Medical History">
+                <div class="p-4">
+                  <p class="text-default">{{ medicalRecord.familyMedicalHistory }}</p>
+                  <small class="text-muted">Email address: </small>
+                  <p>john@gmail.com</p>
+                  <hr>
+                  <small class="text-muted">Phone: </small>
+                  <p>+91 1234567890</p>
+                  <hr>
+                </div>
+              </mat-tab>
 
-            <!-- Anxieties -->
-            <mat-tab label="Anxieties">
-              <div class="p-4">
-                <form>
-                  <mat-form-field class="example-chip-list" appearance="fill">
-                    <mat-label>{{ patient?.name }}'s anxieties</mat-label>
-                    <mat-chip-list #chipList aria-label="anxieties" multiple [formControl]="anxitiesControl">
-                      <mat-chip *ngFor="let anxiety of anxieties" [selected]="anxiety" [value]="anxiety"
-                        (removed)="removeKeyword(anxiety)">
-                        {{ anxiety }}
-                      </mat-chip>
-                      <input placeholder="New anxiety type..." [matChipInputFor]="chipList"
-                        (matChipInputTokenEnd)="addKeywordFromInput($event)">
-                    </mat-chip-list>
-                  </mat-form-field>
-                  <div class="example-button-container" *ngIf="medicalRecord != null">
-                    <button mat-mini-fab color="primary" (click)="anxitiesControl.enable()"><mat-icon>edit</mat-icon></button>
-                    <button mat-raised-button	(click)="anxitiesControl.disable()">Quit</button>
-                  </div>
-                </form>
-              </div>
-            </mat-tab>
-          </mat-tab-group>
-        </div>
-        <p class="font-italic text-muted">
-          Updated {{ medicalRecord?.lastUpdate| date:'medium' }}  
-        </p>
-      </div>
-      <div class="col-lg-8 col-md-12">
-        <div class="card">
-          <mat-tab-group>
-            <mat-tab>
-              <ng-template mat-tab-label>
-                <mat-icon class="example-tab-icon msr-2">folder</mat-icon>
-                Medical History
-              </ng-template>
-              <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="project_widget">
-                  <div class="header">
-                    <h2><strong>About</strong></h2>
-                  </div>
-                  <div class="body">
-                    <div class="row">
-                      <div class="col-md-3 col-6 b-r">
-                        <strong>Full Name</strong>
-                        <br>
-                        <p class="text-muted">Emily Smith</p>
-                      </div>
-                      <div class="col-md-3 col-6 b-r">
-                        <strong>Mobile</strong>
-                        <br>
-                        <p class="text-muted">(123) 456 7890</p>
-                      </div>
-                      <div class="col-md-3 col-6 b-r">
-                        <strong>Email</strong>
-                        <br>
-                        <p class="text-muted">johndeo@example.com</p>
-                      </div>
-                      <div class="col-md-3 col-6">
-                        <strong>Location</strong>
-                        <br>
-                        <p class="text-muted">India</p>
-                      </div>
+              <!-- Anxieties -->
+              <mat-tab label="Anxieties">
+                <div class="p-4">
+                  <form>
+                    <mat-form-field class="example-chip-list" appearance="fill">
+                      <mat-label>{{ patient.name }}'s anxieties</mat-label>
+                      <mat-chip-list #chipList aria-label="anxieties" multiple [formControl]="anxitiesControl">
+                        <mat-chip *ngFor="let anxiety of anxieties" [selected]="anxiety" [value]="anxiety"
+                          (removed)="removeKeyword(anxiety)">
+                          {{ anxiety }}
+                        </mat-chip>
+                        <input placeholder="New anxiety type..." [matChipInputFor]="chipList"
+                          (matChipInputTokenEnd)="addKeywordFromInput($event)">
+                      </mat-chip-list>
+                    </mat-form-field>
+                    <div class="example-button-container">
+                      <button mat-mini-fab color="primary"
+                        (click)="anxitiesControl.enable()"><mat-icon>edit</mat-icon></button>
+                      <button mat-raised-button (click)="anxitiesControl.disable()">Quit</button>
                     </div>
-                    <p class="m-t-30">Completed my graduation in Arts from the well known and
-                      renowned institution
-                      of India – SARDAR PATEL ARTS COLLEGE, BARODA in 2000-01, which was
-                      affiliated
-                      to M.S. University. I ranker in University exams from the same
-                      university
-                      from 1996-01.</p>
-                    <p>Worked as Professor and Head of the department at Sarda Collage, Rajkot,
-                      Gujarat
-                      from 2003-2015 </p>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting
-                      industry. Lorem
-                      Ipsum has been the industry's standard dummy text ever since the 1500s,
-                      when
-                      an unknown printer took a galley of type and scrambled it to make a
-                      type
-                      specimen book. It has survived not only five centuries, but also the
-                      leap
-                      into electronic typesetting, remaining essentially unchanged.</p>
-                    <br>
+                  </form>
+                </div>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+          <p class="font-italic text-muted">
+            Updated {{ medicalRecord.lastUpdate| date:'medium' }}
+          </p>
+        </div>
+        <div class="col-lg-8 col-md-12">
+          <div class="card">
+            <mat-tab-group>
+              <mat-tab>
+                <ng-template mat-tab-label>
+                  <mat-icon class="example-tab-icon msr-2">folder</mat-icon>
+                  Medical History
+                </ng-template>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div class="project_widget">
+                    <div class="header">
+                      <h2><strong>About</strong></h2>
+                    </div>
+                    <div class="body">
+                      <div class="row">
+                        <div class="col-md-3 col-6 b-r">
+                          <strong>Full Name</strong>
+                          <br>
+                          <p class="text-muted">Emily Smith</p>
+                        </div>
+                        <div class="col-md-3 col-6 b-r">
+                          <strong>Mobile</strong>
+                          <br>
+                          <p class="text-muted">(123) 456 7890</p>
+                        </div>
+                        <div class="col-md-3 col-6 b-r">
+                          <strong>Email</strong>
+                          <br>
+                          <p class="text-muted">johndeo@example.com</p>
+                        </div>
+                        <div class="col-md-3 col-6">
+                          <strong>Location</strong>
+                          <br>
+                          <p class="text-muted">India</p>
+                        </div>
+                      </div>
+                      <p class="m-t-30">Completed my graduation in Arts from the well known and
+                        renowned institution
+                        of India – SARDAR PATEL ARTS COLLEGE, BARODA in 2000-01, which was
+                        affiliated
+                        to M.S. University. I ranker in University exams from the same
+                        university
+                        from 1996-01.</p>
+                      <p>Worked as Professor and Head of the department at Sarda Collage, Rajkot,
+                        Gujarat
+                        from 2003-2015 </p>
+                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting
+                        industry. Lorem
+                        Ipsum has been the industry's standard dummy text ever since the 1500s,
+                        when
+                        an unknown printer took a galley of type and scrambled it to make a
+                        type
+                        specimen book. It has survived not only five centuries, but also the
+                        leap
+                        into electronic typesetting, remaining essentially unchanged.</p>
+                      <br>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="project_widget">
-                  <div class="header">
-                    <h2><strong>Education</strong></h2>
-                  </div>
-                  <div class="body">
-                    <ul>
-                      <li>B.A.,Gujarat University, Ahmedabad,India.</li>
-                      <li>M.A.,Gujarat University, Ahmedabad, India.</li>
-                      <li>P.H.D., Shaurashtra University, Rajkot</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="project_widget">
-                  <div class="header">
-                    <h2><strong>Experience</strong></h2>
-                  </div>
-                  <div class="body">
-                    <ul>
-                      <li>One year experience as Jr. Professor from April-2009 to march-2010
-                        at B.
-                        J. Arts College, Ahmedabad.</li>
-                      <li>Three year experience as Jr. Professor at V.S. Arts &amp; Commerse
-                        Collage
-                        from April - 2008 to April - 2011.</li>
-                      <li>Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry.
-                      </li>
-                      <li>Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry.
-                      </li>
-                      <li>Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry.
-                      </li>
-                      <li>Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry.
-                      </li>
-                    </ul>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div class="project_widget">
+                    <div class="header">
+                      <h2><strong>Education</strong></h2>
+                    </div>
+                    <div class="body">
+                      <ul>
+                        <li>B.A.,Gujarat University, Ahmedabad,India.</li>
+                        <li>M.A.,Gujarat University, Ahmedabad, India.</li>
+                        <li>P.H.D., Shaurashtra University, Rajkot</li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="project_widget">
-                  <div class="header">
-                    <h2><strong>Conferences, Cources &amp; Workshop Attended</strong></h2>
-                  </div>
-                  <div class="body">
-                    <ul>
-                      <li>Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry.
-                      </li>
-                      <li>Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry.
-                      </li>
-                      <li>Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry.
-                      </li>
-                      <li>Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry.
-                      </li>
-                      <li>Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry.
-                      </li>
-                      <li>Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry.
-                      </li>
-                      <li>Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry.
-                      </li>
-                    </ul>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div class="project_widget">
+                    <div class="header">
+                      <h2><strong>Experience</strong></h2>
+                    </div>
+                    <div class="body">
+                      <ul>
+                        <li>One year experience as Jr. Professor from April-2009 to march-2010
+                          at B.
+                          J. Arts College, Ahmedabad.</li>
+                        <li>Three year experience as Jr. Professor at V.S. Arts &amp; Commerse
+                          Collage
+                          from April - 2008 to April - 2011.</li>
+                        <li>Lorem Ipsum is simply dummy text of the printing and typesetting
+                          industry.
+                        </li>
+                        <li>Lorem Ipsum is simply dummy text of the printing and typesetting
+                          industry.
+                        </li>
+                        <li>Lorem Ipsum is simply dummy text of the printing and typesetting
+                          industry.
+                        </li>
+                        <li>Lorem Ipsum is simply dummy text of the printing and typesetting
+                          industry.
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </mat-tab>
-          </mat-tab-group>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div class="project_widget">
+                    <div class="header">
+                      <h2><strong>Conferences, Cources &amp; Workshop Attended</strong></h2>
+                    </div>
+                    <div class="body">
+                      <ul>
+                        <li>Lorem Ipsum is simply dummy text of the printing and typesetting
+                          industry.
+                        </li>
+                        <li>Lorem Ipsum is simply dummy text of the printing and typesetting
+                          industry.
+                        </li>
+                        <li>Lorem Ipsum is simply dummy text of the printing and typesetting
+                          industry.
+                        </li>
+                        <li>Lorem Ipsum is simply dummy text of the printing and typesetting
+                          industry.
+                        </li>
+                        <li>Lorem Ipsum is simply dummy text of the printing and typesetting
+                          industry.
+                        </li>
+                        <li>Lorem Ipsum is simply dummy text of the printing and typesetting
+                          industry.
+                        </li>
+                        <li>Lorem Ipsum is simply dummy text of the printing and typesetting
+                          industry.
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
         </div>
       </div>
     </div>
+  </div>
+  <div class="center" *ngIf="medicalRecord == null && patient == null">
+    <mat-spinner></mat-spinner>
   </div>
 </section>

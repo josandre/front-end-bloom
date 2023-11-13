@@ -47,31 +47,30 @@
             <mat-tab label="Anxieties">
               <div class="p-4">
 
-                <mat-form-field class="example-chip-list" appearance="fill">
-                  <mat-label>Video keywords</mat-label>
-                  <mat-chip-list #chipList aria-label="Video keywords" multiple [formControl]="formControl">
-                    <mat-chip
-                        *ngFor="let anxiety of anxieties"
-                        [selected]="anxiety"
-                        [value]="anxiety"
+
+                <form>
+                  <mat-form-field class="example-chip-list" appearance="fill">
+                    <mat-label>Video keywords</mat-label>
+                    <mat-chip-list #chipList aria-label="Video keywords" multiple [formControl]="anxitiesControl">
+                      <mat-chip *ngFor="let anxiety of anxieties" [selected]="anxiety" [value]="anxiety"
                         (removed)="removeKeyword(anxiety)">
-                      {{anxiety}}
-                    </mat-chip>
-                    <input
-                      placeholder="New keyword..."
-                      [matChipInputFor]="chipList"
-                      (matChipInputTokenEnd)="addKeywordFromInput($event)">
-                  </mat-chip-list>
-                </mat-form-field>
-  
-                <div class="example-button-container">
-                  <button mat-raised-button (click)="formControl.enable()"><mat-icon>edit</mat-icon></button>
-                  <button mat-raised-button (click)="formControl.disable()">Save</button>
-                </div>
+                        {{anxiety}}
+                      </mat-chip>
+                      <input placeholder="New keyword..." [matChipInputFor]="chipList"
+                        (matChipInputTokenEnd)="addKeywordFromInput($event)">
+                    </mat-chip-list>
+                  </mat-form-field>
+                  <div class="example-button-container" *ngIf="medicalRecord != null">
+                    <button mat-raised-button (click)="anxitiesControl.enable()"><mat-icon>edit</mat-icon></button>
+                    <button mat-raised-button (click)="anxitiesControl.disable()">Save</button>
+                  </div>
+                </form>
+
+
 
               </div>
-            
-              
+
+
             </mat-tab>
           </mat-tab-group>
         </div>

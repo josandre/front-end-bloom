@@ -26,7 +26,6 @@ export class MedicalRecordService {
   }
 
   updateMedicalRecord(medicalRecord: MedicalRecord) {
-    const doctorId = this.authService.currentUserValue.id;
     const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.authService.currentUserValue.token);
     const url = `${this.baseUrl}/medical-records/${medicalRecord.id}`;
 

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { MatSnackBar } from "@angular/material/snack-bar";
 
@@ -17,19 +17,28 @@ import { AnxietyType } from './model/AnxietyType';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
   medicalRecord: MedicalRecord | undefined;
   medicalRecordId: number;
   patient: Patient | undefined;
-  anxieties = new Set<string>();
-  formControl = new FormControl({ disabled: true });
+  anxieties: Set<string>;
+  anxitiesControl: FormControl;
 
   constructor(public medicalRecordService: MedicalRecordService,
     public anxietyTypeService: AnxietyTypeService,
     private route: ActivatedRoute,
     private snackBar: MatSnackBar) {
+  }
+
+  ngOnInit(): void {
     this.getMedicalRecord(Number(this.route.snapshot.paramMap.get('id')));
     this.getPatient(Number(this.route.snapshot.paramMap.get('id')));
+    this.initializeForms();
+    this.anxieties = new Set<string>();
+  }
+
+  initializeForms() {
+    this.anxitiesControl = new FormControl({ disabled: true });
   }
 
   getMedicalRecord(id: number): void {
@@ -39,12 +48,11 @@ export class ProfileComponent {
           this.medicalRecord = data;
           this.medicalRecordId = this.medicalRecord.id;
 
+          console.log(this.medicalRecordId);
+
           this.medicalRecord.anxietyTypes.forEach((anxiety => {
             this.anxieties.add(anxiety.anxietyType);
           }));
-
-
-          console.log(this.anxieties);
 
           if (this.medicalRecord.familyMedicalHistory === null) {
             this.openSnackBar("Family medical history has yet to be filled out", "Close");
@@ -81,13 +89,23 @@ export class ProfileComponent {
 
       this.anxietyTypeService.createAnxietyType(this.medicalRecordId, anxietyType)
         .subscribe(
-          response => {
-            console.log(response);
+          (response) => {
+            switch (response) {
+              case 200: {
+                this.openSnackBar("Anxiety type has been added successfully!", "Close")
+                break;
+              }
+            }
           },
           error => {
-            console.log(error);
+            switch (error.status) {
+              case 400: {
+                this.openSnackBar("Something went wrong while trying to register anxiety type", "Try again");
+                break;
+              }
+            }
           });
-          
+
       event.chipInput!.clear();
     }
   }

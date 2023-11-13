@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { API_URL } from "config";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpResponse, HttpStatusCode } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { AuthService } from "@core";
 
@@ -16,13 +16,10 @@ export class AnxietyTypeService {
   constructor(private readonly http: HttpClient,
               private readonly authService: AuthService) { }
 
-  createAnxietyType(medicalRecordId: number, anxietyType: AnxietyType): Observable<AnxietyType> {
+  createAnxietyType(medicalRecordId: number, anxietyType: AnxietyType) {
     const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.authService.currentUserValue.token);
     const url = `${this.baseUrl}/anxiety-types/${medicalRecordId}`;
 
-    return this.http.post<AnxietyType>(url, anxietyType, { headers: header });
+    return this.http.post(url, anxietyType, { headers: header });
   }
-
-
-
 }

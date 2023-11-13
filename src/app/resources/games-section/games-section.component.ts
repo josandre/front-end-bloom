@@ -10,6 +10,7 @@ export class GamesSectionComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    return;
   }
 
 }

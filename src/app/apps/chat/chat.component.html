@@ -26,6 +26,7 @@
                         <img src="assets/images/user/user1.jpg" alt="avatar">
                         <div class="about">
                           <div class="name">{{conversation.name + " " + conversation.lastName}}</div>
+                          <div>{{conversation.newMessages === 0 ? 'No new messages' : conversation.newMessages + " new messages"}}</div>
                         </div>
                       </li>
                     </ul>

@@ -15,12 +15,10 @@ export class WebSocketService{
   constructor(private readonly authService: AuthService) {}
 
   addConversationsIntoDict(conversationId: number, messages: Message[]) {
-    console.log(messages, "loaded")
     this.chatMessages.set(conversationId, messages)
   }
 
   getConversationMessages(conversationId: number): Message[] | undefined {
-    console.log(this.chatMessages)
     return this.chatMessages.get(conversationId);
   }
 

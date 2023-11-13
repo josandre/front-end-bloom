@@ -5,6 +5,8 @@ export class Conversation{
   lastName: String;
   senderId: number;
   receiverId: number;
+  newMessages: number;
+
 
   constructor(partial?: Partial<Conversation>) {
     if(partial){

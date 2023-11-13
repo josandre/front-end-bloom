@@ -83,7 +83,6 @@ export class ChatComponent implements OnInit, OnDestroy{
         date: new Date()
       })
 
-      console.log(message)
       this.webSocketService.sendMessage(message);
       this.authForm.controls['message'].setValue("")
     }
@@ -97,6 +96,7 @@ export class ChatComponent implements OnInit, OnDestroy{
   getConversationInformation(conversation: Conversation){
     this.conversationSelected = conversation;
     this.isConversationSelected = true;
+    conversation.newMessages = 0;
     this.loadMessages();
   }
 

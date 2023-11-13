@@ -145,7 +145,13 @@ export class HeaderComponent
       this.flagvalue = val.map((element) => element.flag);
     }
   }
-
+  profile(){
+    if(this.authService.currentUserValue.role==='Doctor'){
+      this.router.navigate(['/doctor/doctor-profile']);
+    }else if(this.authService.currentUserValue.role==='Patient'){
+      this.router.navigate(['/patient/patient-profile']);
+    }
+  }
   callFullscreen() {
     if (!this.isFullScreen) {
       if (this.docElement?.requestFullscreen != null) {

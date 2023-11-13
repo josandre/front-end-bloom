@@ -5,7 +5,6 @@ import { MedicalHistory } from '../model/MedicalHistory';
 import { MedicalRecipe } from '../model/MedicalRecipe';
 
 export interface DialogData {
-  id: number;
   medicalHistory: MedicalHistory;
 }
 

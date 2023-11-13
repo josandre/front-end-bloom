@@ -1,5 +1,5 @@
 <section class="content">
-  <div class="content-block">
+  <div class="content-block" *ngIf="patients != null">
     <div class="block-header section-header">
 
       <app-breadcrumb [title]="'Patients'" [items]="[]" [active_item]="'Patients'"></app-breadcrumb>
@@ -35,5 +35,9 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="center" *ngIf="patients == null">
+    <mat-spinner></mat-spinner>
   </div>
 </section>

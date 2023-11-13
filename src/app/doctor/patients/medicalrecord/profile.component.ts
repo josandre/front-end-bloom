@@ -174,8 +174,13 @@ export class ProfileComponent implements OnInit {
   }
 
   updateMedicalRecord(): void {
+    this.familyMedicalHistoryControl.disable();
+
+    if (this.familyMedicalHistoryControl.value === this.medicalRecord?.familyMedicalHistory) {
+      return;
+    }
+
     if (this.familyMedicalHistoryControl.valid) {
-      this.familyMedicalHistoryControl.disable();
 
       const medicalRecord: MedicalRecord = new MedicalRecord({
         familyMedicalHistory: this.familyMedicalHistoryControl.value
@@ -199,7 +204,7 @@ export class ProfileComponent implements OnInit {
     this.dialog.open(MedicalhistoryDialogComponent, 
       { data: 
         { 
-          id: row.id, medicalHistory: row 
+          medicalHistory: row 
         } 
       });
   }

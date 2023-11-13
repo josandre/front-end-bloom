@@ -1,1 +1,33 @@
-<p [(ngModel)]="data">{{data.medicalHistory.observations}}</p>
+<section [(ngModel)]="data.medicalHistory" class="w-100 msr-2">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="project_widget">
+      <div class="header">
+        <h1><strong>Taken on {{ data.medicalHistory.creationDate | date:'fullDate' }} </strong></h1>
+        <h2><strong>Notes</strong></h2>
+      </div>
+      <div class="body">
+        <ul>
+          <li><strong>Anxiety level:</strong> {{ data.medicalHistory.anxietyLevel }}</li>
+          <li><strong>Observations:</strong> {{ data.medicalHistory.observations }}</li>
+          <li><strong>Treatment started on:</strong> {{ data.medicalHistory.treatmentEndDate | date:'fullDate' }}</li>
+          <li><strong>Treatment ended on:</strong> {{ data.medicalHistory.treatmentEndDate | date:'fullDate' }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="project_widget">
+      <div class="header">
+        <h2><strong>Recipe</strong></h2>
+      </div>
+      <div class="body">
+        <ul>
+          <li><strong>Anxiety level:</strong> {{ data.medicalHistory.anxietyLevel }}</li>
+          <li><strong>Observations:</strong> {{ data.medicalHistory.observations }}</li>
+          <li><strong>Treatment started on:</strong> {{ data.medicalHistory.treatmentEndDate | date:'fullDate' }}</li>
+          <li><strong>Treatment ended on:</strong> {{ data.medicalHistory.treatmentEndDate | date:'fullDate' }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

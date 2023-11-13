@@ -18,6 +18,7 @@ export class ModifyComponent implements OnInit {
   public editor: any = ClassicEditor;
   data: string = "";
   flag: boolean = false;
+  postingFlag: boolean = false;
   id: string|null;
   resource: Resource;
   patientsList: User[];
@@ -74,7 +75,9 @@ export class ModifyComponent implements OnInit {
         users: JSON.parse(this.patientListToJson())
       });
 
-      if (this.id != null){
+      if (content != '' && resourcetitle != '' && this.id != null){
+        this.postingFlag = true;
+        this.openSnackBar("Modifying your resource please wait...", "Close");
         this.resourceService.resourceUpdate(tempResource,parseInt(this.id)).subscribe((res: NonNullable<unknown>) => {
           switch (res) {
             case 200:{
@@ -91,7 +94,13 @@ export class ModifyComponent implements OnInit {
               break;
           }
         })
+      }else {
+        if (content === '')
+          this.openSnackBar("Please fill out the content", "Close");
+        if (resourcetitle === '')
+          this.openSnackBar("Please write a title", "Close");
       }
+
     }
   }
   onCheck(id: number){

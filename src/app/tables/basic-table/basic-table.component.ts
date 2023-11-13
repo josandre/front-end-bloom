@@ -2,7 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { ResourceService } from './service/resource.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Resource } from './models/Resource';
-
+ 
 
 @Component({
   selector: 'app-basic-table',

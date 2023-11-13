@@ -2,8 +2,8 @@ import { Component,OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, FormControl, Validators, ValidatorFn,} from '@angular/forms';
 import { AuthService } from '@core';
 import { DoctorService } from '../service/doctor.service';
-import {Password} from "../../patient/settings/models/Password";
-import {User} from "../../patient/settings/models/User";
+import {Password} from "../../patient/models/Password";
+import {User} from "../../patient/models/User";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Specialist} from "../model/Specialist";
 

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {API_URL} from "../../../../config";
+import {API_URL} from "../../../config";
 import {HttpClient,HttpHeaders} from "@angular/common/http";
-import {User} from "../../settings/models/User";
-import {Password} from "../../settings/models/Password";
+import {User} from "../models/User";
+import {Password} from "../models/Password";
 
 import {  Observable } from 'rxjs';
 import { AuthService } from '@core';

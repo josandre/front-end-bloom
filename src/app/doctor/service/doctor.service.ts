@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {API_URL} from "../../../config";
 import {HttpClient,HttpHeaders} from "@angular/common/http";
 import {Specialist} from "../model/Specialist";
-import {Password} from "../../patient/settings/models/Password";
+import {Password} from "../../patient/models/Password";
 
 import {Observable } from 'rxjs';
 

@@ -35,10 +35,11 @@ export class ProfileComponent implements OnInit {
     this.getPatient(Number(this.route.snapshot.paramMap.get('id')));
     this.initializeForms();
     this.anxieties = new Set<string>();
+    this.anxitiesControl.disable();
   }
 
   initializeForms() {
-    this.anxitiesControl = new FormControl({ disabled: true });
+    this.anxitiesControl = new FormControl();
   }
 
   getMedicalRecord(id: number): void {

@@ -1,11 +1,11 @@
 import { Component,OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, FormControl, Validators, ValidatorFn,} from '@angular/forms';
 import { AuthService } from '@core';
-import { DoctorService } from '../settings/service/doctor.service';
+import { DoctorService } from '../service/doctor.service';
 import {Password} from "../../patient/settings/models/Password";
 import {User} from "../../patient/settings/models/User";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {Specialist} from "../settings/model/Specialist";
+import {Specialist} from "../model/Specialist";
 
 
 @Component({
@@ -109,7 +109,7 @@ export class SettingsComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log('click')
+    
     if(this.doctorUpdateForm.valid){
       const doc: Specialist=new Specialist({
           college : this.doctorUpdateForm.controls['college'].value,

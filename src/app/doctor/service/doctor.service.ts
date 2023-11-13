@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import {API_URL} from "../../../../config";
+import {API_URL} from "../../../config";
 import {HttpClient,HttpHeaders} from "@angular/common/http";
-import {User} from "../../../patient/settings/models/User";
 import {Specialist} from "../model/Specialist";
-import {Password} from "../../../patient/settings/models/Password";
+import {Password} from "../../patient/settings/models/Password";
 
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { RecordsRoutingModule } from 'app/admin/records/records-routing.module';
+import {Observable } from 'rxjs';
+
 import { AuthService } from '@core';
 @Injectable({
   providedIn: 'root'

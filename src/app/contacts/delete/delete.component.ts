@@ -6,7 +6,7 @@ export interface DialogData {
   id: number;
   name: string;
   email: string;
-  mobile: string;
+  relation: string;
 }
 
 @Component({
@@ -24,6 +24,13 @@ export class DeleteComponent {
     this.dialogRef.close();
   }
   confirmDelete(): void {
-    this.contactsService.deleteContacts(this.data.id);
+    this.contactsService.deleteContacts(this.data.id).subscribe({
+      next: () => {
+        this.dialogRef.close(true); 
+      },
+      error: (error) => {
+        console.error('Error deleting contact:', error);
+      }
+    });
   }
 }

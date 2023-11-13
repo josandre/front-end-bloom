@@ -1,30 +1,22 @@
-import { formatDate } from '@angular/common';
-export class Contacts {
+export class Contact {
   id: number;
-  img: string;
   name: string;
   email: string;
-  birthDate: string;
-  mobile: string;
-  address: string;
-  note: string;
+  relation: string;
 
-  constructor(contacts: Contacts) {
-    {
-      this.id = contacts.id || this.getRandomID();
-      this.img = contacts.img || 'assets/images/user/usrbig1.jpg';
-      this.name = contacts.name || '';
-      this.email = contacts.email || '';
-      this.birthDate = formatDate(new Date(), 'yyyy-MM-dd', 'en') || '';
-      this.address = contacts.address || '';
-      this.mobile = contacts.mobile || '';
-      this.note = contacts.note || '';
-    }
+  constructor(contact: Contact) {
+    this.id = contact.id;
+    this.name = contact.name || '';
+    this.email = contact.email || '';
+    this.relation = contact.relation || '';
   }
-  public getRandomID(): number {
-    const S4 = () => {
-      return ((1 + Math.random()) * 0x10000) | 0;
+
+  static createEmpty(): Contact {
+    return {
+      id: 0, // Puedes usar 0 o un valor que indique un nuevo registro
+      name: '',
+      email: '',
+      relation: ''
     };
-    return S4() + S4();
   }
 }

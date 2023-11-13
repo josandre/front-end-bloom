@@ -2,7 +2,7 @@
   <div class="content-block">
     <div class="block-header">
       <!-- breadcrumb -->
-      <app-breadcrumb [title]="'Contacts'" [items]="[]" [active_item]="'Contacts'"></app-breadcrumb>
+      <app-breadcrumb [title]="'Contactos'" [items]="[]" [active_item]="'Contactos'"></app-breadcrumb>
     </div>
     <div class="row">
       <div class="col-md-12">
@@ -14,50 +14,30 @@
                   <div class="left">
                     <ul class="header-buttons-left ms-0">
                       <li class="tbl-title">
-                        <h2>Contacts</h2>
+                        <h2>Contactos</h2>
                       </li>
                       <li class="tbl-search-box">
                         <label for="search-input"><i class="material-icons search-icon">search</i></label>
-                        <input placeholder="Search" type="text" #filter class="browser-default search-field"
-                          aria-label="Search box">
+                        <input placeholder="Buscar..." type="text" (input)="applyFilter($event)" class="browser-default search-field" aria-label="Search box">
+
                       </li>
                     </ul>
                   </div>
                   <div class="right">
                     <ul class="tbl-export-btn">
                       <li class="tbl-header-btn">
-                        <div class="m-l-10" matTooltip="ADD">
+                        <div class="m-l-10" matTooltip="Añadir contacto">
                           <button mat-mini-fab color="primary" (click)="addNew()">
                             <mat-icon class="col-white">add</mat-icon>
                           </button>
                         </div>
                       </li>
-                      <li class="tbl-header-btn">
-                        <div class="m-l-10" matTooltip="REFRESH">
-                          <button mat-mini-fab color="primary" (click)="refresh()">
-                            <mat-icon class="col-white">refresh</mat-icon>
-                          </button>
-                        </div>
-                      </li>
-                      <li class="tbl-header-btn">
-                        <div class="m-l-10" [hidden]=!selection.hasValue() matTooltip="DELETE">
-                          <button mat-mini-fab color="warn" (click)="removeSelectedRows()">
-                            <mat-icon class="col-white">delete
-                            </mat-icon>
-                          </button>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="export-button m-l-10" matTooltip="XLSX">
-                          <img src="assets/images/icons/xlsx.png" alt="" (click)="exportExcel()" />
-                        </div>
-                      </li>
                     </ul>
                   </div>
                 </div>
-                <div class="body overflow-auto">
+                <div class="body overflow-auto" *ngIf="dataSource">
                   <div class="responsive_table">
-                    <table mat-table [dataSource]="dataSource" matSort class="mat-cell advance-table">
+                    <table mat-table [dataSource]="dataSource" matSort class="mat-cell advance-table w-100">
                       <!-- Checkbox Column -->
                       <ng-container matColumnDef="select">
                         <mat-header-cell *matHeaderCellDef [ngClass]="'tbl-col-width-per-6'">
@@ -79,66 +59,41 @@
                         </mat-header-cell>
                         <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
                       </ng-container>
-                      <ng-container matColumnDef="img">
-                        <mat-header-cell mat-header-cell *matHeaderCellDef [ngClass]="'tbl-col-width-per-6'"> Image
-                        </mat-header-cell>
-                        <mat-cell mat-cell *matCellDef="let row" class="table-img tbl-col-width-per-6"> <span
-                            class="mobile-label">Image:</span><img [src]="row.img" />
-                        </mat-cell>
-                      </ng-container>
                       <ng-container matColumnDef="name">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header>Name
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let row"> <span class="mobile-label">Name:</span>{{row.name}}
-                        </mat-cell>
-                      </ng-container>
-                      <ng-container matColumnDef="mobile">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header>Mobile
-                        </mat-header-cell>
-                        <mat-cell *matCellDef="let row"> <span class="mobile-label">Mobile:</span>{{row.mobile}}
+                        <mat-cell *matCellDef="let row"> <span class="mobile-label">Nombre:</span>{{row.name}}
                         </mat-cell>
                       </ng-container>
                       <ng-container matColumnDef="email">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header>Email
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Correo electrónico
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let row"> <span class="mobile-label">Email:</span>{{row.email}}
+                        <mat-cell *matCellDef="let row"> <span class="mobile-label">Correo
+                            electrónico:</span>{{row.email}}
                         </mat-cell>
                       </ng-container>
-                      <ng-container matColumnDef="birthDate">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header>Birth Date
+                      <ng-container matColumnDef="relation">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Relación con el paciente
                         </mat-header-cell>
                         <mat-cell *matCellDef="let row">
-                          <span class="mobile-label">Birth Date:</span>{{row.birthDate | date: 'MM/dd/yyyy'}}</mat-cell>
-                      </ng-container>
-                      <ng-container matColumnDef="address">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header>Address
-                        </mat-header-cell>
-                        <mat-cell *matCellDef="let row" class="column-nowrap"> <span
-                            class="mobile-label">Address:</span>{{row.address}}
-                        </mat-cell>
-                      </ng-container>
-                      <ng-container matColumnDef="note">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header>Note
-                        </mat-header-cell>
-                        <mat-cell *matCellDef="let row"> <span class="mobile-label">Note:</span>{{row.note}}
-                        </mat-cell>
+                          <span class="mobile-label">Relación con el paciente:</span>{{row.relation}}</mat-cell>
                       </ng-container>
                       <!-- actions -->
                       <ng-container matColumnDef="actions">
-                        <mat-header-cell class="psl-3 tbl-col-width-per-10" *matHeaderCellDef>Actions
+                        <mat-header-cell class="psl-3 tbl-col-width-per-10" *matHeaderCellDef>Acciones
                         </mat-header-cell>
                         <mat-cell *matCellDef="let row; let i=index;" class="psl-3 tbl-col-width-per-10">
                           <button mat-icon-button [matMenuTriggerFor]="menu" (click)="$event.stopPropagation()">
                             <mat-icon>more_vert</mat-icon>
                           </button>
                           <mat-menu #menu="matMenu">
-                            <button mat-menu-item (click)="editCall(row)">
+                            <button mat-menu-item (click)="editContact(row)">
                               <i class="material-icons-two-tone align-middle msr-2">create</i>
-                              <span>Edit Contact</span>
+                              <span>Editar contacto</span>
                             </button>
-                            <button mat-menu-item (click)="deleteItem(row)">
+                            <button mat-menu-item (click)="deleteContact(row)">
                               <i class="material-icons-two-tone align-middle msr-2">delete_forever</i>
-                              <span>Delete Contact</span>
+                              <span>Eliminar contacto</span>
                             </button>
                           </mat-menu>
                         </mat-cell>
@@ -146,22 +101,29 @@
 
                       <mat-header-row *matHeaderRowDef="displayedColumns">
                       </mat-header-row>
-                      <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="detailsCall(row)"
-                        [style.cursor]="'pointer'" matRipple>
+                      <mat-row *matRowDef="let row; columns: displayedColumns;" [style.cursor]="'pointer'" matRipple>
                       </mat-row>
                     </table>
-                    <!-- Loading spinner -->
-                    <div *ngIf="exampleDatabase?.isTblLoading" class="tbl-spinner">
+
+                    <!-- Spinner de carga -->
+                    <div *ngIf="isLoading" class="tbl-spinner">
                       <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
                       </mat-progress-spinner>
                     </div>
-                    <div *ngIf="!exampleDatabase?.isTblLoading" class="no-results"
-                      [style.display]="dataSource.renderedData.length === 0 ? '' : 'none'">
-                      No results
+
+                    <div *ngIf="!isLoading">
+                      <div *ngIf="dataSource.data.length === 0 && !isFiltering" class="no-results">
+                        No hay contactos disponibles.
+                      </div>
+                      <div *ngIf="dataSource.data.length === 0 && isFiltering" class="no-results">
+                        No se encontraron resultados para tu búsqueda.
+                      </div>
                     </div>
-                    <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10"
-                      [pageSizeOptions]="[5, 10, 25, 100]">
-                    </mat-paginator>
+
+                    <!-- Paginator -->
+                    <mat-paginator #paginator [length]="dataSource.data.length" [pageIndex]="0" [pageSize]="10"
+                      [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
                   </div>
                 </div>
               </div>

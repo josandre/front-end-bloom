@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PuzzleTile } from '../logic/puzzle-tile';
 import { AuthService } from '@core';
 import { GameScoreService } from '../services/game-score.service';
+import { PUZZLE_IMAGES, PuzzleImageData } from '../logic/puzzle-game-images';
 
 interface PuzzleGameDifficulty {
   value: number;
@@ -32,6 +33,8 @@ export class PuzzleGameComponent implements OnInit {
     { value: 4, tilesNumber: 7, viewValue: 'MENUITEMS.GAMES-SECTION.DIFFICULTIES.VERY-HARD' }
   ];
   gameState: number = this.GameStates.InitialScreen;
+  backgroundIndex:number = 0;
+  currentImage:PuzzleImageData = PUZZLE_IMAGES[0];
 
   // User info
   currentUser?:any;
@@ -120,6 +123,40 @@ export class PuzzleGameComponent implements OnInit {
     }
 
     return tilesNumber;
+  }
+
+  /**
+   * Used to get background image property of tiles
+   * @returns 
+   */
+  getTileStyles() {
+    return this.getBackgroundOptionStyle(this.currentImage.imagePath);
+  }
+
+  /**
+   * Used to generate a style structure for a background image
+   */
+  getBackgroundOptionStyle(imagePath:string)  {
+    return {
+      backgroundImage: 'url(' + imagePath + ')'
+    }
+  }
+
+  /**
+   * Used to get the background images available
+   * @returns 
+   */
+  getPuzzleImages() {
+    return PUZZLE_IMAGES;
+  }
+
+  /**
+   * Used to change the game background
+   * @param backgroundIndex index of the selected background
+   */
+  changeBackground(backgroundIndex:number) {
+    this.backgroundIndex = backgroundIndex;
+    this.currentImage = PUZZLE_IMAGES[this.backgroundIndex];
   }
 
   /**

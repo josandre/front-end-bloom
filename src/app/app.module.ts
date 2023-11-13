@@ -32,6 +32,7 @@ import { GamesSectionComponent } from './resources/games-section/games-section.c
 import { ScoresListComponent } from './resources/games/scores-list/scores-list.component';
 import { PuzzleGameComponent } from './resources/games/puzzle-game/puzzle-game.component';
 import { PuzzleGameTileComponent } from './resources/games/puzzle-game/puzzle-game-tile/puzzle-game-tile.component';
+import { PuzzleGameBackgroundOptionComponent } from './resources/games/puzzle-game/puzzle-game-background-option/puzzle-game-background-option.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -52,6 +53,7 @@ export function createTranslateLoader(http: HttpClient) {
     ScoresListComponent,
     PuzzleGameComponent,
     PuzzleGameTileComponent,
+    PuzzleGameBackgroundOptionComponent,
   ],
   imports: [
     MatSnackBarModule,

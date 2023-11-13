@@ -10,26 +10,30 @@
                         | translate }}</button>
                     <button mat-flat-button color="primary" (click)="goToScores()">{{ 'MENUITEMS.GAMES-SECTION.SCORES' |
                         translate }}</button>
+                    <button mat-flat-button color="primary" (click)="newGame()">{{ 'MENUITEMS.GAMES-SECTION.RESTART' |
+                        translate }}</button>
                 </div>
 
                 <div class="m-t-20">
                     <h5>{{ 'MENUITEMS.GAMES-SECTION.YOUR-SCORE' | translate }}: {{ currentScore }}</h5>
                 </div>
 
-                <div class="puzzle-game-board">
+                <div class="puzzle-game-board" [ngStyle]="getTileStyles()">
                     <div class="puzzle-game-board-overlay">
                     </div>
 
                     <app-puzzle-game-tile *ngFor="let tile of tiles; let i = index" [index]="i" [value]="tile.value"
                         [tilesNumber]="tilesNumber" [tileSize]="tileSize" [disabled]="tile.disabled"
-                        [class.disabled]="tile.disabled" class="puzzle-tile" (click)="selectTile(i)">
+                        [class.disabled]="tile.disabled" class="puzzle-tile" (click)="selectTile(i)"
+                        [ngStyle]="getTileStyles()">
                     </app-puzzle-game-tile>
                 </div>
             </div>
 
-            <!--Initial Screen Difficuly dialog-->
+            <!--Initial Screen Difficuly and Background dialog-->
             <div *ngIf="gameState === GameStates.InitialScreen" class="game-menu-dialog">
                 <div class="card dialog-card">
+                    <!--Difficuly select-->
                     <h1>{{ 'MENUITEMS.GAMES-SECTION.SELECT-DIFFICULTY' | translate }}</h1>
                     <form>
                         <mat-form-field class="example-full-width">
@@ -41,6 +45,19 @@
                             </mat-select>
                         </mat-form-field>
                     </form>
+                    
+                    <!--Background select-->
+                    <h1>{{ 'MENUITEMS.GAMES-SECTION.PUZZLE-GAME.SELECT-BACKGROUND' | translate }}</h1>
+                    <div class="backgrounds-container">
+                        <app-puzzle-game-background-option 
+                        *ngFor="let background of getPuzzleImages(); let i = index"
+                        class="background-option-container"
+                        [style]="getBackgroundOptionStyle(background.imagePath)"
+                        (click)="changeBackground(i)"
+                        [class.background-option-container-selected]="i === backgroundIndex"
+                        [selected]="i === backgroundIndex">                           
+                        </app-puzzle-game-background-option>
+                    </div>
 
                     <button mat-flat-button color="primary" (click)="newGame()">{{
                         'MENUITEMS.GAMES-SECTION.START-NEW-GAME' | translate }}</button>

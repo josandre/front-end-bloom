@@ -147,6 +147,7 @@
       "YOUR-SCORE": "Tu Puntaje",
       "NO-SCORES": "No hay puntajes",
       "START-NEW-GAME": "Comenzar Nuevo Juego",
+      "RESTART": "Reiniciar",
       "GO-BACK": "Volver",
       "DIFFICULTIES": {
         "VERY-EASY": "Muy fácil",
@@ -161,7 +162,8 @@
       },
       "PUZZLE-GAME": {
         "TITLE": "Juego de Rompecabezas",
-        "DESCRIPTION": "Prueba tu agilidad en este juego de rompecabezas"
+        "DESCRIPTION": "Prueba tu agilidad en este juego de rompecabezas",
+        "SELECT-BACKGROUND": "Seleccionar Fondo"
       }
     }
   }

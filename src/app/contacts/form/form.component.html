@@ -2,8 +2,7 @@
   <div *ngIf="!isDetails" class="contact-form">
     <div class="modalHeader">
       <div class="editRowModal">
-        <div class="modalHeader clearfix">
-          <img [src]='contacts.img' alt="avatar">
+        <div class="">
           <div class="modal-about">
             {{dialogTitle}}
           </div>
@@ -14,14 +13,13 @@
       </button>
     </div>
     <div mat-dialog-content>
-      <form class="register-form m-4" [formGroup]="contactsForm!" (ngSubmit)="submit">
+      <form class="register-form m-4" [formGroup]="contactForm" (ngSubmit)="confirmAddOrUpdate()">
         <div class="row">
           <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
             <mat-form-field class="example-full-width mb-3" appearance="outline">
               <mat-label>Nombre</mat-label>
               <input matInput formControlName="name" required>
-              <i class="material-icons-two-tone color-icon p-3" matSuffix>face</i>
-              <mat-error *ngIf="contactsForm?.get('name')?.hasError('required')">
+              <mat-error *ngIf="contactForm?.get('name')?.hasError('required')">
                 Name is required
               </mat-error>
             </mat-form-field>
@@ -30,9 +28,7 @@
             <mat-form-field class="example-full-width mb-3" appearance="outline">
               <mat-label>Email</mat-label>
               <input matInput formControlName="email" required>
-              <i class="material-icons-two-tone color-icon p-3" matSuffix>email</i>
-              <mat-error
-                *ngIf="contactsForm?.get('email')?.hasError('required') || contactsForm?.get('email')?.touched">
+              <mat-error *ngIf="contactForm?.get('email')?.hasError('required')">
                 Please enter a valid email address
               </mat-error>
             </mat-form-field>
@@ -41,17 +37,24 @@
         <div class="row">
           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
             <mat-form-field class="example-full-width mb-3" appearance="outline">
-              <mat-label>Relación</mat-label>
-              <textarea matInput formControlName="address"></textarea>
+              <mat-label>Relación con el paciente</mat-label>
+              <input matInput formControlName="relation" required>
+              <mat-error *ngIf="contactForm?.get('relation')?.hasError('required')">
+                Relation is required
+              </mat-error>
             </mat-form-field>
-          </div>
+          </div>        
         </div>
         <div class="row">
           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
-            <div class="example-button-row">
-              <button mat-raised-button color="primary" [disabled]="!contactsForm?.valid" [mat-dialog-close]="1"
-                (click)="confirmAdd()">Guardar</button>
-              <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Cancelar</button>
+            <div class="example-button-row d-flex">
+              <button class="btn btn-primary d-flex align-items-center justify-content-center" [disabled]="!contactForm.valid || isLoading" type="submit">
+                <span class="me-2">Guardar</span>
+                <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
+              </button>
+              <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">
+                Cancelar
+              </button>
             </div>
           </div>
         </div>

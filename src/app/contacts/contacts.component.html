@@ -18,8 +18,8 @@
                       </li>
                       <li class="tbl-search-box">
                         <label for="search-input"><i class="material-icons search-icon">search</i></label>
-                        <input placeholder="Buscar..." type="text" #filter class="browser-default search-field"
-                          aria-label="Search box">
+                        <input placeholder="Buscar..." type="text" (input)="applyFilter($event)" class="browser-default search-field" aria-label="Search box">
+
                       </li>
                     </ul>
                   </div>
@@ -32,30 +32,10 @@
                           </button>
                         </div>
                       </li>
-                      <li class="tbl-header-btn">
-                        <div class="m-l-10" matTooltip="Recargar pantalla">
-                          <button mat-mini-fab color="primary" (click)="refresh()">
-                            <mat-icon class="col-white">refresh</mat-icon>
-                          </button>
-                        </div>
-                      </li>
-                      <li class="tbl-header-btn">
-                        <div class="m-l-10" [hidden]=!selection.hasValue() matTooltip="Eliminar">
-                          <button mat-mini-fab color="warn" (click)="removeSelectedRows()">
-                            <mat-icon class="col-white">delete
-                            </mat-icon>
-                          </button>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="export-button m-l-10" matTooltip="Exportar a XLSX">
-                          <img src="assets/images/icons/xlsx.png" alt="" (click)="exportExcel()" />
-                        </div>
-                      </li>
                     </ul>
                   </div>
                 </div>
-                <div class="body overflow-auto">
+                <div class="body overflow-auto" *ngIf="dataSource">
                   <div class="responsive_table">
                     <table mat-table [dataSource]="dataSource" matSort class="mat-cell advance-table w-100">
                       <!-- Checkbox Column -->
@@ -88,14 +68,15 @@
                       <ng-container matColumnDef="email">
                         <mat-header-cell *matHeaderCellDef mat-sort-header>Correo electrónico
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let row"> <span class="mobile-label">Correo electrónico:</span>{{row.email}}
+                        <mat-cell *matCellDef="let row"> <span class="mobile-label">Correo
+                            electrónico:</span>{{row.email}}
                         </mat-cell>
                       </ng-container>
                       <ng-container matColumnDef="relation">
                         <mat-header-cell *matHeaderCellDef mat-sort-header>Relación con el paciente
                         </mat-header-cell>
                         <mat-cell *matCellDef="let row">
-                          <span class="mobile-label">Relación con el paciente:</span>{{row.birthDate | date: 'MM/dd/yyyy'}}</mat-cell>
+                          <span class="mobile-label">Relación con el paciente:</span>{{row.relation}}</mat-cell>
                       </ng-container>
                       <!-- actions -->
                       <ng-container matColumnDef="actions">
@@ -106,11 +87,11 @@
                             <mat-icon>more_vert</mat-icon>
                           </button>
                           <mat-menu #menu="matMenu">
-                            <button mat-menu-item (click)="editCall(row)">
+                            <button mat-menu-item (click)="editContact(row)">
                               <i class="material-icons-two-tone align-middle msr-2">create</i>
                               <span>Editar contacto</span>
                             </button>
-                            <button mat-menu-item (click)="deleteItem(row)">
+                            <button mat-menu-item (click)="deleteContact(row)">
                               <i class="material-icons-two-tone align-middle msr-2">delete_forever</i>
                               <span>Eliminar contacto</span>
                             </button>
@@ -120,22 +101,29 @@
 
                       <mat-header-row *matHeaderRowDef="displayedColumns">
                       </mat-header-row>
-                      <mat-row *matRowDef="let row; columns: displayedColumns;"
-                        [style.cursor]="'pointer'" matRipple>
+                      <mat-row *matRowDef="let row; columns: displayedColumns;" [style.cursor]="'pointer'" matRipple>
                       </mat-row>
                     </table>
-                    <!-- Loading spinner -->
-                    <div *ngIf="exampleDatabase?.isTblLoading" class="tbl-spinner">
+
+                    <!-- Spinner de carga -->
+                    <div *ngIf="isLoading" class="tbl-spinner">
                       <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
                       </mat-progress-spinner>
                     </div>
-                    <div *ngIf="!exampleDatabase?.isTblLoading" class="no-results"
-                      [style.display]="dataSource.renderedData.length === 0 ? '' : 'none'">
-                      Sin resultados
+
+                    <div *ngIf="!isLoading">
+                      <div *ngIf="dataSource.data.length === 0 && !isFiltering" class="no-results">
+                        No hay contactos disponibles.
+                      </div>
+                      <div *ngIf="dataSource.data.length === 0 && isFiltering" class="no-results">
+                        No se encontraron resultados para tu búsqueda.
+                      </div>
                     </div>
-                    <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10"
-                      [pageSizeOptions]="[5, 10, 25, 100]">
-                    </mat-paginator>
+
+                    <!-- Paginator -->
+                    <mat-paginator #paginator [length]="dataSource.data.length" [pageIndex]="0" [pageSize]="10"
+                      [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
                   </div>
                 </div>
               </div>

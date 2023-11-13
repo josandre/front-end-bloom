@@ -1,18 +1,12 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, EventEmitter, Output } from '@angular/core';
 import { ContactsService } from '../contacts.service';
-import {
-  Validators,
-  FormGroup,
-  FormBuilder, FormControl,
-} from '@angular/forms';
-import { Contacts } from '../contacts.model';
-import { formatDate } from '@angular/common';
+import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { Contact } from '../contacts.model';
 
 export interface DialogData {
-  id: number;
   action: string;
-  contacts: Contacts;
+  contact: Contact;
 }
 
 @Component({
@@ -23,69 +17,74 @@ export interface DialogData {
 export class FormComponent {
   action: string;
   dialogTitle?: string;
+  contactForm: FormGroup;
   isDetails = false;
-  contactsForm?: FormGroup;
-  contacts: Contacts;
+  contact: Contact;
+  isLoading = false; // Agregar una variable para controlar el preloader
+  @Output() contactAdded: EventEmitter<Contact> = new EventEmitter<Contact>();
+
   constructor(
     public dialogRef: MatDialogRef<FormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,  
     public contactsService: ContactsService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    
   ) {
-    // Set the defaults
     this.action = data.action;
-    if (this.action === 'edit') {
-      this.isDetails = false;
-      this.dialogTitle = data.contacts.name;
-      this.contacts = data.contacts;
-      this.contactsForm = this.createContactForm();
-    } else if (this.action === 'details') {
-      this.contacts = data.contacts;
-      this.isDetails = true;
-    } else {
-      this.isDetails = false;
-      this.dialogTitle = 'Nuevo contacto';
-      const blankObject = {} as Contacts;
-      this.contacts = new Contacts(blankObject);
-      this.contactsForm = this.createContactForm();
-    }
+    this.contact = this.action === 'edit' ? data.contact : Contact.createEmpty();
+    this.dialogTitle = this.action === 'edit' ? 'Editar Contacto' : 'Nuevo Contacto';
+    this.isDetails = this.action === 'details';
+    this.contactForm = this.createContactForm();
   }
-  formControl = new FormControl('', [
-    Validators.required,
-    // Validators.email,
-  ]);
-  getErrorMessage() {
-    return this.formControl.hasError('required')
-      ? 'Required field'
-      : this.formControl.hasError('email')
-      ? 'Not a valid email'
-      : '';
-  }
+
   createContactForm(): FormGroup {
     return this.fb.group({
-      id: [this.contacts.id],
-      img: [this.contacts.img],
-      name: [this.contacts.name],
-      email: [
-        this.contacts.email,
-        [Validators.required, Validators.email, Validators.minLength(5)],
-      ],
-      birthDate: [
-        formatDate(this.contacts.birthDate, 'yyyy-MM-dd', 'en'),
-        [Validators.required],
-      ],
-      address: [this.contacts.address],
-      mobile: [this.contacts.mobile],
-      note: [this.contacts.note],
+      id: [this.contact.id],
+      name: [this.contact.name, Validators.required],
+      email: [this.contact.email, [Validators.required, Validators.email, Validators.minLength(5)]],
+      relation: [this.contact.relation, Validators.required]
     });
   }
-  submit() {
-    // emppty stuff
+
+  confirmAddOrUpdate(): void {
+    if (!this.contactForm.valid) {
+      return;
+    }
+    this.isLoading = true; // Activa el spinner
+    const formValues = this.contactForm.getRawValue();
+    const userId = this.contactsService.currentUser.id; // Asumiendo que puedes obtener el id del usuario conectado desde el servicio
+
+    const contactData = {
+      ...formValues,
+      user: { id: userId }
+    };
+  
+    if (this.action === 'add') {
+      this.contactsService.addContact(contactData).subscribe({
+        next: (newContact) => {
+          this.isLoading = false; // Detiene el spinner
+          this.dialogRef.close(newContact);
+        },
+        error: (error) => {
+          this.isLoading = false; // Detiene el spinner incluso si hay un error
+          console.error('Error adding contact:', error);
+        }
+      });
+    } else if (this.action === 'edit') {
+      this.contactsService.updateContacts(contactData).subscribe({
+        next: (updatedContact) => {
+          this.isLoading = false; 
+          this.dialogRef.close(updatedContact);
+        },
+        error: (error) => {
+          this.isLoading = false; 
+          console.error('Error updating contact:', error);
+        }
+      });
+    }
   }
+
   onNoClick(): void {
     this.dialogRef.close();
-  }
-  public confirmAdd(): void {
-    this.contactsService.addContacts(this.contactsForm?.getRawValue());
   }
 }

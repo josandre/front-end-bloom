@@ -8,6 +8,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { DoctorRoutingModule } from './doctor-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { TranslateModule } from '@ngx-translate/core'; 
 import { AppointmentsComponent } from './appointments/appointments.component';
 import { FormComponent } from './appointments/form/form.component';
 import { DoctorsComponent } from './doctors/doctors.component';
@@ -19,6 +20,7 @@ import { SharedModule } from '@shared';
 import {SignupPatientComponent} from "./patients/signupPatient/signup-patient.component";
 import { ProfileComponent } from './patients/medicalrecord/profile.component';
 import { MedicalhistoryDialogComponent } from './patients/medicalrecord/medicalhistory-dialog/medicalhistory-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -45,6 +47,7 @@ import { MedicalhistoryDialogComponent } from './patients/medicalrecord/medicalh
     DragDropModule,
     ComponentsModule,
     SharedModule,
+    TranslateModule,
   ],
   providers: [AppointmentsService],
 })

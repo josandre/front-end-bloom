@@ -147,6 +147,7 @@
       "YOUR-SCORE": "Tu Puntaje",
       "NO-SCORES": "No hay puntajes",
       "START-NEW-GAME": "Comenzar Nuevo Juego",
+      "RESTART": "Reiniciar",
       "GO-BACK": "Volver",
       "DIFFICULTIES": {
         "VERY-EASY": "Muy fácil",
@@ -161,8 +162,42 @@
       },
       "PUZZLE-GAME": {
         "TITLE": "Juego de Rompecabezas",
-        "DESCRIPTION": "Prueba tu agilidad en este juego de rompecabezas"
+        "DESCRIPTION": "Prueba tu agilidad en este juego de rompecabezas",
+        "SELECT-BACKGROUND": "Seleccionar Fondo"
       }
+    },
+    "PROGRESS-SECTION": {
+      "TITLE": "Progreso Medico"
     }
-  }
+  },
+  "DASHBOARD_DOCTOR": {
+    "WELLCOME_TITLE": "Que gusto verte",
+    "WELLCOME_TEXT": "Cada día trae una nueva oportunidad para impactar vidas. Estamos emocionados por las experiencias y logros que nos esperan. ¡Su dedicación y pasión hacen una gran diferencia!",
+    "RESOURCES": "Recursos compartidos",
+    "INCREASED_ANXIETY_LEVELS": "Aumentos de nivel ansiedad",
+    "ACTIVE_PATIENTS": "Pacientes activos",
+    "REGISTERED_PATIENTS": "Pacientes registrados",
+    "PATIENTS_WITH_HIGHEST_ANXIETY_ATTACKS": "Pacientes con mayores ataques de ansiedad registrados",
+    "PATIENT_GROUPING_CHART": "Gráfica de agrupación de pacientes por nivel de ansiedad",
+    "LEVEL": "Nivel",
+    "PATIENTS": "Pacientes"
+  },
+  "DASHBOARD_PATIENT": {
+    "WELLCOME_TITLE": "¡Bienvenido de nuevo!",
+    "WELLCOME_TEXT": "Queremos aprovechar esta oportunidad para darle la bienvenida a nuestra práctica y agradecerle por elegir a nuestros médicos para participar en su atención médica. Esperamos brindarle atención médica personalizada y completa centrada en el bienestar y la prevención.",
+    "CURRENT_ANXIETY_LEVEL": "Nivel Actual de Ansiedad",
+    "LEVEL_1": "Nivel 1",
+    "TOTAL_ATTACKS_RECORDED": "Total de ataques registrados",
+    "ATTACKS_12": "12",
+    "LAST_ANXIETY_ATTACK": "Último ataque de ansiedad",
+    "LAST_ATTACK_DATE": "Lunes 3 de Noviembre",
+    "DAYS_WITHOUT_ATTACKS": "Días sin ataques",
+    "DAYS_38": "38",
+    "ANXIETY_LEVEL_PROGRESS_CHART": "Gráfica de progreso en el nivel de ansiedad",
+    "PER_SESSION": "Por sesión realizada",
+    "RECORDED_ATTACKS_HISTORY": "Histórico de ataques registrados",
+    "BY_DATE": "Por fecha"
+}
+
+  
 }

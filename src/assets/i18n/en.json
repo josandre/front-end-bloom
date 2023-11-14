@@ -98,15 +98,15 @@
         "ISSUED-ITEMS": "Issued Items"
       }
     },
-    "DOCTOR": {    
-        "DASHBOARD": "Dashboard",
-        "APPOINTMENTS": "Appointments",
-        "DOCTORS": "Doctors",
-        "PATIENTS": "Patients",
-        "SETTINGS": "Settings",
-        "CHAT": "Chat"
+    "DOCTOR": {
+      "DASHBOARD": "Dashboard",
+      "APPOINTMENTS": "Appointments",
+      "DOCTORS": "Doctors",
+      "PATIENTS": "Patients",
+      "SETTINGS": "Settings",
+      "CHAT": "Chat"
     },
-    "PATIENT": {    
+    "PATIENT": {
       "TEXT": "Patient",
       "DASHBOARD": "Dashboard",
       "APPOINTMENTS": {
@@ -147,6 +147,7 @@
       "YOUR-SCORE": "Your Score",
       "NO-SCORES": "No scores available",
       "START-NEW-GAME": "Start New Game",
+      "RESTART": "Restart",
       "GO-BACK": "Go Back",
       "DIFFICULTIES": {
         "VERY-EASY": "Very easy",
@@ -161,8 +162,41 @@
       },
       "PUZZLE-GAME": {
         "TITLE": "Puzzle Game",
-        "DESCRIPTION": "Test your agility in this puzzle game"
+        "DESCRIPTION": "Test your agility in this puzzle game",
+        "SELECT-BACKGROUND": "Select Background"
       }
+    },
+    "PROGRESS-SECTION": {
+      "TITLE": "Progreso Medico"
     }
-  }
+  },
+  "DASHBOARD_DOCTOR": {
+    "WELLCOME_TITLE": "Wellcome back",
+    "WELLCOME_TEXT": "Each day brings a new opportunity to impact lives. We are excited about the experiences and achievements that await us. Your dedication and passion make a significant difference!",
+    "RESOURCES": "Shared Resources",
+    "INCREASED_ANXIETY_LEVELS": "Increased Anxiety Levels",
+    "ACTIVE_PATIENTS": "Active Patients",
+    "REGISTERED_PATIENTS": "Registered Patients",
+    "PATIENTS_WITH_HIGHEST_ANXIETY_ATTACKS": "Patients with the Highest Anxiety Attacks",
+    "PATIENT_GROUPING_CHART": "Patient Grouping by Anxiety Level Chart",
+    "LEVEL": "Level",
+    "PATIENTS": "Patients"
+  },
+  "DASHBOARD_PATIENT": {
+    "WELLCOME_TITLE": "Welcome back",
+    "WELLCOME_TEXT": "We would like to take this opportunity to welcome you to our practice and to thank you for choosing our physicians to participate in your healthcare. We look forward to providing you with personalized, comprehensive health care focusing on wellness and prevention.",
+    "CURRENT_ANXIETY_LEVEL": "Current Anxiety Level",
+    "LEVEL_1": "Level 1",
+    "TOTAL_ATTACKS_RECORDED": "Total Attacks Recorded",
+    "ATTACKS_12": "12",
+    "LAST_ANXIETY_ATTACK": "Last Anxiety Attack",
+    "LAST_ATTACK_DATE": "Monday, November 3",
+    "DAYS_WITHOUT_ATTACKS": "Days Without Attacks",
+    "DAYS_38": "38",
+    "ANXIETY_LEVEL_PROGRESS_CHART": "Anxiety Level Progress Chart",
+    "PER_SESSION": "Per Session",
+    "RECORDED_ATTACKS_HISTORY": "Recorded Attacks History",
+    "BY_DATE": "By Date"
+}
+
 }

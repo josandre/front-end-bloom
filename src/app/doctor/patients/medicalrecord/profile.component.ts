@@ -1,11 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from "@angular/material/table";
-import { SelectionModel } from '@angular/cdk/collections';
 import { MatDialog } from '@angular/material/dialog';
 
 import { FormControl, Validators } from '@angular/forms';
@@ -26,30 +22,17 @@ import { MedicalhistoryDialogComponent } from './medicalhistory-dialog/medicalhi
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  @ViewChild('autosize') autosize: CdkTextareaAutosize;
-
   medicalRecord: MedicalRecord | undefined;
   medicalRecordId: number;
+  medicalHistories: MedicalHistory[] | undefined;
   patient: Patient | undefined;
   anxieties: Set<string>;
   anxitiesControl: FormControl;
+
+  @ViewChild('autosize') autosize: CdkTextareaAutosize;
   familyMedicalHistoryControl: FormControl;
 
-  dataSource: MatTableDataSource<MedicalHistory> = new MatTableDataSource<MedicalHistory>([]);
-
-  displayedColumns = [
-    'appointmentDate'
-  ];
-
-  selection = new SelectionModel<MedicalHistory>(true, []);
-  index?: number;
-  id?: number;
-  medicalHistory?: MedicalHistory;
-
-  @ViewChild(MatPaginator, { static: true })
-  paginator!: MatPaginator;
-  @ViewChild(MatSort, { static: true })
-  sort!: MatSort;
+  panelOpenState = false;
 
   constructor(public medicalRecordService: MedicalRecordService,
     public anxietyTypeService: AnxietyTypeService,
@@ -80,8 +63,10 @@ export class ProfileComponent implements OnInit {
         data => {
           this.medicalRecord = data;
           this.medicalRecordId = this.medicalRecord.id;
+          this.medicalHistories = this.medicalRecord.medicalHistories;
+
+          console.log(this.medicalHistories);
           this.familyMedicalHistoryControl.setValue(this.medicalRecord.familyMedicalHistory);
-          this.dataSource = new MatTableDataSource<MedicalHistory>(this.medicalRecord?.medicalHistories);
 
           this.medicalRecord.anxietyTypes.forEach((anxiety => {
             this.anxieties.add(anxiety.anxietyType);
@@ -181,7 +166,6 @@ export class ProfileComponent implements OnInit {
 
       this.medicalRecordService.updateMedicalRecord(medicalRecord, this.medicalRecordId)
         .subscribe((response) => {
-
           switch (response) {
             case 200: {
               this.openSnackBar("Family medical history updated", "Close");
@@ -207,7 +191,6 @@ export class ProfileComponent implements OnInit {
     let filterText: string = filterValue.value
     filterText = filterText.trim();
     filterText = filterText.toLowerCase()
-    this.dataSource.filter = filterText;
   }
 
   openSnackBar(message: string, action: string) {

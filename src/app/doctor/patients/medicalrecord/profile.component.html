@@ -1,4 +1,4 @@
-<section class="content" [(ngModel)]="medicalRecord" [(ngModel)]="patient">
+<section class="content">
   <div *ngIf="medicalRecord != null && patient != null;">
     <div class="content-block">
       <div class="block-header">
@@ -87,63 +87,59 @@
                   <mat-icon class="example-tab-icon msr-2">folder</mat-icon>
                   Medical History
                 </ng-template>
-
-
-                <div class="materialTableHeader">
-                  <div class="left">
-                    <ul class="header-buttons-left ms-0">
-                      <li class="tbl-title">
-                        <h2>Search</h2>
-                      </li>
-                      <li class="tbl-search-box">
-                        <label for="search-input"><i class="material-icons search-icon">search</i></label>
-                        <input placeholder="Search" type="text" (keyup)="applyFilter($event.target)"
-                          class="browser-default search-field" aria-label="Search box">
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="right">
-                  </div>
+                <div *ngFor="let medicalHistory of medicalHistories">
+                  <ng-container>
+                    <mat-accordion class="w-100">
+                      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                            <div class="header">
+                              <h2><strong>Appointment Date</strong></h2>
+                            </div>
+                          </mat-panel-title>
+                          <mat-panel-description>
+                            {{ medicalHistory.creationDate | date:'fullDate' }}
+                          </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                          <div class="project_widget">
+                            <div class="header">
+                              <h2><strong>Notes</strong></h2>
+                            </div>
+                            <div class="body">
+                              <ul>
+                                <li><strong>Anxiety level:</strong> {{ medicalHistory.anxietyLevel }}</li>
+                                <li><strong>Observations:</strong> {{ medicalHistory.observations }}</li>
+                                <li><strong>Treatment started on:</strong> {{ medicalHistory.treatmentEndDate |
+                                  date:'fullDate' }}</li>
+                                <li><strong>Treatment ended on:</strong> {{ medicalHistory.treatmentEndDate |
+                                  date:'fullDate' }}</li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                          <div class="project_widget">
+                            <div class="header">
+                              <h2><strong>Recipe</strong></h2>
+                            </div>
+                            <div class="body">
+                              <ul>
+                                <li><strong>Name:</strong> {{ medicalHistory.medicalRecipe.name }}</li>
+                                <li><strong>Indications:</strong> {{ medicalHistory.medicalRecipe.indications }}</li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </mat-expansion-panel>
+                    </mat-accordion>
+                  </ng-container>
                 </div>
-
-                <div class="body overflow-hidden">
-                  <div class="responsive_table">
-                    <table mat-table [dataSource]="dataSource" matSort class="mat-cell advance-table w-100">
-                      <!-- ID Column -->
-                      <ng-container matColumnDef="id">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
-                        <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
-                      </ng-container>
-
-                      <!-- Appointment Date Column -->
-                      <ng-container matColumnDef="appointmentDate">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header>Appointment Date</mat-header-cell>
-                        <mat-cell *matCellDef="let row"> <span class="mobile-label">Appointment
-                            Date:</span>{{ row.creationDate | date:'fullDate' }}</mat-cell>
-                      </ng-container>
-
-                      <!-- actions -->
-                      <ng-container matColumnDef="actions">
-                        <mat-header-cell *matHeaderCellDef [ngClass]="'px-3'">State</mat-header-cell>
-                        <mat-cell *matCellDef="let row; let i=index;" class="px-3">
-                          <mat-slide-toggle [(ngModel)]="row.active" toggle="row.active" class="tbl-action-btn"
-                            color="primary">
-                          </mat-slide-toggle>
-                        </mat-cell>
-                      </ng-container>
-
-                      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                      <!-- <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row> -->
-                      <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openMedicalHistory(row)"
-                        [style.cursor]="'pointer'" matRipple>
-                      </mat-row>
-                    </table>
-
-                    <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10"
-                      [pageSizeOptions]="[5, 10, 25, 100]">
-                    </mat-paginator>
+                <ng-container class="no-results" *ngIf="medicalHistories?.length == 0">
+                  <div class="col-lg-12 col-md-12 col-sm-12">
+                  <p class="text-muted pt-5 pr-3">No appointments registered.</p>
                   </div>
-                </div>
+                </ng-container>
               </mat-tab>
             </mat-tab-group>
           </div>

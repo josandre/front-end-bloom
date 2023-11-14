@@ -1,4 +1,4 @@
-<section [(ngModel)]="data.medicalHistory" class="w-100 msr-2">
+<section class="w-20 msr-2">
   <div class="col-lg-12 col-md-12 col-sm-12">
     <div class="project_widget">
       <div class="header">
@@ -22,10 +22,8 @@
       </div>
       <div class="body">
         <ul>
-          <li><strong>Anxiety level:</strong> {{ data.medicalHistory.anxietyLevel }}</li>
-          <li><strong>Observations:</strong> {{ data.medicalHistory.observations }}</li>
-          <li><strong>Treatment started on:</strong> {{ data.medicalHistory.treatmentEndDate | date:'fullDate' }}</li>
-          <li><strong>Treatment ended on:</strong> {{ data.medicalHistory.treatmentEndDate | date:'fullDate' }}</li>
+          <li><strong>Name:</strong> {{ data.medicalHistory.medicalRecipe.name }}</li>
+          <li><strong>Indications:</strong> {{ data.medicalHistory.medicalRecipe.indications }}</li>
         </ul>
       </div>
     </div>

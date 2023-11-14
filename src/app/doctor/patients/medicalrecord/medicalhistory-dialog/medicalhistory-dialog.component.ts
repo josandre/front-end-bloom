@@ -2,7 +2,6 @@ import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 import { MedicalHistory } from '../model/MedicalHistory';
-import { MedicalRecipe } from '../model/MedicalRecipe';
 
 export interface DialogData {
   medicalHistory: MedicalHistory;

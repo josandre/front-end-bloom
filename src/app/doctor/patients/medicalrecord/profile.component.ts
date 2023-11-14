@@ -83,8 +83,6 @@ export class ProfileComponent implements OnInit {
           this.familyMedicalHistoryControl.setValue(this.medicalRecord.familyMedicalHistory);
           this.dataSource = new MatTableDataSource<MedicalHistory>(this.medicalRecord?.medicalHistories);
 
-          console.log(this.medicalRecordId);
-
           this.medicalRecord.anxietyTypes.forEach((anxiety => {
             this.anxieties.add(anxiety.anxietyType);
           }));
@@ -174,13 +172,8 @@ export class ProfileComponent implements OnInit {
   }
 
   updateMedicalRecord(): void {
-    this.familyMedicalHistoryControl.disable();
-
-    if (this.familyMedicalHistoryControl.value === this.medicalRecord?.familyMedicalHistory) {
-      return;
-    }
-
     if (this.familyMedicalHistoryControl.valid) {
+      this.familyMedicalHistoryControl.disable();
 
       const medicalRecord: MedicalRecord = new MedicalRecord({
         familyMedicalHistory: this.familyMedicalHistoryControl.value
@@ -188,6 +181,7 @@ export class ProfileComponent implements OnInit {
 
       this.medicalRecordService.updateMedicalRecord(medicalRecord, this.medicalRecordId)
         .subscribe((response) => {
+
           switch (response) {
             case 200: {
               this.openSnackBar("Family medical history updated", "Close");

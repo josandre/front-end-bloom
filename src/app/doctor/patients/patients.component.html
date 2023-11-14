@@ -1,5 +1,5 @@
 <section class="content">
-  <div class="content-block">
+  <div class="content-block" *ngIf="patients != null">
     <div class="block-header section-header">
 
       <app-breadcrumb [title]="'Patients'" [items]="[]" [active_item]="'Patients'"></app-breadcrumb>
@@ -27,10 +27,17 @@
           <div class="d-flex justify-content-between px-3 px-md-4">
           </div>
           <hr class="light-hr">
-          <div class="d-flex justify-content-around px-4"> <button mat-stroked-button color="primary">Read
-              More</button></div>
+          <div class="d-flex justify-content-around px-4">
+            <button mat-stroked-button color="primary" routerLink="/doctor/medical-record/{{ patient.id }}">
+              See Medical Record
+            </button>
+          </div>
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="center" *ngIf="patients == null">
+    <mat-spinner></mat-spinner>
   </div>
 </section>

@@ -17,7 +17,10 @@ import { SettingsComponent } from './settings/settings.component';
 import { AppointmentsService } from './appointments/appointments.service';
 import { ComponentsModule } from '@shared/components/components.module';
 import { SharedModule } from '@shared';
-import { SignupPatientComponent } from "./patients/signupPatient/signup-patient.component";
+import {SignupPatientComponent} from "./patients/signupPatient/signup-patient.component";
+import { ProfileComponent } from './patients/medicalrecord/profile.component';
+import { MedicalhistoryDialogComponent } from './patients/medicalrecord/medicalhistory-dialog/medicalhistory-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -28,6 +31,8 @@ import { SignupPatientComponent } from "./patients/signupPatient/signup-patient.
     DoctorsComponent,
     PatientsComponent,
     SettingsComponent,
+    ProfileComponent,
+    MedicalhistoryDialogComponent
   ],
   imports: [
     CommonModule,

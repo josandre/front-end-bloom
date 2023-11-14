@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {API_URL} from "../../../../config";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Patient} from "../models/Patient";
+import {Patient} from "../model/Patient";
 import {Observable} from "rxjs";
 import {AuthService} from "@core";
 

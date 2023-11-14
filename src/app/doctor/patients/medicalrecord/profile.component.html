@@ -1,0 +1,157 @@
+<section class="content" [(ngModel)]="medicalRecord" [(ngModel)]="patient">
+  <div *ngIf="medicalRecord != null && patient != null;">
+    <div class="content-block">
+      <div class="block-header">
+        <!-- breadcrumb -->
+        <app-breadcrumb [title]="'Profile'" [items]="['Extra']" [active_item]="'Profile'"></app-breadcrumb>
+      </div>
+      <!-- Your content goes here  -->
+      <div class="row clearfix">
+        <div class="col-lg-4 col-md-12">
+          <div class="card">
+            <div class="m-b-20">
+              <div class="contact-grid">
+                <div class="profile-header bg-blue pt-3">
+                  <div class="user-name">{{ patient.name }} {{ patient.lastName }}</div>
+                  <div class="name-center">{{ patient.email }}</div>
+                </div>
+                <img src="assets/images/user/usrbig3.jpg" class="user-img" alt="">
+                <p>
+                  {{ patient.address }}
+                </p>
+                <div>
+                  <span class="phone">
+                    <i class="material-icons">phone</i>{{ patient.phone }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="card">
+            <mat-tab-group mat-align-tabs="start">
+
+              <!-- Family medical record -->
+              <mat-tab label="Family Medical History">
+                <div class="p-4">
+                  <form class="example-form validate-form">
+                    <mat-form-field class="example-full-width" appearance="fill">
+                      <textarea matInput [formControl]="familyMedicalHistoryControl" cdkTextareaAutosize
+                        #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+                    </mat-form-field>
+                    <div class="example-button-container">
+                      <button mat-mini-fab color="primary"
+                        (click)="familyMedicalHistoryControl.enable()"><mat-icon>edit</mat-icon></button>
+                      <button mat-raised-button *ngIf="isFormEnabled(familyMedicalHistoryControl)"
+                        (click)="updateMedicalRecord()">Save</button>
+                    </div>
+                  </form>
+                </div>
+              </mat-tab>
+
+              <!-- Anxieties -->
+              <mat-tab label="Anxieties">
+                <div class="p-4">
+                  <form>
+                    <mat-form-field class="example-chip-list" appearance="fill">
+                      <mat-label>{{ patient.name }}'s anxieties</mat-label>
+                      <mat-chip-list #chipList aria-label="anxieties" multiple [formControl]="anxitiesControl">
+                        <mat-chip *ngFor="let anxiety of anxieties" [selected]="anxiety" [value]="anxiety"
+                          (removed)="removeAnxietyType(anxiety)">
+                          {{ anxiety }}
+                        </mat-chip>
+                        <input placeholder="New anxiety type..." [matChipInputFor]="chipList"
+                          (matChipInputTokenEnd)="addAnxietyTypeFromInput($event)">
+                      </mat-chip-list>
+                    </mat-form-field>
+                    <div class="example-button-container">
+                      <button mat-mini-fab color="primary"
+                        (click)="anxitiesControl.enable()"><mat-icon>edit</mat-icon></button>
+                      <button mat-raised-button *ngIf="isFormEnabled(anxitiesControl)"
+                        (click)="anxitiesControl.disable()">Quit</button>
+                    </div>
+                  </form>
+                </div>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+          <p class="font-italic text-muted">
+            Updated {{ medicalRecord.lastUpdate| date:'medium' }}
+          </p>
+        </div>
+        <div class="col-lg-8 col-md-12">
+          <div class="card">
+            <mat-tab-group>
+              <mat-tab>
+                <ng-template mat-tab-label>
+                  <mat-icon class="example-tab-icon msr-2">folder</mat-icon>
+                  Medical History
+                </ng-template>
+
+
+                <div class="materialTableHeader">
+                  <div class="left">
+                    <ul class="header-buttons-left ms-0">
+                      <li class="tbl-title">
+                        <h2>Search</h2>
+                      </li>
+                      <li class="tbl-search-box">
+                        <label for="search-input"><i class="material-icons search-icon">search</i></label>
+                        <input placeholder="Search" type="text" (keyup)="applyFilter($event.target)"
+                          class="browser-default search-field" aria-label="Search box">
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="right">
+                  </div>
+                </div>
+
+                <div class="body overflow-hidden">
+                  <div class="responsive_table">
+                    <table mat-table [dataSource]="dataSource" matSort class="mat-cell advance-table w-100">
+                      <!-- ID Column -->
+                      <ng-container matColumnDef="id">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+                        <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+                      </ng-container>
+
+                      <!-- Appointment Date Column -->
+                      <ng-container matColumnDef="appointmentDate">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Appointment Date</mat-header-cell>
+                        <mat-cell *matCellDef="let row"> <span class="mobile-label">Appointment
+                            Date:</span>{{ row.creationDate | date:'fullDate' }}</mat-cell>
+                      </ng-container>
+
+                      <!-- actions -->
+                      <ng-container matColumnDef="actions">
+                        <mat-header-cell *matHeaderCellDef [ngClass]="'px-3'">State</mat-header-cell>
+                        <mat-cell *matCellDef="let row; let i=index;" class="px-3">
+                          <mat-slide-toggle [(ngModel)]="row.active" toggle="row.active" class="tbl-action-btn"
+                            color="primary">
+                          </mat-slide-toggle>
+                        </mat-cell>
+                      </ng-container>
+
+                      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                      <!-- <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row> -->
+                      <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openMedicalHistory(row)"
+                        [style.cursor]="'pointer'" matRipple>
+                      </mat-row>
+                    </table>
+
+                    <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10"
+                      [pageSizeOptions]="[5, 10, 25, 100]">
+                    </mat-paginator>
+                  </div>
+                </div>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="center" *ngIf="medicalRecord == null && patient == null">
+    <mat-spinner></mat-spinner>
+  </div>
+</section>

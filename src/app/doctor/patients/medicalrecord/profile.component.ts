@@ -22,7 +22,7 @@ import { MedicalhistoryDialogComponent } from './medicalhistory-dialog/medicalhi
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  medicalRecord: MedicalRecord | undefined;
+  medicalRecord?: MedicalRecord | undefined;
   medicalRecordId: number;
   medicalHistories: MedicalHistory[] | undefined;
   patient: Patient | undefined;
@@ -33,6 +33,9 @@ export class ProfileComponent implements OnInit {
   familyMedicalHistoryControl: FormControl;
 
   panelOpenState = false;
+
+  pageSize = 8;
+  currentPage = 1;
 
   constructor(public medicalRecordService: MedicalRecordService,
     public anxietyTypeService: AnxietyTypeService,
@@ -158,7 +161,13 @@ export class ProfileComponent implements OnInit {
 
   updateMedicalRecord(): void {
     if (this.familyMedicalHistoryControl.valid) {
+      let familyMedicalHistoryHasChanged: boolean = this.medicalRecord?.familyMedicalHistory != this.familyMedicalHistoryControl.value;
+
       this.familyMedicalHistoryControl.disable();
+  
+      if (!familyMedicalHistoryHasChanged) {
+        return;
+      }
 
       const medicalRecord: MedicalRecord = new MedicalRecord({
         familyMedicalHistory: this.familyMedicalHistoryControl.value
@@ -166,6 +175,7 @@ export class ProfileComponent implements OnInit {
 
       this.medicalRecordService.updateMedicalRecord(medicalRecord, this.medicalRecordId)
         .subscribe((response) => {
+          this.medicalRecord!.familyMedicalHistory = this.familyMedicalHistoryControl.value;
           switch (response) {
             case 200: {
               this.openSnackBar("Family medical history updated", "Close");
@@ -173,6 +183,7 @@ export class ProfileComponent implements OnInit {
             }
           }
         }, error => {
+          console.log(error);
           this.openSnackBar("Something went wrong while trying to update medical record", "Try again");
         })
     }
@@ -185,6 +196,12 @@ export class ProfileComponent implements OnInit {
           medicalHistory: row 
         } 
       });
+  }
+
+  get paginatedItems() {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    return this.medicalHistories?.slice(startIndex, endIndex);
   }
 
   applyFilter(filterValue: any) {

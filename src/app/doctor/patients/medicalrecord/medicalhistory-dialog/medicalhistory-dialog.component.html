@@ -1,31 +1,116 @@
-<section class="w-20 msr-2">
-  <div class="col-lg-12 col-md-12 col-sm-12">
-    <div class="project_widget">
-      <div class="header">
-        <h1><strong>Taken on {{ data.medicalHistory.creationDate | date:'fullDate' }} </strong></h1>
-        <h2><strong>Notes</strong></h2>
-      </div>
-      <div class="body">
-        <ul>
-          <li><strong>Anxiety level:</strong> {{ data.medicalHistory.anxietyLevel }}</li>
-          <li><strong>Observations:</strong> {{ data.medicalHistory.observations }}</li>
-          <li><strong>Treatment started on:</strong> {{ data.medicalHistory.treatmentEndDate | date:'fullDate' }}</li>
-          <li><strong>Treatment ended on:</strong> {{ data.medicalHistory.treatmentEndDate | date:'fullDate' }}</li>
-        </ul>
+<div class="addContainer">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+        <div class="modal-about">
+          {{dialogTitle}}
+        </div>
       </div>
     </div>
   </div>
-  <div class="col-lg-12 col-md-12 col-sm-12">
-    <div class="project_widget">
-      <div class="header">
-        <h2><strong>Recipe</strong></h2>
+  <div mat-dialog-content>
+    <form class="register-form m-4" [formGroup]="medicalHistoryForm" (ngSubmit)="submit">
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Observations</mat-label>
+            <textarea matInput formControlName="observations" required></textarea>
+            <mat-error *ngIf="medicalHistoryForm.get('observations')?.hasError('required')">
+              Please write observations
+            </mat-error>
+          </mat-form-field>
+        </div>
       </div>
-      <div class="body">
-        <ul>
-          <li><strong>Name:</strong> {{ data.medicalHistory.medicalRecipe.name }}</li>
-          <li><strong>Indications:</strong> {{ data.medicalHistory.medicalRecipe.indications }}</li>
-        </ul>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Treatment starts on</mat-label>
+            <input matInput [matDatepicker]="treatmentStartDatePicker" formControlName="treatmentStartDate" required>
+            <mat-datepicker-toggle matSuffix [for]="treatmentStartDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #treatmentStartDatePicker></mat-datepicker>
+            <mat-error *ngIf="medicalHistoryForm.get('treatmentStartDate')?.hasError('required')">
+              Please select a date
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Treatment ends on</mat-label>
+            <input matInput [matDatepicker]="treatmentEndDatePicker" formControlName="treatmentEndDate" required>
+            <mat-datepicker-toggle matSuffix [for]="treatmentEndDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #treatmentEndDatePicker></mat-datepicker>
+            <mat-error *ngIf="medicalHistoryForm.get('treatmentEndDate')?.hasError('required')">
+              Please select a date
+            </mat-error>
+          </mat-form-field>
+        </div>
       </div>
-    </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width " appearance="outline">
+            <mat-label>Anxiety level detected</mat-label>
+            <mat-select formControlName="anxietyLevel" required>
+              <mat-option [value]="0">
+                Minimal
+              </mat-option>
+              <mat-option [value]="1">
+                Mild
+              </mat-option>
+              <mat-option [value]="2">
+                Moderate
+              </mat-option>
+              <mat-option [value]="3">
+                Severe
+              </mat-option>
+              <mat-option [value]="4">
+                Debilitating
+              </mat-option>
+              <mat-option [value]="5">
+                Indeterminate
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="medicalHistoryForm.get('anxietyLevel')?.hasError('required')">
+              Anxiety level is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <mat-divider class="p-3"></mat-divider>
+      <div class="pb-3">
+        <mat-label class="text-muted">Recipe</mat-label>
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" required>
+            <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>face</mat-icon>
+            <mat-error *ngIf="medicalHistoryForm.get('name')?.hasError('required')">
+              Name is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Indications</mat-label>
+            <textarea matInput formControlName="indications" required></textarea>
+            <mat-error *ngIf="medicalHistoryForm.get('indications')?.hasError('required')">
+              Please write indications
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <div class="example-button-row">
+            <button mat-raised-button color="primary" [disabled]="!medicalHistoryForm.valid" [mat-dialog-close]="1"
+              (click)="confirmAdd()">Save</button>
+            <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </form>
   </div>
-</section>
+</div>

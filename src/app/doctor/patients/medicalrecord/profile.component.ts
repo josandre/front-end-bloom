@@ -22,7 +22,8 @@ import { MedicalhistoryDialogComponent } from './medicalhistory-dialog/medicalhi
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  medicalRecord?: MedicalRecord | undefined;
+  medicalRecord: MedicalRecord | undefined;
+  medicalHistory: MedicalHistory | undefined;
   medicalRecordId: number;
   medicalHistories: MedicalHistory[] | undefined;
   patient: Patient | undefined;
@@ -189,13 +190,14 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  openMedicalHistory(row: MedicalHistory) {
-    this.dialog.open(MedicalhistoryDialogComponent, 
-      { data: 
-        { 
-          medicalHistory: row 
-        } 
-      });
+  addMedicalHistory() {
+    this.dialog.open(MedicalhistoryDialogComponent, {
+      data: {
+        id: this.medicalRecordId,
+        patient: this.medicalHistory,
+        action: 'add',
+      },
+    });
   }
 
   get paginatedItems() {

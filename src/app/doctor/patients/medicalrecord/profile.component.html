@@ -37,12 +37,15 @@
                   <form class="example-form validate-form">
                     <mat-form-field class="example-full-width" appearance="fill">
                       <textarea matInput [formControl]="familyMedicalHistoryControl" cdkTextareaAutosize
-                        #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+                        #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" required></textarea>
+                        <mat-error *ngIf="familyMedicalHistoryControl?.hasError('required')">
+                          Value is required *
+                        </mat-error>
                     </mat-form-field>
-                    <div class="example-button-container">
+                    <div class="example-button-container pt-2">
                       <button mat-mini-fab color="primary"
                         (click)="familyMedicalHistoryControl.enable()"><mat-icon>edit</mat-icon></button>
-                      <button mat-raised-button *ngIf="isFormEnabled(familyMedicalHistoryControl)"
+                      <button mat-raised-button [disabled]="!familyMedicalHistoryControl.valid" *ngIf="isFormEnabled(familyMedicalHistoryControl)"
                         (click)="updateMedicalRecord()">Save</button>
                     </div>
                   </form>
@@ -86,20 +89,12 @@
                 <ng-template mat-tab-label>
                   <mat-icon class="example-tab-icon msr-2">folder</mat-icon>
                   Medical History
-
                 </ng-template>
-
-
                 <div>
                   <mat-paginator [pageSize]="pageSize" [length]="medicalHistories?.length"
                     (page)="currentPage = $event.pageIndex + 1">
                   </mat-paginator>
                 </div>
-
-
-
-
-
                 <div *ngFor="let medicalHistory of paginatedItems">
                   <ng-container>
                     <mat-accordion class="w-100">
@@ -123,7 +118,7 @@
                               <ul>
                                 <li><strong>Anxiety level:</strong> {{ medicalHistory.anxietyLevel }}</li>
                                 <li><strong>Observations:</strong> {{ medicalHistory.observations }}</li>
-                                <li><strong>Treatment started on:</strong> {{ medicalHistory.treatmentEndDate |
+                                <li><strong>Treatment started on:</strong> {{ medicalHistory.treatmentStartDate |
                                   date:'fullDate' }}</li>
                                 <li><strong>Treatment ended on:</strong> {{ medicalHistory.treatmentEndDate |
                                   date:'fullDate' }}</li>
@@ -157,7 +152,7 @@
               </mat-tab>
             </mat-tab-group>
             <div class="m-l-10 p-3">
-              <button mat-mini-fab color="primary" class="right">
+              <button mat-mini-fab color="primary" class="right" (click)="addMedicalHistory()">
                 <mat-icon class="col-white">add</mat-icon>
               </button>
             </div>

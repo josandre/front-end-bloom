@@ -1,0 +1,15 @@
+.selected-mark {
+    width: 30px;
+    height: 30px;
+    background-color: #00000069;
+    border-radius: 100%;
+    margin: 2px;
+}
+
+.check-image {
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-image: url(/assets/images/games/selected-background.png);
+    
+}

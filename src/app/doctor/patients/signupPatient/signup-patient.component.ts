@@ -1,7 +1,7 @@
 import { Component, OnInit} from "@angular/core";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {PatientService} from "../services/Patient.service";
-import {Patient} from "../models/Patient";
+import {PatientService} from "../service/Patient.service";
+import {Patient} from "../model/Patient";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AuthService} from "@core";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -75,6 +75,8 @@ export class SignupPatientComponent implements OnInit{
       console.log(patient)
 
       this.patientService.registerPatient(patient).subscribe((res) => {
+        console.log(res)
+
         switch (res) {
           case 200:{
             this.openSnackBar("Patient added", "Close")

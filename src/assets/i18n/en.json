@@ -147,6 +147,7 @@
       "YOUR-SCORE": "Your Score",
       "NO-SCORES": "No scores available",
       "START-NEW-GAME": "Start New Game",
+      "RESTART": "Restart",
       "GO-BACK": "Go Back",
       "DIFFICULTIES": {
         "VERY-EASY": "Very easy",
@@ -161,7 +162,8 @@
       },
       "PUZZLE-GAME": {
         "TITLE": "Puzzle Game",
-        "DESCRIPTION": "Test your agility in this puzzle game"
+        "DESCRIPTION": "Test your agility in this puzzle game",
+        "SELECT-BACKGROUND": "Select Background"
       }
     },
     "RESOURCES": {

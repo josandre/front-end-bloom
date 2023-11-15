@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { Patient } from './models/Patient';
-import { SpecialistService } from './services/specialist.service';
+import { Patient } from './model/Patient';
+import { SpecialistService } from './service/specialist.service';
 
 @Component({
   selector: 'app-patients',
@@ -11,7 +11,7 @@ export class PatientsComponent implements OnInit{
   constructor(public specialistService: SpecialistService) {}
 
   patients: Patient[];
-  flag: boolean = false;
+
   ngOnInit(): void {
     this.getAllPatients();
   }
@@ -21,11 +21,9 @@ export class PatientsComponent implements OnInit{
       .subscribe(
         data => {
           this.patients = data;
-          console.log(data);
-          this.flag = true;
         },
         error => {
-          console.log(error);
+          console.log(error.status);
         });
   }
 }

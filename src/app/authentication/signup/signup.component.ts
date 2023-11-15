@@ -10,6 +10,8 @@ import {Specialist} from "./models/Specialist";
 import {SpecialistService} from "./services/Specialist.service";
 import {User} from "./models/User";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {UploadFileService} from "./services/upload-file.service";
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -26,7 +28,53 @@ export class SignupComponent implements OnInit {
     {value: 'psychology', viewValue: 'psychology'},
   ];
 
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private userService: SpecialistService, private snackBar: MatSnackBar) {}
+  selectedFiles: FileList | null;
+  currentFileUpload: File | null | undefined;
+  progress: { percentage: number } = { percentage: 0 };
+  selectedFile = null;
+  changeImage = false;
+  file:string;
+
+  // @ts-ignore
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private userService: SpecialistService, private snackBar: MatSnackBar,
+  private uploadService: UploadFileService, private https:HttpClient) {}
+
+  viewFile(){
+    window.open('https://bucketName.s3.cloudLocation.amazonaws.com/'+this.file);
+  }
+
+  deleteFile()
+  {
+    this.https.post<string>('http://localhost:8080/deleteFile',this.file).subscribe(
+      res => {
+        this.file = res;
+      }
+    );
+  }
+
+  change(event: any) {
+    this.changeImage = true;
+  }
+
+  changedImage(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+
+  upload() {
+    this.progress.percentage = 0;
+    this.currentFileUpload = this.selectedFiles?.item(0);
+
+    if(this.currentFileUpload) {
+      this.uploadService.pushFileToStorage(this.currentFileUpload).subscribe(event => {
+        this.selectedFiles = null;
+      });
+    }
+  }
+
+  selectFile(event: any) {
+    this.selectedFiles = event.target.files;
+  }
+
 
   ngOnInit() {
     this.authForm = this.formBuilder.group({

@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
-import { ComposeComponent } from "./compose.component";
+import { ComposeResourceComponent } from "./compose.component";
 describe("ComposeComponent", () => {
-  let component: ComposeComponent;
-  let fixture: ComponentFixture<ComposeComponent>;
+  let component: ComposeResourceComponent;
+  let fixture: ComponentFixture<ComposeResourceComponent>;
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        declarations: [ComposeComponent],
+        declarations: [ComposeResourceComponent],
       }).compileComponents();
     })
   );
   beforeEach(() => {
-    fixture = TestBed.createComponent(ComposeComponent);
+    fixture = TestBed.createComponent(ComposeResourceComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,5 +1,5 @@
-import { AnxietyLevel } from "./AnxietyLevel";
 import { MedicalRecipe } from "./MedicalRecipe";
+import {AnxietyLevel} from "./AnxietyLevel";
 
 export class MedicalHistory {
   id: number;

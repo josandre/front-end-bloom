@@ -205,6 +205,15 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  updateMedicalHistory(medicalHistoryUpdate: MedicalHistory) {
+    this.dialog.open(MedicalhistoryDialogComponent, {
+      data: {
+        medicalHistory: medicalHistoryUpdate,
+        action: 'edit',
+      },
+    });
+  }
+
   deleteMedicalHistory(medicalHistoryId: number) {
     this.dialog.open(DeleteMedicalhistoryDialogComponent, {
       data: {id: medicalHistoryId},

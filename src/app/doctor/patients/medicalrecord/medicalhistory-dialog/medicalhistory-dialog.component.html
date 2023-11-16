@@ -50,24 +50,7 @@
           <mat-form-field class="example-full-width " appearance="outline">
             <mat-label>Anxiety level detected</mat-label>
             <mat-select formControlName="anxietyLevel" required>
-              <mat-option [value]="0">
-                Minimal
-              </mat-option>
-              <mat-option [value]="1">
-                Mild
-              </mat-option>
-              <mat-option [value]="2">
-                Moderate
-              </mat-option>
-              <mat-option [value]="3">
-                Severe
-              </mat-option>
-              <mat-option [value]="4">
-                Debilitating
-              </mat-option>
-              <mat-option [value]="5">
-                Indeterminate
-              </mat-option>
+              <mat-option *ngFor="let anxietyLevel of anxietyLevelOptions" [value]="anxietyLevel">{{ anxietyLevel }}</mat-option>
             </mat-select>
             <mat-error *ngIf="medicalHistoryForm.get('anxietyLevel')?.hasError('required')">
               Anxiety level is required
@@ -106,7 +89,7 @@
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
           <div class="example-button-row">
             <button mat-raised-button color="primary" [disabled]="!medicalHistoryForm.valid" [mat-dialog-close]="1"
-              (click)="confirmAdd()">Save</button>
+              (click)="confirmAction()">Save</button>
             <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
           </div>
         </div>

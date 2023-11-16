@@ -5,7 +5,6 @@ import { MedicalHistory } from "./MedicalHistory";
 export class MedicalRecord {
   id: number;
   familyMedicalHistory: string;
-  creationDate: Date;
   lastUpdate: Date;
   patient: Patient;
   medicalHistories: MedicalHistory[];

@@ -1,5 +1,5 @@
 <section class="content">
-  <div *ngIf="medicalRecord != null && patient != null;">
+  <div *ngIf="medicalRecord !== undefined || patient !== undefined;">
     <div class="content-block">
       <div class="block-header">
         <!-- breadcrumb -->
@@ -12,16 +12,16 @@
             <div class="m-b-20">
               <div class="contact-grid">
                 <div class="profile-header bg-blue pt-3">
-                  <div class="user-name">{{ patient.name }} {{ patient.lastName }}</div>
-                  <div class="name-center">{{ patient.email }}</div>
+                  <div class="user-name">{{ patient?.name }} {{ patient?.lastName }}</div>
+                  <div class="name-center">{{ patient?.email }}</div>
                 </div>
                 <img src="assets/images/user/usrbig3.jpg" class="user-img" alt="">
                 <p>
-                  {{ patient.address }}
+                  {{ patient?.address }}
                 </p>
                 <div>
                   <span class="phone">
-                    <i class="material-icons">phone</i>{{ patient.phone }}</span>
+                    <i class="material-icons">phone</i>{{ patient?.phone }}</span>
                 </div>
               </div>
             </div>
@@ -37,16 +37,21 @@
                   <form class="example-form validate-form">
                     <mat-form-field class="example-full-width" appearance="fill">
                       <textarea matInput [formControl]="familyMedicalHistoryControl" cdkTextareaAutosize
-                        #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" required></textarea>
-                        <mat-error *ngIf="familyMedicalHistoryControl?.hasError('required')">
-                          Value is required *
-                        </mat-error>
+                                #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                                required></textarea>
+                      <mat-error *ngIf="familyMedicalHistoryControl?.hasError('required')">
+                        Value is required *
+                      </mat-error>
                     </mat-form-field>
                     <div class="example-button-container pt-2">
                       <button mat-mini-fab color="primary"
-                        (click)="familyMedicalHistoryControl.enable()"><mat-icon>edit</mat-icon></button>
-                      <button mat-raised-button [disabled]="!familyMedicalHistoryControl.valid" *ngIf="isFormEnabled(familyMedicalHistoryControl)"
-                        (click)="updateMedicalRecord()">Save</button>
+                              (click)="familyMedicalHistoryControl.enable()">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                      <button mat-raised-button [disabled]="!familyMedicalHistoryControl.valid"
+                              *ngIf="isFormEnabled(familyMedicalHistoryControl)"
+                              (click)="updateMedicalRecord()">Save
+                      </button>
                     </div>
                   </form>
                 </div>
@@ -57,21 +62,24 @@
                 <div class="p-4">
                   <form>
                     <mat-form-field class="example-chip-list" appearance="fill">
-                      <mat-label>{{ patient.name }}'s anxieties</mat-label>
+                      <mat-label>{{ patient?.name }}'s anxieties</mat-label>
                       <mat-chip-list #chipList aria-label="anxieties" multiple [formControl]="anxitiesControl">
-                        <mat-chip *ngFor="let anxiety of anxieties" [selected]="anxiety" [value]="anxiety"
-                          (removed)="removeAnxietyType(anxiety)">
+                        <mat-chip color="primary" *ngFor="let anxiety of anxieties" [value]="anxiety"
+                                  (removed)="removeAnxietyType(anxiety)" selected>
                           {{ anxiety }}
                         </mat-chip>
                         <input placeholder="New anxiety type..." [matChipInputFor]="chipList"
-                          (matChipInputTokenEnd)="addAnxietyTypeFromInput($event)">
+                               (matChipInputTokenEnd)="addAnxietyTypeFromInput($event)">
                       </mat-chip-list>
                     </mat-form-field>
                     <div class="example-button-container">
                       <button mat-mini-fab color="primary"
-                        (click)="anxitiesControl.enable()"><mat-icon>edit</mat-icon></button>
+                              (click)="anxitiesControl.enable()">
+                        <mat-icon>edit</mat-icon>
+                      </button>
                       <button mat-raised-button *ngIf="isFormEnabled(anxitiesControl)"
-                        (click)="anxitiesControl.disable()">Quit</button>
+                              (click)="anxitiesControl.disable()">Quit
+                      </button>
                     </div>
                   </form>
                 </div>
@@ -79,7 +87,7 @@
             </mat-tab-group>
           </div>
           <p class="font-italic text-muted">
-            Updated {{ medicalRecord.lastUpdate| date:'medium' }}
+            Updated {{ medicalRecord?.lastUpdate| date:'medium' }}
           </p>
         </div>
         <div class="col-lg-8 col-md-12">
@@ -92,8 +100,11 @@
                 </ng-template>
                 <div>
                   <mat-paginator [pageSize]="pageSize" [length]="medicalHistories?.length"
-                    (page)="currentPage = $event.pageIndex + 1">
+                                 (page)="currentPage = $event.pageIndex + 1">
                   </mat-paginator>
+                </div>
+                <div class="px-3 text-muted">
+                  <strong><small>Appointment date</small></strong>
                 </div>
                 <div *ngFor="let medicalHistory of paginatedItems">
                   <ng-container>
@@ -102,7 +113,9 @@
                         <mat-expansion-panel-header>
                           <mat-panel-title>
                             <div class="header">
-                              <h2><strong>Appointment Date</strong></h2>
+                              <h2><strong>
+                                <mat-icon>calendar_today</mat-icon>
+                              </strong></h2>
                             </div>
                           </mat-panel-title>
                           <mat-panel-description>
@@ -110,6 +123,7 @@
                           </mat-panel-description>
                         </mat-expansion-panel-header>
                         <div class="col-lg-12 col-md-12 col-sm-12">
+                          <mat-divider></mat-divider>
                           <div class="project_widget">
                             <div class="header">
                               <h2><strong>Notes</strong></h2>
@@ -140,11 +154,21 @@
                             </div>
                           </div>
                         </div>
+                        <div class="right">
+                          <button mat-icon-button (click)="$event.stopPropagation()"
+                                  class="tbl-action-btn">
+                            <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
+                          </button>
+                          <button mat-icon-button (click)="$event.stopPropagation()"
+                                  class="tbl-action-btn">
+                            <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
+                          </button>
+                        </div>
                       </mat-expansion-panel>
                     </mat-accordion>
                   </ng-container>
                 </div>
-                <ng-container class="no-results" *ngIf="medicalHistories?.length == 0">
+                <ng-container class="no-results" *ngIf="medicalHistories?.length === 0">
                   <div class="pt-5 px-3 py-md-3">
                     <p class="text-muted">No appointments registered.</p>
                   </div>
@@ -161,7 +185,7 @@
       </div>
     </div>
   </div>
-  <div class="center" *ngIf="medicalRecord == null && patient == null">
+  <div class="center" *ngIf="medicalRecord === undefined || patient === undefined">
     <mat-spinner></mat-spinner>
   </div>
 </section>

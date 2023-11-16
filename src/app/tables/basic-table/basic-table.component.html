@@ -3,7 +3,7 @@
   <div class="content-block">
     <div class="block-header">
       <!-- breadcrumb -->
-      <app-breadcrumb [title]="'Resources'" [items]="['My Resources']" [active_item]="'List'"></app-breadcrumb>
+      <app-breadcrumb [title]="'Resources'" [items]="['All Resources']" [active_item]="'List'"></app-breadcrumb>
     </div>
 
     <div class="row">
@@ -71,7 +71,7 @@
                     <td class="hidden-xs" >{{r.title}}</td>
 
                     <td class="max-texts">
-                      <a routerLink="/email/read-mail" (click)="readResource(r.id)"  [innerHTML]="r.content.substring(0,200)"></a>
+                      <a routerLink="../../resource/read-resource" (click)="readResource(r.id)"  [innerHTML]="r.content.substring(0,200)"></a>
                     </td>
 
                     <td class="max-texts" > {{r.date}} </td>

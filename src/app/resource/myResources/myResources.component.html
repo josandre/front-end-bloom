@@ -5,8 +5,10 @@
       <br>
       <h1>{{'MENUITEMS.RESOURCES.MY-RESOURCES' | translate}}</h1>
     </div>
-
-    <div class="row">
+    <div *ngIf="!flag" >
+      <mat-spinner></mat-spinner>
+    </div>
+    <div class="row" *ngIf="flag">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="card">
           <div class="materialTableHeader">
@@ -59,9 +61,6 @@
                   <td class="max-texts" > {{'MENUITEMS.RESOURCES.DATE' | translate}}</td>
 
                 </tr>
-                  <div *ngIf="!flag" >
-                    <mat-spinner></mat-spinner>
-                  </div>
 
                   <tr *ngFor="let r of resourcesList">
                     <td class="tbl-checkbox">

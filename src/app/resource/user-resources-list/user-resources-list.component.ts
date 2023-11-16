@@ -20,6 +20,7 @@ export class UserResourcesListComponent implements OnInit {
 
   flag: boolean = false;
   ngOnInit(){
+
     this.resourceService.getResourcesbyUserId().subscribe(
       resources =>{
         this.resourcesList = resources;
@@ -27,6 +28,7 @@ export class UserResourcesListComponent implements OnInit {
         this.flag = true;
       }
     )
+
   }
   applyFilter(filterValue: any) {
     let filterText: string = filterValue.value;

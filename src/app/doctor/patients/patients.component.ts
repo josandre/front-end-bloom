@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { Patient } from './models/Patient';
-import { SpecialistService } from './services/specialist.service';
+import { Patient } from './model/Patient';
+import { SpecialistService } from './service/specialist.service';
 
 @Component({
   selector: 'app-patients',
@@ -21,10 +21,9 @@ export class PatientsComponent implements OnInit{
       .subscribe(
         data => {
           this.patients = data;
-          console.log(data);
         },
         error => {
-          console.log(error);
+          console.log(error.status);
         });
   }
 }

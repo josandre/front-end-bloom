@@ -3,9 +3,12 @@
     <div class="block-header">
       <!-- breadcrumb -->
       <br>
-      <h1>{{'MENUITEMS.RESOURCES.MY-RESOURCES' | translate}}</h1>
+      <h1>{{'MENUITEMS.RESOURCES.MODIFY' | translate}}</h1>
     </div>
-    <div class="row">
+    <div *ngIf="postingFlag" >
+      <mat-spinner></mat-spinner>
+    </div>
+    <div class="row" *ngIf="!postingFlag">
       <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
         <div class="card">
           <div class="body">
@@ -34,20 +37,6 @@
       <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9" >
         <div class="card">
           <div class="boxs mail_listing">
-            <div class="inbox-center table-responsive">
-              <table class="table table-hover">
-                <thead>
-                <tr>
-                  <th colspan="1">
-                    <div class="inbox-header">
-                      {{'MENUITEMS.RESOURCES.MODIFY' | translate}}
-                    </div>
-                  </th>
-                </tr>
-                </thead>
-              </table>
-            </div>
-
             <div class="row" >
               <div class="col-lg-12">
                 <form class="composeForm" [formGroup]="formGroup" (submit)="onSubmit()">
@@ -63,7 +52,7 @@
                   <br>
                   <div class="col-lg-12">
                     <div class="m-l-25 m-b-20">
-                      <button mat-flat-button color="primary" class="msr-2">{{'MENUITEMS.RESOURCES.POST' | translate}}</button>
+                      <button mat-flat-button color="primary" class="msr-2" *ngIf="flag">{{'MENUITEMS.RESOURCES.POST' | translate}}</button>
 
                     </div>
                   </div>

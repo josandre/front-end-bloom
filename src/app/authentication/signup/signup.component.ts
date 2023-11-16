@@ -120,6 +120,6 @@ export class SignupComponent implements OnInit {
   }
 
   openSnackBar(message: string, action: string){
-    this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'end'})
+    this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'end', duration: 3000})
   }
 }

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ResourceService} from "../services/Resource.Service";
 import {Resource} from "../models/Resource";
 import { MatSnackBar } from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-inbox',
   templateUrl: './myResources.component.html',
@@ -20,6 +21,7 @@ export class MyResourcesComponent implements OnInit{
   flag: boolean = false;
 
   ngOnInit(){
+
     this.resourceService.getResourceList().subscribe(
       resources =>{ 
         this.resourcesList = resources;

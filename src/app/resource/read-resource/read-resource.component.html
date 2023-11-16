@@ -4,16 +4,18 @@
       <!-- breadcrumb -->
       <br>
       <h1>{{'MENUITEMS.RESOURCES.READ' | translate}} </h1>
+
     </div>
-    <div class="row">
+    <div *ngIf="!flag" >
+      <mat-spinner></mat-spinner>
+    </div>
+    <div class="row" *ngIf="flag">
+
       <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" *ngIf="role === 'Doctor'">
         <div class="card">
           <div class="body">
             <div id="mail-nav">
               <h5 class="b-b p-10 text-strong">{{'MENUITEMS.RESOURCES.ASSIGN' | translate}}</h5>
-              <div *ngIf="!flag" >
-                <mat-spinner></mat-spinner>
-              </div>
               <ul class="online-user" id="online-offline" *ngFor="let p of patientsList">
                 <li>
                   <i class="material-icons col-green" title="Online">brightness_1</i>
@@ -27,17 +29,17 @@
       <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
         <div class="card">
           <div class="boxs mail_listing">
-          <div *ngIf="!flag">
-            <mat-spinner></mat-spinner>
-          </div>
-
-            <div class="inbox-body no-pad" *ngIf="flag">
+            <div class="inbox-body no-pad">
               <section class="mail-list">
                 <div class="mail-sender">
-
                   <div class="mail-heading">
                     <h4 class="vew-mail-header">
                       <b>{{resource.title}}</b>
+
+                        <button mat-raised-button color="primary" class="msr-2 float-end" style="display: inline-block" *ngIf="role === 'Doctor'" >
+                          <a routerLink="/resource/modify" (click)="sessionResource(resource.id)" style="color: white">{{'MENUITEMS.RESOURCES.MODIFY' | translate}}</a>
+                        </button>
+
                     </h4>
                   </div>
                   <hr>

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ResourceService} from "../services/Resource.Service";
 import {Resource} from "../models/Resource";
 import {User} from "../models/User";
+
 @Component({
   selector: 'app-read-resource',
   templateUrl: './read-resource.component.html',
@@ -15,6 +16,7 @@ export class ReadResourceComponent implements OnInit{
   flag: boolean = false;
   role = this.resourceService.getRole();
   ngOnInit() {
+
     this.id = sessionStorage.getItem('resourseId');
     if(this.id != null) {
       this.resourceService.getResourceById(parseInt(this.id)).subscribe(
@@ -32,6 +34,10 @@ export class ReadResourceComponent implements OnInit{
     }else{
       console.log("resourse id was null");
     }
-
   }
+
+  sessionResource(id: number){
+    sessionStorage.setItem('resourseId', id.toString());
+  }
+
 }

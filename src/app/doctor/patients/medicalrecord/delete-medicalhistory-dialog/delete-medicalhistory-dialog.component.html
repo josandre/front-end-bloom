@@ -1,0 +1,9 @@
+<div class="container">
+  <p mat-dialog-title class="text-muted">Are you sure?</p>
+  <div mat-dialog-actions class="mb-1">
+    <button mat-flat-button color="warn" [mat-dialog-close]="1" (click)="confirmDelete()">
+      Delete
+    </button>
+    <button mat-flat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+  </div>
+</div>

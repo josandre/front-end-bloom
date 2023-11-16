@@ -14,7 +14,11 @@ import { MedicalRecord } from './model/MedicalRecord';
 import { Patient } from '../model/Patient';
 import { AnxietyType } from './model/AnxietyType';
 import { MedicalHistory } from './model/MedicalHistory';
+
 import { MedicalhistoryDialogComponent } from './medicalhistory-dialog/medicalhistory-dialog.component';
+import {
+  DeleteMedicalhistoryDialogComponent
+} from "./delete-medicalhistory-dialog/delete-medicalhistory-dialog.component";
 
 @Component({
   selector: 'app-profile',
@@ -38,7 +42,8 @@ export class ProfileComponent implements OnInit {
   pageSize = 8;
   currentPage = 1;
 
-  constructor(public medicalRecordService: MedicalRecordService,
+  constructor(
+    public medicalRecordService: MedicalRecordService,
     public anxietyTypeService: AnxietyTypeService,
     public dialog: MatDialog,
     private route: ActivatedRoute,
@@ -162,10 +167,10 @@ export class ProfileComponent implements OnInit {
 
   updateMedicalRecord(): void {
     if (this.familyMedicalHistoryControl.valid) {
-      let familyMedicalHistoryHasChanged: boolean = this.medicalRecord?.familyMedicalHistory != this.familyMedicalHistoryControl.value;
+      const familyMedicalHistoryHasChanged: boolean = this.medicalRecord?.familyMedicalHistory != this.familyMedicalHistoryControl.value;
 
       this.familyMedicalHistoryControl.disable();
-  
+
       if (!familyMedicalHistoryHasChanged) {
         return;
       }
@@ -200,16 +205,16 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  deleteMedicalHistory(medicalHistoryId: number) {
+    this.dialog.open(DeleteMedicalhistoryDialogComponent, {
+      data: {id: medicalHistoryId},
+    });
+  }
+
   get paginatedItems() {
     const startIndex = (this.currentPage - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     return this.medicalHistories?.slice(startIndex, endIndex);
-  }
-
-  applyFilter(filterValue: any) {
-    let filterText: string = filterValue.value
-    filterText = filterText.trim();
-    filterText = filterText.toLowerCase()
   }
 
   openSnackBar(message: string, action: string) {

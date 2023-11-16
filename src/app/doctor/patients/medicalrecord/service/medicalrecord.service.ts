@@ -54,4 +54,11 @@ export class MedicalRecordService {
 
     return this.http.put(url, medicalHistory, { headers: header });
   }
+
+  deleteMedicalHistory(medicalHistoryId: number) {
+    const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.authService.currentUserValue.token);
+    const url = `${this.baseUrl}/medical-histories/${medicalHistoryId}`;
+
+    return this.http.delete(url, { headers: header });
+  }
 }

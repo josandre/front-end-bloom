@@ -159,7 +159,7 @@
                                   class="tbl-action-btn">
                             <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
                           </button>
-                          <button mat-icon-button (click)="$event.stopPropagation()"
+                          <button mat-icon-button (click)="deleteMedicalHistory(medicalHistory.id)"
                                   class="tbl-action-btn">
                             <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
                           </button>

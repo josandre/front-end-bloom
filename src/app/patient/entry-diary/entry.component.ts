@@ -55,20 +55,20 @@ export class EntryComponent implements OnInit{
       this.diaryService.createEntry(entry,this.diary?.id).subscribe((res) => {
         switch (res) {
           case 200:{
-            this.openSnackBar("User updated", "Close");
+            this.openSnackBar("Entry created", "Close");
             this.tags=[];
             break;
           }
         }
       }, error => {
-          this.openSnackBar("The user was not updated", "Close" );
+          this.openSnackBar("The Entry was not created", "Close" );
 
           })
     }
   }
  
   openSnackBar(message: string, action: string){
-    this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'end'})
+    this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'end', duration: 3000} )
   }
 
   add(event: MatChipInputEvent): void {

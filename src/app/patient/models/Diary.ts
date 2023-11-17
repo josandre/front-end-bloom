@@ -1,8 +1,7 @@
 export class Diary{
     id?: number;
-    date:Date;
     title: string;
-    readable:boolean;
+    user: number;
     entry?:string[];
   
 

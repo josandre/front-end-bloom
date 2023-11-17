@@ -33,19 +33,12 @@ export class DiaryService {
     
   }
 
-  updateUser(user:User){
-    const url = `${this.baseUrl}/user/${this.auth.currentUserValue.id}/user`;
+ 
+  createDiary(diary:Diary){
+    const url = `${this.baseUrl}/addDiary/diary`;
     const userId = this.auth.currentUserValue.id;
-    const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.auth.currentUserValue.token)
-    console.log(userId)
-    return this.http.put(url, user, {headers: header});
-  }
-
-  updatePassword(password:Password){
-    const url = `${this.baseUrl}/changePassword/${this.auth.currentUserValue.id}/password`;
-    const userId = this.auth.currentUserValue.id;
-    const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.auth.currentUserValue.token)
-    console.log(userId)
-    return this.http.put(url, password, {headers: header});
+    diary.user = JSON.parse(`{"id":${userId}}`);
+    const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.auth.currentUserValue.token);
+    return this.http.post(url, diary, {headers: header});
   }
 }

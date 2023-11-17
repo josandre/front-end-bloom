@@ -19,6 +19,7 @@ export class EntryComponent implements OnInit{
   tags: Tags[] = [];
   entryForm: FormGroup;
   diary?:Diary;
+  loading:boolean=true;
   constructor(private formBuilder: FormBuilder, private diaryService:DiaryService,private snackBar: MatSnackBar) {
 
 
@@ -57,6 +58,7 @@ export class EntryComponent implements OnInit{
           case 200:{
             this.openSnackBar("Entry created", "Close");
             this.tags=[];
+            this.loading=false;
             break;
           }
         }

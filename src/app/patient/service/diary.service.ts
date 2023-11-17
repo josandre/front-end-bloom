@@ -20,6 +20,7 @@ export class DiaryService {
 
   getDiary():Observable<Diary>{
     const url = `${this.baseUrl}/getDiary/${this.auth.currentUserValue.id}`;
+    console.log(this.auth.currentUserValue.id)
     const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.auth.currentUserValue.token);
     return this.http.get<Diary>(url,{headers: header});
   }
@@ -36,8 +37,8 @@ export class DiaryService {
  
   createDiary(diary:Diary){
     const url = `${this.baseUrl}/addDiary/diary`;
-    const userId = this.auth.currentUserValue.id;
-    diary.user = JSON.parse(`{"id":${userId}}`);
+    diary.user=JSON.parse(`{"id":${this.auth.currentUserValue.id}}`);
+    console.log('Entry:', diary);
     const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.auth.currentUserValue.token);
     return this.http.post(url, diary, {headers: header});
   }

@@ -1,8 +1,9 @@
+import { User } from "@core";
+
 export class Diary{
     id?: number;
     title: string;
-    user: number;
-    entry?:string[];
+    user: User;
   
 
     constructor(partial?:Partial<Diary>) {

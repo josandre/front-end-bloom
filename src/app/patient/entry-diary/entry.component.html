@@ -1,0 +1,39 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="'Chips'" [items]="['UI']" [active_item]="'Chips'"></app-breadcrumb>
+    </div>
+    
+    <div class="container mt-auto">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+          <div class="card-body">
+            <mat-form-field class="example-chip-list" style="width: 50%;">
+              <mat-chip-list #chipList>
+                <mat-chip *ngFor="let tag of tags" [selectable]="true" [removable]="true" (removed)="remove(tag)">
+                  {{ tag.text }}
+                  <button matChipRemove (click)="remove(tag)">
+                    <mat-icon>cancel</mat-icon>
+                  </button>
+                </mat-chip>
+                <input placeholder="Nuevo tag..." [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                  [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)" />
+              </mat-chip-list>
+            </mat-form-field>
+    
+            <form class="example-form" [formGroup]="entryForm" (ngSubmit)="saveEntry()"  style="width: 100%;">
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Textarea</mat-label>
+                <textarea matInput formControlName="entry"></textarea>
+              </mat-form-field>
+    
+              <!-- Agregado el botón de enviar -->
+              <button mat-button color="primary" type="submit" >Enviar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

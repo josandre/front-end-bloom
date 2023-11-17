@@ -946,6 +946,18 @@ export const ROUTES: RouteInfo[] = [
     role: ['Patient'],
     submenu: [],
   },
+  {
+    path: '/patient/entry-diary',
+    title: 'Diary',
+    iconType: 'material-icons-two-tone',
+    icon: '',
+    class: '',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    role: ['Patient'],
+    submenu: [],
+  },
       // {
       //   path: '',
       //   title: 'More Apps',

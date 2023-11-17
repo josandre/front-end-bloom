@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import {API_URL} from "../../../../config";
 import {HttpClient,HttpHeaders} from "@angular/common/http";
-import {User} from "../../../patient/settings/models/User";
 
 import {Password} from "../../../patient/settings/models/Password";
 
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { RecordsRoutingModule } from 'app/admin/records/records-routing.module';
+import { Observable} from 'rxjs';
 import { AuthService } from '@core';
 import {Specialist} from "../models/Specialist";
 @Injectable({
@@ -32,10 +30,12 @@ export class DoctorService {
     return this.http.put(url, user, {headers: header});
   }
 
+
   updatePassword(password: Password, userId?: number){
     const url = `${this.baseUrl}/changePassword/${userId}/password`;
     const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.auth.currentUserValue.token)
     console.log(userId)
     return this.http.put(url, password, {headers: header});
   }
+
 }

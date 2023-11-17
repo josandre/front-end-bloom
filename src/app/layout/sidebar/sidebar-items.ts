@@ -641,18 +641,6 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
      },
       {
-        path: '/doctor/settings',
-        title: 'MENUITEMS.DOCTOR.SETTINGS',
-        iconType: 'material-icons-two-tone',
-        icon: 'settings',
-        class: '',
-        groupTitle: false,
-        badge: '',
-        badgeClass: '',
-        role: ['Doctor'],
-        submenu: [],
-      },
-      {
         path: '/apps/chat',
         title: 'MENUITEMS.DOCTOR.CHAT',
         iconType: 'material-icons-two-tone',

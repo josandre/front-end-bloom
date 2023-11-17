@@ -10,6 +10,7 @@ export class User {
   lastName: string;
   role: string;
   token: string;
+  photo?: string;
 
   constructor(partial?:Partial<User>) {
     if(partial){

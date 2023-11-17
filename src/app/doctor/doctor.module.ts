@@ -13,7 +13,6 @@ import { AppointmentsComponent } from './appointments/appointments.component';
 import { FormComponent } from './appointments/form/form.component';
 import { DoctorsComponent } from './doctors/doctors.component';
 import { PatientsComponent } from './patients/patients.component';
-import { SettingsComponent } from './settings/settings.component';
 import { AppointmentsService } from './appointments/appointments.service';
 import { ComponentsModule } from '@shared/components/components.module';
 import { SharedModule } from '@shared';
@@ -32,7 +31,6 @@ import {DoctorProfileComponent} from "./doctor-profile/doctor-profile.component"
     FormComponent,
     DoctorsComponent,
     PatientsComponent,
-    SettingsComponent,
     ProfileComponent,
     MedicalhistoryDialogComponent
   ],

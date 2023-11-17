@@ -35,7 +35,6 @@
                   <div class="mail-heading">
                     <h4 class="vew-mail-header">
                       <b>{{resource.title}}</b>
-
                         <button mat-raised-button color="primary" class="msr-2 float-end" style="display: inline-block" *ngIf="role === 'Doctor'" >
                           <a routerLink="/resource/modify" (click)="sessionResource(resource.id)" style="color: white">{{'MENUITEMS.RESOURCES.MODIFY' | translate}}</a>
                         </button>
@@ -46,7 +45,6 @@
                   <div class="d-flex mb-4">
                     <div class="flex-grow-1">
                       <span class="date float-end">{{resource.date}}</span>
-                      <h4 class="text-primary">{{resource.specialist}}</h4>
                     </div>
                   </div>
                 </div>

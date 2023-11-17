@@ -24,33 +24,26 @@
       <div class="row">
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Treatment starts on</mat-label>
-            <input matInput [matDatepicker]="treatmentStartDatePicker" formControlName="treatmentStartDate" required>
-            <mat-datepicker-toggle matSuffix [for]="treatmentStartDatePicker"></mat-datepicker-toggle>
-            <mat-datepicker #treatmentStartDatePicker></mat-datepicker>
-            <mat-error *ngIf="medicalHistoryForm.get('treatmentStartDate')?.hasError('required')">
-              Please select a date
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-          <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Treatment ends on</mat-label>
-            <input matInput [matDatepicker]="treatmentEndDatePicker" formControlName="treatmentEndDate" required>
-            <mat-datepicker-toggle matSuffix [for]="treatmentEndDatePicker"></mat-datepicker-toggle>
-            <mat-datepicker #treatmentEndDatePicker></mat-datepicker>
+            <mat-label>Treatment duration</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+              <input matStartDate formControlName="treatmentStartDate" placeholder="Start date" required>
+              <input matEndDate formControlName="treatmentEndDate" placeholder="End date" required>
+            </mat-date-range-input>
+            <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
             <mat-error *ngIf="medicalHistoryForm.get('treatmentEndDate')?.hasError('required')">
-              Please select a date
+            </mat-error>
+            <mat-error *ngIf="medicalHistoryForm.get('treatmentEndDate')?.hasError('required')">
             </mat-error>
           </mat-form-field>
         </div>
-      </div>
-      <div class="row">
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width " appearance="outline">
             <mat-label>Anxiety level detected</mat-label>
             <mat-select formControlName="anxietyLevel" required>
-              <mat-option *ngFor="let anxietyLevel of anxietyLevelOptions" [value]="anxietyLevel">{{ anxietyLevel }}</mat-option>
+              <mat-option *ngFor="let anxietyLevel of anxietyLevelOptions"
+                          [value]="anxietyLevel">{{ anxietyLevel }}</mat-option>
             </mat-select>
             <mat-error *ngIf="medicalHistoryForm.get('anxietyLevel')?.hasError('required')">
               Anxiety level is required
@@ -58,8 +51,10 @@
           </mat-form-field>
         </div>
       </div>
-      <mat-divider class="p-3"></mat-divider>
-      <div class="pb-3">
+      <div class="py-3">
+        <mat-divider></mat-divider>
+      </div>
+      <div>
         <mat-label class="text-muted">Recipe</mat-label>
       </div>
       <div class="row">
@@ -89,7 +84,8 @@
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
           <div class="example-button-row">
             <button mat-raised-button color="primary" [disabled]="!medicalHistoryForm.valid" [mat-dialog-close]="1"
-              (click)="confirmAction()">Save</button>
+                    (click)="confirmAction()">Save
+            </button>
             <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
           </div>
         </div>

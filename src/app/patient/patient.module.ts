@@ -15,6 +15,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '@shared';
 import { PatientProfileComponent } from './patient-profile/patient-profile.component';
 import { EntryComponent } from './entry-diary/entry.component';
+import { ModalComponent } from './modal/modal.component';
+import { DialogformComponent } from './modal/dialogform/dialogform.component';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -24,6 +26,8 @@ import { EntryComponent } from './entry-diary/entry.component';
     SettingsComponent,
     PatientProfileComponent,
     EntryComponent,
+    ModalComponent,
+    DialogformComponent
   ],
   imports: [
     CommonModule,

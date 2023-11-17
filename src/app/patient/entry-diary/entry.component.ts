@@ -35,9 +35,13 @@ export class EntryComponent implements OnInit{
     this.diaryService.getDiary().subscribe(
       (diary: Diary) => {
         console.log('Datos del diary:', diary);
+        if(diary===null){
+          console.log("no tengo diario");
+        }
         this.diary=diary;
       }, error => {
         console.error('Error al obtener datos del usuario:', error);
+        
       });
   }
   saveEntry(){

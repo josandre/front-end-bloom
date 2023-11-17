@@ -947,7 +947,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: [],
   },
   {
-    path: '/patient/entry-diary',
+    path: '/patient/modal',
     title: 'Diary',
     iconType: 'material-icons-two-tone',
     icon: '',

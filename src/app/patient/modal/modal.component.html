@@ -1,0 +1,35 @@
+<section class="content">
+  <div class="content-block"  *ngIf="!loading" >
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="'Diary'" ></app-breadcrumb>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="header">
+            <h2>Seccion de Diario Emocional</h2>
+
+          </div>
+          <div class="body">
+            <div>
+              <p>¡Bienvenido a tu espacio emocional!</p> 
+                <p>Aquí, te invito a explorar tus pensamientos más profundos, tus alegrías y tus desafíos superados.
+                Este diario es tu confidente. Permítete ser honesto contigo mismo, celebra tus triunfos y 
+                encuentra la paz en la expresión. Que cada palabra sea un paso hacia un mayor autoconocimiento
+                y bienestar emocional. </p>
+                <p></p>
+                <p>¡Comencemos este viaje juntos!"</p>
+              <br>
+              <button mat-raised-button color="primary" (click)="openDialog()">Empezar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="center" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+  </div>
+</section>

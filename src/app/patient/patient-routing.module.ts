@@ -8,6 +8,8 @@ import { BillingComponent } from "./billing/billing.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { PatientProfileComponent } from "./patient-profile/patient-profile.component";
 import { EntryComponent } from "./entry-diary/entry.component";
+import { ModalComponent } from "./modal/modal.component";
+import { DialogformComponent } from "./modal/dialogform/dialogform.component";
 const routes: Routes = [
   {
     path: "dashboard",
@@ -43,6 +45,14 @@ const routes: Routes = [
   {
     path: "entry-diary",
     component: EntryComponent,
+  },
+  {
+    path: "modal",
+    component: ModalComponent,
+  },
+  {
+    path: "dialogform",
+    component: DialogformComponent,
   },
   { path: "**", component: Page404Component },
 ];

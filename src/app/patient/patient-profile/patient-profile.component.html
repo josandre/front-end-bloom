@@ -1,168 +1,184 @@
-<section class="content">
-  <div class="content-block">
+
+<section class="content" >
+
+  <div class="content-block" >
     <div class="block-header">
-      <!-- breadcrumb -->
-      <app-breadcrumb [title]="'Profile'" [items]="['Profile']" ></app-breadcrumb>
+
+      <app-breadcrumb [title]="'Profile'" [items]="['PATIENT']" [active_item]="'Profile'"></app-breadcrumb>
     </div>
-    <!-- Your content goes here  -->
+
+    <div class="spinner">
+      <mat-spinner *ngIf="loading" ></mat-spinner>
+    </div>
+
     <div class="row clearfix" *ngIf="!loading">
-      <div class="col-lg-4 col-md-12">
+      <div class="col-lg-5 col-md-12">
         <div class="card">
-          
           <div class="m-b-20">
             <div class="contact-grid">
               <div class="profile-header bg-dark">
-                <div class="user-name">{{data?.name }} {{data?.lastName}}</div>
-                <div class="name-center">{{data?.userName }}</div>
+                <div class="user-name">{{user?.name + " " + user?.lastName}}</div>
+                <div class="name-center">{{user?.email}}</div>
               </div>
-              <img src="../../../assets/images/user/doctor.jpg" class="user-img" alt="">
-              <!--<p>
-                456, Estern evenue, Courtage area,
-                <br />New York
-              </p>-->
+
+              <div class=" image">
+                <img src="{{photoManager()}}" class="img-photo user-img-circle user-img" alt="User Image" />
+              </div>
+
               <div>
                 <span class="phone">
-                  <i class="material-icons">phone</i>{{data?.phone }}</span>
+                {{user?.userName}}</span>
+              </div>
+
+              <div>
+                <span class="phone">
+                  <i class="material-icons">phone</i>{{user?.phone}}</span>
               </div>
             </div>
-          
           </div>
+
+          <input type="file" id="customFile" class="btn" (change)="selectFile($event)" placeholder="FileData To Upload">
+          <button *ngIf="selectedFiles" class="black" (click)="upload()" [class.auth-spinner]="uploadingPhoto" >Save new profile photo</button>
         </div>
-        <!--<div class="card">
-          <mat-tab-group mat-align-tabs="start">
-            <mat-tab label="About">
-              <div class="p-4">
-                <p class="text-default">Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has
-                  been the industry's standard dummy text ever since the 1500s, when an unknown
-                  printer
-                  took a galley of type and scrambled it to make a type specimen book. It has
-                  survived
-                  not only five centuries, but also the leap into electronic typesetting, remaining
-                  essentially
-                  unchanged.</p>
-                <small class="text-muted">Email address: </small>
-                <p>john@gmail.com</p>
-                <hr>
-                <small class="text-muted">Phone: </small>
-                <p>+91 1234567890</p>
-                <hr>
-              </div>
-            </mat-tab>
-            <mat-tab label="Skills">
-              <ul class="list-unstyled p-4">
-                <li>
-                  <div>OPD</div>
-                  <div class="progress skill-progress m-b-20">
-                    <div class="progress-bar l-bg-green width-per-45" role="progressbar" aria-valuenow="45"
-                      aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </li>
-                <li>
-                  <div>Operations</div>
-                  <div class="progress skill-progress m-b-20">
-                    <div class="progress-bar l-bg-orange width-per-38" role="progressbar" aria-valuenow="38"
-                      aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </li>
-                <li>
-                  <div>Patient Visit</div>
-                  <div class="progress skill-progress m-b-20">
-                    <div class="progress-bar l-bg-cyan width-per-39" role="progressbar" aria-valuenow="39"
-                      aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </li>
-                <li>
-                  <div>RND</div>
-                  <div class="progress skill-progress m-b-20">
-                    <div class="progress-bar l-bg-purple width-per-70" role="progressbar" aria-valuenow="70"
-                      aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </li>
-              </ul>
-            </mat-tab>
-            <div *ngIf="loading" class="tbl-spinner">
-              <mat-progress-spinner color="primary" [diameter]="60" mode="indeterminate">
-              </mat-progress-spinner>
-            </div>
-          </mat-tab-group>
-        </div>-->
       </div>
-      <div class="col-lg-8 col-md-12">
+      <div class="col-lg-7 col-md-12">
         <div class="card">
           <mat-tab-group>
             <mat-tab>
               <ng-template mat-tab-label>
-                <mat-icon class="example-tab-icon msr-2">face</mat-icon>
-                About Me
+                <mat-icon class="example-tab-icon msr-2">settings</mat-icon>
+                Settings
               </ng-template>
-              <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="project_widget">
-                  <div class="body">
-                    <div class="row">
-                      <div class="col-md-3 col-6 b-r">
-                        <strong>Full Name</strong>
-                        <br>
-                        <p class="text-muted">{{data?.name }} {{data?.lastName}}</p>
-                      </div>
-                      <div class="col-md-3 col-6 b-r">
-                        <strong>Email</strong>
-                        <br>
-                        <p class="text-muted">{{data?.email }}</p>
-                      </div>
-                      <div class="col-md-3 col-6 b-r">
-                        <strong>Phone</strong>
-                        <br>
-                        <p class="text-muted">{{data?.phone }}</p>
-                      </div>
-                     
+              <div class="header">
+                <h2>
+                  <strong>Security</strong> Settings</h2>
+              </div>
+
+              <div class="spinner-form"  *ngIf="isLoadingPassword">
+                <mat-spinner ></mat-spinner>
+              </div>
+
+              <form *ngIf="!isLoadingPassword" class="validate-form " [formGroup]="passwordForm" (ngSubmit)="onSubmitPassword()">
+              <div class="body">
+                <div class="example-container" >
+
+                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-label>Current password</mat-label>
+                    <input matInput type="password" formControlName="currentPassword">
+                  </mat-form-field>
+
+                  <div class="password-section">
+                    <mat-form-field class="input-mat mb-3" appearance="outline">
+                      <mat-label>New password</mat-label>
+                      <input matInput type="password" formControlName="newPassword" >
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                      <mat-label>Confirm Password</mat-label>
+                      <input matInput type="password" formControlName="confirmPassword" >
+                      <mat-error >
+                        Password do not match
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+
+                </div>
+                <button *ngIf="!isLoadingPassword" mat-raised-button color="primary" type="submit" >Save</button>
+              </div>
+              </form>
+
+              <div class="header">
+                <h2>
+                  <strong>Account</strong> Settings</h2>
+              </div>
+
+              <form class="validate-form " [formGroup]="userUpdateForm" (submit)="onSubmit()">
+              <div class="body">
+
+                <div class="spinner-form" *ngIf="isLoadingUserUpdating">
+                  <mat-spinner ></mat-spinner>
+                </div>
+
+                <div class="row clearfix" *ngIf="!isLoadingUserUpdating">
+                  <div class="col-lg-6 col-md-12">
+                    <div class="form-group">
+                      <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Name</mat-label>
+                        <input matInput formControlName="name" >
+                      </mat-form-field>
                     </div>
-                    
+                  </div>
+
+
+
+                  <div class="col-lg-6 col-md-12">
+                    <div class="form-group">
+                      <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Last Name</mat-label>
+                        <input matInput formControlName="lastName">
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-12">
+                    <div class="form-group">
+                      <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>User Name</mat-label>
+                        <input matInput formControlName="userName">
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-12">
+                    <div class="form-group">
+                      <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email">
+                        <mat-error *ngIf="userUpdateForm.get('email')!.hasError('required') || userUpdateForm.get('email')!.touched">
+                          Please enter a valid email address
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-12">
+                    <div class="form-group">
+                      <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Citizen Id</mat-label>
+                        <input matInput formControlName="citizenId">
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-12">
+                    <div class="form-group">
+                      <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Phone</mat-label>
+                        <input matInput formControlName="phone">
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Address</mat-label>
+                        <textarea matInput formControlName="address"></textarea>
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <button mat-raised-button color="primary" type="submit">Save Changes</button>
                   </div>
                 </div>
+
               </div>
-              <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="project_widget">
-                  <div class="header">
-                    <h2><strong>Address</strong></h2>
-                  </div>
-                  <div class="body">
-                    <ul>
-                      <li>{{data?.address }}</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-             <!--<div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="project_widget">
-                  <div class="header">
-                    <h2><strong>Experience</strong></h2>
-                  </div>
-                  <div class="body">
-                    <ul>
-                      <li>One year rotatory internship from April-2009 to march-2010 at B. J.
-                        Medical College, Ahmedabad.</li>
-                      <li>Three year residency at V.S. General Hospital as a resident in
-                        orthopedics from April - 2008 to April - 2011.</li>
-                      <li>I have worked as a part time physiotherapist in Apang manav mandal from
-                        1st june 2004 to 31st jan 2005. </li>
-                      <li>Clinical and Research fellowship in Scoliosis at Shaurashtra University
-                        and Medical Centre (KUMC) , Krishna Hospital , Rajkot from April 2013 to
-                        June 2013. </li>
-                      <li>2.5 Years Worked at Mahatma Gandhi General Hospital, Surendranagar.
-                      </li>
-                      <li>Consultant Orthopedics Surgeon Jalna 2 years. </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>-->
+              </form>
             </mat-tab>
           </mat-tab-group>
         </div>
       </div>
-    </div>
-    <div class="center" *ngIf="loading">
-      <mat-spinner></mat-spinner>
     </div>
   </div>
 </section>

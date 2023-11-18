@@ -5,11 +5,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
 import { DoctorsComponent } from './doctors/doctors.component';
 import { PatientsComponent } from './patients/patients.component';
-import { SettingsComponent } from './settings/settings.component';
 import {SignupPatientComponent} from "./patients/signupPatient/signup-patient.component";
-import { DoctorProfileComponent } from './doctor-profile/doctor-profile.component';
 import { ProfileComponent } from './patients/medicalrecord/profile.component';
-
+import {DoctorProfileComponent} from "./doctor-profile/doctor-profile.component";
 const routes: Routes = [
   {
     path: 'dashboard',
@@ -28,21 +26,16 @@ const routes: Routes = [
     component: PatientsComponent,
   },
   {
-    path: 'settings',
-    component: SettingsComponent,
+    path: "doctor-profile",
+    component: DoctorProfileComponent,
   },
   {
     path: 'patient',
     component: SignupPatientComponent,
   },
   {
-    path: 'doctor-profile',
-    component: DoctorProfileComponent,
-  },
-  {  
     path: 'medical-record/:id',
     component: ProfileComponent
-
   },
   { path: '**', component: Page404Component },
 ];

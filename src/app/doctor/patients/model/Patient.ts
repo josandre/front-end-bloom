@@ -9,6 +9,7 @@ export class Patient{
   email: string;
   isActive: boolean;
   userName: string;
+  photo: string;
 
   constructor(partial?: Partial<Patient>) {
     if(partial){

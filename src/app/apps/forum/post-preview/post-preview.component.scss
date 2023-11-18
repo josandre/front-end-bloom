@@ -1,0 +1,45 @@
+.post-preview-card {
+    background-color: white;
+    padding: 10px;
+
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-color: #bdbdbd;
+    width: 95%;
+    margin: auto;
+    
+    cursor: pointer;
+
+    .user-section {
+        display: flex;
+        flex-direction: row;
+
+        .user-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 100%;
+            background-color: rgb(146, 146, 146);  
+            margin-right: 16px;  
+        }
+
+        .username {
+            font-size: larger;
+        }
+
+        .date {
+            color: #999999;
+        }
+    }
+
+    .title-section {
+        .post-title {
+
+        }
+    }
+
+    .content-section {
+
+    }
+}

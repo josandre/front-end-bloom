@@ -14,6 +14,11 @@ import {
 } from '@danielmoncada/angular-datetime-picker';
 import { ComponentsModule } from '@shared/components/components.module';
 import { SharedModule } from '@shared';
+import { ForumComponent } from './forum/forum.component';
+import { PostComponent } from './forum/post/post.component';
+import { CommentComponent } from './forum/comment/comment.component';
+import { PostPreviewComponent } from './forum/post-preview/post-preview.component';
+import { PostEditorComponent } from './forum/post-editor/post-editor.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +26,11 @@ import { SharedModule } from '@shared';
     DragDropComponent,
     ContactGridComponent,
     SupportComponent,
+    ForumComponent,
+    PostComponent,
+    CommentComponent,
+    PostPreviewComponent,
+    PostEditorComponent,
   ],
   imports: [
     CommonModule,
@@ -34,5 +44,6 @@ import { SharedModule } from '@shared';
     ComponentsModule,
     SharedModule,
   ],
+  exports: [ForumComponent]
 })
 export class AppsModule {}

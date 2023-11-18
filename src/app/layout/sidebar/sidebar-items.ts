@@ -689,6 +689,18 @@ export const ROUTES: RouteInfo[] = [
         role: ['Patient'],
         submenu: [],
       },
+      {
+        path: 'apps/forum',
+        title: 'MENUITEMS.FORUMS.TITLE',
+        iconType: 'material-icons-two-tone',
+        icon: 'space_dashboard',
+        class: '',
+        groupTitle: false,
+        badge: '',
+        badgeClass: '',
+        role: ['Patient'],
+        submenu: [],
+      },
       // {
       //   path: '/progress-section',
       //   title: 'MENUITEMS.PROGRESS-SECTION.TITLE',

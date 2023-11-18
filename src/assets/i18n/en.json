@@ -136,6 +136,9 @@
     "CONTACTS": {
       "TEXT": "Contacts"
     },
+    "FORUMS": {
+      "TITLE": "Forums"
+    },
     "GAMES-SECTION": {
       "TITLE": "Games Section",
       "DESCRIPTION": "Welcome to the Games Section, here you can select from multiple games to play",

@@ -1,0 +1,85 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="'Forums'" [items]="['Apps']" [active_item]="'Forums'"></app-breadcrumb>
+    </div>
+
+    <!--Posts-->
+    <div class="card">
+      <div class="header">
+        <h1>Posts</h1>
+      </div>
+
+      <!--All posts-->
+      <div *ngIf="forumState === ForumStates.ShowAllPosts">
+        <div class="create-post-container">
+          <button mat-flat-button color="primary" (click)="openNewPostDialog()">Create Post</button>
+        </div>
+
+        <!--Posts loading-->
+        <div *ngIf="postsLoaded === false">
+          <div class="preloader">
+            <div class="spinner-layer pl-teal">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Posts container-->
+        <div *ngIf="postsLoaded === true" class="posts-container">
+          <app-post-preview *ngFor="let post of posts" [userImg]="post.userId" [userName]="post.userName"
+            [date]="post.creationDate" [postTitle]="post.title" [postContent]="post.expericence"
+            (click)="openPost(post.postId)"></app-post-preview>
+        </div>
+      </div>
+
+      <!--Open post-->
+      <div *ngIf="forumState === ForumStates.OpenPost">
+        <button mat-flat-button color="primary" (click)="showPosts()">Back</button>
+
+        <!--Post loading-->
+        <div *ngIf="postLoaded === false">
+          <div class="preloader">
+            <div class="spinner-layer pl-teal">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Post info-->
+        <div *ngIf="postLoaded === true">
+          <p>Hola</p>
+          <p class="username">{{ currentPost.userName }}</p>
+          <p class="date">{{ currentPost.creationDate }}</p>
+
+          <div class="user-section">
+            <div class="user-image">
+            </div>
+            <div>
+              
+            </div>
+          </div>
+
+          <div class="title-section">
+            <h2 class="post-title">{{ currentPost.title }}</h2>
+          </div>
+
+          <div class="content-section">
+            <p>{{ currentPost.content }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

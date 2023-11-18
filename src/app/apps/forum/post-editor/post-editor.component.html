@@ -1,0 +1,15 @@
+<div>
+    <h1>Create Post</h1>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Title</mat-label>
+        <input matInput [(ngModel)]="postTitle">
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Content</mat-label>
+        <textarea matInput [(ngModel)]="postContent"></textarea>
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" (click)="savePost()">Save Post</button>
+    <button type="button" mat-button (click)="closeDialog()">Cancel</button>
+</div>

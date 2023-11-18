@@ -5,8 +5,9 @@ import {UploadFileService} from "../../global/upload-file/upload-file.service";
 import {AuthService} from "@core";
 import {FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {Password} from "../../patient/settings/models/Password";
-import {User} from "../../patient/settings/models/User";
+import {Password} from "./models/Password";
+import {User} from "./models/User";
+
 @Component({
   selector: 'app-doctor-profile',
   templateUrl: './doctor-profile.component.html',
@@ -171,7 +172,6 @@ export class DoctorProfileComponent implements OnInit{
         }
       )
 
-      console.log(doc)
 
       this.doctorProfileService.updateDoctor(doc).subscribe((res) => {
         this.openSnackBar("User updated", "Close");
@@ -196,6 +196,11 @@ export class DoctorProfileComponent implements OnInit{
         currentPassword: this.passwordForm.controls['currentPassword'].value,
         newPassword:this.passwordForm.controls['newPassword'].value
       })
+
+      this.resetPassControl('currentPassword')
+      this.resetPassControl('newPassword')
+      this.resetPassControl('confirmPassword')
+
       this.doctorProfileService.updatePassword(password, this.userId).subscribe((res) => {
         this.isLoadingPassword = false;
         switch (res) {
@@ -204,8 +209,6 @@ export class DoctorProfileComponent implements OnInit{
             break;
           }
         }
-
-        this.initFormPass();
 
       }, error => {
         this.isLoadingPassword = false;
@@ -222,6 +225,14 @@ export class DoctorProfileComponent implements OnInit{
 
   openSnackBar(message: string, action: string){
     this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'end'})
+  }
+
+  private resetPassControl(controlName: string): void {
+    const control = this.passwordForm.controls[controlName]
+    control.setValue('')
+    control.markAsPristine()
+    control.setErrors(null)
+    control.markAsUntouched()
   }
 
 }

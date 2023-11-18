@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Patient } from './model/Patient';
 import { SpecialistService } from './service/specialist.service';
+import {UploadFileService} from "../../global/upload-file/upload-file.service";
 
 @Component({
   selector: 'app-patients',
@@ -8,7 +9,7 @@ import { SpecialistService } from './service/specialist.service';
   styleUrls: ['./patients.component.scss'],
 })
 export class PatientsComponent implements OnInit{
-  constructor(public specialistService: SpecialistService) {}
+  constructor(public specialistService: SpecialistService, private readonly fileService: UploadFileService) {}
 
   patients: Patient[];
 
@@ -26,4 +27,10 @@ export class PatientsComponent implements OnInit{
           console.log(error.status);
         });
   }
+
+
+  getPhoto(urlPhoto: string){
+    return this.fileService.getPhotoToList("assets/images/user/user.png", urlPhoto)
+  }
+
 }

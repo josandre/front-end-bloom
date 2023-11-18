@@ -677,6 +677,18 @@ export const ROUTES: RouteInfo[] = [
         role: ['Patient'],
         submenu: [],
       },
+    {
+      path: '/patient/patient-profile',
+      title: 'Patient Profile',
+      iconType: 'material-icons-two-tone',
+      icon: 'manage_accounts',
+      class: '',
+      groupTitle: false,
+      badge: '',
+      badgeClass: '',
+      role: ['Patient'],
+      submenu: [],
+    },
       // {
       //   path: '/progress-section',
       //   title: 'MENUITEMS.PROGRESS-SECTION.TITLE',
@@ -798,18 +810,7 @@ export const ROUTES: RouteInfo[] = [
         role: ['Patient'],
         submenu: [],
       },
-      {
-        path: '/patient/settings',
-        title: 'MENUITEMS.PATIENT.SETTINGS',
-        iconType: 'material-icons-two-tone',
-        icon: 'settings',
-        class: '',
-        groupTitle: false,
-        badge: '',
-        badgeClass: '',
-        role: ['Patient'],
-        submenu: [],
-      },
+
 
       // Common Modules
 

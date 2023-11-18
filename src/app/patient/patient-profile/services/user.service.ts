@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import {API_URL} from "../../../../config";
 import {HttpClient,HttpHeaders} from "@angular/common/http";
-import {User} from "../../settings/models/User";
-import {Password} from "../../settings/models/Password";
+
 
 import {  Observable } from 'rxjs';
 import { AuthService } from '@core';
+import {UserResponse} from "../models/UserResponse";
+import {User} from "../models/User";
+import {Password} from "../models/Password";
+
 @Injectable({
   providedIn: 'root'
 })
@@ -22,12 +25,10 @@ export class UserService {
     return this.http.get<User>(url,{headers: header});
   }
 
-  updateUser(user:User){
+  updateUser(user:User): Observable<UserResponse>{
     const url = `${this.baseUrl}/user/${this.auth.currentUserValue.id}/user`;
-    const userId = this.auth.currentUserValue.id;
     const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.auth.currentUserValue.token)
-    console.log(userId)
-    return this.http.put(url, user, {headers: header});
+    return this.http.put<UserResponse>(url, user, {headers: header});
   }
 
   updatePassword(password:Password){

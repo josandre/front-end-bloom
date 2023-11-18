@@ -6,12 +6,16 @@
   margin: 0 12px;
 }
 
+.user-img{
+  border-radius: 22px !important;
+}
+
 .bg-blue {
   background-color: #38a6c5;
 }
 
 .center {
-  display: flex; 
+  display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;

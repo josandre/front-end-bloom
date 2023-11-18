@@ -38,6 +38,15 @@ export class UploadFileService {
     return defaultPathPhoto;
   }
 
+  getPhotoToList(defaultPathPhoto: string, urlPhoto: string){
+
+    if(urlPhoto){
+      return this.showPhoto(urlPhoto);
+    }
+
+    return defaultPathPhoto;
+  }
+
 
 
 

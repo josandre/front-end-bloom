@@ -4,7 +4,7 @@
   <div class="content-block" >
     <div class="block-header">
 
-      <app-breadcrumb [title]="'Profile'" [items]="['Doctors']" [active_item]="'Profile'"></app-breadcrumb>
+      <app-breadcrumb [title]="'Profile'" [items]="['PATIENT']" [active_item]="'Profile'"></app-breadcrumb>
     </div>
 
     <div class="spinner">
@@ -17,20 +17,22 @@
           <div class="m-b-20">
             <div class="contact-grid">
               <div class="profile-header bg-dark">
-                <div class="user-name">{{specialist?.user?.name + " " + specialist?.user?.lastName}}</div>
-                <div class="name-center">{{specialist?.speciality}}</div>
+                <div class="user-name">{{user?.name + " " + user?.lastName}}</div>
+                <div class="name-center">{{user?.email}}</div>
               </div>
 
-              <div class="image">
+              <div class=" image">
                 <img src="{{photoManager()}}" class="img-photo user-img-circle user-img" alt="User Image" />
               </div>
-              <p>
-                {{specialist?.location}}
-                <br />{{specialist?.college}}
-              </p>
+
               <div>
                 <span class="phone">
-                  <i class="material-icons">phone</i>{{specialist?.user?.phone}}</span>
+                {{user?.userName}}</span>
+              </div>
+
+              <div>
+                <span class="phone">
+                  <i class="material-icons">phone</i>{{user?.phone}}</span>
               </div>
             </div>
           </div>
@@ -56,7 +58,7 @@
                 <mat-spinner ></mat-spinner>
               </div>
 
-              <form class="validate-form " *ngIf="!isLoadingPassword" [formGroup]="passwordForm" (ngSubmit)="onSubmitPassword()">
+              <form *ngIf="!isLoadingPassword" class="validate-form " [formGroup]="passwordForm" (ngSubmit)="onSubmitPassword()">
               <div class="body">
                 <div class="example-container" >
 
@@ -81,7 +83,7 @@
                   </div>
 
                 </div>
-                <button *ngIf="!isLoadingPassword" mat-raised-button color="primary" type="submit" [disabled]="passwordForm.invalid">Save</button>
+                <button *ngIf="!isLoadingPassword" mat-raised-button color="primary" type="submit" >Save</button>
               </div>
               </form>
 
@@ -90,7 +92,7 @@
                   <strong>Account</strong> Settings</h2>
               </div>
 
-              <form class="validate-form " [formGroup]="doctorUpdateForm" (submit)="onSubmit()">
+              <form class="validate-form " [formGroup]="userUpdateForm" (submit)="onSubmit()">
               <div class="body">
 
                 <div class="spinner-form" *ngIf="isLoadingUserUpdating">
@@ -106,6 +108,9 @@
                       </mat-form-field>
                     </div>
                   </div>
+
+
+
                   <div class="col-lg-6 col-md-12">
                     <div class="form-group">
                       <mat-form-field class="example-full-width mb-3" appearance="outline">
@@ -129,7 +134,7 @@
                       <mat-form-field class="example-full-width mb-3" appearance="outline">
                         <mat-label>Email</mat-label>
                         <input matInput formControlName="email">
-                        <mat-error *ngIf="doctorUpdateForm.get('email')!.hasError('required') || doctorUpdateForm.get('email')!.touched">
+                        <mat-error *ngIf="userUpdateForm.get('email')!.hasError('required') || userUpdateForm.get('email')!.touched">
                           Please enter a valid email address
                         </mat-error>
                       </mat-form-field>
@@ -139,25 +144,15 @@
                   <div class="col-lg-4 col-md-12">
                     <div class="form-group">
                       <mat-form-field class="example-full-width mb-3" appearance="outline">
-                        <mat-label>Medical id</mat-label>
-                        <input matInput formControlName="medicalId">
+                        <mat-label>Citizen Id</mat-label>
+                        <input matInput formControlName="citizenId">
                       </mat-form-field>
                     </div>
                   </div>
 
                   <div class="col-lg-4 col-md-12">
                     <div class="form-group">
-                      <mat-form-field class="example-full-width" appearance="outline">
-                        <mat-label>College</mat-label>
-                        <input matInput formControlName="college">
-                      </mat-form-field>
-                    </div>
-
-                  </div>
-
-                  <div class="col-lg-6 col-md-12">
-                    <div class="form-group">
-                      <mat-form-field class="example-full-width" appearance="outline">
+                      <mat-form-field class="example-full-width mb-3" appearance="outline">
                         <mat-label>Phone</mat-label>
                         <input matInput formControlName="phone">
                       </mat-form-field>
@@ -166,16 +161,18 @@
 
                   <div class="col-md-12">
                     <div class="form-group">
-                      <mat-form-field class="example-full-width" appearance="outline">
-                        <mat-label>Location</mat-label>
-                        <textarea matInput formControlName="location"></textarea>
+                      <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Address</mat-label>
+                        <textarea matInput formControlName="address"></textarea>
                       </mat-form-field>
                     </div>
                   </div>
+
                   <div class="col-md-12">
                     <button mat-raised-button color="primary" type="submit">Save Changes</button>
                   </div>
                 </div>
+
               </div>
               </form>
             </mat-tab>

@@ -19,6 +19,7 @@ import { MedicalhistoryDialogComponent } from './medicalhistory-dialog/medicalhi
 import {
   DeleteMedicalhistoryDialogComponent
 } from "./delete-medicalhistory-dialog/delete-medicalhistory-dialog.component";
+import {UploadFileService} from "../../../global/upload-file/upload-file.service";
 
 @Component({
   selector: 'app-profile',
@@ -47,7 +48,8 @@ export class ProfileComponent implements OnInit {
     public anxietyTypeService: AnxietyTypeService,
     public dialog: MatDialog,
     private route: ActivatedRoute,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    private readonly fileService: UploadFileService) {
   }
 
   ngOnInit(): void {
@@ -74,7 +76,6 @@ export class ProfileComponent implements OnInit {
           this.medicalRecordId = this.medicalRecord.id;
           this.medicalHistories = this.medicalRecord.medicalHistories;
 
-          console.log(this.medicalHistories);
           this.familyMedicalHistoryControl.setValue(this.medicalRecord.familyMedicalHistory);
 
           this.medicalRecord.anxietyTypes.forEach((anxiety => {
@@ -189,7 +190,6 @@ export class ProfileComponent implements OnInit {
             }
           }
         }, error => {
-          console.log(error);
           this.openSnackBar("Something went wrong while trying to update medical record", "Try again");
         })
     }
@@ -232,5 +232,9 @@ export class ProfileComponent implements OnInit {
 
   isFormEnabled(form: FormControl): boolean {
     return form.enabled;
+  }
+
+  getPhoto(urlPhoto: string | undefined){
+    return this.fileService.getPhotoToList('assets/images/user/user.png', urlPhoto);
   }
 }

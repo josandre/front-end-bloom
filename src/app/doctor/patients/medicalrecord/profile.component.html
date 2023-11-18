@@ -15,7 +15,11 @@
                   <div class="user-name">{{ patient?.name }} {{ patient?.lastName }}</div>
                   <div class="name-center">{{ patient?.email }}</div>
                 </div>
-                <img src="assets/images/user/usrbig3.jpg" class="user-img" alt="">
+
+                <div class=" image">
+                <img src="{{getPhoto(patient?.photo)}}" class="img-photo user-img-circle user-img" alt="">
+                </div>
+
                 <p>
                   {{ patient?.address }}
                 </p>

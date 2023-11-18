@@ -1,11 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from "@angular/material/table";
-import { SelectionModel } from '@angular/cdk/collections';
 import { MatDialog } from '@angular/material/dialog';
 
 import { FormControl, Validators } from '@angular/forms';
@@ -18,7 +14,11 @@ import { MedicalRecord } from './model/MedicalRecord';
 import { Patient } from '../model/Patient';
 import { AnxietyType } from './model/AnxietyType';
 import { MedicalHistory } from './model/MedicalHistory';
+
 import { MedicalhistoryDialogComponent } from './medicalhistory-dialog/medicalhistory-dialog.component';
+import {
+  DeleteMedicalhistoryDialogComponent
+} from "./delete-medicalhistory-dialog/delete-medicalhistory-dialog.component";
 import {UploadFileService} from "../../../global/upload-file/upload-file.service";
 
 @Component({
@@ -27,32 +27,24 @@ import {UploadFileService} from "../../../global/upload-file/upload-file.service
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  @ViewChild('autosize') autosize: CdkTextareaAutosize;
-
   medicalRecord: MedicalRecord | undefined;
+  medicalHistory: MedicalHistory | undefined;
   medicalRecordId: number;
+  medicalHistories: MedicalHistory[] | undefined;
   patient: Patient | undefined;
   anxieties: Set<string>;
   anxitiesControl: FormControl;
+
+  @ViewChild('autosize') autosize: CdkTextareaAutosize;
   familyMedicalHistoryControl: FormControl;
 
-  dataSource: MatTableDataSource<MedicalHistory> = new MatTableDataSource<MedicalHistory>([]);
+  panelOpenState = false;
 
-  displayedColumns = [
-    'appointmentDate'
-  ];
+  pageSize = 8;
+  currentPage = 1;
 
-  selection = new SelectionModel<MedicalHistory>(true, []);
-  index?: number;
-  id?: number;
-  medicalHistory?: MedicalHistory;
-
-  @ViewChild(MatPaginator, { static: true })
-  paginator!: MatPaginator;
-  @ViewChild(MatSort, { static: true })
-  sort!: MatSort;
-
-  constructor(public medicalRecordService: MedicalRecordService,
+  constructor(
+    public medicalRecordService: MedicalRecordService,
     public anxietyTypeService: AnxietyTypeService,
     public dialog: MatDialog,
     private route: ActivatedRoute,
@@ -82,8 +74,9 @@ export class ProfileComponent implements OnInit {
         data => {
           this.medicalRecord = data;
           this.medicalRecordId = this.medicalRecord.id;
+          this.medicalHistories = this.medicalRecord.medicalHistories;
+
           this.familyMedicalHistoryControl.setValue(this.medicalRecord.familyMedicalHistory);
-          this.dataSource = new MatTableDataSource<MedicalHistory>(this.medicalRecord?.medicalHistories);
 
           this.medicalRecord.anxietyTypes.forEach((anxiety => {
             this.anxieties.add(anxiety.anxietyType);
@@ -175,7 +168,13 @@ export class ProfileComponent implements OnInit {
 
   updateMedicalRecord(): void {
     if (this.familyMedicalHistoryControl.valid) {
+      const familyMedicalHistoryHasChanged: boolean = this.medicalRecord?.familyMedicalHistory != this.familyMedicalHistoryControl.value;
+
       this.familyMedicalHistoryControl.disable();
+
+      if (!familyMedicalHistoryHasChanged) {
+        return;
+      }
 
       const medicalRecord: MedicalRecord = new MedicalRecord({
         familyMedicalHistory: this.familyMedicalHistoryControl.value
@@ -183,7 +182,7 @@ export class ProfileComponent implements OnInit {
 
       this.medicalRecordService.updateMedicalRecord(medicalRecord, this.medicalRecordId)
         .subscribe((response) => {
-
+          this.medicalRecord!.familyMedicalHistory = this.familyMedicalHistoryControl.value;
           switch (response) {
             case 200: {
               this.openSnackBar("Family medical history updated", "Close");
@@ -196,20 +195,35 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  openMedicalHistory(row: MedicalHistory) {
-    this.dialog.open(MedicalhistoryDialogComponent,
-      { data:
-        {
-          medicalHistory: row
-        }
-      });
+  addMedicalHistory() {
+    this.dialog.open(MedicalhistoryDialogComponent, {
+      data: {
+        id: this.medicalRecordId,
+        patient: this.medicalHistory,
+        action: 'add',
+      },
+    });
   }
 
-  applyFilter(filterValue: any) {
-    let filterText: string = filterValue.value
-    filterText = filterText.trim();
-    filterText = filterText.toLowerCase()
-    this.dataSource.filter = filterText;
+  updateMedicalHistory(medicalHistoryUpdate: MedicalHistory) {
+    this.dialog.open(MedicalhistoryDialogComponent, {
+      data: {
+        medicalHistory: medicalHistoryUpdate,
+        action: 'edit',
+      },
+    });
+  }
+
+  deleteMedicalHistory(medicalHistoryId: number) {
+    this.dialog.open(DeleteMedicalhistoryDialogComponent, {
+      data: {id: medicalHistoryId},
+    });
+  }
+
+  get paginatedItems() {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    return this.medicalHistories?.slice(startIndex, endIndex);
   }
 
   openSnackBar(message: string, action: string) {
@@ -220,7 +234,7 @@ export class ProfileComponent implements OnInit {
     return form.enabled;
   }
 
-  getPhoto(urlPhoto: string){
+  getPhoto(urlPhoto: string | undefined){
     return this.fileService.getPhotoToList('assets/images/user/user.png', urlPhoto);
   }
 }

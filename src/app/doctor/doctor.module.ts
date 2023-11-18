@@ -20,6 +20,7 @@ import { ProfileComponent } from './patients/medicalrecord/profile.component';
 import { MedicalhistoryDialogComponent } from './patients/medicalrecord/medicalhistory-dialog/medicalhistory-dialog.component';
 import {SignupPatientComponent} from "./patients/signupPatient/signup-patient.component";
 import {DoctorProfileComponent} from "./doctor-profile/doctor-profile.component";
+import { DeleteMedicalhistoryDialogComponent } from './patients/medicalrecord/delete-medicalhistory-dialog/delete-medicalhistory-dialog.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import {DoctorProfileComponent} from "./doctor-profile/doctor-profile.component"
     DoctorsComponent,
     PatientsComponent,
     ProfileComponent,
-    MedicalhistoryDialogComponent
+    MedicalhistoryDialogComponent,
+    DeleteMedicalhistoryDialogComponent
   ],
   imports: [
     CommonModule,

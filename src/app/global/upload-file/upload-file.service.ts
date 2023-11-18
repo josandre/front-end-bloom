@@ -38,7 +38,7 @@ export class UploadFileService {
     return defaultPathPhoto;
   }
 
-  getPhotoToList(defaultPathPhoto: string, urlPhoto: string){
+  getPhotoToList(defaultPathPhoto: string, urlPhoto: string | undefined){
 
     if(urlPhoto){
       return this.showPhoto(urlPhoto);

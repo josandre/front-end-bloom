@@ -9,7 +9,8 @@ export class User{
     userName: string;
     citizenId:number;
     address?:string;
-    
+    photo?:string;
+
 
     constructor(partial?:Partial<User>) {
         if(partial){

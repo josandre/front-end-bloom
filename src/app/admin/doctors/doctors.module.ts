@@ -5,7 +5,6 @@ import { DoctorsRoutingModule } from './doctors-routing.module';
 import { AlldoctorsComponent } from './alldoctors/alldoctors.component';
 import { AddDoctorComponent } from './add-doctor/add-doctor.component';
 import { EditDoctorComponent } from './edit-doctor/edit-doctor.component';
-import { DoctorProfileComponent } from './doctor-profile/doctor-profile.component';
 import { ComponentsModule } from '@shared/components/components.module';
 import { SharedModule } from '@shared';
 
@@ -14,7 +13,6 @@ import { SharedModule } from '@shared';
     AlldoctorsComponent,
     AddDoctorComponent,
     EditDoctorComponent,
-    DoctorProfileComponent,
   ],
   imports: [
     CommonModule,

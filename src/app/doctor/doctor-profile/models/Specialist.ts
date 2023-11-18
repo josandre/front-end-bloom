@@ -1,4 +1,5 @@
-import {User} from "../../../patient/settings/models/User";
+import {User} from "./User";
+
 
 export class Specialist{
     id: number;

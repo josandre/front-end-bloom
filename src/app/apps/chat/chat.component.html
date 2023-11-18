@@ -16,14 +16,14 @@
                 <ng-scrollbar style="height: 590px" visibility="hover">
                   <div class="spinner" *ngIf="!conversationSelected && isLoading">
                     <div class="img">
-                      <img  class="gif" src="assets/gif/loading-bloom.gif" alt="avatar">
+                      <img  class="gif" src="assets/gif/loading-bloom.gif" alt="avatar" width="70px" height="70px">
                     </div>
                     <div class="text">{{"We are reading your conversations..."}}</div>
                   </div>
                   <div id="chat_user" >
                     <ul class="chat-list list-unstyled m-b-0" *ngFor="let conversation of conversations">
                       <li class="clearfix active" (click)="getConversationInformation(conversation)" >
-                        <img src="assets/images/user/user1.jpg" alt="avatar">
+                        <img class="avatar-user" src="{{getPhoto(conversation.photo)}}" alt="avatar">
                         <div class="about">
                           <div class="name">{{conversation.name + " " + conversation.lastName}}</div>
                           <div>{{conversation.newMessages === 0 ? 'No new messages' : conversation.newMessages + " new messages"}}</div>
@@ -57,7 +57,7 @@
         <div class="card">
           <div class="chat">
             <div class="chat-header clearfix">
-              <img src="assets/images/user.png" alt="avatar">
+              <img class="avatar-user" src="{{getPhoto(conversationSelected.photo)}}" alt="avatar">
               <div class="chat-about">
                 <div class="chat-with">{{conversationSelected.name + " " + conversationSelected.lastName}}</div>
               </div>

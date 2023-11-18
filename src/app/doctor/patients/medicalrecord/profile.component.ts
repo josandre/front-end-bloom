@@ -19,6 +19,7 @@ import { Patient } from '../model/Patient';
 import { AnxietyType } from './model/AnxietyType';
 import { MedicalHistory } from './model/MedicalHistory';
 import { MedicalhistoryDialogComponent } from './medicalhistory-dialog/medicalhistory-dialog.component';
+import {UploadFileService} from "../../../global/upload-file/upload-file.service";
 
 @Component({
   selector: 'app-profile',
@@ -55,7 +56,8 @@ export class ProfileComponent implements OnInit {
     public anxietyTypeService: AnxietyTypeService,
     public dialog: MatDialog,
     private route: ActivatedRoute,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    private readonly fileService: UploadFileService) {
   }
 
   ngOnInit(): void {
@@ -195,11 +197,11 @@ export class ProfileComponent implements OnInit {
   }
 
   openMedicalHistory(row: MedicalHistory) {
-    this.dialog.open(MedicalhistoryDialogComponent, 
-      { data: 
-        { 
-          medicalHistory: row 
-        } 
+    this.dialog.open(MedicalhistoryDialogComponent,
+      { data:
+        {
+          medicalHistory: row
+        }
       });
   }
 
@@ -216,5 +218,9 @@ export class ProfileComponent implements OnInit {
 
   isFormEnabled(form: FormControl): boolean {
     return form.enabled;
+  }
+
+  getPhoto(urlPhoto: string){
+    return this.fileService.getPhotoToList('assets/images/user/user.png', urlPhoto);
   }
 }

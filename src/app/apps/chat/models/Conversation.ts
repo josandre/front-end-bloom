@@ -6,6 +6,7 @@ export class Conversation{
   senderId: number;
   receiverId: number;
   newMessages: number;
+  photo: string
 
 
   constructor(partial?: Partial<Conversation>) {

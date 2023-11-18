@@ -10,6 +10,7 @@ import {Specialist} from "./models/Specialist";
 import {SpecialistService} from "./services/Specialist.service";
 import {User} from "./models/User";
 import {MatSnackBar} from "@angular/material/snack-bar";
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -26,7 +27,12 @@ export class SignupComponent implements OnInit {
     {value: 'psychology', viewValue: 'psychology'},
   ];
 
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private userService: SpecialistService, private snackBar: MatSnackBar) {}
+
+
+  // @ts-ignore
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private userService: SpecialistService, private snackBar: MatSnackBar,
+  ) {}
+
 
   ngOnInit() {
     this.authForm = this.formBuilder.group({

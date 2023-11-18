@@ -7,7 +7,9 @@ import { AuthLayoutComponent } from './layout/app-layout/auth-layout/auth-layout
 import { MainLayoutComponent } from './layout/app-layout/main-layout/main-layout.component';
 import { GamesSectionComponent } from './resources/games-section/games-section.component';
 import { MemoryGameComponent } from './resources/games/memory-game/memory-game.component';
+import { BasicTableComponent } from './tables/basic-table/basic-table.component';
 import { PuzzleGameComponent } from './resources/games/puzzle-game/puzzle-game.component';
+
 
 const routes: Routes = [
   // Redirección a 'public' cuando se visite la raíz
@@ -146,6 +148,11 @@ const routes: Routes = [
         component: PuzzleGameComponent
       }
       ///////////////////
+      ,
+      {
+        path: 'tables/basic-table',
+        component: BasicTableComponent
+      }
     ],
   },
   {

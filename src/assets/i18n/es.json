@@ -184,7 +184,10 @@
       "DATE": "Fecha",
       "SHOWING": "Mostrando",
       "ASSIGN": "Asignado a:",
-      "LOGOUT": "Salir"
+      "LOGOUT": "Salir",
+      "TASKLIST": "Lista de Tareas",
+      "ADDTASK": "Agregar Tarea",
+      "MODTASK": "Editar Tarea"
     }
   },
   "DASHBOARD_DOCTOR": {

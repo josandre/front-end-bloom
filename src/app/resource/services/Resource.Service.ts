@@ -4,7 +4,9 @@ import {API_URL} from "../../../config";
 import {Observable} from "rxjs";
 import {Resource} from "../models/Resource";
 import {User} from "../models/User";
+import {Task} from "../models/Task";
 import {AuthService} from "@core";
+import * as url from "url";
 
 
 @Injectable({
@@ -56,6 +58,24 @@ export class ResourceService {
     const currentUser = this.authenticationService.currentUserValue;
     const URL = `${this.baseUrl}/resource/update/${id}`;
     return this.http.put<Resource>(URL, resource, {headers: {'Authorization':  `Bearer ${currentUser.token}`}});
+  }
+
+  addTask(task: Task): Observable<Task>{
+    const currentUser = this.authenticationService.currentUserValue;
+    const URL = `${this.baseUrl}/task/add`;
+    return this.http.post<Task>(URL, task, {headers: {'Authorization':  `Bearer ${currentUser.token}`}});
+  }
+
+  deleteTask(id: number){
+    const currentUser = this.authenticationService.currentUserValue;
+    const URL = `${this.baseUrl}/task/delete/${id}`;
+    return this.http.delete(URL, {headers: {'Authorization':  `Bearer ${currentUser.token}`}});
+  }
+
+  userCheckTask(task: Task ){
+    const currentUser = this.authenticationService.currentUserValue;
+    const URL = `${this.baseUrl}/task/check/${currentUser.id}`;
+    this.http.put(URL, task,{headers: {'Authorization':  `Bearer ${currentUser.token}`}});
   }
 
 }

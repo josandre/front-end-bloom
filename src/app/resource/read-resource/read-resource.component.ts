@@ -37,7 +37,16 @@ export class ReadResourceComponent implements OnInit{
           }
           if (data.taskList != null){
             this.taskList = JSON.parse(JSON.stringify(data.taskList));
-            console.log(this.taskList);
+
+            if (this.role === 'Patient'){
+              this.taskList.forEach((task) =>{
+                this.resourceService.getTaskChecks(task.id).subscribe(data =>{
+                  task.done = data;
+                });
+              });
+            }
+
+
           }
           sessionStorage.removeItem('resourceId');
           sessionStorage.clear();
@@ -46,6 +55,7 @@ export class ReadResourceComponent implements OnInit{
         error => {
           console.log(error);
         }
+
       )
     }else{
       console.log("resourse id was null");
@@ -103,16 +113,30 @@ onSubmit(){
     if (this.role === 'Patient'){
       this.taskList.forEach((task) =>{
         if (task.id == ide){
-
+          task.done = !task.done;
+          const task1 = new Task(
+            {
+              id: task.id,
+              done: task.done
+            }
+          );
+          this.resourceService.userCheckTask(task1).subscribe((res: NonNullable<unknown>) =>{
+            switch (res) {
+              case 200:{
+                this.openSnackBar("Task changed successfully", "Close");
+                break;
+              }
+            }
+          }, error => {
+            switch (error.error) {
+              case 404:
+                this.openSnackBar("The task was not changed", "Close" );
+                break;
+            }
+          })
         }
       });
-
-
-
     }
-
-
-
   }
   removeTask(id: number){
     this.checkedList.forEach( (item, index) => {

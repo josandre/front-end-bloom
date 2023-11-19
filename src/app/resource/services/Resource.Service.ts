@@ -9,6 +9,7 @@ import {AuthService} from "@core";
 import * as url from "url";
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -82,7 +83,13 @@ export class ResourceService {
   userCheckTask(task: Task ){
     const currentUser = this.authenticationService.currentUserValue;
     const URL = `${this.baseUrl}/task/check/${currentUser.id}`;
-    this.http.put(URL, task,{headers: {'Authorization':  `Bearer ${currentUser.token}`}});
+    return this.http.put(URL, task,{headers: {'Authorization':  `Bearer ${currentUser.token}`}});
+  }
+
+  getTaskChecks(taskid: number ): Observable<boolean>{
+    const currentUser = this.authenticationService.currentUserValue;
+    const URL = `${this.baseUrl}/task/getChecks/${currentUser.id}/${taskid}`;
+    return this.http.get<boolean>(URL,{headers: {'Authorization':  `Bearer ${currentUser.token}`}});
   }
 
 }

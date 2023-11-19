@@ -2,14 +2,14 @@ import { Component, OnInit} from '@angular/core';
 import { ResourceService } from './service/resource.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Resource } from './models/Resource';
- 
+
 
 @Component({
-  selector: 'app-basic-table',
-  templateUrl: './basic-table.component.html',
-  styleUrls: ['./basic-table.component.scss'],
+  selector: 'app-resource',
+  templateUrl: './resource.component.html',
+  styleUrls: ['./resource.component.scss']
 })
-export class BasicTableComponent implements OnInit {
+export class ResourceComponent implements OnInit {
 
   constructor(private readonly resourceService: ResourceService,private snackBar: MatSnackBar) {
     this.selectedResourceIds=[];
@@ -18,12 +18,10 @@ export class BasicTableComponent implements OnInit {
   resourcesList: Resource[];
   originalResourcesList: Resource[];
   selectedResourceIds: number[];
-  loading:Boolean=true;
 
   ngOnInit(){
     this.resourceService.getResourceList().subscribe(
       resources =>{ 
-        this.loading=false
         this.resourcesList = resources;
         this.originalResourcesList=[...resources]}
     )
@@ -83,4 +81,3 @@ export class BasicTableComponent implements OnInit {
   }
 
 }
-

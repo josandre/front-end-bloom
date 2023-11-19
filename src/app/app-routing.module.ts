@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, ExtraOptions } from '@angular/router';
 import { Page404Component } from './authentication/page404/page404.component';
 import { AuthGuard } from './core/guard/auth.guard';
 import { Role } from './core/models/role';
@@ -158,8 +158,15 @@ const routes: Routes = [
   },
   { path: '**', component: Page404Component },
 ];
+
+const routerOptions: ExtraOptions = {
+  scrollPositionRestoration: 'enabled',
+  anchorScrolling: 'enabled',
+  scrollOffset: [0, 64] // Opcional: ajusta el offset si tienes un header fijo
+};
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {})],
+  imports: [RouterModule.forRoot(routes, routerOptions)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

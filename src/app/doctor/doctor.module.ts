@@ -32,7 +32,8 @@ import { MedicalhistoryDialogComponent } from './patients/medicalrecord/medicalh
     PatientsComponent,
     SettingsComponent,
     ProfileComponent,
-    MedicalhistoryDialogComponent
+    MedicalhistoryDialogComponent,
+    
   ],
   imports: [
     CommonModule,

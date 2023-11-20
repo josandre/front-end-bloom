@@ -15,10 +15,12 @@ import {
 import { ComponentsModule } from '@shared/components/components.module';
 import { SharedModule } from '@shared';
 import { ForumComponent } from './forum/forum.component';
-import { PostComponent } from './forum/post/post.component';
 import { CommentComponent } from './forum/comment/comment.component';
 import { PostPreviewComponent } from './forum/post-preview/post-preview.component';
 import { PostEditorComponent } from './forum/post-editor/post-editor.component';
+import { CommentEditorComponent } from './forum/comment-editor/comment-editor.component';
+import { LoadingCardComponent } from './forum/loading-card/loading-card.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -27,10 +29,11 @@ import { PostEditorComponent } from './forum/post-editor/post-editor.component';
     ContactGridComponent,
     SupportComponent,
     ForumComponent,
-    PostComponent,
     CommentComponent,
     PostPreviewComponent,
     PostEditorComponent,
+    CommentEditorComponent,
+    LoadingCardComponent,
   ],
   imports: [
     CommonModule,
@@ -43,6 +46,7 @@ import { PostEditorComponent } from './forum/post-editor/post-editor.component';
     OwlNativeDateTimeModule,
     ComponentsModule,
     SharedModule,
+    TranslateModule
   ],
   exports: [ForumComponent]
 })

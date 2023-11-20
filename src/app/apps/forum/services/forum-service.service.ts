@@ -41,6 +41,33 @@ export class ForumServiceService {
   }
 
   /**
+   * Use this function to delete an existing post
+   * @param postID Unique identifier of the post
+   * @returns 
+   */
+  deletePost(postID:number) : Observable<any> {
+    return this.http.delete(`${POSTS_ENDPOINT}/${postID}`, {headers: this.generateHeader()});
+  }
+
+  /**
+   * Use this function to create a new comment for a post in the forums section
+   * @param data info about the comment
+   * @returns 
+   */
+  saveComment(data:{content:string, post:{id:number}, user:{id:number}}) : Observable<any> {
+    return this.http.post(COMMENTS_ENDPOINT, data, {headers: this.generateHeader()});
+  }
+
+  /**
+   * Use this function to delete an existing comment
+   * @param commentID Unique identifier of the post
+   * @returns 
+   */
+  deleteComment(commentID:number) : Observable<any> {
+    return this.http.delete(`${COMMENTS_ENDPOINT}/${commentID}`, {headers: this.generateHeader()});
+  }
+
+  /**
    * Used to generate the header that includes an authorization token
    * @returns Header that includes an authorization token
    */

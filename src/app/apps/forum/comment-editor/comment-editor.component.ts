@@ -4,18 +4,18 @@ import { ForumServiceService } from '../services/forum-service.service';
 import { ForumComponent } from '../forum.component';
 
 @Component({
-  selector: 'app-post-editor',
-  templateUrl: './post-editor.component.html',
-  styleUrls: ['./post-editor.component.scss']
+  selector: 'app-comment-editor',
+  templateUrl: './comment-editor.component.html',
+  styleUrls: ['./comment-editor.component.scss']
 })
-export class PostEditorComponent implements OnInit {
+export class CommentEditorComponent implements OnInit {
+  forumComponent:ForumComponent;
+  @Input() currentPostID:number;
   @Input() currentUserID:number;
 
-  forumComponent:ForumComponent;
-  postTitle:string;
-  postContent:string;
+  commentContent:string;
   editorEnabled:boolean;
-  
+
   constructor(
     private readonly forumService:ForumServiceService,
     public dialog: MatDialog
@@ -26,10 +26,12 @@ export class PostEditorComponent implements OnInit {
     return;
   }
 
-  savePost(): void {
-    const newPost = {
-      "title": this.postTitle,
-      "experience": this.postContent,
+  saveComment(): void {
+    const newComment= {
+      "content": this.commentContent,
+      "post": {
+        "id": this.currentPostID
+      },
       "user": {
         "id": this.currentUserID
       }
@@ -37,16 +39,16 @@ export class PostEditorComponent implements OnInit {
 
     this.editorEnabled = false;
     this.forumComponent?.onWaitingResponse();
-    this.forumService.savePost(newPost).
+    this.forumService.saveComment(newComment).
     subscribe(
       response => {
         console.log(response);
         this.closeDialog();
-        this.forumComponent?.getPosts();
+        this.forumComponent?.openPost(this.currentPostID);
       },
       error => {
-        this.editorEnabled = true;
         console.log(error);
+        this.editorEnabled = true;
       }
     );
   }

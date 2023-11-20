@@ -1,0 +1,19 @@
+<div>
+    <h1>{{'MENUITEMS.FORUMS.CREATE_COMMENT' | translate}}</h1>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>{{'MENUITEMS.FORUMS.COMMENT_CONTENT' | translate}}</mat-label>
+        <textarea matInput [(ngModel)]="commentContent"></textarea>
+    </mat-form-field>
+
+    <!--Interactable buttons-->
+    <div *ngIf="editorEnabled === true">
+        <button mat-flat-button color="primary" (click)="saveComment()">{{'MENUITEMS.FORUMS.SAVE_COMMENT' | translate}}</button>
+        <button type="button" mat-button (click)="closeDialog()">{{'MENUITEMS.FORUMS.CANCEL' | translate}}</button>
+    </div>
+
+    <!--Disabled buttons-->
+    <div *ngIf="editorEnabled === false">
+        <button mat-flat-button class="flat-btn-disabled" disabled>{{'MENUITEMS.FORUMS.SAVE_COMMENT' | translate}}</button>
+        <button mat-flat-button class="flat-btn-disabled" disabled>{{'MENUITEMS.FORUMS.CANCEL' | translate}}</button>
+    </div>   
+</div>

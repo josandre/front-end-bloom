@@ -1,0 +1,121 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="'Forums'" [items]="['Apps']" [active_item]="'Forums'"></app-breadcrumb>
+    </div>
+
+    <!--All Posts-->
+    <div *ngIf="forumState === ForumStates.ShowAllPosts">
+
+      <!--All posts card-->
+      <div class="card">
+        <div class="header">
+          <h1>{{'MENUITEMS.FORUMS.POSTS_TITLE' | translate}}</h1>
+          <div></div>
+        </div>
+
+        <div class="card-content">
+          <!--All posts-->
+          <button mat-flat-button color="primary" (click)="openNewPostDialog()">{{'MENUITEMS.FORUMS.CREATE_POST' | translate}}</button>
+
+          <!--Posts loading-->
+          <div *ngIf="postsLoaded === false">
+            <app-loading-card></app-loading-card>
+          </div>
+
+          <!--Posts container-->
+          <div *ngIf="postsLoaded === true" class="posts-container">
+            <app-post-preview *ngFor="let post of posts" [userImg]="post.userId" [userName]="post.userName"
+              [date]="post.creationDate" [postTitle]="post.title" [postContent]="post.expericence"
+              (click)="openPost(post.postId)"></app-post-preview>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!--Waiting response-->
+    <div *ngIf="forumState === ForumStates.WaitingResponse">
+      <app-loading-card></app-loading-card>
+    </div>
+
+    <!--Open post-->
+    <div *ngIf="forumState === ForumStates.OpenPost">
+      <!--Post loading-->
+      <div *ngIf="postLoaded === false">
+        <app-loading-card></app-loading-card>
+      </div>
+
+      <!--Post loaded-->
+      <div *ngIf="postLoaded === true">
+
+        <!--Post info-->
+        <div class="card">
+          <div class="header">
+            <div class="posts-title-container">
+              <h1>{{ currentPost.title }}</h1>
+            </div>
+
+            <!--Default user options-->
+            <div *ngIf="currentPost?.userId !== currentUser?.id" class="post-options-container">
+              <button mat-flat-button color="primary" (click)="showPosts()">{{'MENUITEMS.FORUMS.BACK' | translate}}</button>
+            </div>
+            
+            <!--Owner user options-->
+            <div *ngIf="currentPost?.userId === currentUser?.id" class="post-options-container">
+              <button mat-flat-button color="primary" (click)="showPosts()">{{'MENUITEMS.FORUMS.BACK' | translate}}</button>
+              <button type="button" class="btn btn-outline-danger" (click)="deletePost()">{{'MENUITEMS.FORUMS.DELETE' | translate}}</button>
+            </div>
+          </div>
+
+          <!--User, date and content-->
+          <div class="card-content">
+            <div class="post-info-container">
+              <div *ngIf="postLoaded === true">
+                <div class="user-section">
+                  <div class="user-image">
+                  </div>
+
+                  <div>
+                    <p class="username">{{ currentPost.userName }}</p>
+                    <p class="date">{{ currentPost.creationDate | date : "yyyy-MM-dd" }}</p>
+                  </div>
+                </div>
+
+                <div class="content-section">
+                  <h2>{{ currentPost.title }}</h2>
+                  <p>{{ currentPost.experience }}</p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Comments-->
+        <div class="card">
+          <div class="header">
+            <h1>{{'MENUITEMS.FORUMS.COMMENTS_SECTION' | translate}}</h1>
+          </div>
+
+          <div class="card-content">
+            <button mat-flat-button color="primary" (click)="openNewCommentDialog()">{{'MENUITEMS.FORUMS.CREATE_COMMENT' | translate}}</button>
+            <div>
+              <app-comment *ngFor="let comment of currentPost.comments" 
+              [forumComponent]="this"
+              [commentID]="comment.id"
+              [userName]="comment.userName"
+              [date]="comment.creationDate" 
+              [content]="comment.content"
+              [showAdvancedOptions]="comment?.userId === currentUser?.id">
+              </app-comment>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>

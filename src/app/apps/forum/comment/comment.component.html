@@ -1,0 +1,18 @@
+<div class="content-preview-card">
+    <div class="user-section">
+        <div class="user-image">
+        </div>
+        <div class="user-info">
+            <h4 class="username">{{ userName }}</h4>
+            <p class="date">{{ date }}</p>
+        </div>
+
+        <div *ngIf="showAdvancedOptions === true" class="options">
+            <button type="button" class="btn btn-outline-danger" (click)="deleteComment()">{{'MENUITEMS.FORUMS.DELETE' | translate}}</button>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <p>{{ content }}</p>
+    </div>
+</div>

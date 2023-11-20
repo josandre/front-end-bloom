@@ -17,7 +17,7 @@ export class GameScoreService {
   /**
    * Use this function to retrieve all of the user scores on a specified game and difficulty level
    * @param gameID The identifier for the game
-   * @param difficulty The difficulty level (from 1 to 5)
+   * @param difficulty The difficulty level (from 0 to 4)
    * @param userID The identifier for the user
    * @returns a list of objects that contain game score data
    */

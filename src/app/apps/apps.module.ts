@@ -14,6 +14,13 @@ import {
 } from '@danielmoncada/angular-datetime-picker';
 import { ComponentsModule } from '@shared/components/components.module';
 import { SharedModule } from '@shared';
+import { ForumComponent } from './forum/forum.component';
+import { CommentComponent } from './forum/comment/comment.component';
+import { PostPreviewComponent } from './forum/post-preview/post-preview.component';
+import { PostEditorComponent } from './forum/post-editor/post-editor.component';
+import { CommentEditorComponent } from './forum/comment-editor/comment-editor.component';
+import { LoadingCardComponent } from './forum/loading-card/loading-card.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -21,6 +28,12 @@ import { SharedModule } from '@shared';
     DragDropComponent,
     ContactGridComponent,
     SupportComponent,
+    ForumComponent,
+    CommentComponent,
+    PostPreviewComponent,
+    PostEditorComponent,
+    CommentEditorComponent,
+    LoadingCardComponent,
   ],
   imports: [
     CommonModule,
@@ -33,6 +46,8 @@ import { SharedModule } from '@shared';
     OwlNativeDateTimeModule,
     ComponentsModule,
     SharedModule,
+    TranslateModule
   ],
+  exports: [ForumComponent]
 })
 export class AppsModule {}

@@ -136,6 +136,24 @@
     "CONTACTS": {
       "TEXT": "Contactos"
     },
+    "FORUMS": {
+      "TITLE": "Foros",
+      "POSTS_TITLE": "Publicaciones",
+      "CREATE_POST": "Crear Publicación",
+      "POST_TITLE": "Título",
+      "POST_CONTENT": "Contenido",
+      "SAVE_POST": "Guardar Publicación",
+      "CANCEL": "Cancelar",
+      "BACK": "Volver",
+      "DELETE": "Eliminar",
+      "COMMENTS_SECTION": "Comentarios",
+      "CREATE_COMMENT": "Crear Comentario",
+      "COMMENT_CONTENT": "Contenido",
+      "SAVE_COMMENT": "Guardar Comentario",
+      "DELETE_CONFIRMATION_TITLE": "¿Estás seguro?",
+      "DELETE_CONFIRMATION_CONTENT": "¡Este cambio no se puede revertir!",
+      "DELETE_CONFIRMATION": "Si, eliminar"
+    },
     "GAMES-SECTION": {
       "TITLE": "Sección de Juegos",
       "DESCRIPTION": "Bienvenido a la Sección de Juegos, aquí puedes seleccionar diferentes juegos para jugar.",

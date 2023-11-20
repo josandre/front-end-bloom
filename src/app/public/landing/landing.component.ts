@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { REVIEWS } from './reviews.constants';
 import { PublicService } from '../services/public.service'; // Importa el servicio público
 import { Doctor } from '../landing/doctors.constants';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-landing',
@@ -49,9 +50,25 @@ export class LandingComponent implements OnInit {
     nav: false,
   };
 
-  constructor(private router: Router, private publicService: PublicService) {}
+  constructor(
+    private route: ActivatedRoute, 
+    private router: Router, 
+    private publicService: PublicService) {}
 
   ngOnInit(): void {
+
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      const fragment = this.route.snapshot.fragment;
+      if (fragment) {
+        const element = document.querySelector('#' + fragment);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+
     this.searchForm = new FormGroup({
       inputField: new FormControl(''),
       selectField: new FormControl(''),
@@ -90,6 +107,10 @@ export class LandingComponent implements OnInit {
   // Navegación a la página de login
   navigateToLogin(): void {
     this.router.navigate(['/authentication/signin']);
+  }
+
+  navigateToRegister(): void {
+    this.router.navigate(['/authentication/signup']);
   }
 
   // Carga los doctores desde el servicio público

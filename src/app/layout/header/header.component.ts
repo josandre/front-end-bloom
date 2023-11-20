@@ -63,7 +63,7 @@ export class HeaderComponent
   listLang = [
     { text: 'English', flag: 'assets/images/flags/us.svg', lang: 'en' },
     { text: 'Spanish', flag: 'assets/images/flags/spain.svg', lang: 'es' },
-    { text: 'German', flag: 'assets/images/flags/germany.svg', lang: 'de' },
+    // { text: 'German', flag: 'assets/images/flags/germany.svg', lang: 'de' },
   ];
   notifications: Notifications[] = [
     {
@@ -145,7 +145,13 @@ export class HeaderComponent
       this.flagvalue = val.map((element) => element.flag);
     }
   }
-
+  profile(){
+    if(this.authService.currentUserValue.role==='Doctor'){
+      this.router.navigate(['/doctor/doctor-profile']);
+    }else if(this.authService.currentUserValue.role==='Patient'){
+      this.router.navigate(['/patient/patient-profile']);
+    }
+  }
   callFullscreen() {
     if (!this.isFullScreen) {
       if (this.docElement?.requestFullscreen != null) {

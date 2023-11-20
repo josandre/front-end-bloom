@@ -119,9 +119,7 @@ nav#cssmenu ul {
 .logo {
   position: relative;
   z-index: 123;
-  padding: 10px;
-  font: 18px verdana;
-  background-color: gray;
+  padding: 0;
   float: left;
   @media only screen and (max-width: 1024px) {
     display: none;
@@ -129,12 +127,7 @@ nav#cssmenu ul {
 }
 
 .logo img {
-  max-width: 170px;
-  opacity: 0;
-}
-
-.logo a {
-  color: #6DDB07;
+  max-width: 90px;
 }
 
 #cssmenu,

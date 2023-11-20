@@ -1,6 +1,5 @@
 export class MedicalRecipe {
   id: number;
-  creationDate: Date;
   indications: string;
   name: string;
 

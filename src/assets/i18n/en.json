@@ -184,6 +184,23 @@
         "SELECT-BACKGROUND": "Select Background"
       }
     },
+    "RESOURCES": {
+      "RESOURCES": "Resources",
+      "MY-RESOURCES": "My Resources",
+      "READ": "Read Resource",
+      "CREATE": "Create Resource",
+      "MODIFY": "Modify Resource",
+      "MY-PATIENTS": "My Patients",
+      "POST": "Save",
+      "COMPOSE": "Create New Resource",
+      "TITLE": "Title",
+      "EDIT": "Edit",
+      "CONTENT": "Content",
+      "DATE": "Date",
+      "SHOWING": "Showing",
+      "ASSIGN": "Assigned to:",
+      "LOGOUT": "Logout"
+    },
     "PROGRESS-SECTION": {
       "TITLE": "Progreso Medico"
     }

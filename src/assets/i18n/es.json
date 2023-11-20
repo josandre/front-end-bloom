@@ -156,7 +156,7 @@
     },
     "GAMES-SECTION": {
       "TITLE": "Sección de Juegos",
-      "DESCRIPTION": "Bienvenido a la Sección de Juegos, aquí puedes seleccionar diferentes juegos para jugar.",     
+      "DESCRIPTION": "Bienvenido a la Sección de Juegos, aquí puedes seleccionar diferentes juegos para jugar.",
       "PLAY-NOW": "Jugar ahora",
       "COMING-SOON": "Muy pronto",
       "DIFFICULTY": "Dificultad",
@@ -186,6 +186,23 @@
     },
     "PROGRESS-SECTION": {
       "TITLE": "Progreso Medico"
+    },
+    "RESOURCES": {
+      "RESOURCES": "Recursos",
+      "MY-RESOURCES": "Mis Recursos",
+      "READ": "Leer Recurso",
+      "CREATE": "Crear Recurso",
+      "MODIFY": "Modificar Recurso",
+      "MY-PATIENTS": "Mis Pacientes",
+      "POST": "Salvar",
+      "COMPOSE": "Crear Nuevo Recurso",
+      "TITLE": "Titulo",
+      "EDIT": "Editar",
+      "CONTENT": "Contenido",
+      "DATE": "Fecha",
+      "SHOWING": "Mostrando",
+      "ASSIGN": "Asignado a:",
+      "LOGOUT": "Salir"
     }
   },
   "DASHBOARD_DOCTOR": {
@@ -217,5 +234,5 @@
     "BY_DATE": "Por fecha"
 }
 
-  
+
 }

@@ -1,0 +1,184 @@
+
+<section class="content" >
+
+  <div class="content-block" >
+    <div class="block-header">
+
+      <app-breadcrumb [title]="'Profile'" [items]="['PATIENT']" [active_item]="'Profile'"></app-breadcrumb>
+    </div>
+
+    <div class="spinner">
+      <mat-spinner *ngIf="loading" ></mat-spinner>
+    </div>
+
+    <div class="row clearfix" *ngIf="!loading">
+      <div class="col-lg-5 col-md-12">
+        <div class="card">
+          <div class="m-b-20">
+            <div class="contact-grid">
+              <div class="profile-header bg-dark">
+                <div class="user-name">{{user?.name + " " + user?.lastName}}</div>
+                <div class="name-center">{{user?.email}}</div>
+              </div>
+
+              <div class=" image">
+                <img src="{{photoManager()}}" class="img-photo user-img-circle user-img" alt="User Image" />
+              </div>
+
+              <div>
+                <span class="phone">
+                {{user?.userName}}</span>
+              </div>
+
+              <div>
+                <span class="phone">
+                  <i class="material-icons">phone</i>{{user?.phone}}</span>
+              </div>
+            </div>
+          </div>
+
+          <input type="file" id="customFile" class="btn" (change)="selectFile($event)" placeholder="FileData To Upload">
+          <button *ngIf="selectedFiles" class="black" (click)="upload()" [class.auth-spinner]="uploadingPhoto" >Save new profile photo</button>
+        </div>
+      </div>
+      <div class="col-lg-7 col-md-12">
+        <div class="card">
+          <mat-tab-group>
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon msr-2">settings</mat-icon>
+                Settings
+              </ng-template>
+              <div class="header">
+                <h2>
+                  <strong>Security</strong> Settings</h2>
+              </div>
+
+              <div class="spinner-form"  *ngIf="isLoadingPassword">
+                <mat-spinner ></mat-spinner>
+              </div>
+
+              <form *ngIf="!isLoadingPassword" class="validate-form " [formGroup]="passwordForm" (ngSubmit)="onSubmitPassword()">
+              <div class="body">
+                <div class="example-container" >
+
+                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-label>Current password</mat-label>
+                    <input matInput type="password" formControlName="currentPassword">
+                  </mat-form-field>
+
+                  <div class="password-section">
+                    <mat-form-field class="input-mat mb-3" appearance="outline">
+                      <mat-label>New password</mat-label>
+                      <input matInput type="password" formControlName="newPassword" >
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                      <mat-label>Confirm Password</mat-label>
+                      <input matInput type="password" formControlName="confirmPassword" >
+                      <mat-error >
+                        Password do not match
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+
+                </div>
+                <button *ngIf="!isLoadingPassword" mat-raised-button color="primary" type="submit" >Save</button>
+              </div>
+              </form>
+
+              <div class="header">
+                <h2>
+                  <strong>Account</strong> Settings</h2>
+              </div>
+
+              <form class="validate-form " [formGroup]="userUpdateForm" (submit)="onSubmit()">
+              <div class="body">
+
+                <div class="spinner-form" *ngIf="isLoadingUserUpdating">
+                  <mat-spinner ></mat-spinner>
+                </div>
+
+                <div class="row clearfix" *ngIf="!isLoadingUserUpdating">
+                  <div class="col-lg-6 col-md-12">
+                    <div class="form-group">
+                      <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Name</mat-label>
+                        <input matInput formControlName="name" >
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+
+
+                  <div class="col-lg-6 col-md-12">
+                    <div class="form-group">
+                      <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Last Name</mat-label>
+                        <input matInput formControlName="lastName">
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-12">
+                    <div class="form-group">
+                      <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>User Name</mat-label>
+                        <input matInput formControlName="userName">
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-12">
+                    <div class="form-group">
+                      <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email">
+                        <mat-error *ngIf="userUpdateForm.get('email')!.hasError('required') || userUpdateForm.get('email')!.touched">
+                          Please enter a valid email address
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-12">
+                    <div class="form-group">
+                      <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Citizen Id</mat-label>
+                        <input matInput formControlName="citizenId">
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-12">
+                    <div class="form-group">
+                      <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Phone</mat-label>
+                        <input matInput formControlName="phone">
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Address</mat-label>
+                        <textarea matInput formControlName="address"></textarea>
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <button mat-raised-button color="primary" type="submit">Save Changes</button>
+                  </div>
+                </div>
+
+              </div>
+              </form>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

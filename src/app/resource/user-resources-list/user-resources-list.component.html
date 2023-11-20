@@ -1,0 +1,88 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <br>
+      <h1>{{'MENUITEMS.RESOURCES.MY-RESOURCES' | translate}}</h1>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="card">
+          <div class="materialTableHeader">
+            <div class="left">
+              <ul class="header-buttons-left ms-0">
+                <li class="tbl-title">
+                  <h2>Search by title</h2>
+                </li>
+                <li class="tbl-search-box">
+                  <label for="search-input"><i class="material-icons search-icon">search</i></label>
+                  <input placeholder="Search" type="text"  (keyup)="applyFilter($event.target)" class="browser-default search-field"
+                    aria-label="Search box">
+                </li>
+              </ul>
+            </div>
+            
+          </div>
+          <div class="boxs mail_listing">
+            <div class="inbox-center table-responsive">
+              <table class="table table-hover">
+                <thead>
+
+                </thead>
+                <tbody>
+                <tr >
+                  <td></td>
+                  <td class="hidden-xs" >{{'MENUITEMS.RESOURCES.TITLE' | translate}}</td>
+
+                  <td class="max-texts">{{'MENUITEMS.RESOURCES.CONTENT' | translate}}</td>
+
+                  <td class="max-texts" > {{'MENUITEMS.RESOURCES.DATE' | translate}} </td>
+
+                </tr>
+
+
+                <tr *ngFor="let r of resourcesList">
+                  <td class="tbl-checkbox">
+                  
+                  </td>
+                  <td class="hidden-xs" >{{r.title}}</td>
+
+                  <td class="max-texts">
+                    <a routerLink="/resource/read-resource" (click)="readResource(r.id)"  [innerHTML]="r.content.substring(0,200)"></a>
+                  </td>
+
+                  <td class="max-texts" > {{r.date}} </td>
+
+                </tr>
+
+                </tbody>
+              </table>
+                            <!-- Loading spinner -->
+                            <div *ngIf="!flag" class="tbl-spinner">
+                              <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
+                              </mat-progress-spinner>
+                            </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-7 ">
+                <p class="p-15">{{'MENUITEMS.RESOURCES.SHOWING' | translate}} 1 - 15 of 200</p>
+              </div>
+              <div class="col-sm-5 text-end">
+                <div class="float-end">
+                  <div class="email-btn-group m-l-15">
+                    <button mat-icon-button aria-label="Example icon-button with a heart icon">
+                      <mat-icon>navigate_before</mat-icon>
+                    </button>
+                    <button mat-icon-button aria-label="Example icon-button with a heart icon">
+                      <mat-icon>navigate_next</mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

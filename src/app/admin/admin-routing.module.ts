@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ResourceComponent } from 'app/admin/resource/resource.component';
+import { BasicTableComponent } from 'app/tables/basic-table/basic-table.component';
+
 
 const routes: Routes = [
   {
@@ -54,6 +57,14 @@ const routes: Routes = [
     path: 'pharmacy',
     loadChildren: () =>
       import('./pharmacy/pharmacy.module').then((m) => m.PharmacyModule),
+  },
+  {
+    path: 'resource',
+    component: ResourceComponent
+  },
+  {
+    path: 'tables/basic-table',
+    component: BasicTableComponent
   },
 ];
 

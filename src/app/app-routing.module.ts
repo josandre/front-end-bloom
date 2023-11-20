@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, ExtraOptions } from '@angular/router';
 import { Page404Component } from './authentication/page404/page404.component';
 import { AuthGuard } from './core/guard/auth.guard';
 import { Role } from './core/models/role';
@@ -7,7 +7,9 @@ import { AuthLayoutComponent } from './layout/app-layout/auth-layout/auth-layout
 import { MainLayoutComponent } from './layout/app-layout/main-layout/main-layout.component';
 import { GamesSectionComponent } from './resources/games-section/games-section.component';
 import { MemoryGameComponent } from './resources/games/memory-game/memory-game.component';
+import { BasicTableComponent } from './tables/basic-table/basic-table.component';
 import { PuzzleGameComponent } from './resources/games/puzzle-game/puzzle-game.component';
+
 
 const routes: Routes = [
   // Redirección a 'public' cuando se visite la raíz
@@ -68,9 +70,9 @@ const routes: Routes = [
           import('./contacts/contacts.module').then((m) => m.ContactsModule),
       },
       {
-        path: 'email',
+        path: 'resource',
         loadChildren: () =>
-          import('./email/email.module').then((m) => m.EmailModule),
+          import('./resource/resource.module').then((m) => m.ResourceModule),
       },
       {
         path: 'apps',
@@ -146,6 +148,11 @@ const routes: Routes = [
         component: PuzzleGameComponent
       }
       ///////////////////
+      ,
+      {
+        path: 'tables/basic-table',
+        component: BasicTableComponent
+      }
     ],
   },
   {
@@ -158,8 +165,15 @@ const routes: Routes = [
   },
   { path: '**', component: Page404Component },
 ];
+
+const routerOptions: ExtraOptions = {
+  scrollPositionRestoration: 'enabled',
+  anchorScrolling: 'enabled',
+  scrollOffset: [0, 64] // Opcional: ajusta el offset si tienes un header fijo
+};
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {})],
+  imports: [RouterModule.forRoot(routes, routerOptions)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

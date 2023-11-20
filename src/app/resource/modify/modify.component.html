@@ -5,7 +5,7 @@
       <br>
       <h1>{{'MENUITEMS.RESOURCES.MODIFY' | translate}}</h1>
     </div>
-    <div *ngIf="postingFlag" >
+    <div class="center" *ngIf="postingFlag" >
       <mat-spinner></mat-spinner>
     </div>
     <div class="row" *ngIf="!postingFlag">
@@ -15,8 +15,10 @@
             <div id="mail-nav">
 
               <h5 class="b-b p-10 text-strong">{{'MENUITEMS.RESOURCES.MY-PATIENTS' | translate}}</h5>
-              <div *ngIf="!flag" >
-                <mat-spinner></mat-spinner>
+
+              <div *ngIf="!flag" class="tbl-spinner">
+                <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
+                </mat-progress-spinner>
               </div>
 
               <ul class="online-user" id="online-offline" *ngFor="let p of patientsList">

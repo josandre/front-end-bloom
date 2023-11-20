@@ -181,7 +181,10 @@
       "DATE": "Date",
       "SHOWING": "Showing",
       "ASSIGN": "Assigned to:",
-      "LOGOUT": "Logout"
+      "LOGOUT": "Logout",
+      "TASKLIST": "Task List",
+      "ADDTASK": "Add Task",
+      "MODTASK": "Edit Task"
     },
     "PROGRESS-SECTION": {
       "TITLE": "Progreso Medico"

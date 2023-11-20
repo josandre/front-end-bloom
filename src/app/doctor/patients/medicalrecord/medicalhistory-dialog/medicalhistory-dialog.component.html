@@ -1,33 +1,95 @@
-<section [(ngModel)]="data.medicalHistory" class="w-100 msr-2">
-  <div class="col-lg-12 col-md-12 col-sm-12">
-    <div class="project_widget">
-      <div class="header">
-        <h1><strong>Taken on {{ data.medicalHistory.creationDate | date:'fullDate' }} </strong></h1>
-        <h2><strong>Notes</strong></h2>
-      </div>
-      <div class="body">
-        <ul>
-          <li><strong>Anxiety level:</strong> {{ data.medicalHistory.anxietyLevel }}</li>
-          <li><strong>Observations:</strong> {{ data.medicalHistory.observations }}</li>
-          <li><strong>Treatment started on:</strong> {{ data.medicalHistory.treatmentEndDate | date:'fullDate' }}</li>
-          <li><strong>Treatment ended on:</strong> {{ data.medicalHistory.treatmentEndDate | date:'fullDate' }}</li>
-        </ul>
+<div class="addContainer">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+        <div class="modal-about">
+          {{dialogTitle}}
+        </div>
       </div>
     </div>
   </div>
-  <div class="col-lg-12 col-md-12 col-sm-12">
-    <div class="project_widget">
-      <div class="header">
-        <h2><strong>Recipe</strong></h2>
+  <div mat-dialog-content>
+    <form class="register-form m-4" [formGroup]="medicalHistoryForm" (ngSubmit)="submit">
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Observations</mat-label>
+            <textarea matInput formControlName="observations" required></textarea>
+            <mat-error *ngIf="medicalHistoryForm.get('observations')?.hasError('required')">
+              Please write observations
+            </mat-error>
+          </mat-form-field>
+        </div>
       </div>
-      <div class="body">
-        <ul>
-          <li><strong>Anxiety level:</strong> {{ data.medicalHistory.anxietyLevel }}</li>
-          <li><strong>Observations:</strong> {{ data.medicalHistory.observations }}</li>
-          <li><strong>Treatment started on:</strong> {{ data.medicalHistory.treatmentEndDate | date:'fullDate' }}</li>
-          <li><strong>Treatment ended on:</strong> {{ data.medicalHistory.treatmentEndDate | date:'fullDate' }}</li>
-        </ul>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Treatment duration</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+              <input matStartDate formControlName="treatmentStartDate" placeholder="Start date" required>
+              <input matEndDate formControlName="treatmentEndDate" placeholder="End date" required>
+            </mat-date-range-input>
+            <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+            <mat-error *ngIf="medicalHistoryForm.get('treatmentEndDate')?.hasError('required')">
+            </mat-error>
+            <mat-error *ngIf="medicalHistoryForm.get('treatmentEndDate')?.hasError('required')">
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width " appearance="outline">
+            <mat-label>Anxiety level detected</mat-label>
+            <mat-select formControlName="anxietyLevel" required>
+              <mat-option *ngFor="let anxietyLevel of anxietyLevelOptions"
+                          [value]="anxietyLevel">{{ anxietyLevel }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="medicalHistoryForm.get('anxietyLevel')?.hasError('required')">
+              Anxiety level is required
+            </mat-error>
+          </mat-form-field>
+        </div>
       </div>
-    </div>
+      <div class="py-3">
+        <mat-divider></mat-divider>
+      </div>
+      <div>
+        <mat-label class="text-muted">Recipe</mat-label>
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" required>
+            <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>face</mat-icon>
+            <mat-error *ngIf="medicalHistoryForm.get('name')?.hasError('required')">
+              Name is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Indications</mat-label>
+            <textarea matInput formControlName="indications" required></textarea>
+            <mat-error *ngIf="medicalHistoryForm.get('indications')?.hasError('required')">
+              Please write indications
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <div class="example-button-row">
+            <button mat-raised-button color="primary" [disabled]="!medicalHistoryForm.valid" [mat-dialog-close]="1"
+                    (click)="confirmAction()">Save
+            </button>
+            <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </form>
   </div>
-</section>
+</div>

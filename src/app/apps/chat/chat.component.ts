@@ -7,6 +7,7 @@ import {WebSocketService} from "./services/web-socket.service";
 import {AuthService} from "@core";
 import {MessageService} from "./services/message.service";
 import {filter} from "rxjs";
+import {UploadFileService} from "../../global/upload-file/upload-file.service";
 
 @Component({
   selector: 'app-chat',
@@ -25,7 +26,8 @@ export class ChatComponent implements OnInit, OnDestroy{
   word= '';
 
 
-  constructor(private readonly messageService: MessageService, private formBuilder: FormBuilder,private readonly conversationService: ConversationService, public webSocketService: WebSocketService, private readonly authService: AuthService) {}
+  constructor(private readonly messageService: MessageService, private formBuilder: FormBuilder,private readonly conversationService: ConversationService, public webSocketService: WebSocketService, private readonly authService: AuthService,
+  private readonly fileService: UploadFileService) {}
 
 
   ngOnInit(): void {
@@ -130,5 +132,9 @@ export class ChatComponent implements OnInit, OnDestroy{
         return c.name.toLowerCase().includes(word.toLowerCase()) || c.lastName.toLowerCase().includes(word.toLowerCase())
       })
     }
+  }
+
+  getPhoto(urlPhoto: string){
+    return this.fileService.getPhotoToList('assets/images/user/user.png', urlPhoto);
   }
 }

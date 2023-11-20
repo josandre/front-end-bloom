@@ -43,7 +43,7 @@
                   <mat-form-field class="example-full-width" appearance="outline">
                     <mat-label>Medical Id</mat-label>
                     <input matInput formControlName="medicalId" required>
-                    <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>face</mat-icon>
+                    <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>credit_card</mat-icon>
                     <mat-error *ngIf="authForm.get('medicalId')!.hasError('required')">
                       Medical id is required
                     </mat-error>
@@ -56,7 +56,7 @@
                   <mat-form-field class="example-full-width" appearance="outline">
                     <mat-label>College</mat-label>
                     <input matInput formControlName="college" required>
-                    <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>face</mat-icon>
+                    <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>apartment</mat-icon>
                     <mat-error *ngIf="authForm.get('college')!.hasError('required')">
                       College is required
                     </mat-error>
@@ -69,7 +69,7 @@
                   <mat-form-field class="example-full-width" appearance="outline">
                     <mat-label>Clinic Location</mat-label>
                     <input matInput formControlName="location" required>
-                    <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>face</mat-icon>
+                    <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>location_on</mat-icon>
                     <mat-error *ngIf="authForm.get('location')!.hasError('required')">
                        Clinical location is required
                     </mat-error>
@@ -88,7 +88,7 @@
                         {{specility.viewValue}}
                       </mat-option>
                     </mat-select>
-                    <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>face</mat-icon>
+                    <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>contact_mail</mat-icon>
                     <mat-error *ngIf="authForm.get('speciality')!.hasError('required')">
                       Speciality id is required
                     </mat-error>
@@ -182,9 +182,16 @@
                 <i class="fab fa-linkedin-in"></i>
               </a></li>
           </ul>
+<!--          <input type="file" id="customFile" (change)="selectFile($event)" placeholder="FileData To Upload">-->
+<!--          <button class="btn btn-primary" [disabled]="!selectedFiles" (click)="upload()">Save FileData</button>-->
+<!--          <br><br><br>-->
+<!--          <input type="text" placeholder="FileData to View or Delete"  name="image" [(ngModel)]="file">-->
+<!--          <button class="btn btn-primary" style="margin-left: 10px" (click)="viewFile()">View FileData</button>-->
+<!--          <button class="btn btn-primary" style="margin-left: 10px" (click)="deleteFile()">Delete FileData</button>-->
         </div>
       </div>
     </div>
+
 
   </div>
 </div>

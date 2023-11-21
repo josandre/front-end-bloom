@@ -8,11 +8,37 @@
         </div>
 
         <div *ngIf="showAdvancedOptions === true" class="options">
-            <button type="button" class="btn btn-outline-danger" (click)="deleteComment()">{{'MENUITEMS.FORUMS.DELETE' | translate}}</button>
+            <button type="button" class="btn btn-outline-danger" (click)="deleteComment()">{{'MENUITEMS.FORUMS.DELETE' |
+                translate}}</button>
+            <button mat-stroked-button class="stroked-btn" (click)="editComment()">{{'MENUITEMS.FORUMS.EDIT' |
+                translate}}</button>
         </div>
     </div>
 
     <div class="content-section">
-        <p>{{ content }}</p>
+        <!--Comment content-->
+        <div *ngIf="editingComment === false">
+            <p>{{ content }}</p>
+        </div>
+
+        <!--Comment editor-->
+        <div *ngIf="editingComment === true">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>{{'MENUITEMS.FORUMS.COMMENT_CONTENT' | translate}}</mat-label>
+                <input matInput [(ngModel)]="commentEditorContent">
+            </mat-form-field>
+
+            <!--Interactable buttons-->
+            <div *ngIf="commentEditorEnabled === true">
+                <button mat-flat-button color="primary" (click)="updateComment()">{{'MENUITEMS.FORUMS.SAVE_COMMENT' | translate}}</button>
+                <button mat-stroked-button class="stroked-btn" (click)="closeCommentEditor()">{{'MENUITEMS.FORUMS.CANCEL' | translate}}</button>
+            </div>
+
+            <!--Disabled buttons-->
+            <div *ngIf="commentEditorEnabled === false">
+                <button mat-flat-button class="flat-btn-disabled" disabled>{{'MENUITEMS.FORUMS.SAVE_COMMENT' | translate}}</button>
+                <button mat-flat-button class="flat-btn-disabled" disabled>{{'MENUITEMS.FORUMS.CANCEL' | translate}}</button>
+            </div>
+        </div>
     </div>
 </div>

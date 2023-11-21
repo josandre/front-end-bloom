@@ -1,6 +1,7 @@
 .card-content {
     padding-left: 20px;
     padding-right: 20px;
+    padding-bottom: 20px;
 }
 
 .posts-title-container {
@@ -12,6 +13,10 @@
     flex-direction: row-reverse;
     width: 20%;
     height: 38px;
+
+    button {
+        margin-left: 5px;
+    }
 }
 
 .posts-container {

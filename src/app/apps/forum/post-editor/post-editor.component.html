@@ -13,7 +13,7 @@
     <!--Interactable buttons-->
     <div *ngIf="editorEnabled === true">
         <button mat-flat-button color="primary" (click)="savePost()">{{'MENUITEMS.FORUMS.SAVE_POST' | translate}}</button>
-        <button type="button" mat-button (click)="closeDialog()">{{'MENUITEMS.FORUMS.CANCEL' | translate}}</button>
+        <button mat-stroked-button class="stroked-btn" (click)="closeDialog()">{{'MENUITEMS.FORUMS.CANCEL' | translate}}</button>
     </div>
 
     <!--Disabled buttons-->

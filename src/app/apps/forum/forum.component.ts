@@ -27,6 +27,11 @@ export class ForumComponent implements OnInit {
   postLoaded:boolean = false;
   postUserName:string;
 
+  editingPost:boolean = false;
+  postEditorEnabled:boolean = false;
+  postEditorTitle:string;
+  postEditorContent:string;
+
   // User info
   currentUser?:any;
 
@@ -40,6 +45,7 @@ export class ForumComponent implements OnInit {
   ngOnInit(): void {
     // Get current user info
     this.currentUser = this.authService.currentUserValue;
+    console.log(this.currentUser);
 
     // Retrieve all the posts
     this.getPosts();
@@ -67,6 +73,19 @@ export class ForumComponent implements OnInit {
     )
   }
 
+  showAdvancedOptions(): boolean {
+    let result = false;
+    // Owner check
+    if (this.currentPost?.userId === this.currentUser?.id) {
+      result = true;
+    }
+    // Admin check
+    if (this.currentUser?.role === 'Admin') {
+      result = true;
+    }
+
+    return result;
+  }
   
   openNewPostDialog(): void {
     const postDialog = this.dialogModel.open(PostEditorComponent, {width: '720px', height: '480px', disableClose: false})
@@ -118,6 +137,7 @@ export class ForumComponent implements OnInit {
   openPost(postId: number): void {
     this.currentPost = undefined;
     this.postLoaded = false;
+    this.closePostEditor();
     this.forumState = this.ForumStates.OpenPost;
 
     this.forumService.getPost(postId).
@@ -126,12 +146,67 @@ export class ForumComponent implements OnInit {
         this.currentPost = data;
         this.postUserName = this.currentPost?.title;
         this.postLoaded = true;
+
+        this.postEditorTitle = this.currentPost.title;
+        this.postEditorContent = this.currentPost.experience;
         console.log(this.currentPost);
       },
       error => {
         console.log(error);
       }
     );
+  }
+
+  reloadPost(): void {
+    if (!this.currentPost) {
+      return;
+    }
+
+    this.openPost(this.currentPost.id);
+  }
+
+  editPost(): void {
+    this.editingPost = true;
+    this.postEditorEnabled = true;
+  }
+
+  updatePost(): void {
+    if (!this.currentPost) {
+      return;
+    }
+
+    const updatedPost = {
+      "id": this.currentPost.id,
+      "title": this.postEditorTitle,
+      "experience": this.postEditorContent
+    }
+
+    this.postEditorEnabled = false;
+    this.onWaitingResponse();
+    this.forumService.updatePost(updatedPost).
+    subscribe(
+      response => {
+        console.log(response);
+        this.reloadPost();
+      },
+      error => {
+        console.log(error);
+        this.postEditorEnabled = true;
+      }
+    );
+  }
+
+  closePostEditor(): void {
+    this.editingPost = false;
+    this.postEditorEnabled = false;
+
+    if (this.currentPost) {
+      this.postEditorTitle = this.currentPost.title;
+      this.postEditorContent = this.currentPost.experience;
+    } else {
+      this.postEditorTitle = '';
+      this.postEditorContent = '';
+    }
   }
 
   showPosts(): void {

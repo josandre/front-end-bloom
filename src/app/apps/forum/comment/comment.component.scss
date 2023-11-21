@@ -1,5 +1,4 @@
 .content-preview-card {
-    background-color: white;
     padding: 10px;
 
     border-top-style: solid;
@@ -30,6 +29,10 @@
             display: flex;
             flex-direction: row-reverse;
             height: 40px;
+
+            button {
+                margin-left: 5px;
+            }
         }
 
         .username {

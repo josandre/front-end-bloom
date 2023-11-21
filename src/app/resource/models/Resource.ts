@@ -5,6 +5,7 @@ export class Resource{
   content: string;
   specialist: string;
   users: string;
+  taskList: string;
   constructor(partial: Partial<Resource>) {
     if (partial) {
       Object.assign(this, partial);

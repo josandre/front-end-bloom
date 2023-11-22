@@ -23,8 +23,13 @@
                         <div class="puzzle-game-board-overlay">
                         </div>
     
-                        <app-puzzle-game-tile *ngFor="let tile of tiles; let i = index" [index]="i" [value]="tile.value"
-                            [tilesNumber]="tilesNumber" [tileSize]="tileSize" [disabled]="tile.disabled"
+                        <app-puzzle-game-tile *ngFor="let tile of tiles; let i = index" 
+                            [index]="i" 
+                            [value]="tile.value"
+                            [tilesNumber]="tilesNumber" 
+                            [tileSize]="tileSize" 
+                            [disabled]="tile.disabled"
+                            [showTileNumber]="showTileNumbers"
                             [class.disabled]="tile.disabled" class="puzzle-tile" (click)="selectTile(i)"
                             [ngStyle]="getTileStyles()">
                         </app-puzzle-game-tile>
@@ -46,6 +51,8 @@
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
+                        
+                        <mat-checkbox [(ngModel)]="showTileNumbers" name="showTileNumbers">{{ 'MENUITEMS.GAMES-SECTION.PUZZLE-GAME.SHOW-TILE-NUMBERS' | translate }}</mat-checkbox>
                     </form>
                     
                     <!--Background select-->

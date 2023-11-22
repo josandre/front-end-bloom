@@ -5,3 +5,17 @@
     width: 100%;
     height: 256px;
 }
+
+.memory-game-thumbnail {
+    background-image: url(/assets/images/games/memory-game-thumbnail.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.puzzle-game-thumbnail {
+    background-image: url(/assets/images/games/puzzle-game-thumbnail.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}

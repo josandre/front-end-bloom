@@ -1,8 +1,8 @@
 <section class="content">
-  <div class="content-block">
+  <div class="content-block" [hidden]="loading">
     <div class="block-header">
       <!-- breadcrumb -->
-      <app-breadcrumb [title]="'Compose'" [items]="['Email']" [active_item]="'Compose'"></app-breadcrumb>
+      <app-breadcrumb *ngIf="diary !== undefined" [title]="'My Diary'" [active_item]="diary.title | titlecase"></app-breadcrumb>
     </div>
     <div class="row">
 
@@ -50,4 +50,8 @@
       </div>
     </div>
   </div>
+  <div *ngIf="loading" class="center">
+    <mat-spinner></mat-spinner>
+  </div>
 </section>
+

@@ -17,10 +17,12 @@ export class DiaryComponent implements OnInit {
   editorContent: string;
   editorHidden: boolean;
 
-  diary?: Diary;
+  diary: Diary;
   diaryId: number;
   entries?: Entry[];
   entryId: number;
+
+  loading: boolean;
 
   constructor(
     public diaryService: DiaryService) {
@@ -29,6 +31,7 @@ export class DiaryComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loading = true;
     this.getDiary();
   }
 
@@ -39,6 +42,8 @@ export class DiaryComponent implements OnInit {
           this.diary = data;
           this.diaryId = this.diary.id;
           this.entries = this.diary.entries;
+
+          this.loading = false;
         },
         error => {
           console.log(error.status);

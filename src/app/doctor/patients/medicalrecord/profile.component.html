@@ -131,10 +131,10 @@
                           <div class="project_widget">
                             <div class="header">
                               <h2><strong>{{'MEDICAL_RECORD.INFO.NOTES' | translate}}</strong></h2>
-                            </div>
+                            </div> 
                             <div class="body">
                               <ul>
-                                <li><strong>{{'MEDICAL_RECORD.INFO.ANXIETY_LEVEL' | translate}}:</strong> {{ medicalHistory.anxietyLevel }}</li>
+                                <li><strong>{{'MEDICAL_RECORD.INFO.ANXIETY_LEVEL' | translate}}:</strong>{{ 'MEDICAL_RECORD.MEDICAL_HISTORY.ANXIETY_LEVEL.' + medicalHistory.anxietyLevel | translate }}</li>
                                 <li><strong>{{'MEDICAL_RECORD.INFO.OBSERVATIONS' | translate}}:</strong> {{ medicalHistory.observations }}</li>
                                 <li><strong>{{'MEDICAL_RECORD.INFO.TREATMENT_STARTED_ON' | translate}}:</strong> {{ medicalHistory.treatmentStartDate |
                                   date:'fullDate' }}</li>

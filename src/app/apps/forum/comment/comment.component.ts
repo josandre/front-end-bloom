@@ -5,6 +5,7 @@ import { ForumComponent } from '../forum.component';
 import Swal from 'sweetalert2';
 import { ForumServiceService } from '../services/forum-service.service';
 import { TranslateService } from '@ngx-translate/core';
+import { UploadFileService } from 'app/global/upload-file/upload-file.service';
 
 @Component({
   selector: 'app-comment',
@@ -16,6 +17,7 @@ export class CommentComponent implements OnInit {
   @Input() commentID:number;
   @Input() showAdvancedOptions:boolean;
   @Input() userName:string;
+  @Input() userImage:string;
   @Input() date:string;
   @Input() content:string;
   
@@ -23,7 +25,9 @@ export class CommentComponent implements OnInit {
   commentEditorEnabled:boolean = false;
   commentEditorContent:string;
 
-  constructor(private readonly forumService:ForumServiceService, private readonly translate:TranslateService) { }
+  constructor(private readonly forumService:ForumServiceService, 
+              private readonly uploadFileService:UploadFileService,
+              private readonly translate:TranslateService) { }
 
   ngOnInit(): void {
     this.date = formatDate(this.date, 'yyyy-MM-dd', 'en');
@@ -91,5 +95,11 @@ export class CommentComponent implements OnInit {
     this.editingComment = false;
     this.commentEditorEnabled = false;
     this.commentEditorContent = this.content;
+  }
+
+  getUserImageStyle() {
+    return {
+      backgroundImage: 'url(' + this.uploadFileService.getUserPhoto(this.userImage) + ')'
+    };
   }
 }

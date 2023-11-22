@@ -1,6 +1,6 @@
 <div class="content-preview-card">
     <div class="user-section">
-        <div class="user-image">
+        <div class="user-image" [style]="getUserImageStyle()">
         </div>
         <div class="user-info">
             <h4 class="username">{{ userName }}</h4>
@@ -29,13 +29,13 @@
             </mat-form-field>
 
             <!--Interactable buttons-->
-            <div *ngIf="commentEditorEnabled === true">
+            <div *ngIf="commentEditorEnabled === true" class="example-button-row">
                 <button mat-flat-button color="primary" (click)="updateComment()">{{'MENUITEMS.FORUMS.SAVE_COMMENT' | translate}}</button>
                 <button mat-stroked-button class="stroked-btn" (click)="closeCommentEditor()">{{'MENUITEMS.FORUMS.CANCEL' | translate}}</button>
             </div>
 
             <!--Disabled buttons-->
-            <div *ngIf="commentEditorEnabled === false">
+            <div *ngIf="commentEditorEnabled === false" class="example-button-row">
                 <button mat-flat-button class="flat-btn-disabled" disabled>{{'MENUITEMS.FORUMS.SAVE_COMMENT' | translate}}</button>
                 <button mat-flat-button class="flat-btn-disabled" disabled>{{'MENUITEMS.FORUMS.CANCEL' | translate}}</button>
             </div>

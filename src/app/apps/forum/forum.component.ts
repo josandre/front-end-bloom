@@ -6,6 +6,7 @@ import { PostEditorComponent } from './post-editor/post-editor.component';
 import { CommentEditorComponent } from './comment-editor/comment-editor.component';
 import Swal from 'sweetalert2';
 import { TranslateService } from '@ngx-translate/core';
+import { UploadFileService } from 'app/global/upload-file/upload-file.service';
 
 @Component({
   selector: 'app-forum',
@@ -39,6 +40,7 @@ export class ForumComponent implements OnInit {
     private readonly authService:AuthService,
     private readonly forumService:ForumServiceService,
     private readonly translate:TranslateService,
+    private readonly uploadFileService:UploadFileService,
     private dialogModel: MatDialog
   ) { }
 
@@ -215,5 +217,11 @@ export class ForumComponent implements OnInit {
 
   onWaitingResponse(): void {
     this.forumState = this.ForumStates.WaitingResponse;
+  }
+
+  getUserImageStyle() {
+    return {
+      backgroundImage: 'url(' + this.uploadFileService.getUserPhoto(this.currentPost?.userImage) + ')'
+    };
   }
 }

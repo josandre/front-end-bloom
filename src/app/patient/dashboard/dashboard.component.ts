@@ -18,10 +18,14 @@ import {
   ApexPlotOptions,
   ApexFill
 } from 'ng-apexcharts';
-import {AuthService} from "@core";
+import { AuthService } from "@core";
 import { AXIENTY_PROGRESS } from './provitionals/anxiety-progress';
 import { RECORDED_ATTACKS } from './provitionals/recorded-attacks';
 import { TranslateService } from '@ngx-translate/core';
+import { DashboardDoctorService, MedicalRecordI } from './dashboard.service';
+import * as moment from 'moment';
+import 'moment/locale/es'; // Para español
+
 
 export type anxietyScaleDataOptions = {
   series: ApexAxisChartSeries;
@@ -69,92 +73,181 @@ export class DashboardComponent implements OnInit {
   public anxietyScaleDataOptions!: Partial<anxietyScaleDataOptions>;
   public recordedAttacksOptions: Partial<recordedAttacksOptions>
   name: string
+  totalAttacks: number;
+  lastAttackDate: string;
+  daysWithoutAttack: number;
+  isLoadingEvents: boolean = true; 
+  lastEventDate: string;
+  attacksData: any[]; 
 
+  isMedicalDataLoading: boolean = true;
+  medicalRecord: MedicalRecordI;
+  currentAnxietyLevel: string;
 
   constructor(
+    private dashboardDoctorService: DashboardDoctorService,
     private readonly authService: AuthService,
-    private translate: TranslateService  
-  ) {}
+    private translate: TranslateService
+  ) { }
 
   changeLanguage(lang: string) {
     this.translate.use(lang);
   }
 
   ngOnInit() {
+    console.log(this.authService.currentUserValue)
     this.name = this.authService.currentUserValue.firstName + " " + this.authService.currentUserValue.lastName
-    
-    this.initAnxietyProgress();
+    this.fetchEvents();
+    this.fetchMedicalRecord();
+    this.translate.onLangChange.subscribe(langChangeEvent => {
+      this.updateDatesForLanguage(langChangeEvent.lang);
+    });
+  }
+
+fetchEvents() {
+  this.isLoadingEvents = true;  
+  this.dashboardDoctorService.getEvents().subscribe(events => {
+    if (Array.isArray(events) && events.length > 0) {
+      const lastEvent = events[events.length - 1];
+      this.totalAttacks = events.length;
+      this.lastEventDate = lastEvent.date;
+      this.updateDatesForLanguage(this.translate.currentLang);
+      this.daysWithoutAttack = moment().diff(moment(lastEvent.date), 'days');
+      this.processAttacksData(events);
+    } else {
+      this.totalAttacks = 0;
+      this.lastAttackDate = this.translate.instant('DASHBOARD_PATIENT.NO_RECENT_ATTACKS');
+      this.daysWithoutAttack = 0;
+      this.attacksData = [];
+    }
+    this.isLoadingEvents = false;  
+  });
+}
+
+
+  processAttacksData(events: any[] ) {
+    const attackCountsByDate = events.reduce((acc, event) => {
+      const formattedDate = moment(event.date).format('D MMMM');
+      acc[formattedDate] = (acc[formattedDate] || 0) + 1;
+      return acc;
+    }, {});
+
+    this.attacksData = Object.entries(attackCountsByDate).map(([date, count]) => {
+      return { date, count };
+    });
+
     this.initRecordedAttacks();
   }
-
-  private initAnxietyProgress() {
-    const levelsData = AXIENTY_PROGRESS.map(a => a.level);
-    const datesData = AXIENTY_PROGRESS.map(a => a.date);
-
-    this.anxietyScaleDataOptions = {
-      series: [
-        {
-          name: 'Nivel de Ansiedad del paciente',
-          data: levelsData,
-        },
-      ],
-      chart: {
-        height: 350,
-        type: 'line',
-        dropShadow: {
-          enabled: true,
-          color: '#000',
-          top: 18,
-          left: 7,
-          blur: 10,
-          opacity: 0.2,
-        },
-        foreColor: '#9aa0ac',
-        toolbar: {
-          show: false,
-        },
-      },
-      colors: ['#FCB939'],
-      dataLabels: {
-        enabled: true,
-      },
-      stroke: {
-        curve: 'smooth',
-      },
-      markers: {
-        size: 1,
-      },
-      grid: {
-        show: true,
-        borderColor: '#9aa0ac',
-        strokeDashArray: 1,
-      },
-      xaxis: {
-        categories: datesData,
-        title: {
-          text: 'Sesiones',
-        },
-      },
-      yaxis: {
-        title: {
-          text: 'Nivel de Ansiedad',
-        },
-      },
-      tooltip: {
-        theme: 'dark',
-        marker: {
-          show: true,
-        },
-        x: {
-          show: true,
-        },
-      },
-    };
+  
+  updateDatesForLanguage(lang: string) {
+    moment.locale(lang); // Actualiza el idioma de moment
+    if (this.lastEventDate) {
+      // Formato actualizado para mostrar solo el día y el mes
+      this.lastAttackDate = moment(this.lastEventDate).format('D MMMM');
+    }
   }
+  
+  fetchMedicalRecord() {
+    this.dashboardDoctorService.getMedicalRecord().subscribe(record => {
+      this.medicalRecord = record;
+      this.initAnxietyProgress();
+      if (record.medicalHistories && record.medicalHistories.length > 0) {
+        const lastMedicalHistory = record.medicalHistories[record.medicalHistories.length - 1];
+        this.currentAnxietyLevel = 'ANXIETY_LEVEL.' + lastMedicalHistory.anxietyLevel;
+      } else {
+        this.currentAnxietyLevel = 'ANXIETY_LEVEL.INDETERMINATE'; 
+      }
+      this.isMedicalDataLoading = false;
+    });
+  }
+
+  private convertAnxietyLevelToNumber(level: string): number {
+    const levels: { [key: string]: number } = {
+      'MINIMAL': 1,
+      'MILD': 2,
+      'MODERATE': 3,
+      'SEVERE': 4,
+      'DEBILITATING': 5,
+      'INDETERMINATE': 0 
+    };
+    return levels[level] ?? 0; 
+  }
+  private initAnxietyProgress() {
+    if (this.medicalRecord && this.medicalRecord.medicalHistories.length > 0) {
+      const levelsData = this.medicalRecord.medicalHistories.map((history: { anxietyLevel: string; }) => 
+        this.convertAnxietyLevelToNumber(history.anxietyLevel)
+      );
+      const datesData = this.medicalRecord.medicalHistories.map((history: { creationDate: moment.MomentInput; }) => 
+        moment(history.creationDate).format('D MMMM')
+      );
+  
+      this.anxietyScaleDataOptions = {
+        series: [
+          {
+            name: 'Nivel de Ansiedad del paciente',
+            data: levelsData,
+          },
+        ],
+        chart: {
+          height: 350,
+          type: 'line',
+          dropShadow: {
+            enabled: true,
+            color: '#000',
+            top: 18,
+            left: 7,
+            blur: 10,
+            opacity: 0.2,
+          },
+          foreColor: '#9aa0ac',
+          toolbar: {
+            show: false,
+          },
+        },
+        colors: ['#FCB939'],
+        dataLabels: {
+          enabled: true,
+        },
+        stroke: {
+          curve: 'smooth',
+        },
+        markers: {
+          size: 1,
+        },
+        grid: {
+          show: true,
+          borderColor: '#9aa0ac',
+          strokeDashArray: 1,
+        },
+        xaxis: {
+          categories: datesData,
+          title: {
+            text: 'Sesiones',
+          },
+        },
+        yaxis: {
+          title: {
+            text: 'Nivel de Ansiedad',
+          },
+        },
+        tooltip: {
+          theme: 'dark',
+          marker: {
+            show: true,
+          },
+          x: {
+            show: true,
+          },
+        },
+      };
+    } 
+  }
+
+  
   private initRecordedAttacks() {
-    
-    const attackCounts = RECORDED_ATTACKS.map(a => a.count);
-    const attackDates = RECORDED_ATTACKS.map(a => a.date);
+
+    const attackCounts = this.attacksData.map(a => a.count);
+    const attackDates = this.attacksData.map(a => a.date);
 
     this.recordedAttacksOptions = {
       series: [

@@ -99,12 +99,12 @@
       }
     },
     "DOCTOR": {
-        "DASHBOARD": "Tablero",
-        "APPOINTMENTS": "Equipo",
-        "DOCTORS": "Doctoras",
-        "PATIENTS": "Pacientes",
-        "SETTINGS": "Configuraciones",
-        "CHAT": "Charla"
+      "DASHBOARD": "Tablero",
+      "APPOINTMENTS": "Equipo",
+      "DOCTORS": "Doctoras",
+      "PATIENTS": "Pacientes",
+      "SETTINGS": "Configuraciones",
+      "CHAT": "Charla"
     },
     "PATIENT": {
       "TEXT": "Paciente",
@@ -234,8 +234,16 @@
     "ANXIETY_LEVEL_PROGRESS_CHART": "Gráfica de progreso en el nivel de ansiedad",
     "PER_SESSION": "Por sesión realizada",
     "RECORDED_ATTACKS_HISTORY": "Histórico de ataques registrados",
-    "BY_DATE": "Por fecha"
-}
-
-
+    "BY_DATE": "Por fecha",
+    "NO_RECENT_ATTACKS": "Sin ataques recientes",
+    "NO_DATA_FOR_ATTACKS": "No hay datos de ataques registrados."
+  },
+  "ANXIETY_LEVEL": {
+    "MINIMAL": "Mínimo",
+    "MILD": "Leve",
+    "MODERATE": "Moderado",
+    "SEVERE": "Severo",
+    "DEBILITATING": "Debilitante",
+    "INDETERMINATE": "Indeterminado"
+  }
 }

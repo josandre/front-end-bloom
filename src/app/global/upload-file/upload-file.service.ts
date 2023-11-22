@@ -46,8 +46,4 @@ export class UploadFileService {
 
     return defaultPathPhoto;
   }
-
-
-
-
 }

@@ -234,7 +234,16 @@
     "ANXIETY_LEVEL_PROGRESS_CHART": "Anxiety Level Progress Chart",
     "PER_SESSION": "Per Session",
     "RECORDED_ATTACKS_HISTORY": "Recorded Attacks History",
-    "BY_DATE": "By Date"
-}
-
+    "BY_DATE": "By Date",
+    "NO_RECENT_ATTACKS": "No recent attacks",
+    "NO_DATA_FOR_ATTACKS": "No data for attacks recorded."
+  },
+  "ANXIETY_LEVEL": {
+    "MINIMAL": "Minimal",
+    "MILD": "Mild",
+    "MODERATE": "Moderate",
+    "SEVERE": "Severe",
+    "DEBILITATING": "Debilitating",
+    "INDETERMINATE": "Indeterminate"
+  }
 }

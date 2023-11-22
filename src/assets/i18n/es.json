@@ -311,6 +311,78 @@
     "TITLE": "Doctores",
     "ACTIVE_ITEM": "Todos los doctores"
   }
+},
+"MEDICAL_RECORD":{
+  "INFO": {
+    "REQUIRED":"Ingrese un valor",
+    "SAVE":"Guadar",
+    "UPDATED":"Modificado",
+    "QUIT":"Salir",
+    "MEDICAL_HISTORY":"Historial Médico",
+    "APPOINTMENT_DATE":"Día de la cita",
+    "NOTES": "Notas",
+    "ANXIETY_LEVEL":"Niveles de ansiedad",
+    "OBSERVATIONS": "Observaciones",
+    "TREATMENT_STARTED_ON":"Inicio del tratamiento",
+    "TREATMENT_ENDED_ON":"Fin del tratamiento",
+    "RECIPE":"Receta",
+    "NAME_RECIPE":"Nombre del medicamento",
+    "INDICATIONS":"Indicaciones",
+    "APPOINTMENT_REGISTRED":"No hay citas registradas",
+    "FAMILY_MEDICAL_HISTORY":"Historial médico familiar",
+    "ANXIETIES":"Ansiedades",
+    "ANXIETY_TYPE":"Nuevo tipo de ansiedad..."
+  },
+  "SNACKBAR":{
+    "ACTIONS":{
+      "TRY_AGAIN":"Intente de nuevo",
+      "CLOSE": "Cerrar"
+    },
+    "ADD_ANXIETY_TYPE": {
+      "TEXT": "Este tipo de ansiedad ya existe",
+      "SUCCESS":"¡El tipo de ansiedad se ha agregado con éxito!",
+      "ERROR":"Algo salió mal al intentar registrar el tipo de ansiedad"
+    },
+    "GET_MEDICAL_RECORD":{
+      "FILL_OUT":"Aún no se ha completado el historial médico familiar.",
+      "ERROR":"Usuario no permitido"
+    },
+    "REMOVE_ANXIETY_TYPE":{
+      "SUCCESS": "¡El tipo de ansiedad se ha eliminado correctamente!",
+      "ERROR":"Algo salió mal al intentar eliminar el tipo de ansiedad"
+    },
+    "UPDATE_MEDICAL_RECORD":{
+      "SUCCESS": "Historial médico familiar actualizado.",
+      "ERROR":"Algo salió mal al intentar actualizar el registro médico"
+    }
+  },
+  "MEDICAL_HISTORY":{
+    "NEW_MEDICAL_HISTORY":"Nuevo historial médico",
+    "UPDATE_MEDICAL_HISTORY":"Actualizar historial médico",
+    "OBSERVATIONS":"Observaciones",
+    "OBSERVATIONS_REQUIRED":"Por favor ingrese observaciones",
+    "TREATMENT_DURATION":"Duración del tratamiento",
+    "START_DATE":"Fecha de inicio",
+    "END_DATE":"Fecha final",
+    "ANXIETY_LEVEL_DETECTED":"Seleccione nivel de ansiedad",
+    "ANXIETY_LEVEL_REQUIRED":"Se requiere nivel de ansiedad",
+    "RECIPE":"Receta",
+    "NAME_RECIPE":"Nombre del Medicamento",
+    "NAME_RECIPE_REQUIRED":"Se requiere el nombre",
+    "INDICATIONS":"Indicaciones",
+    "INDICATIONS_REQUIRED":"Por favor escriba indicaciones",
+    "SAVE":"Guardar",
+    "CANCEL":"Cancelar",
+    "ANXIETY_LEVEL":{
+      "MINIMAL": "Mínimo",
+      "MILD": "Leve",
+      "MODERATE": "Moderado",
+      "SEVERE": "Severo",
+      "DEBILITATING": "Debilitante",
+      "INDETERMINATE": "Indeterminado"
+      
+    }
+  }
 }
 
 }

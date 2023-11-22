@@ -311,6 +311,79 @@
     "TITLE": "Doctors",
     "ACTIVE_ITEM": "All Doctors"
   }
+},
+"MEDICAL_RECORD":{
+  "INFO": {
+    "REQUIRED":"value is required",
+    "SAVE":"Save",
+    "UPDATED":"Updated",
+    "QUIT":"Quit",
+    "MEDICAL_HISTORY":"Medical History",
+    "APPOINTMENT_DATE":"Appointment date",
+    "NOTES":"Notes",
+    "ANXIETY_LEVEL":"Anxiety Level",
+    "OBSERVATIONS": "Observations",
+    "TREATMENT_STARTED_ON":"Treatment started on",
+    "TREATMENT_ENDED_ON":"Treatment ended on",
+    "RECIPE":"Recipe",
+    "NAME_RECIPE":"Name",
+    "INDICATIONS":"Indications",
+    "APPOINTMENT_REGISTRED":"No appointments registered",
+    "FAMILY_MEDICAL_HISTORY":"Family Medical History",
+    "ANXIETIES":"Anxietys",
+    "ANXIETY_TYPE":"New anxiety type..."
+  },
+  "SNACKBAR":{
+    "ACTIONS":{
+      "TRY_AGAIN":"Try again",
+      "CLOSE": "Close"
+    }, 
+    "ADD_ANXIETY_TYPE": {
+      "TEXT": "This anxiety type already exits",
+      "SUCCESS":"Anxiety type has been added successfully!",
+      "ERROR":"Something went wrong while trying to register anxiety type"
+    },
+    "GET_MEDICAL_RECORD":{
+      "FILL_OUT":"Family medical history has yet to be filled out",
+      "ERROR":"User not allowed"
+    },
+    "REMOVE_ANXIETY_TYPE":{
+      "SUCCESS": "Anxiety type has been deleted successfully!",
+      "ERROR":"Something went wrong while trying to delete anxiety type"
+    },
+    "UPDATE_MEDICAL_RECORD":{
+      "SUCCESS": "Family medical history updated",
+      "ERROR":"Something went wrong while trying to update medical record"
+    }
+  },
+  "MEDICAL_HISTORY":{
+    "NEW_MEDICAL_HISTORY":"New Medical History",
+    "UPDATE_MEDICAL_HISTORY":"Update Medical History",
+    "OBSERVATIONS":"Observations",
+    "OBSERVATIONS_REQUIRED":"Please write observations",
+    "TREATMENT_DURATION":"Treatment duration",
+    "START_DATE":"Start date",
+    "END_DATE":"End date",
+    "ANXIETY_LEVEL_DETECTED":"Anxiety level detected",
+    "ANXIETY_LEVEL_REQUIRED":"Anxiety level is required",
+    "RECIPE":"Recipe",
+    "NAME_RECIPE":"Name",
+    "NAME_RECIPE_REQUIRED":"Name is required",
+    "INDICATIONS":"Indications",
+    "INDICATIONS_REQUIRED":"Please write indications",
+    "SAVE":"Save",
+    "CANCEL":"Cancel",
+    "ANXIETY_LEVEL":{
+      "MINIMAL": "Minimal",
+      "MILD": "Mild",
+      "MODERATE": "Moderate",
+      "SEVERE": "Severe",
+      "DEBILITATING": "Debilitating",
+      "INDETERMINATE": "Indeterminate"
+      
+    }
+  }
+  
 }
 
 

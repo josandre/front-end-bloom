@@ -24,7 +24,6 @@ export class MedicalhistoryDialogComponent {
   dialogTitle: string;
   medicalHistoryForm: FormGroup;
   anxietyLevelOptions: string[] = Object.keys(AnxietyLevel);
-
   medicalHistory: MedicalHistory;
   medicalRecipe: MedicalRecipe;
   medicalRecordId: number = this.data.id;
@@ -34,7 +33,7 @@ export class MedicalhistoryDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     public medicalRecordService: MedicalRecordService,
     private formBuilder: FormBuilder,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
   ) {
 
     this.action = data.action;
@@ -42,9 +41,9 @@ export class MedicalhistoryDialogComponent {
     if (this.action === "edit") {
       this.medicalHistory = data.medicalHistory;
       this.medicalRecipe = data.medicalHistory.medicalRecipe;
-      this.dialogTitle = 'Update Medical History';
+      this.dialogTitle = 'MEDICAL_RECORD.MEDICAL_HISTORY.UPDATE_MEDICAL_HISTORY';
     } else {
-      this.dialogTitle = 'New Medical History';
+      this.dialogTitle = 'MEDICAL_RECORD.MEDICAL_HISTORY.NEW_MEDICAL_HISTORY';
       const blankObject = {} as MedicalHistory;
       this.medicalHistory = new MedicalHistory(blankObject);
       this.medicalRecipe = new MedicalRecipe(blankObject);
@@ -83,6 +82,8 @@ export class MedicalhistoryDialogComponent {
 
   public confirmAction(): void {
     if (this.medicalHistoryForm.valid) {
+
+      
       this.medicalHistory.observations = this.medicalHistoryForm.controls['observations'].value;
       this.medicalHistory.anxietyLevel = this.medicalHistoryForm.controls['anxietyLevel'].value;
       this.medicalHistory.treatmentStartDate = this.medicalHistoryForm.controls['treatmentStartDate'].value;

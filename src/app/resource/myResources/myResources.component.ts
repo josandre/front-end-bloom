@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ResourceService} from "../services/Resource.Service";
 import {Resource} from "../models/Resource";
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {Task} from "../models/Task";
 
 @Component({
   selector: 'app-inbox',
@@ -48,7 +49,6 @@ export class MyResourcesComponent implements OnInit{
   sessionResource(id: number){
     sessionStorage.setItem('resourseId', id.toString());
   }
-
   applyFilter(filterValue: any) {
     let filterText: string = filterValue.value;
     filterText = filterText.trim();
@@ -93,8 +93,32 @@ export class MyResourcesComponent implements OnInit{
 
         })
   }
+
+  deleteThisResource(id: number){
+    this.selectedResourceIds = [id];
+    this.resourceService.deleteResourse(this.selectedResourceIds).subscribe((res) => {
+      switch (res) {
+        case 200:{
+          this.openSnackBar("Resource deleted", "Close");
+          // Usar filter para crear una nueva lista que excluya los objetos con los IDs a eliminar
+          this.resourcesList = this.resourcesList.filter(resource => !this.selectedResourceIds.includes(resource.id));
+          this.originalResourcesList=[...this.resourcesList]
+          this.selectedResourceIds = [];
+          // Restablecer la tabla para mostrar todos los datos
+          break;
+        }
+      }
+    }, error => {
+      this.openSnackBar("Something went wrong", "Close" );
+
+    })
+  }
+
   openSnackBar(message: string, action: string){
     this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'end'})
   }
 
+  protected readonly Task = Task;
+
+  protected readonly indexedDB = indexedDB;
 }

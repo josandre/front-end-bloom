@@ -22,88 +22,40 @@
                 </li>
                 <li class="tbl-search-box">
                   <label for="search-input"><i class="material-icons search-icon">search</i></label>
-                  <input placeholder="Search" type="text"  (keyup)="applyFilter($event.target)" class="browser-default search-field"
+                  <input placeholder="Search" type="text" id="search-input" (keyup)="applyFilter($event.target)" class="browser-default search-field"
                     aria-label="Search box">
                 </li>
               </ul>
             </div>
 
           </div>
-          <div class="boxs mail_listing">
-            <div class="inbox-center table-responsive">
-              <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th colspan="5">
-                      <div class="inbox-header">
-                        <div class="mail-option no-pad-left">
-                          <div class="email-btn-group m-l-15">
+        </div>
+        <hr>
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3" *ngFor="let tempRes of resourcesList">
+          <div class="card py-3 py-md-3" style="overflow: hidden; height: 90% ">
+            <div class=" d-flex justify-content-between px-3 px-md-4" style="height: 70% ">
 
-                            <button mat-icon-button aria-label="Example icon-button with a heart icon" (click)="deleteResource()">
-                              <mat-icon>delete</mat-icon>
-                            </button>
-
-                          </div>
-                        </div>
-                      </div>
-                    </th>
-
-                  </tr>
-                </thead>
-                <tbody>
-                <tr >
-                  <td class="tbl-checkbox"></td>
-                  <td class="hidden-xs" >{{'MENUITEMS.RESOURCES.EDIT' | translate}}</td>
-                  <td class="hidden-xs" >{{'MENUITEMS.RESOURCES.TITLE' | translate}}</td>
-
-                  <td class="max-texts">{{'MENUITEMS.RESOURCES.CONTENT' | translate}}</td>
-
-                  <td class="max-texts" > {{'MENUITEMS.RESOURCES.DATE' | translate}}</td>
-
-                </tr>
-
-                  <tr *ngFor="let r of resourcesList">
-                    <td class="tbl-checkbox">
-                      <mat-checkbox class="example-margin" (click)="readResourceCheck(r.id)"></mat-checkbox>
-                    </td >
-                    <td>
-                      <a routerLink="/resource/modify" (click)="sessionResource(r.id)"><mat-icon>edit</mat-icon></a>
-                    <td class="hidden-xs" >{{r.title}}</td>
-
-                    <td class="max-texts">
-                      <a routerLink="/resource/read-resource" (click)="sessionResource(r.id)" [innerHTML]="r.content.substring(0,200)"></a>
-                    </td>
-
-                    <td class="max-texts" > {{r.date}} </td>
-
-                  </tr>
-
-                </tbody>
-              </table>
-            </div>
-            <div class="row">
-              <div class="col-sm-7 ">
-                <p class="p-15">{{'MENUITEMS.RESOURCES.SHOWING' | translate}} 1 - 15 of 200</p>
-              </div>
-              <div class="col-sm-5 text-end">
-                <div class="float-end">
-                  <div class="email-btn-group m-l-15">
-                    <button mat-icon-button aria-label="Example icon-button with a heart icon">
-                      <mat-icon>navigate_before</mat-icon>
-                    </button>
-                    <button mat-icon-button aria-label="Example icon-button with a heart icon">
-                      <mat-icon>navigate_next</mat-icon>
-                    </button>
-                  </div>
-                </div>
+              <div>
+                <h3 class="tempRes-name">{{ tempRes.title }} </h3>
               </div>
             </div>
+
+            <hr class="light-hr">
+            <div class="d-flex justify-content-around px-4 float-start" style="height: 20%">
+
+              <button mat-stroked-button style="overflow: hidden" color="primary" routerLink="/resource/read-resource" (click)="sessionResource(tempRes.id)">
+                Read
+              </button>
+              <button mat-icon-button aria-label="Example icon-button with a heart icon" id="{{tempRes.id}}" (click)="deleteThisResource(tempRes.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+
           </div>
         </div>
       </div>
     </div>
   </div>
-
 
 
 </section>

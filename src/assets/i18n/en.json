@@ -292,6 +292,25 @@
     "ACTIVE_ITEM": ""
 
   }
+},
+"ADMIN_BREADCRUM": {
+  "PATIENTS": {
+    "TITLE": "Patients",
+    "ACTIVE_ITEM": "All Patients"
+  },
+  "DASHBOARD": {
+    "TITLE": "Dashboard",
+    "ACTIVE_ITEM": ""
+  },
+  "RESOURCES": {
+    "TITLE": "Resources",
+    "ACTIVE_ITEM": "All Resources",
+    "ACTIVE_ITEM2": "Read Resource"
+  },
+  "DOCTORS": {
+    "TITLE": "Doctors",
+    "ACTIVE_ITEM": "All Doctors"
+  }
 }
 
 

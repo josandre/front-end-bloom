@@ -3,8 +3,8 @@
     <div class="block-header">
       <!-- breadcrumb -->
       <br>
-      <h1>{{'MENUITEMS.RESOURCES.READ' | translate}} </h1>
-
+      <app-breadcrumb [title]="'ADMIN_BREADCRUM.RESOURCES.TITLE' | translate" [active_item]="'ADMIN_BREADCRUM.RESOURCES.ACTIVE_ITEM2' | translate"></app-breadcrumb>
+     <!--<h1>{{'MENUITEMS.RESOURCES.READ' | translate}} </h1> --> 
     </div>
     <div class="center" *ngIf="!flag" >
       <mat-spinner></mat-spinner>

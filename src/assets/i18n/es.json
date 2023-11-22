@@ -21,9 +21,9 @@
       }
     },
     "DOCTORS": {
-      "TEXT": "Doctoras",
+      "TEXT": "Doctores",
       "LIST": {
-        "ALL-DOCTOR": "Todas las doctores",
+        "ALL-DOCTOR": "Todos los doctores",
         "ADD-DOCTOR": "Agregar doctora",
         "EDIT-DOCTOR": "Editar doctora",
         "PROFILE": "Perfil médico"
@@ -41,7 +41,7 @@
     "PATIENTS": {
       "TEXT": "Pacientes",
       "LIST": {
-        "ALL-PATIENT": "Todas las pacientes",
+        "ALL-PATIENT": "Todos los pacientes",
         "ADD-PATIENT": "Agregar paciente",
         "EDIT-PATIENT": "Editar paciente",
         "PROFILE": "Perfil del paciente"
@@ -291,6 +291,25 @@
     "TITLE": "Contactos",
     "ACTIVE_ITEM": ""
 
+  }
+},
+"ADMIN_BREADCRUM": {
+  "PATIENTS": {
+    "TITLE": "Pacientes",
+    "ACTIVE_ITEM": "Todos los pacientes"
+  },
+  "DASHBOARD": {
+    "TITLE": "Tablero",
+    "ACTIVE_ITEM": ""
+  },
+  "RESOURCES": {
+    "TITLE": "Recursos",
+    "ACTIVE_ITEM": "Todos los recursos",
+    "ACTIVE_ITEM2": "Leer Recurso"
+  },
+  "DOCTORS": {
+    "TITLE": "Doctores",
+    "ACTIVE_ITEM": "Todos los doctores"
   }
 }
 

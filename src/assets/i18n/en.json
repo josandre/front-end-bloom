@@ -258,6 +258,40 @@
     "ACTIVE_ITEM": "My Resources",
     "ACTIVE_ITEM2": "Create Resource"
   }
+},
+"PATIENT_BREADCRUM": {
+  "DASHBOARD": {
+    "TITLE": "Dashboard",
+    "ACTIVE_ITEM": ""
+  },
+  "PROFILE": {
+    "TITLE": "User Profile",
+    "ACTIVE_ITEM": ""
+  },
+  "CHAT": {
+    "TITLE": "Chat",
+    "ACTIVE_ITEM": ""
+  },
+  "RESOURCES": {
+    "TITLE": "My Resources",
+    "ACTIVE_ITEM": "My Resources"
+
+  },
+  "FORUMS": {
+    "TITLE": "Forums",
+    "ACTIVE_ITEM": ""
+
+  },
+  "GAME": {
+    "TITLE": "Games Section",
+    "ACTIVE_ITEM": ""
+
+  },
+  "CONTACTS": {
+    "TITLE": "Contacts",
+    "ACTIVE_ITEM": ""
+
+  }
 }
 
 

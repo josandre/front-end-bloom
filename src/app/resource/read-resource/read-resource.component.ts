@@ -6,6 +6,7 @@ import {Task} from "../models/Task";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-read-resource',
@@ -178,5 +179,39 @@ onSubmit(){
   sessionResource(id: number){
     sessionStorage.setItem('resourseId', id.toString());
   }
+
+  modTask(id: number) {
+    Swal.fire({
+      title: 'Cambiar el contenido de la tarea',
+      input: 'text',
+      inputAttributes: {
+        autocapitalize: 'off'
+      },
+      inputValidator: result => !result && 'You need to input something!',
+      showCancelButton: true,
+      confirmButtonText: 'Modificar',
+      showLoaderOnConfirm: true,
+      preConfirm: (dato) => {
+        return this.resourceService.modTask(id, dato).subscribe((res: NonNullable<unknown>) =>{
+          switch (res) {
+            case 200:{
+              this.openSnackBar("Task modified successfully", "Close");
+              this.router.navigate(['/resource/my-resources']);
+              break;
+            }
+          }
+        }, error => {
+          switch (error.error) {
+            case 404:
+              this.openSnackBar("The task was not modified", "Close" );
+              this.router.navigate(['/resource/my-resources']);
+              break;
+          }
+        })
+      },
+      allowOutsideClick: () => !Swal.isLoading(),
+    });
+  }
+
 
 }

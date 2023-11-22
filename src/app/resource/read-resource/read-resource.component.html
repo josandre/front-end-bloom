@@ -69,20 +69,21 @@
                     <div class="mail-heading ">
                       <h4 class="vew-mail-header">
                         <b>{{'MENUITEMS.RESOURCES.TASKLIST' | translate}}</b>
+                        <button mat-icon-button class="msr-2 float-end" aria-label="Example icon-button with a heart icon" (click)="deleteChecked()" *ngIf="role === 'Doctor'">
+                          <mat-icon>delete</mat-icon>
+                        </button>
                       </h4>
-                      <button mat-icon-button aria-label="Example icon-button with a heart icon" (click)="deleteChecked()" *ngIf="role === 'Doctor'">
-                        <mat-icon>delete</mat-icon>
-                      </button>
+
                       <form class="composeForm" [formGroup]="formGroup" (submit)="onSubmit()" *ngIf="role === 'Doctor'" >
                         <div class="form-line" >
                           <mat-form-field class="example-full-width " appearance="outline" >
                             <mat-label>{{'MENUITEMS.RESOURCES.ADDTASK' | translate}}</mat-label>
                             <input matInput  formControlName="newtask">
                           </mat-form-field>
-
                           <button mat-raised-button color="primary" class="msr-2 float-end" style="display: inline-block" >
                             {{'MENUITEMS.RESOURCES.ADDTASK' | translate}}
                           </button>
+
                         </div>
                       </form>
 
@@ -98,7 +99,7 @@
                     <mat-checkbox class="example-margin" id="{{t.id}}}" (change)="onCheck(t.id)" checked="{{t.done}}"></mat-checkbox>
                   </td >
                   <td>
-                    <a routerLink="" (click)="sessionResource(t.id)" *ngIf="role === 'Doctor'"  ><mat-icon>edit</mat-icon></a>
+                    <a (click)="modTask(t.id)" *ngIf="role === 'Doctor'"  ><mat-icon>edit</mat-icon></a>
                   <td class="hidden-xs" >{{t.description}}</td>
                 </tr>
 

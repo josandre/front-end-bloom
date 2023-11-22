@@ -235,6 +235,30 @@
     "PER_SESSION": "Per Session",
     "RECORDED_ATTACKS_HISTORY": "Recorded Attacks History",
     "BY_DATE": "By Date"
+},
+"DOCTOR_BREADCRUM": {
+  "PATIENTS": {
+    "TITLE": "Patients",
+    "ACTIVE_ITEM": "Patients"
+  },
+  "DASHBOARD": {
+    "TITLE": "Dashboard",
+    "ACTIVE_ITEM": ""
+  },
+  "PROFILE": {
+    "TITLE": "Doctor Profile",
+    "ACTIVE_ITEM": ""
+  },
+  "CHAT": {
+    "TITLE": "Chat",
+    "ACTIVE_ITEM": ""
+  },
+  "RESOURCES": {
+    "TITLE": "Resources",
+    "ACTIVE_ITEM": "My Resources",
+    "ACTIVE_ITEM2": "Create Resource"
+  }
 }
+
 
 }

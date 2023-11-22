@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import {API_URL} from "../../../config";
 import {HttpClient,HttpHeaders} from "@angular/common/http";
-import {User} from "../models/User";
-import {Password} from "../models/Password";
 
 import {  Observable } from 'rxjs';
 import { AuthService } from '@core';
@@ -31,14 +29,12 @@ export class DiaryService {
     console.log('Entry:', entry);
     const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.auth.currentUserValue.token);
     return this.http.post(url, entry, {headers: header});
-    
+
   }
 
- 
+
   createDiary(diary:Diary){
-    const url = `${this.baseUrl}/addDiary/diary`;
-    diary.user=JSON.parse(`{"id":${this.auth.currentUserValue.id}}`);
-    console.log('Entry:', diary);
+    const url = `${this.baseUrl}/addDiary/diary/${this.auth.currentUserValue.id}}`;
     const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.auth.currentUserValue.token);
     return this.http.post(url, diary, {headers: header});
   }

@@ -1,0 +1,41 @@
+:host ::ng-deep .ck-editor__editable_inline{
+  min-height: 300px;
+}
+
+.card-entry {
+  cursor: pointer;
+  margin-bottom: 5px !important;
+  padding-right: 3px;
+
+  &:focus {
+    background-color: #f2f4f9;
+    transition: 0.3s;
+  }
+
+  &:hover {
+    background-color: #f2f4f9;
+    transition: 0.3s;
+  }
+}
+
+.card-date {
+  width: 3rem;
+  height: 3rem;
+  flex: 0 0 auto;
+  line-height: 20px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px;
+  border-radius: 10px;
+  border-width: 1px;
+  border-color: var(--theme-ui-colors-borderPrimary);
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 25px;
+}
+
+.bg-cyan {
+  background-color: 35eafe6;
+}

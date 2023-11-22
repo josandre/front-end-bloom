@@ -11,12 +11,14 @@ import { MedicalRecordsComponent } from './medical-records/medical-records.compo
 import { BillingComponent } from './billing/billing.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ComponentsModule } from '@shared/components/components.module';
-import { TranslateModule } from '@ngx-translate/core'; 
+import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '@shared';
 import { PatientProfileComponent } from './patient-profile/patient-profile.component';
 import { EntryComponent } from './entry-diary/entry.component';
 import { ModalComponent } from './modal/modal.component';
 import { DialogformComponent } from './modal/dialogform/dialogform.component';
+import { DiaryComponent } from './diary/diary.component';
+import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -27,20 +29,22 @@ import { DialogformComponent } from './modal/dialogform/dialogform.component';
     PatientProfileComponent,
     EntryComponent,
     ModalComponent,
-    DialogformComponent
+    DialogformComponent,
+    DiaryComponent
   ],
-  imports: [
-    CommonModule,
-    NgChartsModule,
-    NgxEchartsModule.forRoot({
-      echarts: () => import('echarts'),
-    }),
-    PatientRoutingModule,
-    NgApexchartsModule,
-    NgScrollbarModule,
-    ComponentsModule,
-    SharedModule,
-    TranslateModule,
-  ],
+    imports: [
+        CommonModule,
+        NgChartsModule,
+        NgxEchartsModule.forRoot({
+            echarts: () => import('echarts'),
+        }),
+        PatientRoutingModule,
+        NgApexchartsModule,
+        NgScrollbarModule,
+        ComponentsModule,
+        SharedModule,
+        TranslateModule,
+        CKEditorModule,
+    ],
 })
 export class PatientModule {}

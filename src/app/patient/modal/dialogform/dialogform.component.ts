@@ -7,8 +7,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { Diary } from 'app/patient/models/Diary';
-import { User } from '@core';
-import { UserService } from 'app/patient/service/user.service';
 import { DiaryService } from 'app/patient/service/diary.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -26,20 +24,19 @@ export class DialogformComponent implements OnInit {
       title: new FormControl("", {
         validators:[Validators.required]
       })
-    
+
     });
-  
   }
+
   closeDialog(): void {
     this.dialog.closeAll();
   }
+
   onSubmitClick() {
-    const diary=new Diary({
+    const diary= new Diary({
       title: this.diaryForm.controls['title'].value,
-      user:new User (),
-      
-      
     })
+
     this.diaryService.createDiary(diary).subscribe((res) => {
       switch (res) {
         case 200:{
@@ -51,13 +48,11 @@ export class DialogformComponent implements OnInit {
       }
     }, error => {
         this.openSnackBar("The Diary was not creaed", "Close" );
-
+        console.log(error);
         })
-        
-
   }
   openSnackBar(message: string, action: string){
     this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'end', duration: 3000} )
   }
-  
+
 }

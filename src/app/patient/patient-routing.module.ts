@@ -10,6 +10,7 @@ import { PatientProfileComponent } from "./patient-profile/patient-profile.compo
 import { EntryComponent } from "./entry-diary/entry.component";
 import { ModalComponent } from "./modal/modal.component";
 import { DialogformComponent } from "./modal/dialogform/dialogform.component";
+import {DiaryComponent} from "./diary/diary.component";
 const routes: Routes = [
   {
     path: "dashboard",
@@ -43,8 +44,8 @@ const routes: Routes = [
     component: PatientProfileComponent,
   },
   {
-    path: "entry-diary",
-    component: EntryComponent,
+    path: "diary",
+    component: DiaryComponent,
   },
   {
     path: "modal",

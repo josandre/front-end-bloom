@@ -190,16 +190,16 @@ export class ProfileComponent implements OnInit {
           }
         }, error => {
           this.openSnackBar("Something went wrong while trying to update medical record", "Try again");
-        })
+        });
     }
   }
 
   openMedicalHistory(row: MedicalHistory) {
-    this.dialog.open(MedicalhistoryDialogComponent, 
-      { data: 
-        { 
-          medicalHistory: row 
-        } 
+    this.dialog.open(MedicalhistoryDialogComponent,
+      { data:
+        {
+          medicalHistory: row
+        }
       });
   }
 

@@ -1,0 +1,73 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="'Compose'" [items]="['Email']" [active_item]="'Compose'"></app-breadcrumb>
+    </div>
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 entries-side">
+          <ul class="list">
+            <ng-scrollbar visibility="hover" [style.height]="560 + 'px'">
+            <li class="card card-statistic-2 card-entry" tabindex="0" *ngFor="let entry of entries"
+                (click)="setEditorContent(entry)">
+              <div class="clearfix">
+                <div class="card-right">
+                  <div>
+                    <p class="float-end">{{ entry.content | slice:0:25 }}...</p>
+                  </div>
+                  <div class="m-r-10 m-l-10">
+                    <small class="font-weight-bold mb-0 float-end">{{ entry.date | date:'shortTime' }}</small>
+                  </div>
+                </div>
+                <div class="card-date shadow-primary bg-cyan">
+                  <span class="align-middle">{{ entry.date | date:"E" }}</span>
+                  <span class="align-middle">{{ entry.date | date:"M/d" }}</span>
+                </div>
+              </div>
+            </li>
+            </ng-scrollbar>
+
+          </ul>
+
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+        <div class="card">
+          <div class="boxs mail_listing">
+            <div class="inbox-center table-responsive">
+              <table class="table table-hover">
+                <thead>
+                <tr>
+                  <th colspan="1">
+                    <div class="m-l-10">
+                      <button mat-mini-fab color="primary" (click)="addEntry()" matTooltip="New entry">
+                        <mat-icon class="col-white">add</mat-icon>
+                      </button>
+                    </div>
+                  </th>
+                </tr>
+                </thead>
+              </table>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <form class="composeForm">
+                  <ckeditor [hidden]="editorHidden" #editor [editor]="Editor" [data]="editorContent"></ckeditor>
+                  <div class="compose-editor m-t-20">
+                    <div id="summernote"></div>
+                  </div>
+                </form>
+              </div>
+              <div class="col-lg-12">
+                <div class="m-l-25 m-b-20">
+                  <button mat-flat-button color="primary" class="msr-2" (click)="test()">Send</button>
+                  <button mat-flat-button color="warn">Discard</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

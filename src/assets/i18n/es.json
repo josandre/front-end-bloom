@@ -354,6 +354,18 @@
     "UPDATE_MEDICAL_RECORD":{
       "SUCCESS": "Historial médico familiar actualizado.",
       "ERROR":"Algo salió mal al intentar actualizar el registro médico"
+    },
+    "CREATE_MEDICAL_HISTORY":{
+      "SUCCESS":"Historial médico agregado",
+      "ERROR":"Algo salió mal al intentar agregar el historial médico"
+    },
+    "UPDATE_MEDICAL_HISTORY":{
+      "SUCCESS":"Historial médico actualizado",
+      "ERROR":"Algo salió mal al intentar actualizar el historial médico"
+    },
+    "DELETE_MEDICAL_HISTORY":{
+      "SUCCESS":"¡Historial médico eliminado!",
+      "ERROR":"Algo salió mal al intentar borrar el historial médico"
     }
   },
   "MEDICAL_HISTORY":{
@@ -381,7 +393,9 @@
       "DEBILITATING": "Debilitante",
       "INDETERMINATE": "Indeterminado"
       
-    }
+    },
+    "DELETE_CONFIRMATION":"¿Seguro que desea eliminar el historial médico?",
+    "DELETE": "Eliminar"
   }
 }
 

@@ -6,6 +6,7 @@ import {MedicalRecordService} from '../service/medicalrecord.service';
 import {MedicalHistory} from '../model/MedicalHistory';
 import {MedicalRecipe} from '../model/MedicalRecipe';
 import {AnxietyLevel} from "../model/AnxietyLevel";
+import { TranslateService } from '@ngx-translate/core';
 
 export interface DialogData {
   id: number;
@@ -34,6 +35,7 @@ export class MedicalhistoryDialogComponent {
     public medicalRecordService: MedicalRecordService,
     private formBuilder: FormBuilder,
     private snackBar: MatSnackBar,
+    private translate: TranslateService
   ) {
 
     this.action = data.action;
@@ -106,14 +108,14 @@ export class MedicalhistoryDialogComponent {
       .subscribe((response) => {
         switch (response) {
           case 200:{
-            this.openSnackBar("Medical history added!", "Close")
+            this.openSnackBar('MEDICAL_RECORD.SNACKBAR.CREATE_MEDICAL_HISTORY.SUCCESS', 'MEDICAL_RECORD.SNACKBAR.ACTIONS.CLOSE')
             break;
           }
         }
       }, error => {
         switch (error) {
           case 400:{
-            this.openSnackBar("Something went wrong while trying to add medical history", "Try again");
+            this.openSnackBar('MEDICAL_RECORD.SNACKBAR.CREATE_MEDICAL_HISTORY.ERROR', 'MEDICAL_RECORD.SNACKBAR.ACTIONS.TRY_AGAIN');
             break;
           }
         }
@@ -125,14 +127,14 @@ export class MedicalhistoryDialogComponent {
       .subscribe((response) => {
         switch (response) {
           case 200:{
-            this.openSnackBar("Medical history updated!", "Close")
+            this.openSnackBar('MEDICAL_RECORD.SNACKBAR.UPDATE_MEDICAL_HISTORY.SUCCESS', 'MEDICAL_RECORD.SNACKBAR.ACTIONS.CLOSE')
             break;
           }
         }
       }, error => {
         switch (error) {
           case 400:{
-            this.openSnackBar("Something went wrong while trying to update medical history", "Try again");
+            this.openSnackBar('MEDICAL_RECORD.SNACKBAR.UPDATE_MEDICAL_HISTORY.ERROR', 'MEDICAL_RECORD.SNACKBAR.ACTIONS.TRY_AGAIN');
             break;
           }
         }
@@ -140,6 +142,8 @@ export class MedicalhistoryDialogComponent {
   }
 
   openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, { verticalPosition: 'top', horizontalPosition: 'end' })
+    this.translate.get([message,action]).subscribe((translations: any) => {
+      this.snackBar.open(translations[message], translations[action], { verticalPosition: 'top', horizontalPosition: 'end',duration: 4000 })
+    });
   }
 }

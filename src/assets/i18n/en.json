@@ -354,6 +354,18 @@
     "UPDATE_MEDICAL_RECORD":{
       "SUCCESS": "Family medical history updated",
       "ERROR":"Something went wrong while trying to update medical record"
+    },
+    "CREATE_MEDICAL_HISTORY":{
+      "SUCCESS":"Medical history added!",
+      "ERROR":"Something went wrong while trying to add medical history"
+    },
+    "UPDATE_MEDICAL_HISTORY":{
+      "SUCCESS":"Medical history updated!",
+      "ERROR":"Something went wrong while trying to update medical history"
+    },
+    "DELETE_MEDICAL_HISTORY":{
+      "SUCCESS":"Medical history deleted!",
+      "ERROR":"Something went wrong while trying to delete medical history"
     }
   },
   "MEDICAL_HISTORY":{
@@ -381,7 +393,9 @@
       "DEBILITATING": "Debilitating",
       "INDETERMINATE": "Indeterminate"
       
-    }
+    },
+    "DELETE_CONFIRMATION":"Are you sure?",
+    "DELETE": "Delete"
   }
   
 }

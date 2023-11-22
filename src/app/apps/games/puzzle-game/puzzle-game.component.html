@@ -1,11 +1,11 @@
 <section class="content">
     <div class="content-block">
-        <div class="game-container">
+        <div class="card game-container">
             <h1>{{ 'MENUITEMS.GAMES-SECTION.PUZZLE-GAME.TITLE' | translate }}</h1>
 
             <!--Game Board-->
             <div>
-                <div>
+                <div class="example-button-row">
                     <button mat-flat-button color="primary" (click)="goToMenu()">{{ 'MENUITEMS.GAMES-SECTION.DIFFICULTY'
                         | translate }}</button>
                     <button mat-flat-button color="primary" (click)="goToScores()">{{ 'MENUITEMS.GAMES-SECTION.SCORES' |
@@ -17,16 +17,18 @@
                 <div class="m-t-20">
                     <h5>{{ 'MENUITEMS.GAMES-SECTION.YOUR-SCORE' | translate }}: {{ currentScore }}</h5>
                 </div>
-
-                <div class="puzzle-game-board" [ngStyle]="getTileStyles()">
-                    <div class="puzzle-game-board-overlay">
+                
+                <div class="game-board-container">
+                    <div class="puzzle-game-board" [ngStyle]="getTileStyles()">
+                        <div class="puzzle-game-board-overlay">
+                        </div>
+    
+                        <app-puzzle-game-tile *ngFor="let tile of tiles; let i = index" [index]="i" [value]="tile.value"
+                            [tilesNumber]="tilesNumber" [tileSize]="tileSize" [disabled]="tile.disabled"
+                            [class.disabled]="tile.disabled" class="puzzle-tile" (click)="selectTile(i)"
+                            [ngStyle]="getTileStyles()">
+                        </app-puzzle-game-tile>
                     </div>
-
-                    <app-puzzle-game-tile *ngFor="let tile of tiles; let i = index" [index]="i" [value]="tile.value"
-                        [tilesNumber]="tilesNumber" [tileSize]="tileSize" [disabled]="tile.disabled"
-                        [class.disabled]="tile.disabled" class="puzzle-tile" (click)="selectTile(i)"
-                        [ngStyle]="getTileStyles()">
-                    </app-puzzle-game-tile>
                 </div>
             </div>
 

@@ -30,7 +30,7 @@
 /* Position the front and back side */
 .memory-card-front, .memory-card-back {
     border-radius: 5px;
-    box-shadow: 0px 0px 3px rgb(78, 78, 78);
+    box-shadow: 0px 0px 3px #00000059;
 
     position: absolute;
     width: 100%;
@@ -41,8 +41,20 @@
 
 /* Style the front side (fallback if image is missing) */
 .memory-card-front {
-    background-color: #3b7ad8;
+    background-color: #62bfff;
     color: black;
+
+    .front-image {
+        background-image: url('/assets/images/Bloom.png');
+
+        width: 60px;
+        height: 60px;
+        margin: auto;
+        margin-top: 14px;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
 }
 
 .memory-card-back {

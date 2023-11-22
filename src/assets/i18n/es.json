@@ -239,7 +239,7 @@
 "DOCTOR_BREADCRUM": {
   "PATIENTS": {
     "TITLE": "Pacientes",
-    "ACTIVE_ITEM": ""
+    "ACTIVE_ITEM": "Historial Médico"
   },
   "DASHBOARD": {
     "TITLE": "Tablero",

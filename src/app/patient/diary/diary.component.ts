@@ -67,10 +67,7 @@ export class DiaryComponent implements OnInit {
     console.log(this.Editor.editorInstance.getData());
   }
 
-  test() {
-    if (this.Editor && this.Editor.editorInstance) {
-      //console.log(entry.id);
-      console.log(this.Editor.editorInstance.getData());
-    }
+  closeEditor() {
+    this.editorHidden = true;
   }
 }

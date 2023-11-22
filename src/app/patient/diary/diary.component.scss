@@ -6,6 +6,7 @@
   cursor: pointer;
   margin: 0 !important;
   padding-right: 3px;
+  font-weight: 400;
 
   &:focus {
     background-color: #f2f4f9;
@@ -22,7 +23,7 @@
   width: 3rem;
   height: 3rem;
   flex: 0 0 auto;
-  line-height: 20px;
+  line-height: 1.2;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px;
   border-radius: 10px;
   display: flex;
@@ -33,6 +34,13 @@
   flex-direction: column;
   margin: 25px;
   border: 1px solid #ccced1;
+  background-color: #484c72;
+  color: white;
+}
+
+.week-day {
+  font-size: .7rem;
+  letter-spacing: 2px;
 }
 
 tool-bar {

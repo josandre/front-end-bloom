@@ -20,6 +20,7 @@ import {
   DeleteMedicalhistoryDialogComponent
 } from "./delete-medicalhistory-dialog/delete-medicalhistory-dialog.component";
 import {UploadFileService} from "../../../global/upload-file/upload-file.service";
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-profile',
@@ -49,7 +50,8 @@ export class ProfileComponent implements OnInit {
     public dialog: MatDialog,
     private route: ActivatedRoute,
     private snackBar: MatSnackBar,
-    private readonly fileService: UploadFileService) {
+    private readonly fileService: UploadFileService,
+    private translate: TranslateService) {
   }
 
   ngOnInit(): void {
@@ -83,13 +85,13 @@ export class ProfileComponent implements OnInit {
           }));
 
           if (this.medicalRecord.familyMedicalHistory === null) {
-            this.openSnackBar("Family medical history has yet to be filled out", "Close");
+           this.openSnackBar('MEDICAL_RECORD.SNACKBAR.GET_MEDICAL_RECORD.FILL_OUT','MEDICAL_RECORD.SNACKBAR.ACTIONS.CLOSE');
           }
         },
         error => {
           switch (error.status) {
             case 400: {
-              this.openSnackBar("User not allowed", "Close");
+              this.openSnackBar('MEDICAL_RECORD.SNACKBAR.GET_MEDICAL_RECORD.ERROR','MEDICAL_RECORD.SNACKBAR.ACTIONS.CLOSE');
               break;
             }
           }
@@ -110,7 +112,7 @@ export class ProfileComponent implements OnInit {
   addAnxietyTypeFromInput(event: MatChipInputEvent) {
     if (event.value) {
       if (this.anxieties.has(event.value)) {
-        this.openSnackBar("This anxiety type already exits", "Close");
+        this.openSnackBar('MEDICAL_RECORD.SNACKBAR.ADD_ANXIETY_TYPE.TEXT','MEDICAL_RECORD.SNACKBAR.ACTIONS.TRY_AGAIN');
         return;
       }
 
@@ -125,7 +127,7 @@ export class ProfileComponent implements OnInit {
           (response) => {
             switch (response) {
               case 200: {
-                this.openSnackBar("Anxiety type has been added successfully!", "Close")
+                this.openSnackBar('MEDICAL_RECORD.SNACKBAR.ADD_ANXIETY_TYPE.SUCCESS', 'MEDICAL_RECORD.SNACKBAR.ACTIONS.CLOSE')
                 break;
               }
             }
@@ -133,7 +135,7 @@ export class ProfileComponent implements OnInit {
           error => {
             switch (error.status) {
               case 400: {
-                this.openSnackBar("Something went wrong while trying to register anxiety type", "Try again");
+                this.openSnackBar('MEDICAL_RECORD.SNACKBAR.ADD_ANXIETY_TYPE.ERROR', 'MEDICAL_RECORD.SNACKBAR.ACTIONS.TRY_AGAIN');
                 break;
               }
             }
@@ -151,7 +153,7 @@ export class ProfileComponent implements OnInit {
         (response) => {
           switch (response) {
             case 200: {
-              this.openSnackBar("Anxiety type has been deleted successfully!", "Close")
+              this.openSnackBar('MEDICAL_RECORD.SNACKBAR.REMOVE_ANXIETY_TYPE.SUCCESS', 'MEDICAL_RECORD.SNACKBAR.ACTIONS.CLOSE')
               break;
             }
           }
@@ -159,7 +161,7 @@ export class ProfileComponent implements OnInit {
         error => {
           switch (error.status) {
             case 400: {
-              this.openSnackBar("Something went wrong while trying to delete anxiety type", "Try again");
+              this.openSnackBar('MEDICAL_RECORD.SNACKBAR.REMOVE_ANXIETY_TYPE.ERROR', 'MEDICAL_RECORD.SNACKBAR.ACTIONS.TRY_AGAIN');
               break;
             }
           }
@@ -185,12 +187,12 @@ export class ProfileComponent implements OnInit {
           this.medicalRecord!.familyMedicalHistory = this.familyMedicalHistoryControl.value;
           switch (response) {
             case 200: {
-              this.openSnackBar("Family medical history updated", "Close");
+              this.openSnackBar('MEDICAL_RECORD.SNACKBAR.UPDATE_MEDICAL_RECORD.SUCCESS', 'MEDICAL_RECORD.SNACKBAR.ACTIONS.CLOSE');
               break;
             }
           }
         }, error => {
-          this.openSnackBar("Something went wrong while trying to update medical record", "Try again");
+          this.openSnackBar('MEDICAL_RECORD.SNACKBAR.UPDATE_MEDICAL_RECORD.ERROR', 'MEDICAL_RECORD.SNACKBAR.ACTIONS.TRY_AGAIN');
         })
     }
   }
@@ -227,7 +229,9 @@ export class ProfileComponent implements OnInit {
   }
 
   openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, { verticalPosition: 'top', horizontalPosition: 'end' })
+    this.translate.get([message,action]).subscribe((translations: any) => {
+      this.snackBar.open(translations[message], translations[action], { verticalPosition: 'top', horizontalPosition: 'end',duration: 4000 })
+    });
   }
 
   isFormEnabled(form: FormControl): boolean {

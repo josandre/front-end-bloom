@@ -36,7 +36,7 @@
             <mat-tab-group mat-align-tabs="start">
 
               <!-- Family medical record -->
-              <mat-tab label="Family Medical History">
+              <mat-tab label="{{'MEDICAL_RECORD.INFO.FAMILY_MEDICAL_HISTORY' | translate}}">
                 <div class="p-4">
                   <form class="example-form validate-form">
                     <mat-form-field class="example-full-width" appearance="fill">
@@ -44,7 +44,7 @@
                                 #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
                                 required></textarea>
                       <mat-error *ngIf="familyMedicalHistoryControl?.hasError('required')">
-                        Value is required *
+                        {{'MEDICAL_RECORD.INFO.REQUIRED' | translate}} *
                       </mat-error>
                     </mat-form-field>
                     <div class="example-button-container pt-2">
@@ -54,7 +54,7 @@
                       </button>
                       <button mat-raised-button [disabled]="!familyMedicalHistoryControl.valid"
                               *ngIf="isFormEnabled(familyMedicalHistoryControl)"
-                              (click)="updateMedicalRecord()">Save
+                              (click)="updateMedicalRecord()">{{'MEDICAL_RECORD.INFO.SAVE' | translate}}
                       </button>
                     </div>
                   </form>
@@ -62,17 +62,17 @@
               </mat-tab>
 
               <!-- Anxieties -->
-              <mat-tab label="Anxieties">
+              <mat-tab label="{{'MEDICAL_RECORD.INFO.ANXIETIES' | translate}}">
                 <div class="p-4">
                   <form>
                     <mat-form-field class="example-chip-list" appearance="fill">
-                      <mat-label>{{ patient?.name }}'s anxieties</mat-label>
+                      <mat-label>{{ patient?.name }}{{'MEDICAL_RECORD.INFO.ANXIETIES' | translate}}</mat-label>
                       <mat-chip-list #chipList aria-label="anxieties" multiple [formControl]="anxitiesControl">
                         <mat-chip color="primary" *ngFor="let anxiety of anxieties" [value]="anxiety"
                                   (removed)="removeAnxietyType(anxiety)" selected>
                           {{ anxiety }}
                         </mat-chip>
-                        <input placeholder="New anxiety type..." [matChipInputFor]="chipList"
+                        <input placeholder="{{'MEDICAL_RECORD.INFO.ANXIETY_TYPE' | translate}}" [matChipInputFor]="chipList"
                                (matChipInputTokenEnd)="addAnxietyTypeFromInput($event)">
                       </mat-chip-list>
                     </mat-form-field>
@@ -82,7 +82,7 @@
                         <mat-icon>edit</mat-icon>
                       </button>
                       <button mat-raised-button *ngIf="isFormEnabled(anxitiesControl)"
-                              (click)="anxitiesControl.disable()">Quit
+                              (click)="anxitiesControl.disable()">{{'MEDICAL_RECORD.INFO.QUIT' | translate}}
                       </button>
                     </div>
                   </form>
@@ -91,7 +91,7 @@
             </mat-tab-group>
           </div>
           <p class="font-italic text-muted">
-            Updated {{ medicalRecord?.lastUpdate| date:'medium' }}
+            {{'MEDICAL_RECORD.INFO.UPDATED' | translate}} {{ medicalRecord?.lastUpdate| date:'medium' }}
           </p>
         </div>
         <div class="col-lg-8 col-md-12">
@@ -100,7 +100,7 @@
               <mat-tab>
                 <ng-template mat-tab-label>
                   <mat-icon class="example-tab-icon msr-2">folder</mat-icon>
-                  Medical History
+                  {{'MEDICAL_RECORD.INFO.MEDICAL_HISTORY' | translate}}
                 </ng-template>
                 <div>
                   <mat-paginator [pageSize]="pageSize" [length]="medicalHistories?.length"
@@ -108,7 +108,7 @@
                   </mat-paginator>
                 </div>
                 <div class="px-3 text-muted">
-                  <strong><small>Appointment date</small></strong>
+                  <strong><small>{{'MEDICAL_RECORD.INFO.APPOINTMENT_DATE' | translate}}</small></strong>
                 </div>
                 <div *ngFor="let medicalHistory of paginatedItems">
                   <ng-container>
@@ -130,15 +130,15 @@
                           <mat-divider></mat-divider>
                           <div class="project_widget">
                             <div class="header">
-                              <h2><strong>Notes</strong></h2>
+                              <h2><strong>{{'MEDICAL_RECORD.INFO.NOTES' | translate}}</strong></h2>
                             </div>
                             <div class="body">
                               <ul>
-                                <li><strong>Anxiety level:</strong> {{ medicalHistory.anxietyLevel }}</li>
-                                <li><strong>Observations:</strong> {{ medicalHistory.observations }}</li>
-                                <li><strong>Treatment started on:</strong> {{ medicalHistory.treatmentStartDate |
+                                <li><strong>{{'MEDICAL_RECORD.INFO.ANXIETY_LEVEL' | translate}}:</strong> {{ medicalHistory.anxietyLevel }}</li>
+                                <li><strong>{{'MEDICAL_RECORD.INFO.OBSERVATIONS' | translate}}:</strong> {{ medicalHistory.observations }}</li>
+                                <li><strong>{{'MEDICAL_RECORD.INFO.TREATMENT_STARTED_ON' | translate}}:</strong> {{ medicalHistory.treatmentStartDate |
                                   date:'fullDate' }}</li>
-                                <li><strong>Treatment ended on:</strong> {{ medicalHistory.treatmentEndDate |
+                                <li><strong>{{'MEDICAL_RECORD.INFO.TREATMENT_ENDED_ON' | translate}}:</strong> {{ medicalHistory.treatmentEndDate |
                                   date:'fullDate' }}</li>
                               </ul>
                             </div>
@@ -147,12 +147,12 @@
                         <div class="col-lg-12 col-md-12 col-sm-12">
                           <div class="project_widget">
                             <div class="header">
-                              <h2><strong>Recipe</strong></h2>
+                              <h2><strong>{{'MEDICAL_RECORD.INFO.RECIPE' | translate}}</strong></h2>
                             </div>
                             <div class="body">
                               <ul>
-                                <li><strong>Name:</strong> {{ medicalHistory.medicalRecipe.name }}</li>
-                                <li><strong>Indications:</strong> {{ medicalHistory.medicalRecipe.indications }}
+                                <li><strong>{{'MEDICAL_RECORD.INFO.NAME_RECIPE' | translate}}:</strong> {{ medicalHistory.medicalRecipe.name }}</li>
+                                <li><strong>{{'MEDICAL_RECORD.INFO.INDICATIONS' | translate}}:</strong> {{ medicalHistory.medicalRecipe.indications }}
                                 </li>
                               </ul>
                             </div>
@@ -174,7 +174,7 @@
                 </div>
                 <ng-container class="no-results" *ngIf="medicalHistories?.length === 0">
                   <div class="pt-5 px-3 py-md-3">
-                    <p class="text-muted">No appointments registered.</p>
+                    <p class="text-muted">{{'MEDICAL_RECORD.INFO.APPOINTMENT_REGISTRED' | translate}}.</p>
                   </div>
                 </ng-container>
               </mat-tab>

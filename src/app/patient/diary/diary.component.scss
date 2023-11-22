@@ -1,5 +1,6 @@
 :host ::ng-deep .ck-editor__editable_inline{
   min-height: 460px;
+  max-height: 460px;
 }
 
 .card-entry {
@@ -33,9 +34,9 @@
   align-items: center;
   flex-direction: column;
   margin: 25px;
-  border: 1px solid #ccced1;
-  background-color: #484c72;
-  color: white;
+  border: 1px solid #f5f9ff;
+  background-color: #98a1b7;
+  color: #ffffff;
 }
 
 .week-day {
@@ -43,14 +44,14 @@
   letter-spacing: 2px;
 }
 
-tool-bar {
-  border: 1px solid #ccced1 !important;
-  border-radius: 10px;
-}
-
-.grey-icon {
+.button-close {
   color: #484c72;
   background-color: transparent !important;
   box-shadow: none !important;
   float: left;
+
+  &:hover {
+    background-color: #f2f4f9 !important;
+    transition: 0.3s;
+  }
 }

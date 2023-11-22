@@ -33,11 +33,11 @@
       </div>
       <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
         <div class="card">
-          <div class="m-l-10 p-2 tool-bar">
+          <div class="m-l-10 p-2">
             <button mat-mini-fab color="primary" class="float-end mx-3" (click)="addEntry()">
               <mat-icon>add</mat-icon>
             </button>
-            <button mat-mini-fab class="grey-icon" (click)="closeEditor()" *ngIf="!editorHidden">
+            <button mat-mini-fab class="button-close" (click)="closeEditor()" *ngIf="!editorHidden">
               <mat-icon>close</mat-icon>
             </button>
           </div>

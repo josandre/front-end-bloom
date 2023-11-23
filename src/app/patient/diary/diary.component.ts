@@ -9,8 +9,9 @@ import {Entry} from "./model/entry";
 @Component({
   selector: 'app-diary',
   templateUrl: './diary.component.html',
-  styleUrls: ['./diary.component.scss']
+  styleUrls: ['./diary.component.scss'],
 })
+
 export class DiaryComponent implements OnInit {
   @ViewChild('editor')
   public Editor: any;
@@ -68,9 +69,19 @@ export class DiaryComponent implements OnInit {
 
   setEditorContent(entry: Entry) {
     this.editorHidden = false;
-    this.editorContent = `<p>${entry.content}</p>`;
-    console.log(this.Editor.editorInstance.getData());
+    this.editorContent = entry.content;
   }
+
+  generatePreview(content: string, maxLengthPerLine: number): string {
+    const lines = content.match(/<h1>.*?<\/h1>|<h2>.*?<\/h2>|<h3>.*?<\/h3>|<p>.*?<\/p>|<br>/g) || []
+
+    const truncatedLines = lines
+      .slice(0, 3)
+      .map((line) => (line.length > maxLengthPerLine ? line.substring(0, maxLengthPerLine) + '...' : line));
+
+    return truncatedLines.join('\n');
+  }
+
 
   closeEditor() {
     this.editorHidden = true;

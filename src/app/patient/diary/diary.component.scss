@@ -1,22 +1,36 @@
-:host ::ng-deep .ck-editor__editable_inline{
+:host ::ng-deep .ck-editor__editable_inline {
   min-height: 460px;
   max-height: 460px;
 }
 
+.container-diary {
+  padding-bottom: 0;
+}
+
+.entries-side {
+  background-color: white;
+  border-radius: 10px;
+  padding: 9px 1px 3px 1px;
+}
+
 .card-entry {
   cursor: pointer;
-  margin: 0 !important;
+  margin: 3px;
   padding-right: 3px;
   font-weight: 400;
+  box-shadow: none;
+  border-radius: 0;
 
   &:focus {
-    background-color: #f2f4f9;
+    background-color: #9cd3e3;
     transition: 0.3s;
+    border-radius: 10px;
   }
 
   &:hover {
-    background-color: #f2f4f9;
+    background-color: #9cd3e3;
     transition: 0.3s;
+    border-radius: 10px;
   }
 }
 
@@ -34,13 +48,12 @@
   align-items: center;
   flex-direction: column;
   margin: 25px;
-  border: 1px solid #f5f9ff;
-  background-color: #98a1b7;
-  color: #ffffff;
+  border: 1px solid #38a6c5;
+  background-color: #c3e5ee;
 }
 
 .week-day {
-  font-size: .7rem;
+  font-size: .6rem;
   letter-spacing: 2px;
 }
 
@@ -62,3 +75,24 @@
   align-items: center;
   height: 93vh;
 }
+
+:host ::ng-deep .entry-content {
+  display: inline-block;
+  white-space: nowrap;
+  box-shadow: none !important;
+
+  h1, h2, h3 {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+  }
+}
+

@@ -286,5 +286,130 @@
     "RELATION": "Relation",
     "DELETE": "Delete",
     "CANCEL": "Cancel"
+  },
+  "LANDING": {
+    "BANNER": {
+      "SUBTITLE": "Bloom Quiet Mind",
+      "TITLE": "The Perfect Tool for Your Patients' Health",
+      "DESCRIPTION": "A new era in anxiety management is here. Join the mental health revolution and start transforming your patients' lives today. Easy and secure registration.",
+      "REGISTER_BUTTON": "Register Now"
+    },
+    "FEATURES": {
+      "TITLE_PERSONALIZED": "Personalized Treatment",
+      "DESCRIPTION_PERSONALIZED": "Digital profiles that facilitate precise and adapted care for each patient.",
+      "TITLE_COMMUNITY": "Community Support",
+      "DESCRIPTION_COMMUNITY": "Ease the journey to recovery with the support of an active community for your patients.",
+      "TITLE_ALERTS": "Anxiety Alerts",
+      "DESCRIPTION_ALERTS": "Advanced technology to monitor and respond quickly to signs of anxiety."
+    },
+    "ABOUT": {
+      "TITLE": "Discover Bloom Quiet Mind",
+      "DESCRIPTION": "Build a deeper relationship with your patients' well-being. Bloom Quiet Mind is your strategic partner in anxiety treatment, offering you interactive tools, patient profile-based customization, and endless resources. Our goal is to simplify your clinical practice and enhance your patients' progress."
+    },
+    "GOALS": {
+      "SUBTITLE": "Our Goals",
+      "TITLE": "Our Commitment to Quality and Innovation",
+      "DESCRIPTION": "Bloom Quiet Mind's mission is to empower specialists and patients in the battle against anxiety.",
+      "AUTONOMY": "Patient Autonomy",
+      "AUTONOMY_DESCRIPTION": "We encourage active and conscious participation in every step towards recovery.",
+      "TECH_TOOL": "Cutting-Edge Technical Tool",
+      "TECH_TOOL_DESCRIPTION": "We support your work with accurate data and constant monitoring.",
+      "INTERACTION": "Interaction and Entertainment",
+      "INTERACTION_DESCRIPTION": "We integrate games and activities designed to reduce stress and complement therapy.",
+      "SECURITY": "Security and Privacy",
+      "SECURITY_DESCRIPTION": "We guarantee a secure digital environment for handling sensitive information."
+    },
+    "SERVICES": {
+      "SUBTITLE": "Services",
+      "TITLE": "Innovative Features for Innovative Professionals",
+      "DESCRIPTION": "Every feature of Bloom Quiet Mind is designed to provide comprehensive and personalized care. Discover how our specialized modules can enrich your practice.",
+      "LIST": {
+        "SECURE_AUTHENTICATION": "Secure Authentication",
+        "DETAILED_PATIENT_PROFILE": "Detailed Patient Profile",
+        "COMPREHENSIVE_MEDICAL_PROFILE": "Comprehensive Medical Profile",
+        "IN_DEPTH_ANALYSIS": "In-Depth Analysis with Graphs",
+        "UPDATED_MEDICAL_HISTORY": "Updated Medical History",
+        "ALERTS_NOTIFICATIONS": "Alerts and Notifications",
+        "EDUCATIONAL_RESOURCES": "Educational Resources at Hand",
+        "DIRECT_COMMUNICATION": "Direct Communication via Chat"
+      },
+      "EXPERIENCE": "15+ Years",
+      "TECH_EXPERIENCE": "Of experience in technology"
+    },
+    "PROFESSIONALS": {
+      "SUBTITLE": "Our Professionals",
+      "TITLE": "Some of Our Trusted Professionals",
+      "DESCRIPTION": "Meet the experts revolutionizing mental health with their knowledge and dedication. Each professional brings a unique perspective, enriching our mission to provide exceptional care.",
+      "SEARCH_LABEL": "Search...",
+      "PROFESSION_LABEL": "Profession",
+      "ALL_PROFESSIONS": "All",
+      "NO_RESULTS": "No results found."
+    },
+    "REVIEWS": {
+      "SUBTITLE": "Testimonials",
+      "TITLE": "What Our Collaborators Say",
+      "DESCRIPTION": "Real testimonials from specialists who are transforming mental health with Bloom Quiet Mind.",
+      "REVIEW_1": {
+        "TEXT": "Bloom Quiet Mind has revolutionized my approach to treating anxiety. The emotional journal feature allows for a deeper understanding of the daily challenges my patients face, and that has been key in successfully customizing their treatments.",
+        "NAME": "Dr. Álvaro Sánchez",
+        "POSITION": "Psychiatrist"
+      },
+      "REVIEW_2": {
+        "TEXT": "Real-time monitoring of anxiety levels through the wearable module has significantly improved how I respond to my patients' needs. Bloom Quiet Mind has not only optimized my professional practice but also strengthened confidence in treatment strategies.",
+        "NAME": "Dra. Lucia Ramírez",
+        "POSITION": "Psychologist"
+      },
+      "REVIEW_3": {
+        "TEXT": "As a mental health specialist, Bloom Quiet Mind has provided me with invaluable tools to work with my anxiety patients. The adjustment of resources and activities is straightforward and effective, which has had an immediate positive impact on my clinical practice.",
+        "NAME": "Dr. Enrique Torres",
+        "POSITION": "Psychiatrist"
+      },
+      "REVIEW_4": {
+        "TEXT": "I am impressed by the analytical capability of Bloom Quiet Mind. The chart modules offer a clear view of my patients' progress, allowing me to tailor their treatments with a precision I hadn't experienced with other tools.",
+        "NAME": "Dra. Carmen Gómez",
+        "POSITION": "Clinical Psychologist"
+      },
+      "REVIEW_5": {
+        "TEXT": "The intuitive interface and the depth of Bloom Quiet Mind's tools have allowed me to address my patients' anxiety in a more comprehensive way. It's an indispensable resource for collaborating with other specialists and improving the care I provide.",
+        "NAME": "Dr. Sergio Linares",
+        "POSITION": "Psychiatrist"
+      },
+      "REVIEW_6": {
+        "TEXT": "Implementing Bloom Quiet Mind in my practice has been a momentous decision. The support tools and community have created a richer and safer therapeutic environment, resulting in significant advances in managing my patients' anxiety.",
+        "NAME": "Dra. Isabel Fernández",
+        "POSITION": "Psychotherapist"
+      }
+    }
+  },
+  "HEADER": {
+    "PHONE": "+506 87119258",
+    "EMAIL": "bloomqm@gmail.com",
+    "HOME": "Home",
+    "ABOUT": "About",
+    "GOALS": "Goals",
+    "SERVICES": "Services",
+    "REVIEWS": "Reviews",
+    "LOGIN": "Log In"
+  },
+  "FOOTER": {
+    "DEVELOPED_BY": "Developed by:",
+    "NO_LIMITS_SOLUTIONS": "No Limits Solutions",
+    "QUESTIONS": "Questions?",
+    "PHONE_NUMBER": "+506 87119258",
+    "CONTACT_US": "Contact Us",
+    "EMAIL": "bloomqm@gmail.com",
+    "MISSION": "With Bloom Quiet Mind, we embrace the mission to empower patients and professionals in the fight against anxiety.",
+    "TOOLS_AND_SUPPORT": "We offer a synergy of advanced tools and human support to cultivate well-being and resilience.",
+    "REDEFINE_MENTAL_HEALTH": "Together, we redefine mental health.",
+    "LINKS": "Links",
+    "HOME": "Home",
+    "ABOUT_US": "About",
+    "GOALS": "Goals",
+    "SERVICES": "Services",
+    "OUR_PROFESSIONALS": "Our Professionals",
+    "REVIEWS": "Reviews",
+    "SIGNUP": "Sign Up",
+    "SIGNIN": "Sign In",
+    "COPYRIGHT": "Copyright &copy; 2023, All rights reserved"
   }
 }

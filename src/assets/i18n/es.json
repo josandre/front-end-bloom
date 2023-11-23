@@ -221,7 +221,6 @@
     "PATIENTS": "Pacientes",
     "ATTACKS": "ataques",
     "NO_DATA_FOR_ATTACKS": "No hay datos de ataques registrados."
-    
   },
   "DASHBOARD_PATIENT": {
     "WELLCOME_TITLE": "¡Bienvenido de nuevo!",
@@ -287,5 +286,130 @@
     "RELATION": "Relación",
     "DELETE": "Borrar",
     "CANCEL": "Cancelar"
+  },
+  "LANDING": {
+    "BANNER": {
+      "SUBTITLE": "Bloom Quiet Mind",
+      "TITLE": "La herramienta perfecta para la salud de tus pacientes",
+      "DESCRIPTION": "Una nueva era en el manejo de la ansiedad está aquí. Únete a la revolución de la salud mental y empieza a transformar la vida de tus pacientes hoy. Registro fácil y seguro.",
+      "REGISTER_BUTTON": "Regístrate ahora"
+    },
+    "FEATURES": {
+      "TITLE_PERSONALIZED": "Tratamiento Personalizado",
+      "DESCRIPTION_PERSONALIZED": "Perfiles digitales que facilitan una atención precisa y adaptada para cada paciente.",
+      "TITLE_COMMUNITY": "Apoyo Comunitario",
+      "DESCRIPTION_COMMUNITY": "Facilita el camino hacia la recuperación con el apoyo de una comunidad activa para tus pacientes.",
+      "TITLE_ALERTS": "Alertas de Ansiedad",
+      "DESCRIPTION_ALERTS": "Tecnología avanzada para monitorizar y responder rápidamente a los signos de ansiedad."
+    },
+    "ABOUT": {
+      "TITLE": "Descubre Bloom Quiet Mind",
+      "DESCRIPTION": "Construye una relación más profunda con el bienestar de tus pacientes. Bloom Quiet Mind es tu socio estratégico en el tratamiento de la ansiedad, ofreciéndote herramientas interactivas, personalización basada en perfiles de pacientes y un sinfín de recursos. Nuestro objetivo es simplificar tu práctica clínica y potenciar el progreso de tus pacientes."
+    },
+    "GOALS": {
+      "SUBTITLE": "Nuestros Objetivos",
+      "TITLE": "Nuestro Compromiso con la Calidad y la Innovación",
+      "DESCRIPTION": "La misión de Bloom Quiet Mind es empoderar a especialistas y pacientes en la batalla contra la ansiedad.",
+      "AUTONOMY": "Autonomía del Paciente",
+      "AUTONOMY_DESCRIPTION": "Incentivamos una participación activa y consciente en cada paso hacia la recuperación.",
+      "TECH_TOOL": "Herramienta Técnica de Vanguardia",
+      "TECH_TOOL_DESCRIPTION": "Apoyamos tu labor con datos precisos y seguimiento constante.",
+      "INTERACTION": "Interacción y Entretenimiento",
+      "INTERACTION_DESCRIPTION": "Integramos juegos y actividades diseñadas para reducir el estrés y complementar la terapia.",
+      "SECURITY": "Seguridad y Privacidad",
+      "SECURITY_DESCRIPTION": "Garantizamos un entorno digital seguro para el manejo de información delicada."
+    },
+    "SERVICES": {
+      "SUBTITLE": "Servicios",
+      "TITLE": "Características Innovadoras para Profesionales Innovadores",
+      "DESCRIPTION": "Cada función de Bloom Quiet Mind está diseñada para brindar una atención integral y personalizada. Descubre cómo nuestros módulos especializados pueden enriquecer tu práctica.",
+      "LIST": {
+        "SECURE_AUTHENTICATION": "Autenticación Segura",
+        "DETAILED_PATIENT_PROFILE": "Perfil de Paciente Detallado",
+        "COMPREHENSIVE_MEDICAL_PROFILE": "Perfil Médico Integral",
+        "IN_DEPTH_ANALYSIS": "Análisis Profundo con Gráficos",
+        "UPDATED_MEDICAL_HISTORY": "Historial Médico Actualizado",
+        "ALERTS_NOTIFICATIONS": "Alertas y Notificaciones",
+        "EDUCATIONAL_RESOURCES": "Recursos Educativos a Mano",
+        "DIRECT_COMMUNICATION": "Comunicación Directa con el Chat"
+      },
+      "EXPERIENCE": "15+ Años",
+      "TECH_EXPERIENCE": "De experiencia en tecnología"
+    },
+    "PROFESSIONALS": {
+      "SUBTITLE": "Nuestros Profesionales",
+      "TITLE": "Algunos de Nuestros Profesionales de Confianza",
+      "DESCRIPTION": "Conoce a los expertos que están revolucionando la salud mental con sus conocimientos y dedicación. Cada profesional aporta una perspectiva única, enriqueciendo nuestra misión de brindar cuidado excepcional.",
+      "SEARCH_LABEL": "Buscar...",
+      "PROFESSION_LABEL": "Profesión",
+      "ALL_PROFESSIONS": "Todos",
+      "NO_RESULTS": "No se encontraron resultados."
+    },
+    "REVIEWS": {
+      "SUBTITLE": "Testimonios",
+      "TITLE": "Lo Que Dicen Nuestros Colaboradores",
+      "DESCRIPTION": "Testimonios reales de especialistas que están transformando la salud mental con Bloom Quiet Mind.",
+      "REVIEW_1": {
+        "TEXT": "Bloom Quiet Mind ha revolucionado mi enfoque hacia el tratamiento de la ansiedad. La función del diario emocional permite una comprensión más profunda de los retos diarios que enfrentan mis pacientes, y eso ha sido clave para personalizar sus tratamientos con éxito.",
+        "NAME": "Dr. Álvaro Sánchez",
+        "POSITION": "Psiquiatra"
+      },
+      "REVIEW_2": {
+        "TEXT": "La monitorización en tiempo real de los niveles de ansiedad a través del módulo wearable ha mejorado significativamente la manera en que respondo a las necesidades de mis pacientes. Bloom Quiet Mind no solo ha optimizado mi práctica profesional, sino que también ha fortalecido la confianza en las estrategias de tratamiento.",
+        "NAME": "Dra. Lucia Ramírez",
+        "POSITION": "Psicóloga"
+      },
+      "REVIEW_3": {
+        "TEXT": "Como especialista en la salud mental, Bloom Quiet Mind me ha proporcionado herramientas invaluables para trabajar con mis pacientes con ansiedad. El ajuste de recursos y actividades es sencillo y efectivo, lo cual ha tenido un impacto positivo inmediato en mi práctica clínica.",
+        "NAME": "Dr. Enrique Torres",
+        "POSITION": "Psiquiatra"
+      },
+      "REVIEW_4": {
+        "TEXT": "Estoy impresionado por la capacidad analítica de Bloom Quiet Mind. Los módulos de gráficos ofrecen una visión clara del progreso de mis pacientes, lo que me permite adaptar sus tratamientos con una precisión que no había experimentado antes con otras herramientas.",
+        "NAME": "Dra. Carmen Gómez",
+        "POSITION": "Psicóloga Clínica"
+      },
+      "REVIEW_5": {
+        "TEXT": "La interfaz intuitiva y la profundidad de las herramientas de Bloom Quiet Mind me han permitido abordar la ansiedad de mis pacientes de manera más integral. Es un recurso indispensable para colaborar con otros especialistas y mejorar la atención que proporciono.",
+        "NAME": "Dr. Sergio Linares",
+        "POSITION": "Médico Psiquiatra"
+      },
+      "REVIEW_6": {
+        "TEXT": "Implementar Bloom Quiet Mind en mi práctica ha sido una decisión trascendental. Las herramientas de apoyo y la comunidad han creado un entorno terapéutico más rico y seguro, resultando en avances significativos en el manejo de la ansiedad de mis pacientes.",
+        "NAME": "Dra. Isabel Fernández",
+        "POSITION": "Psicoterapeuta"
+      }
+    }
+  },
+  "HEADER": {
+    "PHONE": "+506 87119258",
+    "EMAIL": "bloomqm@gmail.com",
+    "HOME": "Inicio",
+    "ABOUT": "Nosotros",
+    "GOALS": "Objetivos",
+    "SERVICES": "Servicios",
+    "REVIEWS": "Reseñas",
+    "LOGIN": "Iniciar sesión"
+  },
+  "FOOTER": {
+    "DEVELOPED_BY": "Desarrollado por:",
+    "NO_LIMITS_SOLUTIONS": "No Limits Solutions",
+    "QUESTIONS": "¿Tienes dudas?",
+    "PHONE_NUMBER": "+506 87119258",
+    "CONTACT_US": "Escríbenos",
+    "EMAIL": "bloomqm@gmail.com",
+    "MISSION": "Con Bloom Quiet Mind, abrazamos la misión de empoderar a pacientes y profesionales en la lucha contra la ansiedad.",
+    "TOOLS_AND_SUPPORT": "Ofrecemos una sinergia de herramientas avanzadas y apoyo humano para cultivar bienestar y resiliencia.",
+    "REDEFINE_MENTAL_HEALTH": "Juntos, redefinimos la salud mental.",
+    "LINKS": "Enlaces",
+    "HOME": "Inicio",
+    "ABOUT_US": "Nosotros",
+    "GOALS": "Objetivos",
+    "SERVICES": "Servicios",
+    "OUR_PROFESSIONALS": "Nuestros profesionales",
+    "REVIEWS": "Reviews",
+    "SIGNUP": "Registro",
+    "SIGNIN": "Iniciar sesión",
+    "COPYRIGHT": "Copyright &copy; 2023, Derechos reservados"
   }
 }

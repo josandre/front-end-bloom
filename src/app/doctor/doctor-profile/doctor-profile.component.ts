@@ -179,9 +179,10 @@ export class DoctorProfileComponent implements OnInit{
 
       this.doctorProfileService.updateDoctor(doc).subscribe((res) => {
         this.isLoadingUserUpdating = false;
+        this.openSnackBar('PROFILE.SNACKBAR.UPDATE_USER.SUCCESS','PROFILE.SNACKBAR.ACTIONS.CLOSE');
         switch (res) {
           case 200:{
-            this.openSnackBar('PROFILE.SNACKBAR.UPDATE_USER.SUCCESS','PROFILE.SNACKBAR.ACTIONS.CLOSE');
+            //this.openSnackBar('PROFILE.SNACKBAR.UPDATE_USER.SUCCESS','PROFILE.SNACKBAR.ACTIONS.CLOSE');
             break;
           }
         }

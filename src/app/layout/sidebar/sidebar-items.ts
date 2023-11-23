@@ -703,7 +703,7 @@ export const ROUTES: RouteInfo[] = [
       },
       {
         path: '/patient/patient-profile',
-        title: 'Patient Profile',
+        title: 'MENUITEMS.PATIENTS.PROFILE',
         iconType: 'material-icons-two-tone',
         icon: 'manage_accounts',
         class: '',

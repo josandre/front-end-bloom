@@ -10,6 +10,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class MyResourcesComponent implements OnInit{
 
+  message: string = 'MENUITEMS.RESOURCES.MESSAGE'
+
   constructor(private readonly resourceService: ResourceService,private snackBar: MatSnackBar) {
     this.selectedResourceIds=[];
     }
@@ -18,23 +20,24 @@ export class MyResourcesComponent implements OnInit{
   originalResourcesList: Resource[];
   selectedResourceIds: number[];
 
-  flag: boolean = false;
+  flag: boolean = true;
 
   ngOnInit(){
-
+    this.flag = true;
     this.resourceService.getResourceList().subscribe(
-      resources =>{ 
+      resources =>{
         this.resourcesList = resources;
         this.originalResourcesList=[...resources]
-        this.flag = true;
+        // this.flag = false;
       }
-        
+
     )
   }
 
   sessionResource(id: number){
     sessionStorage.setItem('resourseId', id.toString());
   }
+
   applyFilter(filterValue: any) {
     let filterText: string = filterValue.value;
     filterText = filterText.trim();
@@ -45,21 +48,19 @@ export class MyResourcesComponent implements OnInit{
         resource.title.toLowerCase().includes(filterText)
       );
     } else {
-      this.resourcesList = [...this.originalResourcesList]; // Restaurar la lista original
+      this.resourcesList = [...this.originalResourcesList];
     }
   }
   readResourceCheck(id: number) {
-    console.log(id);
+
     const index = this.selectedResourceIds.indexOf(id);
-  
+
     if (index === -1) {
-      // Si no se encontró el ID en el arreglo, lo añade
+
       this.selectedResourceIds.push(id);
-      console.log("No estaba seleccionado pero ahora si",id);
     } else {
-      // deselecciona
+
       this.selectedResourceIds.splice(index, 1);
-      console.log("ya no estoy seleccionado",id);
 
     }
   }
@@ -68,11 +69,11 @@ export class MyResourcesComponent implements OnInit{
       switch (res) {
         case 200:{
           this.openSnackBar("Resource deleted", "Close");
-          // Usar filter para crear una nueva lista que excluya los objetos con los IDs a eliminar
+
           this.resourcesList = this.resourcesList.filter(resource => !this.selectedResourceIds.includes(resource.id));
           this.originalResourcesList=[...this.resourcesList]
           this.selectedResourceIds = [];
-          // Restablecer la tabla para mostrar todos los datos
+
           break;
         }
       }

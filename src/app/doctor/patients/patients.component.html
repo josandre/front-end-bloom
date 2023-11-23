@@ -1,5 +1,5 @@
 <section class="content">
-  <div class="content-block" *ngIf="patients != null">
+  <div class="content-block">
     <div class="block-header section-header">
 
       <app-breadcrumb [title]="'DOCTOR_BREADCRUM.PATIENTS.TITLE' | translate"></app-breadcrumb>
@@ -7,6 +7,10 @@
         {{ 'PATIENTS_LISTS.ADD_NEW' | translate }}</button>
     </div>
 
+    <div class="center" *ngIf="isLoading" >
+      <app-spinner *ngIf="isLoading" [isLoading]="isLoading" [message]="messageLoading | translate"></app-spinner>
+      <app-wink *ngIf="patientsIsEmpty() && !isLoading" [message]="messageData | translate"></app-wink>
+    </div>
 
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3" *ngFor="let patient of patients">
@@ -37,8 +41,5 @@
     </div>
   </div>
 
-  <div class="center" >
-    <app-spinner *ngIf="isLoading" [isLoading]="isLoading" [message]="messageLoading | translate"></app-spinner>
-    <app-wink *ngIf="patientsIsEmpty() && !isLoading" [message]="messageData | translate"></app-wink>
-  </div>
+
 </section>

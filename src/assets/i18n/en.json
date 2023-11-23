@@ -204,7 +204,8 @@
       "LOGOUT": "Logout",
       "TASKLIST": "Task List",
       "ADDTASK": "Add Task",
-      "MODTASK": "Edit Task"
+      "MODTASK": "Edit Task",
+      "MESSAGE": "We are reading your resources"
     },
     "PROGRESS-SECTION": {
       "TITLE": "Progreso Medico"
@@ -555,6 +556,7 @@
       }
     },
     "MEDICAL_HISTORY":{
+      "MESSAGE": "We are getting your data",
       "NEW_MEDICAL_HISTORY":"New Medical History",
       "UPDATE_MEDICAL_HISTORY":"Update Medical History",
       "OBSERVATIONS":"Observations",
@@ -660,6 +662,16 @@
     "PASSWORD": "Password",
     "SAVE": "Save",
     "MESSAGE": "Saving the new patient"
+  },
+  "MESSAGES_SYSTEM": {
+    "LOADING_CONVERSATIONS": "We are reading your conversations",
+    "NOT_NEW_MESSAGES": "No new messages",
+    "NEW_MESSAGES": "new messages",
+    "SELECT_CONVERSATION": "Select a conversation",
+    "ANY_CONVERSATION": "You do not have any conversation yet",
+    "LOADING_MESSAGES": "Loading conversation messages",
+    "ENTER_TEXT_HERE": "Enter text here..",
+    "SEARCH": "Search"
   }
 
 }

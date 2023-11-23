@@ -36,6 +36,8 @@ export class ForumComponent implements OnInit {
   // User info
   currentUser?:any;
 
+
+
   constructor(
     private readonly authService:AuthService,
     private readonly forumService:ForumServiceService,
@@ -57,13 +59,13 @@ export class ForumComponent implements OnInit {
   getPosts(): void {
     this.currentPost = undefined;
     this.postLoaded = false;
-    
+
     this.postsLoaded = false;
     this.showPosts();
     this.forumService.getAllPosts()
     .subscribe(
       data => {
-        console.log(data);
+
         this.posts = data;
         this.postsLoaded = true;
       },
@@ -88,12 +90,12 @@ export class ForumComponent implements OnInit {
 
     return result;
   }
-  
+
   openNewPostDialog(): void {
     const postDialog = this.dialogModel.open(PostEditorComponent, {width: '720px', height: '480px', disableClose: false})
     postDialog.componentInstance.currentUserID = this.currentUser.id;
     postDialog.componentInstance.forumComponent = this;
-  } 
+  }
 
   openNewCommentDialog(): void {
     const commentDialog = this.dialogModel.open(CommentEditorComponent, {width: '720px', height: '480px', disableClose: false})
@@ -130,7 +132,7 @@ export class ForumComponent implements OnInit {
             console.log(error);
             this.getPosts();
           }
-        );        
+        );
         //Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
       }
     });

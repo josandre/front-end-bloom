@@ -16,7 +16,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class DoctorProfileComponent implements OnInit{
   specialist : Specialist ;
-  loading : boolean = true;
+  loading : boolean = false;
   selectedFiles: FileList | null | undefined;
   currentFileUpload: File | null | undefined;
   progress: { percentage: number } = { percentage: 0 };
@@ -39,7 +39,7 @@ export class DoctorProfileComponent implements OnInit{
   }
 
   ngOnInit(): void {
-
+    this.loading = true
     this.doctorProfileService.getDataUser().subscribe((specialist) => {
 
       this.specialist = specialist;
@@ -56,6 +56,7 @@ export class DoctorProfileComponent implements OnInit{
       this.doctorUpdateForm.controls['phone'].setValue(specialist.user?.phone);
 
     }, (error) => {
+      this.loading = false
       this.openSnackBar('PROFILE.SNACKBAR.GET_USER.ERROR','PROFILE.SNACKBAR.ACTIONS.CLOSE')
       console.error('Error al obtener datos del usuario:', error);
     })
@@ -155,6 +156,7 @@ export class DoctorProfileComponent implements OnInit{
       });
     }
   }
+
   getSelectFileButtonText(): string {
     // Traduce el texto del botón según el idioma actual
     return this.translate.instant('PROFILE.PROFILE.SAVE_PHOTO');

@@ -42,6 +42,8 @@
       <app-loading-card></app-loading-card>
     </div>
 
+
+
     <!--Open post-->
     <div *ngIf="forumState === ForumStates.OpenPost">
       <!--Post loading-->
@@ -107,13 +109,13 @@
                       <mat-label>{{'MENUITEMS.FORUMS.POST_CONTENT' | translate}}</mat-label>
                       <textarea matInput [(ngModel)]="postEditorContent"></textarea>
                     </mat-form-field>
-  
+
                     <!--Interactable buttons-->
                     <div *ngIf="postEditorEnabled === true" class="example-button-row">
                       <button mat-flat-button color="primary" (click)="updatePost()">{{'MENUITEMS.FORUMS.SAVE_POST' | translate}}</button>
                       <button mat-stroked-button class="stroked-btn" (click)="closePostEditor()">{{'MENUITEMS.FORUMS.CANCEL' | translate}}</button>
                     </div>
-  
+
                     <!--Disabled buttons-->
                     <div *ngIf="postEditorEnabled === false" class="example-button-row">
                       <button mat-flat-button class="flat-btn-disabled" disabled>{{'MENUITEMS.FORUMS.SAVE_POST' | translate}}</button>
@@ -136,12 +138,12 @@
             <button mat-flat-button color="primary" (click)="openNewCommentDialog()">{{'MENUITEMS.FORUMS.CREATE_COMMENT'
               | translate}}</button>
             <div>
-              <app-comment *ngFor="let comment of currentPost.comments" 
-                [forumComponent]="this" 
+              <app-comment *ngFor="let comment of currentPost.comments"
+                [forumComponent]="this"
                 [commentID]="comment.id"
-                [userName]="comment.userName" 
+                [userName]="comment.userName"
                 [userImage]="comment.userImage"
-                [date]="comment.creationDate" 
+                [date]="comment.creationDate"
                 [content]="comment.content"
                 [showAdvancedOptions]="comment?.userId === currentUser?.id">
               </app-comment>

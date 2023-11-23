@@ -36,7 +36,7 @@ export class AuthService {
     }, ).pipe(map((r) => {
        const decodedToken = jwtDecode(r.token);
        const currentUser = new User({...decodedToken, token: r.token})
-
+       localStorage.setItem('currentUser', JSON.stringify(currentUser))
        this.currentUserSubject.next(currentUser)
 
        return currentUser

@@ -207,7 +207,8 @@
       "LOGOUT": "Salir",
       "TASKLIST": "Lista de Tareas",
       "ADDTASK": "Agregar Tarea",
-      "MODTASK": "Editar Tarea"
+      "MODTASK": "Editar Tarea",
+      "MESSAGE": "Estamos leyendo tu recursos"
     }
   },
   "DASHBOARD_DOCTOR": {
@@ -587,6 +588,7 @@
       }
     },
     "MEDICAL_HISTORY":{
+      "MESSAGE": "Estamos recolectando datos",
       "NEW_MEDICAL_HISTORY":"Nuevo historial médico",
       "UPDATE_MEDICAL_HISTORY":"Actualizar historial médico",
       "OBSERVATIONS":"Observaciones",
@@ -658,5 +660,16 @@
     },
     "psychology":"Psicología",
     "therapist":"Terapeuta"
+  },
+  "MESSAGES_SYSTEM": {
+    "LOADING_CONVERSATIONS": "Estamos leyendo tus conversaciones",
+    "NOT_NEW_MESSAGES": "No hay mensajes",
+    "NEW_MESSAGES": "Mensajes nuevos",
+    "SELECT_CONVERSATION": "Seleccione una conversación",
+    "ANY_CONVERSATION": "No tiene conversación aún",
+    "LOADING_MESSAGES": "Leyendo mensajes",
+    "ENTER_TEXT_HERE": "Ingrese su texto aquí...",
+    "SEARCH": "Buscar"
   }
+
 }

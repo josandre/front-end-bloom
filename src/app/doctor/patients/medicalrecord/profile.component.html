@@ -131,7 +131,7 @@
                           <div class="project_widget">
                             <div class="header">
                               <h2><strong>{{'MEDICAL_RECORD.INFO.NOTES' | translate}}</strong></h2>
-                            </div> 
+                            </div>
                             <div class="body">
                               <ul>
                                 <li><strong>{{'MEDICAL_RECORD.INFO.ANXIETY_LEVEL' | translate}}:</strong>{{ 'MEDICAL_RECORD.MEDICAL_HISTORY.ANXIETY_LEVEL.' + medicalHistory.anxietyLevel | translate }}</li>
@@ -149,8 +149,8 @@
                             </div>
                             <div class="body">
                               <ul>
-                                <li><strong>{{'MEDICAL_RECORD.INFO.NAME_RECIPE' | translate}}:</strong> {{ medicalHistory.medicalRecipe.name }}</li>
-                                <li><strong>{{'MEDICAL_RECORD.INFO.INDICATIONS' | translate}}:</strong> {{ medicalHistory.medicalRecipe.indications }}
+                                <li><strong>{{'MEDICAL_RECORD.INFO.NAME_RECIPE' | translate}}:</strong> {{ medicalHistory?.medicalRecipe?.name }}</li>
+                                <li><strong>{{'MEDICAL_RECORD.INFO.INDICATIONS' | translate}}:</strong> {{ medicalHistory?.medicalRecipe?.indications }}
                                 </li>
                               </ul>
                             </div>
@@ -187,7 +187,7 @@
       </div>
     </div>
   </div>
-  <div class="center" *ngIf="medicalRecord === undefined || patient === undefined">
-    <mat-spinner></mat-spinner>
+  <div class="center" >
+    <app-spinner *ngIf="isLoading" [isLoading]="isLoading" [message]="message | translate"></app-spinner>
   </div>
 </section>

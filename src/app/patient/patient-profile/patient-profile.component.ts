@@ -30,6 +30,7 @@ export class PatientProfileComponent implements OnInit{
   userId: number | undefined
   isLoadingPassword: boolean = false;
   isLoadingUserUpdating: boolean = false;
+  message: string = 'PROFILES.MESSAGE'
 
   constructor(private readonly userService: UserService, private uploadService: UploadFileService, private readonly authService: AuthService,
   private formBuilder: FormBuilder, private snackBar: MatSnackBar,private translate: TranslateService) {

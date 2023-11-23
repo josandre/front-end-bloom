@@ -3,6 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import {MedicalRecordService} from "../service/medicalrecord.service";
+import { TranslateService } from '@ngx-translate/core';
 
 export interface DialogData {
   id: number;
@@ -20,7 +21,9 @@ export class DeleteMedicalhistoryDialogComponent {
     public dialogRef: MatDialogRef<DeleteMedicalhistoryDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     public medicalRecordService: MedicalRecordService,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    private translate: TranslateService
+    ) {
   }
 
   onNoClick(): void {
@@ -33,18 +36,20 @@ export class DeleteMedicalhistoryDialogComponent {
       .subscribe((response) => {
         switch (response) {
           case 200: {
-            this.openSnackBar("Medical history deleted!", "Close");
+            this.openSnackBar('MEDICAL_RECORD.SNACKBAR.DELETE_MEDICAL_HISTORY.SUCCESS', 'MEDICAL_RECORD.SNACKBAR.ACTIONS.CLOSE');
             break;
           }
         }
       }, error => {
         console.log(error);
-        this.openSnackBar("Something went wrong while trying to delete medical history", "Try again");
+        this.openSnackBar('MEDICAL_RECORD.SNACKBAR.DELETE_MEDICAL_HISTORY.ERROR', 'MEDICAL_RECORD.SNACKBAR.ACTIONS.TRY_AGAIN');
       })
   }
 
   openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, { verticalPosition: 'top', horizontalPosition: 'end' })
+    this.translate.get([message,action]).subscribe((translations: any) => {
+      this.snackBar.open(translations[message], translations[action], { verticalPosition: 'top', horizontalPosition: 'end',duration: 4000 })
+    });
   }
 
 }

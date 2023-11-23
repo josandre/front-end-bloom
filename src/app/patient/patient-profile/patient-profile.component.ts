@@ -6,7 +6,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {Password} from "../patient-profile/models/Password";
 import {UserService} from "./services/user.service";
 import {User} from "./models/User";
-
+import { TranslateService } from '@ngx-translate/core';
 
 
 
@@ -32,7 +32,7 @@ export class PatientProfileComponent implements OnInit{
   isLoadingUserUpdating: boolean = false;
 
   constructor(private readonly userService: UserService, private uploadService: UploadFileService, private readonly authService: AuthService,
-  private formBuilder: FormBuilder, private snackBar: MatSnackBar) {
+  private formBuilder: FormBuilder, private snackBar: MatSnackBar,private translate: TranslateService) {
     this.initFormUser();
     this.initFormPass();
   }
@@ -51,6 +51,7 @@ export class PatientProfileComponent implements OnInit{
         this.userUpdateForm.controls['citizenId'].setValue(user.citizenId);
         this.userUpdateForm.controls['address'].setValue(user.address);
       }, error => {
+        this.openSnackBar('PROFILE.SNACKBAR.GET_USER.ERROR','PROFILE.SNACKBAR.ACTIONS.CLOSE')
         console.error('Error al obtener datos del usuario:', error);
       });
 
@@ -166,13 +167,13 @@ export class PatientProfileComponent implements OnInit{
 
         switch (res.statusCode) {
           case 200:{
-            this.openSnackBar("User updated", "Close");
+            this.openSnackBar('PROFILE.SNACKBAR.UPDATE_USER.SUCCESS','PROFILE.SNACKBAR.ACTIONS.CLOSE');
             break;
           }
         }
       }, error => {
         this.isLoadingUserUpdating = false;
-        this.openSnackBar("The user was not updated", "Close" );
+        this.openSnackBar('PROFILE.SNACKBAR.UPDATE_USER.ERROR', 'PROFILE.SNACKBAR.ACTIONS.CLOSE' );
 
       })
     }
@@ -206,7 +207,7 @@ export class PatientProfileComponent implements OnInit{
 
          switch (res) {
            case 200:{
-             this.openSnackBar("Password updated", "Close");
+             this.openSnackBar('PROFILE.SNACKBAR.UPDATE_PASSWORD.SUCCESS', 'PROFILE.SNACKBAR.ACTIONS.CLOSE');
              break;
            }
          }
@@ -217,7 +218,7 @@ export class PatientProfileComponent implements OnInit{
 
          switch (error.error) {
            case 404:{
-             this.openSnackBar("Current password does not match", "Close" );
+             this.openSnackBar('PROFILE.SNACKBAR.UPDATE_PASSWORD.ERROR', 'PROFILE.SNACKBAR.ACTIONS.CLOSE');
              break;
            }
          }
@@ -225,8 +226,10 @@ export class PatientProfileComponent implements OnInit{
     }
   }
 
-  openSnackBar(message: string, action: string){
-    this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'end'})
+  openSnackBar(message: string, action: string) {
+    this.translate.get([message,action]).subscribe((translations: any) => {
+      this.snackBar.open(translations[message], translations[action], { verticalPosition: 'top', horizontalPosition: 'end',duration: 4000 })
+    });
   }
 
 }

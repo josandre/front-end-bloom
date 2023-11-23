@@ -21,9 +21,9 @@
       }
     },
     "DOCTORS": {
-      "TEXT": "Doctoras",
+      "TEXT": "Doctores",
       "LIST": {
-        "ALL-DOCTOR": "Todas las doctores",
+        "ALL-DOCTOR": "Todos los doctores",
         "ADD-DOCTOR": "Agregar doctora",
         "EDIT-DOCTOR": "Editar doctora",
         "PROFILE": "Perfil médico"
@@ -41,10 +41,10 @@
     "PATIENTS": {
       "TEXT": "Pacientes",
       "LIST": {
-        "ALL-PATIENT": "Todas las pacientes",
+        "ALL-PATIENT": "Todos los pacientes",
         "ADD-PATIENT": "Agregar paciente",
         "EDIT-PATIENT": "Editar paciente",
-        "PROFILE": "Perfil del paciente"
+        "PROFILE": "Perfil de Usuario"
       }
     },
     "ROOMS": {
@@ -413,5 +413,210 @@
     "SIGNUP": "Registro",
     "SIGNIN": "Iniciar sesión",
     "COPYRIGHT": "Copyright &copy; 2023, Derechos reservados"
+  },
+  "DOCTOR_BREADCRUM": {
+    "PATIENTS": {
+      "TITLE": "Pacientes",
+      "ACTIVE_ITEM": "Historial Médico"
+    },
+    "DASHBOARD": {
+      "TITLE": "Tablero",
+      "ACTIVE_ITEM": ""
+    },
+    "PROFILE": {
+      "TITLE": "Perfil Médico",
+      "ACTIVE_ITEM": ""
+    },
+    "CHAT": {
+      "TITLE": "Conversaciones",
+      "ACTIVE_ITEM": ""
+    },
+    "RESOURCES": {
+      "TITLE": "Recursos",
+      "ACTIVE_ITEM": "Mis Recursos",
+      "ACTIVE_ITEM2":"Crear Recurso"
+    }
+  },
+  "PATIENT_BREADCRUM": {
+    "DASHBOARD": {
+      "TITLE": "Tablero",
+      "ACTIVE_ITEM": ""
+    },
+    "PROFILE": {
+      "TITLE": "Perfil Usuario",
+      "ACTIVE_ITEM": ""
+    },
+    "CHAT": {
+      "TITLE": "Conversaciones",
+      "ACTIVE_ITEM": ""
+    },
+    "RESOURCES": {
+      "TITLE": "Mis Recursos",
+      "ACTIVE_ITEM": ""
+  
+    },
+    "FORUMS": {
+      "TITLE": "Foro",
+      "ACTIVE_ITEM": ""
+  
+    },
+    "GAME": {
+      "TITLE": "Sección de Juegos",
+      "ACTIVE_ITEM": ""
+  
+    },
+    "CONTACTS": {
+      "TITLE": "Contactos",
+      "ACTIVE_ITEM": ""
+  
+    }
+  },
+  "ADMIN_BREADCRUM": {
+    "PATIENTS": {
+      "TITLE": "Pacientes",
+      "ACTIVE_ITEM": "Todos los pacientes"
+    },
+    "DASHBOARD": {
+      "TITLE": "Tablero",
+      "ACTIVE_ITEM": ""
+    },
+    "RESOURCES": {
+      "TITLE": "Recursos",
+      "ACTIVE_ITEM": "Todos los recursos",
+      "ACTIVE_ITEM2": "Leer Recurso"
+    },
+    "DOCTORS": {
+      "TITLE": "Doctores",
+      "ACTIVE_ITEM": "Todos los doctores"
+    }
+  },
+  "MEDICAL_RECORD":{
+    "INFO": {
+      "REQUIRED":"Ingrese un valor",
+      "SAVE":"Guadar",
+      "UPDATED":"Modificado",
+      "QUIT":"Salir",
+      "MEDICAL_HISTORY":"Historial Médico",
+      "APPOINTMENT_DATE":"Día de la cita",
+      "NOTES": "Notas",
+      "ANXIETY_LEVEL":"Niveles de ansiedad",
+      "OBSERVATIONS": "Observaciones",
+      "TREATMENT_STARTED_ON":"Inicio del tratamiento",
+      "TREATMENT_ENDED_ON":"Fin del tratamiento",
+      "RECIPE":"Receta",
+      "NAME_RECIPE":"Nombre del medicamento",
+      "INDICATIONS":"Indicaciones",
+      "APPOINTMENT_REGISTRED":"No hay citas registradas",
+      "FAMILY_MEDICAL_HISTORY":"Historial médico familiar",
+      "ANXIETIES":"Ansiedades",
+      "ANXIETY_TYPE":"Nuevo tipo de ansiedad..."
+    },
+    "SNACKBAR":{
+      "ACTIONS":{
+        "TRY_AGAIN":"Intente de nuevo",
+        "CLOSE": "Cerrar"
+      },
+      "ADD_ANXIETY_TYPE": {
+        "TEXT": "Este tipo de ansiedad ya existe",
+        "SUCCESS":"¡El tipo de ansiedad se ha agregado con éxito!",
+        "ERROR":"Algo salió mal al intentar registrar el tipo de ansiedad"
+      },
+      "GET_MEDICAL_RECORD":{
+        "FILL_OUT":"Aún no se ha completado el historial médico familiar.",
+        "ERROR":"Usuario no permitido"
+      },
+      "REMOVE_ANXIETY_TYPE":{
+        "SUCCESS": "¡El tipo de ansiedad se ha eliminado correctamente!",
+        "ERROR":"Algo salió mal al intentar eliminar el tipo de ansiedad"
+      },
+      "UPDATE_MEDICAL_RECORD":{
+        "SUCCESS": "Historial médico familiar actualizado.",
+        "ERROR":"Algo salió mal al intentar actualizar el registro médico"
+      },
+      "CREATE_MEDICAL_HISTORY":{
+        "SUCCESS":"Historial médico agregado",
+        "ERROR":"Algo salió mal al intentar agregar el historial médico"
+      },
+      "UPDATE_MEDICAL_HISTORY":{
+        "SUCCESS":"Historial médico actualizado",
+        "ERROR":"Algo salió mal al intentar actualizar el historial médico"
+      },
+      "DELETE_MEDICAL_HISTORY":{
+        "SUCCESS":"¡Historial médico eliminado!",
+        "ERROR":"Algo salió mal al intentar borrar el historial médico"
+      }
+    },
+    "MEDICAL_HISTORY":{
+      "NEW_MEDICAL_HISTORY":"Nuevo historial médico",
+      "UPDATE_MEDICAL_HISTORY":"Actualizar historial médico",
+      "OBSERVATIONS":"Observaciones",
+      "OBSERVATIONS_REQUIRED":"Por favor ingrese observaciones",
+      "TREATMENT_DURATION":"Duración del tratamiento",
+      "START_DATE":"Fecha de inicio",
+      "END_DATE":"Fecha final",
+      "ANXIETY_LEVEL_DETECTED":"Seleccione nivel de ansiedad",
+      "ANXIETY_LEVEL_REQUIRED":"Se requiere nivel de ansiedad",
+      "RECIPE":"Receta",
+      "NAME_RECIPE":"Nombre del Medicamento",
+      "NAME_RECIPE_REQUIRED":"Se requiere el nombre",
+      "INDICATIONS":"Indicaciones",
+      "INDICATIONS_REQUIRED":"Por favor escriba indicaciones",
+      "SAVE":"Guardar",
+      "CANCEL":"Cancelar",
+      "ANXIETY_LEVEL":{
+        "MINIMAL": "Mínimo",
+        "MILD": "Leve",
+        "MODERATE": "Moderado",
+        "SEVERE": "Severo",
+        "DEBILITATING": "Debilitante",
+        "INDETERMINATE": "Indeterminado"
+        
+      },
+      "DELETE_CONFIRMATION":"¿Seguro que desea eliminar el historial médico?",
+      "DELETE": "Eliminar"
+    }
+  },
+  "PROFILE":{
+    "SELECTED_PHOTO":"No hay archivos seleccionados",
+    "SELECT_FILE":"Seleccionar archivo",
+    "SAVE_PHOTO":"Guadar nueva foto de perfil",
+    "SETTINGS":"Configuraciones",
+    "SECURITY":"Seguridad",
+    "CURRENT_PASSWORD":"Contraseña Actual",
+    "NEW_PASSWORD":"Nueva Contraseña",
+    "CONFIRM_PASSWORD":"Confirmar Contraseña",
+    "PASSWORD_NOT_MATCH":"Las contraseñas no concuerdan",
+    "SAVE":"Guardar",
+    "ACCOUNT":"Configurar",
+    "ACCOUNT_SETTINGS":"Cuenta",
+    "NAME":"Nombre",
+    "LAST_NAME":"Apellidos",
+    "USER_NAME":"Nombre de Usuario",
+    "EMAIL":"Correo",
+    "VALID_EMAIL":"Dirección de correo electrónico invalida",
+    "MEDICAL_ID":"Identificación médica",
+    "COLLEGE":"Universidad",
+    "PHONE":"Teléfono",
+    "LOCATION":"Ubicación",
+    "ADDRESS":"Dirección",
+    "SNACKBAR":{
+      "ACTIONS":{
+        "TRY_AGAIN":"Intente de nuevo",
+        "CLOSE": "Cerrar"
+      }, 
+      "GET_USER":{
+        "ERROR":"Error al obtener datos del usuario"
+      },
+      "UPDATE_USER": {
+        "SUCCESS":"Información actualizada",
+        "ERROR":"Algo salió mal al intentar actualizar la información"
+      },
+      "UPDATE_PASSWORD": {
+        "SUCCESS":"Contraseña actualizada",
+        "ERROR":"La contraseña actual no coincide"
+      }
+    },
+    "psychology":"Psicología",
+    "therapist":"Terapeuta"
   }
 }

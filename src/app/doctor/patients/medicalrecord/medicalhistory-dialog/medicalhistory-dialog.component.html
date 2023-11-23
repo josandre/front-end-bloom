@@ -3,7 +3,7 @@
     <div class="editRowModal">
       <div class="modalHeader clearfix">
         <div class="modal-about">
-          {{dialogTitle}}
+          {{dialogTitle | translate}}
         </div>
       </div>
     </div>
@@ -13,10 +13,10 @@
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Observations</mat-label>
+            <mat-label>{{'MEDICAL_RECORD.MEDICAL_HISTORY.OBSERVATIONS' | translate}}</mat-label>
             <textarea matInput formControlName="observations" required></textarea>
             <mat-error *ngIf="medicalHistoryForm.get('observations')?.hasError('required')">
-              Please write observations
+              {{'MEDICAL_RECORD.MEDICAL_HISTORY.OBSERVATIONS_REQUIRED' | translate}}
             </mat-error>
           </mat-form-field>
         </div>
@@ -24,10 +24,10 @@
       <div class="row">
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Treatment duration</mat-label>
+            <mat-label>{{'MEDICAL_RECORD.MEDICAL_HISTORY.TREATMENT_DURATION' | translate}}</mat-label>
             <mat-date-range-input [rangePicker]="picker">
-              <input matStartDate formControlName="treatmentStartDate" placeholder="Start date" required>
-              <input matEndDate formControlName="treatmentEndDate" placeholder="End date" required>
+              <input matStartDate formControlName="treatmentStartDate" placeholder="{{'MEDICAL_RECORD.MEDICAL_HISTORY.START_DATE' | translate}}" required>
+              <input matEndDate formControlName="treatmentEndDate" placeholder="{{'MEDICAL_RECORD.MEDICAL_HISTORY.END_DATE' | translate}}" required>
             </mat-date-range-input>
             <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -40,13 +40,14 @@
         </div>
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width " appearance="outline">
-            <mat-label>Anxiety level detected</mat-label>
+            <mat-label>{{'MEDICAL_RECORD.MEDICAL_HISTORY.ANXIETY_LEVEL_DETECTED' | translate}}</mat-label>
             <mat-select formControlName="anxietyLevel" required>
               <mat-option *ngFor="let anxietyLevel of anxietyLevelOptions"
-                          [value]="anxietyLevel">{{ anxietyLevel }}</mat-option>
+                          [value]="anxietyLevel">
+                          {{ 'MEDICAL_RECORD.MEDICAL_HISTORY.ANXIETY_LEVEL.' + anxietyLevel | translate }}</mat-option>
             </mat-select>
             <mat-error *ngIf="medicalHistoryForm.get('anxietyLevel')?.hasError('required')">
-              Anxiety level is required
+              {{'MEDICAL_RECORD.MEDICAL_HISTORY.ANXIETY_LEVEL_REQUIRED' | translate}}
             </mat-error>
           </mat-form-field>
         </div>
@@ -55,16 +56,17 @@
         <mat-divider></mat-divider>
       </div>
       <div>
-        <mat-label class="text-muted">Recipe</mat-label>
+        <mat-label class="text-muted">{{'MEDICAL_RECORD.MEDICAL_HISTORY.RECIPE' | translate}}
+        </mat-label>
       </div>
       <div class="row">
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Name</mat-label>
+            <mat-label>{{'MEDICAL_RECORD.MEDICAL_HISTORY.NAME_RECIPE' | translate}}</mat-label>
             <input matInput formControlName="name" required>
             <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>face</mat-icon>
             <mat-error *ngIf="medicalHistoryForm.get('name')?.hasError('required')">
-              Name is required
+              {{'MEDICAL_RECORD.MEDICAL_HISTORY.NAME_RECIPE_REQUIRED' | translate}}
             </mat-error>
           </mat-form-field>
         </div>
@@ -72,10 +74,10 @@
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Indications</mat-label>
+            <mat-label>{{'MEDICAL_RECORD.MEDICAL_HISTORY.INDICATIONS' | translate}}</mat-label>
             <textarea matInput formControlName="indications" required></textarea>
             <mat-error *ngIf="medicalHistoryForm.get('indications')?.hasError('required')">
-              Please write indications
+              {{'MEDICAL_RECORD.MEDICAL_HISTORY.INDICATIONS_REQUIRED' | translate}}
             </mat-error>
           </mat-form-field>
         </div>
@@ -84,9 +86,9 @@
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
           <div class="example-button-row">
             <button mat-raised-button color="primary" [disabled]="!medicalHistoryForm.valid" [mat-dialog-close]="1"
-                    (click)="confirmAction()">Save
+                    (click)="confirmAction()">{{'MEDICAL_RECORD.MEDICAL_HISTORY.SAVE' | translate}}
             </button>
-            <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
+            <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">{{'MEDICAL_RECORD.MEDICAL_HISTORY.CANCEL' | translate}}</button>
           </div>
         </div>
       </div>

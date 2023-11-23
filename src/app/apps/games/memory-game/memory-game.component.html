@@ -1,7 +1,11 @@
 <section class="content">
     <div class="content-block">
         <div class="card game-container">
-            <h1>{{ 'MENUITEMS.GAMES-SECTION.MEMORY-GAME.TITLE' | translate }}</h1>
+            <div class="block-header">
+
+                <app-breadcrumb [title]="'MENUITEMS.GAMES-SECTION.TITLE' | translate" [active_item]="'MENUITEMS.GAMES-SECTION.MEMORY-GAME.TITLE' | translate"></app-breadcrumb>
+              </div>
+            <!--<h1>{{ 'MENUITEMS.GAMES-SECTION.MEMORY-GAME.TITLE' | translate }}</h1>-->
             <!--Gane board-->
             <div>
                 <div class="example-button-row">

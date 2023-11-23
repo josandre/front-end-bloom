@@ -3,15 +3,17 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-5 col-sm-12 right_info">
-                    <p><i class="fas fa-globe"></i> No Limits Solutions</p>
+                    <div class="language-switcher">
+                        <button (click)="changeLanguage('es')" [class.active]="isLanguageActive('es')">ES</button>
+                        <button (click)="changeLanguage('en')" [class.active]="isLanguageActive('en')">EN</button>
+                    </div>
                 </div>
                 <div class="col-md-7 col-sm-12 left_info">
                     <ul>
-                        <li><i class="fa fa-mobile-alt"></i><a href="#">+506 87119258</a></li>
-                        <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="#">bloomqm@gmail.com</a></li>
+                        <li><i class="fa fa-mobile-alt"></i><a href="tel:+50687119258">{{ 'HEADER.PHONE' | translate }}</a></li>
+                        <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:bloomqm@gmail.com">{{ 'HEADER.EMAIL' | translate }}</a></li>
                     </ul>
                 </div>
-
             </div>
         </div>
     </div>
@@ -19,16 +21,16 @@
         <div class="container">
             <nav id='cssmenu'>
                 <div class="logo">
-                    <a href="/"><img src="/assets/images/banner/bloom.png" ></a>
+                    <a href="/"><img src="/assets/images/banner/bloom.png" alt="Bloom Quiet Mind"></a>
                 </div>
                 <ul>
-                    <li><a routerLink="/public" fragment="banner">Inicio</a></li>
-                    <li><a routerLink="/public" fragment="about">Nosotros</a></li>
-                    <li><a routerLink="/public" fragment="goals">Objetivos</a></li>
-                    <li><a routerLink="/public" fragment="services">Servicios</a></li>
-                    <li><a routerLink="/public" fragment="reviews">Reviews</a></li>
+                    <li><a routerLink="/public" fragment="banner">{{ 'HEADER.HOME' | translate }}</a></li>
+                    <li><a routerLink="/public" fragment="about">{{ 'HEADER.ABOUT' | translate }}</a></li>
+                    <li><a routerLink="/public" fragment="goals">{{ 'HEADER.GOALS' | translate }}</a></li>
+                    <li><a routerLink="/public" fragment="services">{{ 'HEADER.SERVICES' | translate }}</a></li>
+                    <li><a routerLink="/public" fragment="reviews">{{ 'HEADER.REVIEWS' | translate }}</a></li>
                     <button (click)="navigateToLogin()">
-                        Iniciar sesión
+                        {{ 'HEADER.LOGIN' | translate }}
                     </button>
                 </ul>                
             </nav>

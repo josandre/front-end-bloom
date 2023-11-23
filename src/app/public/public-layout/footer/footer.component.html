@@ -1,86 +1,82 @@
 <footer class="footer-section">
     <div class="container">
-        <div class="footer-cta pt-5 pb-5">
-            <div class="row">
-                <div class="col-xl-4 col-md-4 mb-30">
-                    <div class="single-cta">
-                        <i class="fas fa-globe"></i>
-                        <div class="cta-text">
-                            <h4>Desarrollado por:</h4>
-                            <span>No Limits Solutions</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-4 mb-30">
-                    <div class="single-cta">
-                        <i class="fas fa-phone"></i>
-                        <div class="cta-text">
-                            <h4>¿Tienes dudas?</h4>
-                            <span>+506 87119258</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-4 mb-30">
-                    <div class="single-cta">
-                        <i class="far fa-envelope-open"></i>
-                        <div class="cta-text">
-                            <h4>Escribenos</h4>
-                            <span>bloomqm@gmail.com</span>
-                        </div>
-                    </div>
-                </div>
+      <div class="footer-cta pt-5 pb-5">
+        <div class="row">
+          <div class="col-xl-4 col-md-4 mb-30">
+            <div class="single-cta">
+              <i class="fas fa-globe"></i>
+              <div class="cta-text">
+                <h4>{{ 'FOOTER.DEVELOPED_BY' | translate }}</h4>
+                <span>{{ 'FOOTER.NO_LIMITS_SOLUTIONS' | translate }}</span>
+              </div>
             </div>
-        </div>
-        <div class="footer-content pt-5 pb-5">
-            <div class="row">
-                <div class="col-xl-6 col-lg-6 mb-50">
-                    <div class="footer-widget">
-                        <div class="footer-logo">
-                            <a><img src="/assets/images/banner/bloom.png" class="img-fluid"
-                                    alt="logo"></a>
-                        </div>
-                        <div class="footer-text">
-                            <p>
-                                Con Bloom Quiet Mind, abrazamos la misión de empoderar a pacientes y profesionales en la
-                                lucha contra la ansiedad. <br> Ofrecemos una sinergia de herramientas avanzadas y apoyo
-                                humano para cultivar bienestar y resiliencia. <br> Juntos, redefinimos la salud mental.
-                            </p>
-                        </div>
-                        <div class="footer-social-icon">
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 mb-30 d-flex justify-content-end">
-                    <div class="footer-widget">
-                        <div class="footer-widget-heading">
-                            <h3>Enlaces</h3>
-                        </div>
-                        <ul>
-                            <li><a routerLink="/public" fragment="banner">Inicio</a></li>
-                            <li><a routerLink="/public" fragment="about">Nosotros</a></li>
-                            <li><a routerLink="/public" fragment="goals">Objetivos</a></li>
-                            <li><a routerLink="/public" fragment="services">Servicios</a></li>
-                            <li><a routerLink="/public" fragment="professionals">Nuestros profesionales</a></li>
-                            <li><a routerLink="/public" fragment="reviews">Reviews</a></li>
-                            <li><a routerLink="/authentication/signup">Registro</a></li>
-                            <li><a routerLink="/authentication/signin">Iniciar sesión</a></li>
-                        </ul>                        
-                    </div>
-                </div>
+          </div>
+          <div class="col-xl-4 col-md-4 mb-30">
+            <div class="single-cta">
+              <i class="fas fa-phone"></i>
+              <div class="cta-text">
+                <h4>{{ 'FOOTER.QUESTIONS' | translate }}</h4>
+                <span>{{ 'FOOTER.PHONE_NUMBER' | translate }}</span>
+              </div>
             </div>
+          </div>
+          <div class="col-xl-4 col-md-4 mb-30">
+            <div class="single-cta">
+              <i class="far fa-envelope-open"></i>
+              <div class="cta-text">
+                <h4>{{ 'FOOTER.CONTACT_US' | translate }}</h4>
+                <span>{{ 'FOOTER.EMAIL' | translate }}</span>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="footer-content pt-5 pb-5">
+        <div class="row">
+          <div class="col-xl-6 col-lg-6 mb-50">
+            <div class="footer-widget">
+              <div class="footer-logo">
+                <a><img src="/assets/images/banner/bloom.png" class="img-fluid" alt="logo"></a>
+              </div>
+              <div class="footer-text">
+                <p>{{ 'FOOTER.MISSION' | translate }} <br> {{ 'FOOTER.TOOLS_AND_SUPPORT' | translate }} <br>
+                  {{ 'FOOTER.REDEFINE_MENTAL_HEALTH' | translate }}</p>
+              </div>
+              <div class="footer-social-icon">
+  
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-lg-6 col-md-6 mb-30 d-flex justify-content-end">
+            <div class="footer-widget">
+              <div class="footer-widget-heading">
+                <h3>{{ 'FOOTER.LINKS' | translate }}</h3>
+              </div>
+              <ul>
+                <li><a routerLink="/public" fragment="banner">{{ 'FOOTER.HOME' | translate }}</a></li>
+                <li><a routerLink="/public" fragment="about">{{ 'FOOTER.ABOUT_US' | translate }}</a></li>
+                <li><a routerLink="/public" fragment="goals">{{ 'FOOTER.GOALS' | translate }}</a></li>
+                <li><a routerLink="/public" fragment="services">{{ 'FOOTER.SERVICES' | translate }}</a></li>
+                <li><a routerLink="/public" fragment="professionals">{{ 'FOOTER.OUR_PROFESSIONALS' | translate }}</a></li>
+                <li><a routerLink="/public" fragment="reviews">{{ 'FOOTER.REVIEWS' | translate }}</a></li>
+                <li><a routerLink="/authentication/signup">{{ 'FOOTER.SIGNUP' | translate }}</a></li>
+                <li><a routerLink="/authentication/signin">{{ 'FOOTER.SIGNIN' | translate }}</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="copyright-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-6 col-lg-6 text-lg-left">
-                    <div class="copyright-text">
-                        <p>Copyright &copy; 2023, Derechos reservados <a href="https://nls-group.vercel.app/">No Limits Solutions</a>
-                        </p>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-6 col-lg-6 text-lg-left">
+            <div class="copyright-text">
+              <p>{{ 'FOOTER.COPYRIGHT' | translate }} <a href="https://nls-group.vercel.app/">No Limits Solutions</a></p>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</footer>
+  </footer>
+  

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { TranslateService } from '@ngx-translate/core'; // Importa el servicio de traducción
 import { REVIEWS } from './reviews.constants';
 import { PublicService } from '../services/public.service'; // Importa el servicio público
 import { Doctor } from '../landing/doctors.constants';
@@ -16,7 +17,12 @@ export class LandingComponent implements OnInit {
   searchForm: FormGroup;
   filteredDoctorsItems: Doctor[] = [];
   uniqueRoles: string[] = [];
-  reviewItems = REVIEWS;
+  reviewItems = REVIEWS.map((review, id) => ({
+    ...review,
+    reviewText: this.translate.instant('LANDING.REVIEWS.REVIEW_' + (id + 1) + '.TEXT'),
+    reviewerName: this.translate.instant('LANDING.REVIEWS.REVIEW_' + (id + 1) + '.NAME'),
+    reviewerPosition: this.translate.instant('LANDING.REVIEWS.REVIEW_' + (id + 1) + '.POSITION')
+  }));
   isLoading = false; // Variable para controlar el preloader
   doctorsItems: Doctor[] = [];
 
@@ -53,7 +59,12 @@ export class LandingComponent implements OnInit {
   constructor(
     private route: ActivatedRoute, 
     private router: Router, 
-    private publicService: PublicService) {}
+    private publicService: PublicService,
+    private translate: TranslateService // Inyecta el servicio de traducción
+  ) {
+    // Configura el servicio de traducción (asegúrate de tenerlo configurado en tu app)
+    translate.setDefaultLang('en'); // Establece el idioma predeterminado
+  }
 
   ngOnInit(): void {
 

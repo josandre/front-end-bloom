@@ -26,7 +26,6 @@ import { DashboardDoctorService, MedicalRecordI } from './dashboard.service';
 import * as moment from 'moment';
 import 'moment/locale/es'; // Para español
 
-
 export type anxietyScaleDataOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
@@ -76,10 +75,9 @@ export class DashboardComponent implements OnInit {
   totalAttacks: number;
   lastAttackDate: string;
   daysWithoutAttack: number;
-  isLoadingEvents: boolean = true; 
+  isLoadingEvents: boolean = true;
   lastEventDate: string;
-  attacksData: any[]; 
-
+  attacksData: any[];
   isMedicalDataLoading: boolean = true;
   medicalRecord: MedicalRecordI;
   currentAnxietyLevel: string;
@@ -101,52 +99,63 @@ export class DashboardComponent implements OnInit {
     this.fetchMedicalRecord();
     this.translate.onLangChange.subscribe(langChangeEvent => {
       this.updateDatesForLanguage(langChangeEvent.lang);
+      this.updateAttackDates(); // Nuevo método para actualizar las fechas
+      this.initAnxietyProgress(); 
+      this.initRecordedAttacks();
+    });
+
+
+  }
+
+  fetchEvents() {
+    this.isLoadingEvents = true;
+    this.dashboardDoctorService.getEvents().subscribe(events => {
+      if (Array.isArray(events) && events.length > 0) {
+        const lastEvent = events[events.length - 1];
+        this.totalAttacks = events.length;
+        this.lastEventDate = lastEvent.date;
+        this.updateDatesForLanguage(this.translate.currentLang);
+        this.daysWithoutAttack = moment().diff(moment(lastEvent.date), 'days');
+        this.processAttacksData(events);
+      } else {
+        this.totalAttacks = 0;
+        this.lastAttackDate = this.translate.instant('DASHBOARD_PATIENT.NO_RECENT_ATTACKS');
+        this.daysWithoutAttack = 0;
+        this.attacksData = [];
+      }
+      this.isLoadingEvents = false;
     });
   }
 
-fetchEvents() {
-  this.isLoadingEvents = true;  
-  this.dashboardDoctorService.getEvents().subscribe(events => {
-    if (Array.isArray(events) && events.length > 0) {
-      const lastEvent = events[events.length - 1];
-      this.totalAttacks = events.length;
-      this.lastEventDate = lastEvent.date;
-      this.updateDatesForLanguage(this.translate.currentLang);
-      this.daysWithoutAttack = moment().diff(moment(lastEvent.date), 'days');
-      this.processAttacksData(events);
-    } else {
-      this.totalAttacks = 0;
-      this.lastAttackDate = this.translate.instant('DASHBOARD_PATIENT.NO_RECENT_ATTACKS');
-      this.daysWithoutAttack = 0;
-      this.attacksData = [];
-    }
-    this.isLoadingEvents = false;  
-  });
-}
-
-
-  processAttacksData(events: any[] ) {
+  processAttacksData(events: any[]) {
     const attackCountsByDate = events.reduce((acc, event) => {
       const formattedDate = moment(event.date).format('D MMMM');
       acc[formattedDate] = (acc[formattedDate] || 0) + 1;
       return acc;
     }, {});
-
+  
     this.attacksData = Object.entries(attackCountsByDate).map(([date, count]) => {
       return { date, count };
     });
-
+  
     this.initRecordedAttacks();
   }
-  
+
+  updateAttackDates() {
+    if (this.attacksData && this.attacksData.length > 0) {
+      this.attacksData = this.attacksData.map(a => {
+        return { ...a, date: moment(a.date).format('D MMMM') };
+      });
+    }
+  }
+
   updateDatesForLanguage(lang: string) {
-    moment.locale(lang); // Actualiza el idioma de moment
+    moment.locale(lang); 
     if (this.lastEventDate) {
-      // Formato actualizado para mostrar solo el día y el mes
       this.lastAttackDate = moment(this.lastEventDate).format('D MMMM');
     }
   }
-  
+
   fetchMedicalRecord() {
     this.dashboardDoctorService.getMedicalRecord().subscribe(record => {
       this.medicalRecord = record;
@@ -155,7 +164,7 @@ fetchEvents() {
         const lastMedicalHistory = record.medicalHistories[record.medicalHistories.length - 1];
         this.currentAnxietyLevel = 'ANXIETY_LEVEL.' + lastMedicalHistory.anxietyLevel;
       } else {
-        this.currentAnxietyLevel = 'ANXIETY_LEVEL.INDETERMINATE'; 
+        this.currentAnxietyLevel = 'ANXIETY_LEVEL.INDETERMINATE';
       }
       this.isMedicalDataLoading = false;
     });
@@ -168,23 +177,24 @@ fetchEvents() {
       'MODERATE': 3,
       'SEVERE': 4,
       'DEBILITATING': 5,
-      'INDETERMINATE': 0 
+      'INDETERMINATE': 0
     };
-    return levels[level] ?? 0; 
+    return levels[level] ?? 0;
   }
+
   private initAnxietyProgress() {
     if (this.medicalRecord && this.medicalRecord.medicalHistories.length > 0) {
-      const levelsData = this.medicalRecord.medicalHistories.map((history: { anxietyLevel: string; }) => 
+      const levelsData = this.medicalRecord.medicalHistories.map((history: { anxietyLevel: string; }) =>
         this.convertAnxietyLevelToNumber(history.anxietyLevel)
       );
-      const datesData = this.medicalRecord.medicalHistories.map((history: { creationDate: moment.MomentInput; }) => 
+      const datesData = this.medicalRecord.medicalHistories.map((history: { creationDate: moment.MomentInput; }) =>
         moment(history.creationDate).format('D MMMM')
       );
-  
+
       this.anxietyScaleDataOptions = {
         series: [
           {
-            name: 'Nivel de Ansiedad del paciente',
+            name: this.translate.instant('DASHBOARD_PATIENT.ANXIETY_LEVEL'),
             data: levelsData,
           },
         ],
@@ -222,12 +232,12 @@ fetchEvents() {
         xaxis: {
           categories: datesData,
           title: {
-            text: 'Sesiones',
+            text: this.translate.instant('DASHBOARD_PATIENT.SESSIONS'),
           },
         },
         yaxis: {
           title: {
-            text: 'Nivel de Ansiedad',
+            text: this.translate.instant('DASHBOARD_PATIENT.ANXIETY_LEVEL'),
           },
         },
         tooltip: {
@@ -238,22 +248,26 @@ fetchEvents() {
           x: {
             show: true,
           },
+          y: {
+            formatter: (val, { seriesIndex, dataPointIndex, w }) => {
+              const levelKey = this.medicalRecord.medicalHistories[dataPointIndex].anxietyLevel;
+              const levelText = this.translate.instant(`ANXIETY_LEVEL.${levelKey}`);
+              return `${this.translate.instant('DASHBOARD_PATIENT.ANXIETY_LEVEL')}: ${val} (${levelText})`;
+            }
+          }
         },
       };
-    } 
+    }
   }
 
-  
   private initRecordedAttacks() {
-
     const attackCounts = this.attacksData.map(a => a.count);
     const attackDates = this.attacksData.map(a => a.date);
-
     this.recordedAttacksOptions = {
       series: [
         {
-          name: 'Ataques de Ansiedad',
-          data: attackCounts
+        name: this.translate.instant('DASHBOARD_PATIENT.ANXIETY_ATTACKS'),
+        data: attackCounts
         },
       ],
       chart: {
@@ -286,7 +300,7 @@ fetchEvents() {
       },
       yaxis: {
         title: {
-          text: 'Cantidad de ataques',
+          text: this.translate.instant('DASHBOARD_PATIENT.NUMBER_OF_ATTACKS'),
         },
       },
       fill: {

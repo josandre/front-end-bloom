@@ -34,7 +34,7 @@ export class DashboardDoctorService {
   }
 }
 
-interface Event {
+export interface Event {
   id: number;
   date: string;
   user?: any;

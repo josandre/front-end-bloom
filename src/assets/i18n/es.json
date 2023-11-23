@@ -218,7 +218,10 @@
     "PATIENTS_WITH_HIGHEST_ANXIETY_ATTACKS": "Pacientes con mayores ataques de ansiedad registrados",
     "PATIENT_GROUPING_CHART": "Gráfica de agrupación de pacientes por nivel de ansiedad",
     "LEVEL": "Nivel",
-    "PATIENTS": "Pacientes"
+    "PATIENTS": "Pacientes",
+    "ATTACKS": "ataques",
+    "NO_DATA_FOR_ATTACKS": "No hay datos de ataques registrados."
+    
   },
   "DASHBOARD_PATIENT": {
     "WELLCOME_TITLE": "¡Bienvenido de nuevo!",
@@ -236,7 +239,11 @@
     "RECORDED_ATTACKS_HISTORY": "Histórico de ataques registrados",
     "BY_DATE": "Por fecha",
     "NO_RECENT_ATTACKS": "Sin ataques recientes",
-    "NO_DATA_FOR_ATTACKS": "No hay datos de ataques registrados."
+    "NO_DATA_FOR_ATTACKS": "No hay datos de ataques registrados.",
+    "ANXIETY_LEVEL": "Nivel de Ansiedad",
+    "SESSIONS": "Sesiones",
+    "ANXIETY_ATTACKS": "Ataques de Ansiedad",
+    "NUMBER_OF_ATTACKS": "Cantidad de ataques"
   },
   "ANXIETY_LEVEL": {
     "MINIMAL": "Mínimo",

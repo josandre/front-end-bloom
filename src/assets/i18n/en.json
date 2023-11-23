@@ -218,7 +218,9 @@
     "PATIENTS_WITH_HIGHEST_ANXIETY_ATTACKS": "Patients with the Highest Anxiety Attacks",
     "PATIENT_GROUPING_CHART": "Patient Grouping by Anxiety Level Chart",
     "LEVEL": "Level",
-    "PATIENTS": "Patients"
+    "PATIENTS": "Patients",
+    "ATTACKS": "attacks",
+    "NO_DATA_FOR_ATTACKS": "No data for attacks recorded."
   },
   "DASHBOARD_PATIENT": {
     "WELLCOME_TITLE": "Welcome back",
@@ -236,7 +238,11 @@
     "RECORDED_ATTACKS_HISTORY": "Recorded Attacks History",
     "BY_DATE": "By Date",
     "NO_RECENT_ATTACKS": "No recent attacks",
-    "NO_DATA_FOR_ATTACKS": "No data for attacks recorded."
+    "NO_DATA_FOR_ATTACKS": "No data for attacks recorded.",
+    "ANXIETY_LEVEL": "Anxiety Level",
+    "SESSIONS": "Sessions",
+    "ANXIETY_ATTACKS": "Anxiety Attacks",
+    "NUMBER_OF_ATTACKS": "Number of Attacks"
   },
   "ANXIETY_LEVEL": {
     "MINIMAL": "Minimal",

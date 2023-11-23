@@ -646,6 +646,20 @@
     "ACCOUNT_SETTINGS": "Account Settings",
     "SAVE_NEW_PROFILE_PHOTO": "Save new profile photo",
     "MESSAGE": "We are loading your data"
+  },
+  "SIGN_UP_PATIENTS": {
+    "NEW_PATIENT": "New Patient",
+    "DETAILS": "Enter details to create you patient account",
+    "NAME": "Name",
+    "LAST_NAME": "Last Name",
+    "CITIZEN_ID": "Citizen Id",
+    "USERNAME": "User Name",
+    "PHONE": "Phone",
+    "ADDRESS": "Address",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "SAVE": "Save",
+    "MESSAGE": "Saving the new patient"
   }
 
 }

@@ -1,17 +1,20 @@
 <div class="auth-container">
-  <div class="row auth-main">
+  <div class="row auth-main" >
     <div class="col-sm-12 auth-form-section">
       <div class="form-section">
-        <div class="auth-wrapper">
-          <h2 class="welcome-msg"> New patient </h2>
-          <p class="auth-signup-text text-muted">Enter details to create your patient account</p>
+        <div class="center" >
+          <app-spinner *ngIf="isLoading" [isLoading]="isLoading" [message]="message | translate"></app-spinner>
+        </div>
+        <div class="auth-wrapper" *ngIf="!isLoading">
+          <h2 class="welcome-msg"> {{'SIGN_UP_PATIENTS.NEW_PATIENT' | translate}} </h2>
+          <p class="auth-signup-text text-muted">{{'SIGN_UP_PATIENTS.DETAILS' | translate}}</p>
           <form class="validate-form " [formGroup]="authForm" (ngSubmit)="onSubmit()">
             <div class="sections">
               <div class="section-letf">
                 <div class="row">
                   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width" appearance="outline">
-                      <mat-label>Name</mat-label>
+                      <mat-label>{{'SIGN_UP_PATIENTS.NAME' | translate}}</mat-label>
                       <input matInput formControlName="name" required>
                       <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>face</mat-icon>
                       <mat-error *ngIf="authForm.get('name')!.hasError('required')">
@@ -24,7 +27,7 @@
                 <div class="row">
                   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width" appearance="outline">
-                      <mat-label>Last Name</mat-label>
+                      <mat-label>{{'SIGN_UP_PATIENTS.LAST_NAME' | translate}}</mat-label>
                       <input matInput formControlName="lastName" required>
                       <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>face</mat-icon>
                       <mat-error *ngIf="authForm.get('lastName')!.hasError('required')">
@@ -37,7 +40,7 @@
                 <div class="row">
                   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width" appearance="outline">
-                      <mat-label>Citizen Id</mat-label>
+                      <mat-label>{{'SIGN_UP_PATIENTS.CITIZEN_ID' | translate}}</mat-label>
                       <input matInput formControlName="citizenId" required>
                       <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>payments</mat-icon>
                       <mat-error *ngIf="authForm.get('citizenId')!.hasError('required')">
@@ -51,7 +54,7 @@
                 <div class="row">
                   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width" appearance="outline">
-                      <mat-label>Username</mat-label>
+                      <mat-label>{{'SIGN_UP_PATIENTS.USERNAME' | translate}}</mat-label>
                       <input matInput formControlName="username" required>
                       <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>face</mat-icon>
                       <mat-error *ngIf="authForm.get('username')!.hasError('required')">
@@ -67,7 +70,7 @@
                 <div class="row">
                   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width" appearance="outline">
-                      <mat-label>Phone</mat-label>
+                      <mat-label>{{'SIGN_UP_PATIENTS.PHONE' | translate}}</mat-label>
                       <input matInput formControlName="phone" required>
                       <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>call</mat-icon>
                       <mat-error *ngIf="authForm.get('phone')!.hasError('required')">
@@ -80,7 +83,7 @@
                 <div class="row">
                   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width" appearance="outline">
-                      <mat-label>Address</mat-label>
+                      <mat-label>{{'SIGN_UP_PATIENTS.ADDRESS' | translate}}</mat-label>
                       <textarea matInput
                                 cdkTextareaAutosize
                                 #autosize="cdkTextareaAutosize"
@@ -98,7 +101,7 @@
                 <div class="row">
                   <div class="col-xl-12col-lg-12 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width" appearance="outline">
-                      <mat-label>Email</mat-label>
+                      <mat-label>{{'SIGN_UP_PATIENTS.EMAIL' | translate}}</mat-label>
                       <input matInput formControlName="email" required>
                       <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>mail</mat-icon>
                       <mat-error *ngIf="authForm.get('email')!.hasError('required') || authForm.get('email')!.touched">
@@ -111,7 +114,7 @@
                 <div class="row">
                   <div class="col-xl-12col-lg-12 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width" appearance="outline">
-                      <mat-label>Password</mat-label>
+                      <mat-label>{{'SIGN_UP_PATIENTS.PASSWORD' | translate}}</mat-label>
                       <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" required>
                       <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix (click)="hide = !hide">
                         {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -125,13 +128,12 @@
             </div>
             <div class="container-auth-form-btn">
               <button mat-raised-button color="primary" class="auth-form-btn"  type="submit"  >
-                Register
+               {{'SIGN_UP_PATIENTS.SAVE' | translate}}
               </button>
             </div>
           </form>
         </div>
       </div>
     </div>
-
   </div>
 </div>

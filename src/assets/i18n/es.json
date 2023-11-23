@@ -272,6 +272,20 @@
     "ANXIETY_ATTACKS": "Ataques de Ansiedad",
     "NUMBER_OF_ATTACKS": "Cantidad de ataques"
   },
+  "SIGN_UP_PATIENTS": {
+    "NEW_PATIENT": "Paciente nuevo",
+    "DETAILS": "Ingresar datos para la cuenta del paciente",
+    "NAME": "Nombre",
+    "LAST_NAME": "Apellidos",
+    "CITIZEN_ID": "Cédula",
+    "USERNAME": "Nombre de Usuario",
+    "PHONE": "Teléfono",
+    "ADDRESS": "Dirección",
+    "EMAIL": "Correo Electrónico",
+    "PASSWORD": "Contraseña",
+    "SAVE": "Guardar",
+    "MESSAGE": "Registrando al nuevo paciente"
+  },
   "ANXIETY_LEVEL": {
     "MINIMAL": "Mínimo",
     "MILD": "Leve",
@@ -479,22 +493,22 @@
     "RESOURCES": {
       "TITLE": "Mis Recursos",
       "ACTIVE_ITEM": ""
-  
+
     },
     "FORUMS": {
       "TITLE": "Foro",
       "ACTIVE_ITEM": ""
-  
+
     },
     "GAME": {
       "TITLE": "Sección de Juegos",
       "ACTIVE_ITEM": ""
-  
+
     },
     "CONTACTS": {
       "TITLE": "Contactos",
       "ACTIVE_ITEM": ""
-  
+
     }
   },
   "ADMIN_BREADCRUM": {
@@ -596,7 +610,7 @@
         "SEVERE": "Severo",
         "DEBILITATING": "Debilitante",
         "INDETERMINATE": "Indeterminado"
-        
+
       },
       "DELETE_CONFIRMATION":"¿Seguro que desea eliminar el historial médico?",
       "DELETE": "Eliminar"
@@ -629,7 +643,7 @@
       "ACTIONS":{
         "TRY_AGAIN":"Intente de nuevo",
         "CLOSE": "Cerrar"
-      }, 
+      },
       "GET_USER":{
         "ERROR":"Error al obtener datos del usuario"
       },

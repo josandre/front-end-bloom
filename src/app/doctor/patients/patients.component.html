@@ -4,18 +4,18 @@
 
       <app-breadcrumb [title]="'DOCTOR_BREADCRUM.PATIENTS.TITLE' | translate"></app-breadcrumb>
       <button mat-flat-button color="primary" class="btn-create-patient" [routerLink]="['/doctor/patient']">Add
-        new</button>
+        {{ 'PATIENTS_LISTS.ADD_NEW' | translate }}</button>
     </div>
 
 
     <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" *ngFor="let patient of patients">
+      <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3" *ngFor="let patient of patients">
         <div class="card py-3 py-md-3">
           <div class=" d-flex justify-content-between px-3 px-md-4">
             <img src="{{getPhoto(patient.photo)}}" height="80px" width="80px" alt="" class="rounded-circle">
             <div class="">
               <h6 class="patient-name">{{ patient.name }} {{ patient.lastName }}</h6>
-              <p>Patient Id: {{ patient.id }}</p>
+              <p>{{'PATIENTS_LISTS.PATIENT_ID' | translate}}: {{ patient.id }}</p>
             </div>
           </div>
           <hr class="light-hr">
@@ -29,7 +29,7 @@
           <hr class="light-hr">
           <div class="d-flex justify-content-around px-4">
             <button mat-stroked-button color="primary" routerLink="/doctor/medical-record/{{ patient.id }}">
-              See Medical Record
+              {{'PATIENTS_LISTS.SEE_MEDICAL_RECORD' | translate}}
             </button>
           </div>
         </div>
@@ -37,7 +37,8 @@
     </div>
   </div>
 
-  <div class="center" *ngIf="patients == null">
-    <mat-spinner></mat-spinner>
+  <div class="center" >
+    <app-spinner *ngIf="isLoading" [isLoading]="isLoading" [message]="messageLoading | translate"></app-spinner>
+    <app-wink *ngIf="patientsIsEmpty() && !isLoading" [message]="messageData | translate"></app-wink>
   </div>
 </section>

@@ -28,6 +28,7 @@ export class DoctorProfileComponent implements OnInit{
   userId: number | undefined
   isLoadingPassword: boolean = false;
   isLoadingUserUpdating: boolean = false;
+  message: string = 'PROFILES.MESSAGE'
 
   constructor(private readonly doctorProfileService: DoctorService, private uploadService: UploadFileService, private readonly authService: AuthService,
   private formBuilder: FormBuilder, private snackBar: MatSnackBar,
@@ -40,6 +41,7 @@ export class DoctorProfileComponent implements OnInit{
   ngOnInit(): void {
 
     this.doctorProfileService.getDataUser().subscribe((specialist) => {
+
       this.specialist = specialist;
       this.loading = false;
       this.userId = specialist.user?.id;

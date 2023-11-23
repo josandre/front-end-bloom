@@ -13,19 +13,30 @@ export class PatientsComponent implements OnInit{
 
   patients: Patient[];
 
+  isLoading: boolean = false
+
+  messageLoading: string = 'PATIENTS_LISTS.MESSAGE_LOADING'
+  messageData: string = 'PATIENTS_LISTS.MESSAGE_NO_DATA'
+
   ngOnInit(): void {
     this.getAllPatients();
   }
 
   getAllPatients(): void {
+    this.isLoading = true;
     this.specialistService.getAllPatients()
       .subscribe(
         data => {
           this.patients = data;
+          this.isLoading = false;
         },
         error => {
           console.log(error.status);
         });
+  }
+
+  patientsIsEmpty(){
+    return !this.patients || !this.patients.length;
   }
 
 

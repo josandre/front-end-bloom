@@ -21,6 +21,13 @@ import { PostEditorComponent } from './forum/post-editor/post-editor.component';
 import { CommentEditorComponent } from './forum/comment-editor/comment-editor.component';
 import { LoadingCardComponent } from './forum/loading-card/loading-card.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { GamesSectionComponent } from './games/games-section/games-section.component';
+import { MemoryCardComponent } from './games/memory-game/memory-card/memory-card.component';
+import { MemoryGameComponent } from './games/memory-game/memory-game.component';
+import { PuzzleGameBackgroundOptionComponent } from './games/puzzle-game/puzzle-game-background-option/puzzle-game-background-option.component';
+import { PuzzleGameTileComponent } from './games/puzzle-game/puzzle-game-tile/puzzle-game-tile.component';
+import { PuzzleGameComponent } from './games/puzzle-game/puzzle-game.component';
+import { ScoresListComponent } from './games/scores-list/scores-list.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +41,13 @@ import { TranslateModule } from '@ngx-translate/core';
     PostEditorComponent,
     CommentEditorComponent,
     LoadingCardComponent,
+    GamesSectionComponent,
+    MemoryCardComponent,
+    MemoryGameComponent,
+    PuzzleGameBackgroundOptionComponent,
+    PuzzleGameTileComponent,
+    PuzzleGameComponent,
+    ScoresListComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +60,7 @@ import { TranslateModule } from '@ngx-translate/core';
     OwlNativeDateTimeModule,
     ComponentsModule,
     SharedModule,
-    TranslateModule
+    TranslateModule,
   ],
   exports: [ForumComponent]
 })

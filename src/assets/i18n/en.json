@@ -146,6 +146,7 @@
       "CANCEL": "Cancel",
       "BACK": "Back",
       "DELETE": "Delete",
+      "EDIT": "Edit",
       "COMMENTS_SECTION": "Comments",
       "CREATE_COMMENT": "Create Comment",
       "COMMENT_CONTENT": "Contenido",
@@ -181,7 +182,8 @@
       "PUZZLE-GAME": {
         "TITLE": "Puzzle Game",
         "DESCRIPTION": "Test your agility in this puzzle game",
-        "SELECT-BACKGROUND": "Select Background"
+        "SELECT-BACKGROUND": "Select Background",
+        "SHOW-TILE-NUMBERS": "Show tile numbers"
       }
     },
     "RESOURCES": {

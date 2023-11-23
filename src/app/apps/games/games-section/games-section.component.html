@@ -1,0 +1,56 @@
+<section class="content">
+    <div class="content-block">
+        <div class="block-header">
+            <!-- breadcrumb -->
+            <app-breadcrumb [title]="'Games Section'" [items]="['Apps']"
+                [active_item]="'Games Section'"></app-breadcrumb>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>{{'MENUITEMS.GAMES-SECTION.MEMORY-GAME.TITLE' | translate}}</h3>
+
+                        <!--Game Image-->
+                        <div class="game-card-image memory-game-thumbnail">
+                        </div>
+
+                        <p>{{'MENUITEMS.GAMES-SECTION.MEMORY-GAME.DESCRIPTION' | translate}}</p>
+                        <button mat-flat-button color="primary"
+                            routerLink="/apps/memory-game">{{'MENUITEMS.GAMES-SECTION.PLAY-NOW' |
+                            translate}}</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>{{'MENUITEMS.GAMES-SECTION.PUZZLE-GAME.TITLE' | translate}}</h3>
+
+                        <!--Game Image-->
+                        <div class="game-card-image puzzle-game-thumbnail">
+                        </div>
+
+                        <p>{{'MENUITEMS.GAMES-SECTION.PUZZLE-GAME.DESCRIPTION' | translate}}</p>
+                        <button mat-flat-button color="primary"
+                            routerLink="/apps/puzzle-game">{{'MENUITEMS.GAMES-SECTION.PLAY-NOW' |
+                            translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="game-cards-container">
+            <!--TODO: Populate this cards using info from the database-->
+            <div class="game-card">
+
+            </div>
+
+            <div class="game-card">
+
+            </div>
+        </div>
+
+    </div>
+</section>

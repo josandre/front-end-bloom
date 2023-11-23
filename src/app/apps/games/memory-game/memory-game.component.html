@@ -1,10 +1,10 @@
 <section class="content">
     <div class="content-block">
-        <div class="game-container">
+        <div class="card game-container">
             <h1>{{ 'MENUITEMS.GAMES-SECTION.MEMORY-GAME.TITLE' | translate }}</h1>
             <!--Gane board-->
             <div>
-                <div>
+                <div class="example-button-row">
                     <button mat-flat-button color="primary" (click)="goToMenu()">{{ 'MENUITEMS.GAMES-SECTION.DIFFICULTY' | translate }}</button>
                     <button mat-flat-button color="primary" (click)="goToScores()">{{ 'MENUITEMS.GAMES-SECTION.SCORES' | translate }}</button>
                     <button mat-flat-button color="primary" (click)="newGame()">{{ 'MENUITEMS.GAMES-SECTION.RESTART' | translate }}</button>  

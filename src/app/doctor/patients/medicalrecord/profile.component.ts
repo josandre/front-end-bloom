@@ -21,6 +21,7 @@ import {
 } from "./delete-medicalhistory-dialog/delete-medicalhistory-dialog.component";
 import {UploadFileService} from "../../../global/upload-file/upload-file.service";
 import { TranslateService } from '@ngx-translate/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-profile',
@@ -52,15 +53,24 @@ export class ProfileComponent implements OnInit {
     private snackBar: MatSnackBar,
     private readonly fileService: UploadFileService,
     private translate: TranslateService) {
+      
   }
 
+  getFormattedDate(date?:Date): string {
+    moment.locale(this.translate.currentLang);
+    if (date) {
+      return moment(date).format("MMMM D, YYYY");
+    }
+    return '';
+  }
+  
   ngOnInit(): void {
     this.getMedicalRecord(Number(this.route.snapshot.paramMap.get('id')));
     this.getPatient(Number(this.route.snapshot.paramMap.get('id')));
     this.initializeForms();
     this.anxieties = new Set<string>();
     this.anxitiesControl.disable();
-    this.familyMedicalHistoryControl.disable();
+    this.familyMedicalHistoryControl.disable();    
   }
 
   initializeForms() {

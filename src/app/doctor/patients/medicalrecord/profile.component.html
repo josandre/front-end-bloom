@@ -91,7 +91,7 @@
             </mat-tab-group>
           </div>
           <p class="font-italic text-muted">
-            {{'MEDICAL_RECORD.INFO.UPDATED' | translate}} {{ medicalRecord?.lastUpdate| date:'medium' }}
+            {{'MEDICAL_RECORD.INFO.UPDATED' | translate}} {{ getFormattedDate(medicalRecord?.lastUpdate) }}
           </p>
         </div>
         <div class="col-lg-8 col-md-12">
@@ -123,7 +123,7 @@
                             </div>
                           </mat-panel-title>
                           <mat-panel-description>
-                            {{ medicalHistory.creationDate | date:'fullDate' }}
+                            {{ getFormattedDate(medicalHistory.creationDate)}}
                           </mat-panel-description>
                         </mat-expansion-panel-header>
                         <div class="col-lg-12 col-md-12 col-sm-12">
@@ -136,10 +136,8 @@
                               <ul>
                                 <li><strong>{{'MEDICAL_RECORD.INFO.ANXIETY_LEVEL' | translate}}:</strong>{{ 'MEDICAL_RECORD.MEDICAL_HISTORY.ANXIETY_LEVEL.' + medicalHistory.anxietyLevel | translate }}</li>
                                 <li><strong>{{'MEDICAL_RECORD.INFO.OBSERVATIONS' | translate}}:</strong> {{ medicalHistory.observations }}</li>
-                                <li><strong>{{'MEDICAL_RECORD.INFO.TREATMENT_STARTED_ON' | translate}}:</strong> {{ medicalHistory.treatmentStartDate |
-                                  date:'fullDate' }}</li>
-                                <li><strong>{{'MEDICAL_RECORD.INFO.TREATMENT_ENDED_ON' | translate}}:</strong> {{ medicalHistory.treatmentEndDate |
-                                  date:'fullDate' }}</li>
+                                <li><strong>{{'MEDICAL_RECORD.INFO.TREATMENT_STARTED_ON' | translate}}:</strong> {{getFormattedDate(medicalHistory.treatmentStartDate)}}</li>
+                                <li><strong>{{'MEDICAL_RECORD.INFO.TREATMENT_ENDED_ON' | translate}}:</strong> {{ getFormattedDate(medicalHistory.treatmentEndDate)}}</li>
                               </ul>
                             </div>
                           </div>

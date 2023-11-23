@@ -12,7 +12,7 @@
 
           <div class="container card-entry-container">
 
-            <mat-card class="p-3 card-entry" tabindex="0" *ngFor="let entry of entries"
+            <mat-card class="p-3 card-entry" [ngClass]="{'opened-entry' : entry.id === currentEntryId}" tabindex="0" *ngFor="let entry of entries"
                       (click)="setEditorContent(entry)">
               <div class="row">
                 <div class="col-6">

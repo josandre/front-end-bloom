@@ -21,17 +21,17 @@
   box-shadow: none;
   border-radius: 0;
 
-  &:focus {
-    background-color: #9cd3e3;
-    transition: 0.3s;
-    border-radius: 10px;
-  }
-
   &:hover {
     background-color: #9cd3e3;
     transition: 0.3s;
     border-radius: 10px;
   }
+}
+
+.opened-entry {
+  background-color: #9cd3e3;
+  transition: 0.3s;
+  border-radius: 10px;
 }
 
 .card-date {

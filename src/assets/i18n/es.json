@@ -182,7 +182,8 @@
       "PUZZLE-GAME": {
         "TITLE": "Juego de Rompecabezas",
         "DESCRIPTION": "Prueba tu agilidad en este juego de rompecabezas",
-        "SELECT-BACKGROUND": "Seleccionar Fondo"
+        "SELECT-BACKGROUND": "Seleccionar Fondo",
+        "SHOW-TILE-NUMBERS": "Mostrar número en mosaicos"
       }
     },
     "PROGRESS-SECTION": {

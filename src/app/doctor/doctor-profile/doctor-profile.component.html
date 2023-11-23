@@ -35,8 +35,8 @@
             </div>
           </div>
 
-          <input type="file" id="customFile" class="btn" (change)="selectFile($event)" placeholder="FileData To Upload">
-          <button *ngIf="selectedFiles" class="black" (click)="upload()" [class.auth-spinner]="uploadingPhoto" >Save new profile photo</button>
+          <input type="file" id="customFile" class="btn" (change)="selectFile($event)" placeholder="{{'PROFILE.PLACEHOLDER_PHOTO' | translate}}">
+          <button *ngIf="selectedFiles" class="black" (click)="upload()" [class.auth-spinner]="uploadingPhoto" >{{'PROFILE.SAVE_PHOTO' | translate}}</button>
         </div>
       </div>
       <div class="col-lg-7 col-md-12">
@@ -45,11 +45,11 @@
             <mat-tab>
               <ng-template mat-tab-label>
                 <mat-icon class="example-tab-icon msr-2">settings</mat-icon>
-                Settings
+                {{'PROFILE.SETTINGS' | translate}}
               </ng-template>
               <div class="header">
                 <h2>
-                  <strong>Security</strong> Settings</h2>
+                  <strong>{{'PROFILE.SECURITY' | translate}}</strong> {{'PROFILE.SETTINGS' | translate}}</h2>
               </div>
 
               <div class="spinner-form"  *ngIf="isLoadingPassword">
@@ -61,33 +61,33 @@
                 <div class="example-container" >
 
                   <mat-form-field class="example-full-width mb-3" appearance="outline">
-                    <mat-label>Current password</mat-label>
+                    <mat-label>{{'PROFILE.CURRENT_PASSWORD' | translate}}</mat-label>
                     <input matInput type="password" formControlName="currentPassword">
                   </mat-form-field>
 
                   <div class="password-section">
                     <mat-form-field class="input-mat mb-3" appearance="outline">
-                      <mat-label>New password</mat-label>
+                      <mat-label>{{'PROFILE.NEW_PASSWORD' | translate}}</mat-label>
                       <input matInput type="password" formControlName="newPassword" >
                     </mat-form-field>
 
                     <mat-form-field class="example-full-width mb-3" appearance="outline">
-                      <mat-label>Confirm Password</mat-label>
+                      <mat-label>{{'PROFILE.CONFIRM_PASSWORD' | translate}}</mat-label>
                       <input matInput type="password" formControlName="confirmPassword" >
                       <mat-error >
-                        Password do not match
+                        {{'PROFILE.PASSWORD_NOT_MATCH' | translate}}
                       </mat-error>
                     </mat-form-field>
                   </div>
 
                 </div>
-                <button *ngIf="!isLoadingPassword" mat-raised-button color="primary" type="submit" [disabled]="passwordForm.invalid">Save</button>
+                <button *ngIf="!isLoadingPassword" mat-raised-button color="primary" type="submit" [disabled]="passwordForm.invalid">{{'PROFILE.SAVE' | translate}}</button>
               </div>
               </form>
 
               <div class="header">
                 <h2>
-                  <strong>Account</strong> Settings</h2>
+                  <strong>{{'PROFILE.ACCOUNT' | translate}}</strong> {{'PROFILE.ACCOUNT_SETTINGS' | translate}}</h2>
               </div>
 
               <form class="validate-form " [formGroup]="doctorUpdateForm" (submit)="onSubmit()">
@@ -101,7 +101,7 @@
                   <div class="col-lg-6 col-md-12">
                     <div class="form-group">
                       <mat-form-field class="example-full-width mb-3" appearance="outline">
-                        <mat-label>Name</mat-label>
+                        <mat-label>{{'PROFILE.NAME' | translate}}</mat-label>
                         <input matInput formControlName="name" >
                       </mat-form-field>
                     </div>
@@ -109,7 +109,7 @@
                   <div class="col-lg-6 col-md-12">
                     <div class="form-group">
                       <mat-form-field class="example-full-width mb-3" appearance="outline">
-                        <mat-label>Last Name</mat-label>
+                        <mat-label>{{'PROFILE.LAST_NAME' | translate}}</mat-label>
                         <input matInput formControlName="lastName">
                       </mat-form-field>
                     </div>
@@ -118,7 +118,7 @@
                   <div class="col-lg-4 col-md-12">
                     <div class="form-group">
                       <mat-form-field class="example-full-width mb-3" appearance="outline">
-                        <mat-label>User Name</mat-label>
+                        <mat-label>{{'PROFILE.USER_NAME' | translate}}</mat-label>
                         <input matInput formControlName="userName">
                       </mat-form-field>
                     </div>
@@ -127,10 +127,10 @@
                   <div class="col-lg-4 col-md-12">
                     <div class="form-group">
                       <mat-form-field class="example-full-width mb-3" appearance="outline">
-                        <mat-label>Email</mat-label>
+                        <mat-label>{{'PROFILE.EMAIL' | translate}}</mat-label>
                         <input matInput formControlName="email">
                         <mat-error *ngIf="doctorUpdateForm.get('email')!.hasError('required') || doctorUpdateForm.get('email')!.touched">
-                          Please enter a valid email address
+                          {{'PROFILE.VALID_EMAIL' | translate}}
                         </mat-error>
                       </mat-form-field>
                     </div>
@@ -139,7 +139,7 @@
                   <div class="col-lg-4 col-md-12">
                     <div class="form-group">
                       <mat-form-field class="example-full-width mb-3" appearance="outline">
-                        <mat-label>Medical id</mat-label>
+                        <mat-label>{{'PROFILE.MEDICAL_ID' | translate}}</mat-label>
                         <input matInput formControlName="medicalId">
                       </mat-form-field>
                     </div>
@@ -148,7 +148,7 @@
                   <div class="col-lg-4 col-md-12">
                     <div class="form-group">
                       <mat-form-field class="example-full-width" appearance="outline">
-                        <mat-label>College</mat-label>
+                        <mat-label>{{'PROFILE.COLLEGE' | translate}}</mat-label>
                         <input matInput formControlName="college">
                       </mat-form-field>
                     </div>
@@ -158,7 +158,7 @@
                   <div class="col-lg-6 col-md-12">
                     <div class="form-group">
                       <mat-form-field class="example-full-width" appearance="outline">
-                        <mat-label>Phone</mat-label>
+                        <mat-label>{{'PROFILE.PHONE' | translate}}</mat-label>
                         <input matInput formControlName="phone">
                       </mat-form-field>
                     </div>
@@ -167,13 +167,13 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <mat-form-field class="example-full-width" appearance="outline">
-                        <mat-label>Location</mat-label>
+                        <mat-label>{{'PROFILE.LOCATION' | translate}}</mat-label>
                         <textarea matInput formControlName="location"></textarea>
                       </mat-form-field>
                     </div>
                   </div>
                   <div class="col-md-12">
-                    <button mat-raised-button color="primary" type="submit">Save Changes</button>
+                    <button mat-raised-button color="primary" type="submit">{{'PROFILE.SAVE' | translate}}</button>
                   </div>
                 </div>
               </div>

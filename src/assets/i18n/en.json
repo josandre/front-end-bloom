@@ -398,7 +398,43 @@
     "DELETE": "Delete"
   }
   
+},
+"PROFILE":{
+    "PLACEHOLDER_PHOTO":"FileData To Upload",
+    "SAVE_PHOTO":"Save new profile photo",
+    "SETTINGS":"Settings",
+    "SECURITY":"Security",
+    "CURRENT_PASSWORD":"Current password",
+    "NEW_PASSWORD":"New password",
+    "CONFIRM_PASSWORD":"Confirm Password",
+    "PASSWORD_NOT_MATCH":"Password do not match",
+    "SAVE":"Save",
+    "ACCOUNT":"Account",
+    "ACCOUNT_SETTINGS":"Settings",
+    "NAME":"Name",
+    "LAST_NAME":"Last Name",
+    "USER_NAME":"User Name",
+    "EMAIL":"Email",
+    "VALID_EMAIL":"Please enter a valid email address",
+    "MEDICAL_ID":"Medical id",
+    "COLLEGE":"College",
+    "PHONE":"Phone",
+    "LOCATION":"Location",
+    "ADDRESS":"Address",
+    "SNACKBAR":{
+      "ACTIONS":{
+        "TRY_AGAIN":"Try again",
+        "CLOSE": "Close"
+      }, 
+      "UPDATE_USER": {
+        "SUCCESS":"User updated",
+        "ERROR":"The user was not updated"
+      },
+      "UPDATE_PASSWORD": {
+        "SUCCESS":"Password updated",
+        "ERROR":"Current password does not match"
+      }
+    }
+  }
 }
 
-
-}

@@ -6,7 +6,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {Password} from "../patient-profile/models/Password";
 import {UserService} from "./services/user.service";
 import {User} from "./models/User";
-
+import { TranslateService } from '@ngx-translate/core';
 
 
 
@@ -32,7 +32,7 @@ export class PatientProfileComponent implements OnInit{
   isLoadingUserUpdating: boolean = false;
 
   constructor(private readonly userService: UserService, private uploadService: UploadFileService, private readonly authService: AuthService,
-  private formBuilder: FormBuilder, private snackBar: MatSnackBar) {
+  private formBuilder: FormBuilder, private snackBar: MatSnackBar,private translate: TranslateService) {
     this.initFormUser();
     this.initFormPass();
   }
@@ -225,8 +225,10 @@ export class PatientProfileComponent implements OnInit{
     }
   }
 
-  openSnackBar(message: string, action: string){
-    this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'end'})
+  openSnackBar(message: string, action: string) {
+    this.translate.get([message,action]).subscribe((translations: any) => {
+      this.snackBar.open(translations[message], translations[action], { verticalPosition: 'top', horizontalPosition: 'end',duration: 4000 })
+    });
   }
 
 }

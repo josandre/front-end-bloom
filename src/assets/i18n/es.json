@@ -397,6 +397,29 @@
     "DELETE_CONFIRMATION":"¿Seguro que desea eliminar el historial médico?",
     "DELETE": "Eliminar"
   }
+},
+"PROFILE":{
+  "PLACEHOLDER_PHOTO":"FileData To Upload",
+  "SAVE_PHOTO":"Subir nueva foto de perfil",
+  "SETTINGS":"Configuraciones",
+  "SECURITY":"Seguridad",
+  "CURRENT_PASSWORD":"Contraseña Actual",
+  "NEW_PASSWORD":"Nueva Contraseña",
+  "CONFIRM_PASSWORD":"Confirmar Contraseña",
+  "PASSWORD_NOT_MATCH":"Las contraseñas no concuerdan",
+  "SAVE":"Guardar",
+  "ACCOUNT":"Configurar",
+  "ACCOUNT_SETTINGS":"Cuenta",
+  "NAME":"Nombre",
+  "LAST_NAME":"Apellidos",
+  "USER_NAME":"Nombre de Usuario",
+  "EMAIL":"Correo",
+  "VALID_EMAIL":"Dirección de correo electrónico invalida",
+  "MEDICAL_ID":"Identificación médica",
+  "COLLEGE":"Universidad",
+  "PHONE":"Teléfono",
+  "LOCATION":"Ubicación",
+  "ADDRESS":"Dirección"
 }
 
 }

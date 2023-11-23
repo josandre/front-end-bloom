@@ -47,7 +47,11 @@ export class UploadFileService {
     return defaultPathPhoto;
   }
 
+  getUserPhoto(photoURL: string) {
+    if (!photoURL) {
+      return '/assets/images/user.png'
+    }
 
-
-
+    return this.showPhoto(photoURL);
+  }
 }

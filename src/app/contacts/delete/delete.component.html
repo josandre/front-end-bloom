@@ -1,24 +1,24 @@
 <div class="container">
-  <h3 mat-dialog-title>¿Estás seguro?</h3>
+  <h3 mat-dialog-title>{{ 'DELETE_DIALOG.TITLE' | translate }}</h3>
   <div mat-dialog-content>
     <ul class="clearfix">
       <li>
-        <p><span class="font-weight-bold"> Nombre: </span>{{data.name}}</p>
+        <p><span class="font-weight-bold">{{ 'DELETE_DIALOG.NAME' | translate }}: </span>{{data.name}}</p>
       </li>
       <li>
-        <p><span class="font-weight-bold"> Email: </span>{{ data.email }}</p>
+        <p><span class="font-weight-bold">{{ 'DELETE_DIALOG.EMAIL' | translate }}: </span>{{data.email}}</p>
       </li>
       <li>
         <p>
-          <span class="font-weight-bold">Relación: </span>{{data.relation}}
+          <span class="font-weight-bold">{{ 'DELETE_DIALOG.RELATION' | translate }}: </span>{{data.relation}}
         </p>
       </li>
     </ul>
   </div>
   <div mat-dialog-actions class="mb-1">
     <button mat-flat-button color="warn" [mat-dialog-close]="1" (click)="confirmDelete()">
-      Borrar
+      {{ 'DELETE_DIALOG.DELETE' | translate }}
     </button>
-    <button mat-flat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+    <button mat-flat-button (click)="onNoClick()" tabindex="-1">{{ 'DELETE_DIALOG.CANCEL' | translate }}</button>
   </div>
 </div>

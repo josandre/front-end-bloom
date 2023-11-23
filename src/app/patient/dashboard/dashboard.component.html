@@ -15,7 +15,8 @@
               </div>
               <div class="col-md-8 wellcome-text">
                 <h4 class="font-20 weight-500 mb-2">
-                  {{ 'DASHBOARD_PATIENT.WELLCOME_TITLE' | translate }} <div class="weight-600 font-30 col-blue pt-1">{{name + "!"}}</div>
+                  {{ 'DASHBOARD_PATIENT.WELLCOME_TITLE' | translate }} <div class="weight-600 font-30 col-blue pt-1">
+                    {{name + "!"}}</div>
                 </h4>
                 <p class="font-16 max-width-600">
                   {{ 'DASHBOARD_PATIENT.WELLCOME_TEXT' | translate }}
@@ -38,7 +39,23 @@
                 <h5 class="float-end responsive-font"> {{ 'DASHBOARD_PATIENT.CURRENT_ANXIETY_LEVEL' | translate }}</h5>
               </div>
               <div class="col-green">
-                <h3 class="font-weight-bold float-end responsive-font-2 mb-0"> {{ 'DASHBOARD_PATIENT.LEVEL_1' | translate }} </h3>
+                <h3 class="font-weight-bold float-end responsive-font-2 mb-0">
+                  <ng-container *ngIf="isMedicalDataLoading; else dataAnxiety">
+                    <div class="preloader pl-size-sm">
+                      <div class="spinner-layer pl-cyan">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>
+                  <ng-template #dataAnxiety>
+                    {{ currentAnxietyLevel | translate }}
+                  </ng-template>
+                </h3>
               </div>
             </div>
           </div>
@@ -59,7 +76,23 @@
                 <h5 class="float-end responsive-font">{{ 'DASHBOARD_PATIENT.TOTAL_ATTACKS_RECORDED' | translate }}</h5>
               </div>
               <div class="col-green">
-                <h3 class="font-weight-bold float-end mb-0 responsive-font-2">12</h3>
+                <h3 class="font-weight-bold float-end mb-0 responsive-font-2">
+                  <ng-container *ngIf="isLoadingEvents; else datatotalAttacks">
+                    <div class="preloader pl-size-sm">
+                      <div class="spinner-layer pl-cyan">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>
+                  <ng-template #datatotalAttacks>
+                    {{ totalAttacks }}
+                  </ng-template>
+                </h3>
               </div>
             </div>
           </div>
@@ -80,7 +113,23 @@
                 <h5 class="float-end responsive-font">{{ 'DASHBOARD_PATIENT.LAST_ANXIETY_ATTACK' | translate }}</h5>
               </div>
               <div class="col-green">
-                <h4 class="font-weight-bold float-end mb-0 attack-day responsive-font-2">{{ 'DASHBOARD_PATIENT.LAST_ATTACK_DATE' | translate }}</h4>
+                <h4 class="font-weight-bold float-end mb-0 attack-day responsive-font-2">
+                  <ng-container *ngIf="isLoadingEvents; else dataLastAttackDate">
+                    <div class="preloader pl-size-sm">
+                      <div class="spinner-layer pl-cyan">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>
+                  <ng-template #dataLastAttackDate>
+                    {{ lastAttackDate | translate }}
+                  </ng-template>
+                </h4>
               </div>
             </div>
           </div>
@@ -98,10 +147,26 @@
             </div>
             <div class="card-right">
               <div>
-                <h5 class="float-end responsive-font">{{ 'DASHBOARD_PATIENT.DAYS_WITHOUT_ATTACKS' | translate }}</h5>
+                <h5 class="float-end responsive-font">{{ 'DASHBOARD_PATIENT.DAYS_WITHOUT_ATTACKS' | translate }} </h5>
               </div>
               <div class="col-green">
-                <h3 class="font-weight-bold float-end mb-0 responsive-font-2">38</h3>
+                <h3 class="font-weight-bold float-end mb-0 responsive-font-2">
+                  <ng-container *ngIf="isLoadingEvents; else dataDaysWithoutAttack">
+                    <div class="preloader pl-size-sm">
+                      <div class="spinner-layer pl-cyan">
+                        <div class="circle-clipper left">
+                          <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                          <div class="circle"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>
+                  <ng-template #dataDaysWithoutAttack>
+                    {{ daysWithoutAttack }}
+                  </ng-template>
+                </h3>
               </div>
             </div>
           </div>
@@ -118,19 +183,43 @@
           <div class="card-body">
             <div class="float-start">
               <h6 class="text-muted">{{ 'DASHBOARD_PATIENT.ANXIETY_LEVEL_PROGRESS_CHART' | translate }}</h6>
-              <h5> <span class="text-muted font-12">{{ 'DASHBOARD_PATIENT.PER_SESSION' | translate }}</span> </h5>
+              <h5><span class="text-muted font-12">{{ 'DASHBOARD_PATIENT.PER_SESSION' | translate }}</span></h5>
             </div>
             <div class="mb-5">
-              <apx-chart [series]="anxietyScaleDataOptions.series!" [chart]="anxietyScaleDataOptions.chart!"
-                [xaxis]="anxietyScaleDataOptions.xaxis!" [stroke]="anxietyScaleDataOptions.stroke!"
-                [colors]="anxietyScaleDataOptions.colors!" [dataLabels]="anxietyScaleDataOptions.dataLabels!"
-                [legend]="anxietyScaleDataOptions.legend!" [markers]="anxietyScaleDataOptions.markers!"
-                [grid]="anxietyScaleDataOptions.grid!" [yaxis]="anxietyScaleDataOptions.yaxis!"
-                [tooltip]="anxietyScaleDataOptions.tooltip!" [title]="anxietyScaleDataOptions.title!"></apx-chart>
+              <ng-container *ngIf="isMedicalDataLoading">
+                <div class="loader-chart">
+                  <div class="preloader pl-size-xl">
+                    <div class="spinner-layer pl-cyan">
+                      <div class="circle-clipper left">
+                        <div class="circle"></div>
+                      </div>
+                      <div class="circle-clipper right">
+                        <div class="circle"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="!isMedicalDataLoading">
+                <ng-container *ngIf="medicalRecord && medicalRecord.medicalHistories.length > 0">
+                  <apx-chart [series]="anxietyScaleDataOptions.series!" [chart]="anxietyScaleDataOptions.chart!"
+                    [xaxis]="anxietyScaleDataOptions.xaxis!" [stroke]="anxietyScaleDataOptions.stroke!"
+                    [colors]="anxietyScaleDataOptions.colors!" [dataLabels]="anxietyScaleDataOptions.dataLabels!"
+                    [legend]="anxietyScaleDataOptions.legend!" [markers]="anxietyScaleDataOptions.markers!"
+                    [grid]="anxietyScaleDataOptions.grid!" [yaxis]="anxietyScaleDataOptions.yaxis!"
+                    [tooltip]="anxietyScaleDataOptions.tooltip!" [title]="anxietyScaleDataOptions.title!"></apx-chart>
+                </ng-container>
+                <ng-container *ngIf="!medicalRecord || medicalRecord.medicalHistories.length === 0">
+                  <div class="loader-chart">
+                    <p> {{ 'DASHBOARD_PATIENT.NO_DATA_FOR_ATTACKS' | translate }} </p>
+                  </div>
+                </ng-container>
+              </ng-container>
             </div>
           </div>
         </div>
       </div>
+
       <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
         <div class="card">
           <div class="card-body">
@@ -139,16 +228,39 @@
               <h5><span class="text-muted font-12">{{ 'DASHBOARD_PATIENT.BY_DATE' | translate }}</span></h5>
             </div>
             <div class="mb-5">
-              <apx-chart [series]="recordedAttacksOptions.series!" [chart]="recordedAttacksOptions.chart!"
-                [dataLabels]="recordedAttacksOptions.dataLabels!" [plotOptions]="recordedAttacksOptions.plotOptions!"
-                [yaxis]="recordedAttacksOptions.yaxis!" [legend]="recordedAttacksOptions.legend!" [fill]="recordedAttacksOptions.fill!"
-                [stroke]="recordedAttacksOptions.stroke!" [tooltip]="recordedAttacksOptions.tooltip!"
-                [xaxis]="recordedAttacksOptions.xaxis!">
-              </apx-chart>
+              <ng-container *ngIf="isLoadingEvents">
+                <div class="loader-chart">
+                  <div class="preloader pl-size-xl">
+                    <div class="spinner-layer pl-cyan">
+                      <div class="circle-clipper left">
+                        <div class="circle"></div>
+                      </div>
+                      <div class="circle-clipper right">
+                        <div class="circle"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="!isLoadingEvents && attacksData.length > 0">
+                <apx-chart [series]="recordedAttacksOptions.series!" [chart]="recordedAttacksOptions.chart!"
+                  [dataLabels]="recordedAttacksOptions.dataLabels!" [plotOptions]="recordedAttacksOptions.plotOptions!"
+                  [yaxis]="recordedAttacksOptions.yaxis!" [legend]="recordedAttacksOptions.legend!"
+                  [fill]="recordedAttacksOptions.fill!" [stroke]="recordedAttacksOptions.stroke!"
+                  [tooltip]="recordedAttacksOptions.tooltip!" [xaxis]="recordedAttacksOptions.xaxis!">
+                </apx-chart>
+              </ng-container>
+              <ng-container *ngIf="!isLoadingEvents && attacksData.length === 0">
+                <div class="loader-chart">
+                  <p> {{ 'DASHBOARD_PATIENT.NO_DATA_FOR_ATTACKS' | translate }} </p>
+                </div>
+              </ng-container>
             </div>
           </div>
         </div>
       </div>
+
+
     </div>
   </div>
 </section>

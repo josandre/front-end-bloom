@@ -63,16 +63,26 @@
   letter-spacing: 2px;
 }
 
-.button-close {
-  color: #484c72;
-  background-color: transparent !important;
-  box-shadow: none !important;
+.tool-buttons {
+  justify-content: space-between;
   float: left;
 
-  &:hover {
-    background-color: #f2f4f9 !important;
-    transition: 0.3s;
+  button {
+    fill: #484c72;
+    color: #484c72;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    margin-right: 50px;
+
+    &:hover {
+      background-color: #f2f4f9 !important;
+      transition: 0.3s;
+    }
   }
+}
+
+.icon-color {
+  color: #484c72;
 }
 
 .center {
@@ -87,9 +97,9 @@
   white-space: nowrap;
   box-shadow: none !important;
 
-  h1, h2, h3 {
-    font-weight: 700;
-    font-size: 14px;
+  h2, h3, h4 {
+    font-weight: 700 !important;
+    font-size: 14px !important;
     line-height: 1.5;
     margin: 0;
   }

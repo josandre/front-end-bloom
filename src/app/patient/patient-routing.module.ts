@@ -4,12 +4,8 @@ import { Routes, RouterModule } from "@angular/router";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { PrescriptionsComponent } from "./prescriptions/prescriptions.component";
 import { MedicalRecordsComponent } from "./medical-records/medical-records.component";
-import { BillingComponent } from "./billing/billing.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { PatientProfileComponent } from "./patient-profile/patient-profile.component";
-import { EntryComponent } from "./entry-diary/entry.component";
-import { ModalComponent } from "./modal/modal.component";
-import { DialogformComponent } from "./modal/dialogform/dialogform.component";
 import {DiaryComponent} from "./diary/diary.component";
 const routes: Routes = [
   {
@@ -32,10 +28,6 @@ const routes: Routes = [
     component: MedicalRecordsComponent,
   },
   {
-    path: "billing",
-    component: BillingComponent,
-  },
-  {
     path: "settings",
     component: SettingsComponent,
   },
@@ -46,14 +38,6 @@ const routes: Routes = [
   {
     path: "diary",
     component: DiaryComponent,
-  },
-  {
-    path: "modal",
-    component: ModalComponent,
-  },
-  {
-    path: "dialogform",
-    component: DialogformComponent,
   },
   { path: "**", component: Page404Component },
 ];

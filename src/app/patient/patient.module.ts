@@ -8,15 +8,11 @@ import { PatientRoutingModule } from './patient-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PrescriptionsComponent } from './prescriptions/prescriptions.component';
 import { MedicalRecordsComponent } from './medical-records/medical-records.component';
-import { BillingComponent } from './billing/billing.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ComponentsModule } from '@shared/components/components.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '@shared';
 import { PatientProfileComponent } from './patient-profile/patient-profile.component';
-import { EntryComponent } from './entry-diary/entry.component';
-import { ModalComponent } from './modal/modal.component';
-import { DialogformComponent } from './modal/dialogform/dialogform.component';
 import { DiaryComponent } from './diary/diary.component';
 import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 @NgModule({
@@ -24,12 +20,8 @@ import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
     DashboardComponent,
     PrescriptionsComponent,
     MedicalRecordsComponent,
-    BillingComponent,
     SettingsComponent,
     PatientProfileComponent,
-    EntryComponent,
-    ModalComponent,
-    DialogformComponent,
     DiaryComponent
   ],
     imports: [

@@ -34,8 +34,14 @@ export class DiaryService {
     }
 
     createEntry(diaryId: number, entry: Entry): Observable<number> {
-        const url = `${this.baseUrl}/addEntry/19/entry`;
+        const url = `${this.baseUrl}/addEntry/${diaryId}/entry`;
 
         return this.http.post<number>(url, entry, {headers: this.header});
+    }
+
+    updateEntry(entryId: number, entry: Entry) {
+      const url = `${this.baseUrl}/updateEntry/${entryId}/entry`;
+
+      return this.http.put(url, entry, {headers: this.header});
     }
 }

@@ -5,6 +5,7 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {DiaryService} from "./service/diary.service";
 import {Diary} from "./model/diary";
 import {Entry} from "./model/entry";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
     selector: 'app-diary',
@@ -28,7 +29,8 @@ export class DiaryComponent implements OnInit {
     loading: boolean;
 
     constructor(
-        public diaryService: DiaryService) {
+        public diaryService: DiaryService,
+        public snackBar: MatSnackBar) {
         this.Editor = ClassicEditor;
         this.editorHidden = true;
     }
@@ -53,9 +55,11 @@ export class DiaryComponent implements OnInit {
                 });
     }
 
-    addEntry() {
+    addEntry(): void {
         this.entryCanBeSaved = false;
         this.editorHidden = false;
+        this.editorContent = "";
+        this.currentEntryId = undefined;
 
         const entry: Entry = new Entry({
             content: ""
@@ -65,18 +69,39 @@ export class DiaryComponent implements OnInit {
             .subscribe(
                 (data) => {
                     console.log(data);
+                    this.openSnackBar("Entry can now be saved", "Close");
                     this.currentEntryId = data;
-                    this.entryCanBeSaved = true;
-                    this.editorContent = entry.content;
                     this.refreshEntries();
+                    this.entryCanBeSaved = true;
                 },
                 error => {
                     switch (error.status) {
                         case -1: {
-                            //this.openSnackBar("Something went wrong while trying to register anxiety type", "Try again");
+                            this.openSnackBar("Something went wrong while trying to register anxiety type", "Try again");
                             break;
                         }
                     }
+                });
+    }
+
+    saveEntry(): void {
+        const entry: Entry = new Entry({
+            content: this.Editor.editorInstance.getData(),
+        });
+
+        console.log(this.Editor.editorInstance.getData())
+
+        this.diaryService.updateEntry(this.currentEntryId!, entry)
+            .subscribe(
+                (response) => {
+                    console.log(response);
+                    this.openSnackBar("Entry has been saved", "Close");
+                    this.refreshEntries();
+                },
+                error => {
+                    console.log(error);
+
+                    this.openSnackBar("Something went wrong while trying to save entry", "Try again");
                 });
     }
 
@@ -88,7 +113,7 @@ export class DiaryComponent implements OnInit {
     }
 
     generatePreview(content: string, maxLengthPerLine: number): string {
-        const lines = content.match(/<h1>.*?<\/h1>|<h2>.*?<\/h2>|<h3>.*?<\/h3>|<p>.*?<\/p>|<br>/g) || []
+        const lines = content.match(/<h1>.*?<\/h1>|<h2>.*?<\/h2>|<h3>.*?<\/h3>|(<p>(?!&nbsp;<\/p>).*?<\/p>)|/g) || [];
 
         const truncatedLines = lines
             .slice(0, 3)
@@ -112,5 +137,9 @@ export class DiaryComponent implements OnInit {
         this.editorHidden = true;
         this.currentEntryId = undefined;
         this.entryCanBeSaved = false;
+    }
+
+    openSnackBar(message: string, action: string) {
+        this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'end', duration: 3000});
     }
 }

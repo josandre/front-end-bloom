@@ -9,8 +9,6 @@ import { GamesSectionComponent } from './resources/games-section/games-section.c
 import { MemoryGameComponent } from './resources/games/memory-game/memory-game.component';
 import { BasicTableComponent } from './tables/basic-table/basic-table.component';
 import { PuzzleGameComponent } from './resources/games/puzzle-game/puzzle-game.component';
-import { EntryComponent } from './patient/entry-diary/entry.component';
-import { ModalComponent } from './patient/modal/modal.component';
 
 
 const routes: Routes = [
@@ -155,14 +153,6 @@ const routes: Routes = [
         path: 'tables/basic-table',
         component: BasicTableComponent
       },
-      {
-        path: 'patient/entry-diary',
-        component: EntryComponent
-      },
-      {
-        path: 'patient/modal',
-        component: ModalComponent
-      }
     ],
   },
   {

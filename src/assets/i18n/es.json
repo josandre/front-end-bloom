@@ -421,7 +421,24 @@
   "COLLEGE":"Universidad",
   "PHONE":"Teléfono",
   "LOCATION":"Ubicación",
-  "ADDRESS":"Dirección"
+  "ADDRESS":"Dirección",
+  "SNACKBAR":{
+    "ACTIONS":{
+      "TRY_AGAIN":"Intente de nuevo",
+      "CLOSE": "Cerrar"
+    }, 
+    "GET_USER":{
+      "ERROR":"Error al obtener datos del usuario"
+    },
+    "UPDATE_USER": {
+      "SUCCESS":"Información actualizada",
+      "ERROR":"Algo salió mal al intentar actualizar la información"
+    },
+    "UPDATE_PASSWORD": {
+      "SUCCESS":"Contraseña actualizada",
+      "ERROR":"La contraseña actual no coincide"
+    }
+  }
 }
 
 }

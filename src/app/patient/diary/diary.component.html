@@ -10,7 +10,7 @@
       <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 entries-side">
         <ng-scrollbar visibility="hover" [style.height]="550 + 'px'">
 
-          <div class="container card-entry-container">
+          <div class="card-entries-container">
 
             <mat-card class="p-3 card-entry" [ngClass]="{'opened-entry' : entry.id === currentEntryId}" tabindex="0" *ngFor="let entry of entries"
                       (click)="setEditorContent(entry)">
@@ -44,6 +44,9 @@
             <button mat-mini-fab color="primary" class="float-end mx-3" (click)="addEntry()">
               <mat-icon>add</mat-icon>
             </button>
+<!--            <button mat-mini-fab color="primary" class="float-end mx-3" (click)="addEntry()">
+              <mat-icon>save</mat-icon>
+            </button>-->
             <button mat-mini-fab class="button-close" (click)="closeEditor()" *ngIf="!editorHidden">
               <mat-icon>close</mat-icon>
             </button>

@@ -84,6 +84,7 @@ export class DiaryComponent implements OnInit {
         this.editorHidden = false;
         this.currentEntryId = entry.id;
         this.editorContent = entry.content;
+        this.entryCanBeSaved = true;
     }
 
     generatePreview(content: string, maxLengthPerLine: number): string {
@@ -109,5 +110,7 @@ export class DiaryComponent implements OnInit {
 
     closeEditor() {
         this.editorHidden = true;
+        this.currentEntryId = undefined;
+        this.entryCanBeSaved = false;
     }
 }

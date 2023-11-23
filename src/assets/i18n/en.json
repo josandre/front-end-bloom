@@ -402,8 +402,9 @@
   
 },
 "PROFILE":{
-    "PLACEHOLDER_PHOTO":"FileData To Upload",
+    "SELECTED_PHOTO":"No files selected",
     "SAVE_PHOTO":"Save new profile photo",
+    "SELECT_FILE":"Select File",
     "SETTINGS":"Settings",
     "SECURITY":"Security",
     "CURRENT_PASSWORD":"Current password",

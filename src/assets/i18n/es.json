@@ -401,8 +401,9 @@
   }
 },
 "PROFILE":{
-  "PLACEHOLDER_PHOTO":"FileData To Upload",
-  "SAVE_PHOTO":"Subir nueva foto de perfil",
+  "SELECTED_PHOTO":"No hay archivos seleccionados",
+  "SELECT_FILE":"Seleccionar archivo",
+  "SAVE_PHOTO":"Guadar nueva foto de perfil",
   "SETTINGS":"Configuraciones",
   "SECURITY":"Seguridad",
   "CURRENT_PASSWORD":"Contraseña Actual",

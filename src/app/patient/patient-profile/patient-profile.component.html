@@ -37,8 +37,20 @@
             </div>
           </div>
 
-          <input type="file" id="customFile" class="btn" (change)="selectFile($event)" placeholder="{{'PROFILE.PLACEHOLDER_PHOTO' | translate}}">
-          <button *ngIf="selectedFiles" class="black" (click)="upload()" [class.auth-spinner]="uploadingPhoto" >{{'PROFILE.SAVE_PHOTO' | translate}}</button>
+          <!--<input type="file" id="customFile" class="btn" (change)="selectFile($event)" placeholder="{{'PROFILE.PLACEHOLDER_PHOTO' | translate}}">
+          <button *ngIf="selectedFiles" class="black" (click)="upload()" [class.auth-spinner]="uploadingPhoto" >{{'PROFILE.SAVE_PHOTO' | translate}}</button>-->
+          <input type="file" id="customFile" class="file-input" (change)="selectFile($event)">
+          <label for="customFile" class="btn">
+            <span class="btn-select">{{ 'PROFILE.SELECT_FILE' | translate }}  </span>
+             
+              <span *ngIf="selectedFiles">{{ selectedFiles[0]?.name }}</span>
+            
+              <span *ngIf="!selectedFiles"> {{ 'PROFILE.SELECTED_PHOTO' | translate }}</span>
+          </label>
+        
+        <button *ngIf="selectedFiles" class="black" (click)="upload()" [class.auth-spinner]="uploadingPhoto">
+            {{'PROFILE.SAVE_PHOTO' | translate}}
+        </button>
         </div>
       </div>
       <div class="col-lg-7 col-md-12">

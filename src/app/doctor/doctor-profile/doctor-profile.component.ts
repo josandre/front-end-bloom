@@ -153,7 +153,10 @@ export class DoctorProfileComponent implements OnInit{
       });
     }
   }
-
+  getSelectFileButtonText(): string {
+    // Traduce el texto del botón según el idioma actual
+    return this.translate.instant('PROFILE.PROFILE.SAVE_PHOTO');
+  }
 
   onSubmit(){
     this.isLoadingUserUpdating = true;

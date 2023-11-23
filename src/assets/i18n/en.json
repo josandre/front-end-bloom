@@ -439,7 +439,9 @@
         "SUCCESS":"Password updated",
         "ERROR":"Current password does not match"
       }
-    }
+    },
+    "psychology":"Psychology",
+    "therapist":"Therapist"
   }
 }
 

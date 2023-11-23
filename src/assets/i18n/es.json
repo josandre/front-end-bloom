@@ -438,7 +438,9 @@
       "SUCCESS":"Contraseña actualizada",
       "ERROR":"La contraseña actual no coincide"
     }
-  }
+  },
+  "psychology":"Psicología",
+  "therapist":"Terapeuta"
 }
 
 }

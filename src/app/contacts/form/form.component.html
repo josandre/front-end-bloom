@@ -4,56 +4,63 @@
       <div class="editRowModal">
         <div class="">
           <div class="modal-about">
-            {{dialogTitle}}
+            {{ dialogTitle | translate }}
           </div>
         </div>
       </div>
-      <button mat-icon-button (click)="dialogRef.close()" class="modal-close-button" aria-label="Close dialog">
+      <button mat-icon-button (click)="dialogRef.close()" class="modal-close-button">
         <mat-icon>close</mat-icon>
       </button>
     </div>
     <div mat-dialog-content>
       <form class="register-form m-4" [formGroup]="contactForm" (ngSubmit)="confirmAddOrUpdate()">
         <div class="row">
+          <!-- Name Field -->
           <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
             <mat-form-field class="example-full-width mb-3" appearance="outline">
-              <mat-label>Nombre</mat-label>
+              <mat-label>{{ 'CONTACT_FORM.NAME' | translate }}</mat-label>
               <input matInput formControlName="name" required>
               <mat-error *ngIf="contactForm?.get('name')?.hasError('required')">
-                Name is required
+                {{ 'CONTACT_FORM.NAME_REQUIRED' | translate }}
               </mat-error>
             </mat-form-field>
           </div>
+
+          <!-- Email Field -->
           <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
             <mat-form-field class="example-full-width mb-3" appearance="outline">
-              <mat-label>Email</mat-label>
+              <mat-label>{{ 'CONTACT_FORM.EMAIL' | translate }}</mat-label>
               <input matInput formControlName="email" required>
               <mat-error *ngIf="contactForm?.get('email')?.hasError('required')">
-                Please enter a valid email address
+                {{ 'CONTACT_FORM.EMAIL_REQUIRED' | translate }}
               </mat-error>
             </mat-form-field>
           </div>
         </div>
+
+        <!-- Relation Field -->
         <div class="row">
           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
             <mat-form-field class="example-full-width mb-3" appearance="outline">
-              <mat-label>Relación con el paciente</mat-label>
+              <mat-label>{{ 'CONTACT_FORM.RELATION' | translate }}</mat-label>
               <input matInput formControlName="relation" required>
               <mat-error *ngIf="contactForm?.get('relation')?.hasError('required')">
-                Relation is required
+                {{ 'CONTACT_FORM.RELATION_REQUIRED' | translate }}
               </mat-error>
             </mat-form-field>
           </div>        
         </div>
+
+        <!-- Buttons -->
         <div class="row">
           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
             <div class="example-button-row d-flex">
               <button class="btn btn-primary d-flex align-items-center justify-content-center" [disabled]="!contactForm.valid || isLoading" type="submit">
-                <span class="me-2">Guardar</span>
+                <span class="me-2">{{ 'CONTACT_FORM.SAVE' | translate }}</span>
                 <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
               </button>
               <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">
-                Cancelar
+                {{ 'CONTACT_FORM.CANCEL' | translate }}
               </button>
             </div>
           </div>

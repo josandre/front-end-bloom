@@ -2,7 +2,7 @@
   <div class="content-block">
     <div class="block-header">
       <!-- breadcrumb -->
-      <app-breadcrumb [title]="'Contactos'" [items]="[]" [active_item]="'Contactos'"></app-breadcrumb>
+      <app-breadcrumb [title]="'CONTACTS.TITLE' | translate" [items]="[]" [active_item]="'CONTACTS.TITLE' | translate"></app-breadcrumb>
     </div>
     <div class="row">
       <div class="col-md-12">
@@ -14,19 +14,18 @@
                   <div class="left">
                     <ul class="header-buttons-left ms-0">
                       <li class="tbl-title">
-                        <h2>Contactos</h2>
+                        <h2>{{ 'CONTACTS.TITLE' | translate }}</h2>
                       </li>
                       <li class="tbl-search-box">
                         <label for="search-input"><i class="material-icons search-icon">search</i></label>
-                        <input placeholder="Buscar..." type="text" (input)="applyFilter($event)" class="browser-default search-field" aria-label="Search box">
-
+                        <input placeholder="{{ 'CONTACTS.SEARCH_PLACEHOLDER' | translate }}" type="text" (input)="applyFilter($event)" class="browser-default search-field">
                       </li>
                     </ul>
                   </div>
                   <div class="right">
                     <ul class="tbl-export-btn">
                       <li class="tbl-header-btn">
-                        <div class="m-l-10" matTooltip="Añadir contacto">
+                        <div class="m-l-10" matTooltip="{{ 'CONTACTS.ADD_CONTACT_TOOLTIP' | translate }}">
                           <button mat-mini-fab color="primary" (click)="addNew()">
                             <mat-icon class="col-white">add</mat-icon>
                           </button>
@@ -53,34 +52,40 @@
                           </mat-checkbox>
                         </mat-cell>
                       </ng-container>
+
                       <!-- ID Column -->
                       <ng-container matColumnDef="id">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header>Id
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'CONTACTS.ID' | translate }}
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+                        <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
                       </ng-container>
+
+                      <!-- Name Column -->
                       <ng-container matColumnDef="name">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'CONTACTS.NAME' | translate }}
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let row"> <span class="mobile-label">Nombre:</span>{{row.name}}
+                        <mat-cell *matCellDef="let row"> <span class="mobile-label">{{ 'CONTACTS.NAME' | translate }}:</span>{{ row.name }}
                         </mat-cell>
                       </ng-container>
+
+                      <!-- Email Column -->
                       <ng-container matColumnDef="email">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header>Correo electrónico
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'CONTACTS.EMAIL' | translate }}
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let row"> <span class="mobile-label">Correo
-                            electrónico:</span>{{row.email}}
+                        <mat-cell *matCellDef="let row"> <span class="mobile-label">{{ 'CONTACTS.EMAIL' | translate }}:</span>{{ row.email }}
                         </mat-cell>
                       </ng-container>
+
+                      <!-- Relation Column -->
                       <ng-container matColumnDef="relation">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header>Relación con el paciente
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'CONTACTS.RELATION' | translate }}
                         </mat-header-cell>
                         <mat-cell *matCellDef="let row">
-                          <span class="mobile-label">Relación con el paciente:</span>{{row.relation}}</mat-cell>
+                          <span class="mobile-label">{{ 'CONTACTS.RELATION' | translate }}:</span>{{ row.relation }}</mat-cell>
                       </ng-container>
-                      <!-- actions -->
+
                       <ng-container matColumnDef="actions">
-                        <mat-header-cell class="psl-3 tbl-col-width-per-10" *matHeaderCellDef>Acciones
+                        <mat-header-cell class="psl-3 tbl-col-width-per-10" *matHeaderCellDef>{{ 'CONTACTS.ACTIONS' | translate }}
                         </mat-header-cell>
                         <mat-cell *matCellDef="let row; let i=index;" class="psl-3 tbl-col-width-per-10">
                           <button mat-icon-button [matMenuTriggerFor]="menu" (click)="$event.stopPropagation()">
@@ -89,11 +94,11 @@
                           <mat-menu #menu="matMenu">
                             <button mat-menu-item (click)="editContact(row)">
                               <i class="material-icons-two-tone align-middle msr-2">create</i>
-                              <span>Editar contacto</span>
+                              <span>{{ 'CONTACTS.EDIT_CONTACT' | translate }}</span>
                             </button>
                             <button mat-menu-item (click)="deleteContact(row)">
                               <i class="material-icons-two-tone align-middle msr-2">delete_forever</i>
-                              <span>Eliminar contacto</span>
+                              <span>{{ 'CONTACTS.DELETE_CONTACT' | translate }}</span>
                             </button>
                           </mat-menu>
                         </mat-cell>
@@ -103,9 +108,9 @@
                       </mat-header-row>
                       <mat-row *matRowDef="let row; columns: displayedColumns;" [style.cursor]="'pointer'" matRipple>
                       </mat-row>
+
                     </table>
 
-                    <!-- Spinner de carga -->
                     <div *ngIf="isLoading" class="tbl-spinner">
                       <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
                       </mat-progress-spinner>
@@ -113,17 +118,15 @@
 
                     <div *ngIf="!isLoading">
                       <div *ngIf="dataSource.data.length === 0 && !isFiltering" class="no-results">
-                        No hay contactos disponibles.
+                        {{ 'CONTACTS.NO_CONTACTS_AVAILABLE' | translate }}
                       </div>
                       <div *ngIf="dataSource.data.length === 0 && isFiltering" class="no-results">
-                        No se encontraron resultados para tu búsqueda.
+                        {{ 'CONTACTS.NO_RESULTS_FOUND' | translate }}
                       </div>
                     </div>
 
-                    <!-- Paginator -->
                     <mat-paginator #paginator [length]="dataSource.data.length" [pageIndex]="0" [pageSize]="10"
                       [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-
                   </div>
                 </div>
               </div>

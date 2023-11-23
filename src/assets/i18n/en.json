@@ -251,5 +251,40 @@
     "SEVERE": "Severe",
     "DEBILITATING": "Debilitating",
     "INDETERMINATE": "Indeterminate"
+  },
+  "CONTACTS": {
+    "TITLE": "Contacts",
+    "EDIT_CONTACT": "Edit Contact",
+    "DELETE_CONTACT": "Delete Contact",
+    "SEARCH_PLACEHOLDER": "Search...",
+    "ADD_CONTACT_TOOLTIP": "Add Contact",
+    "ID": "Id",
+    "NAME": "Name",
+    "EMAIL": "Email",
+    "RELATION": "Relation with Patient",
+    "ACTIONS": "Actions",
+    "NO_CONTACTS_AVAILABLE": "No contacts available.",
+    "NO_RESULTS_FOUND": "No results found for your search."
+  },
+  "CONTACT_FORM": {
+    "CLOSE": "Close",
+    "NAME": "Name",
+    "EMAIL": "Email",
+    "RELATION": "Relation with Patient",
+    "NAME_REQUIRED": "Name is required",
+    "EMAIL_REQUIRED": "Email is required",
+    "RELATION_REQUIRED": "Relation is required",
+    "SAVE": "Save",
+    "CANCEL": "Cancel",
+    "EDIT_CONTACT": "Edit Contact",
+    "NEW_CONTACT": "New Contact"
+  },
+  "DELETE_DIALOG": {
+    "TITLE": "Are You Sure?",
+    "NAME": "Name",
+    "EMAIL": "Email",
+    "RELATION": "Relation",
+    "DELETE": "Delete",
+    "CANCEL": "Cancel"
   }
 }

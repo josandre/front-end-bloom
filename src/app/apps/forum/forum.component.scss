@@ -8,6 +8,13 @@
     width: 80%;
 }
 
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .post-options-container {
     display: flex;
     flex-direction: row-reverse;
@@ -33,7 +40,7 @@
             height: 50px;
             border-radius: 100%;
 
-            background-color: #d5d5d5;  
+            background-color: #d5d5d5;
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;

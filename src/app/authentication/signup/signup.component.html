@@ -4,9 +4,11 @@
       <div class="left-img" style="background-image: url(assets/images/pages/BloomGuiño.png);">
       </div>
     </div>
-    <div class="col-sm-6 auth-form-section">
-      <div class="form-section">
-        <div class="auth-wrapper">
+
+    <div class="col-sm-6 auth-form-section" >
+      <div class="form-section" >
+        <app-spinner  [isLoading]="isLoading" message="we are creating your profile"></app-spinner>
+        <div class="auth-wrapper" *ngIf="!isLoading">
           <h2 class="welcome-msg"> Sign Up </h2>
           <p class="auth-signup-text text-muted">Enter details to create your account</p>
           <form class="validate-form " [formGroup]="authForm" (ngSubmit)="onSubmit()">
@@ -167,27 +169,22 @@
 
           </form>
 
-          <h6 class="social-login-title">OR</h6>
-          <ul class="list-unstyled social-icon mb-0 mt-3">
-            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded">
-                <i class="fab fa-google"></i>
-              </a></li>
-            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded flex-c-m">
-                <i class="fab fa-facebook-f"></i>
-              </a></li>
-            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded">
-                <i class="fab fa-twitter"></i>
-              </a></li>
-            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded">
-                <i class="fab fa-linkedin-in"></i>
-              </a></li>
-          </ul>
-<!--          <input type="file" id="customFile" (change)="selectFile($event)" placeholder="FileData To Upload">-->
-<!--          <button class="btn btn-primary" [disabled]="!selectedFiles" (click)="upload()">Save FileData</button>-->
-<!--          <br><br><br>-->
-<!--          <input type="text" placeholder="FileData to View or Delete"  name="image" [(ngModel)]="file">-->
-<!--          <button class="btn btn-primary" style="margin-left: 10px" (click)="viewFile()">View FileData</button>-->
-<!--          <button class="btn btn-primary" style="margin-left: 10px" (click)="deleteFile()">Delete FileData</button>-->
+<!--          <h6 class="social-login-title">OR</h6>-->
+<!--          <ul class="list-unstyled social-icon mb-0 mt-3">-->
+<!--            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded">-->
+<!--                <i class="fab fa-google"></i>-->
+<!--              </a></li>-->
+<!--            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded flex-c-m">-->
+<!--                <i class="fab fa-facebook-f"></i>-->
+<!--              </a></li>-->
+<!--            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded">-->
+<!--                <i class="fab fa-twitter"></i>-->
+<!--              </a></li>-->
+<!--            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded">-->
+<!--                <i class="fab fa-linkedin-in"></i>-->
+<!--              </a></li>-->
+<!--          </ul>-->
+
         </div>
       </div>
     </div>

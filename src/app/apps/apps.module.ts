@@ -28,6 +28,7 @@ import { PuzzleGameBackgroundOptionComponent } from './games/puzzle-game/puzzle-
 import { PuzzleGameTileComponent } from './games/puzzle-game/puzzle-game-tile/puzzle-game-tile.component';
 import { PuzzleGameComponent } from './games/puzzle-game/puzzle-game.component';
 import { ScoresListComponent } from './games/scores-list/scores-list.component';
+import {SpinnerModule} from "../components/components.module";
 
 @NgModule({
   declarations: [
@@ -49,19 +50,20 @@ import { ScoresListComponent } from './games/scores-list/scores-list.component';
     PuzzleGameComponent,
     ScoresListComponent
   ],
-  imports: [
-    CommonModule,
-    AppsRoutingModule,
-    DragDropModule,
-    FormsModule,
-    NgScrollbarModule,
-    ReactiveFormsModule,
-    OwlDateTimeModule,
-    OwlNativeDateTimeModule,
-    ComponentsModule,
-    SharedModule,
-    TranslateModule,
-  ],
+    imports: [
+        CommonModule,
+        AppsRoutingModule,
+        DragDropModule,
+        FormsModule,
+        NgScrollbarModule,
+        ReactiveFormsModule,
+        OwlDateTimeModule,
+        OwlNativeDateTimeModule,
+        ComponentsModule,
+        SharedModule,
+        TranslateModule,
+        SpinnerModule,
+    ],
   exports: [ForumComponent]
 })
 export class AppsModule {}

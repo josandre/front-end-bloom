@@ -7,8 +7,8 @@
       <app-breadcrumb [title]="'PATIENT_BREADCRUM.PROFILE.TITLE' | translate"></app-breadcrumb>
     </div>
 
-    <div class="spinner">
-      <mat-spinner *ngIf="loading" ></mat-spinner>
+    <div class="center" *ngIf="loading">
+      <app-spinner [isLoading]="loading" [message]="message | translate"></app-spinner>
     </div>
 
     <div class="row clearfix" *ngIf="!loading">
@@ -42,12 +42,10 @@
           <input type="file" id="customFile" class="file-input" (change)="selectFile($event)">
           <label for="customFile" class="btn">
             <span class="btn-select">{{ 'PROFILE.SELECT_FILE' | translate }}  </span>
-             
-              <span *ngIf="selectedFiles">{{ selectedFiles[0]?.name }}</span>
-            
-              <span *ngIf="!selectedFiles"> {{ 'PROFILE.SELECTED_PHOTO' | translate }}</span>
+              <span class="select-file" *ngIf="selectedFiles">{{ selectedFiles[0]?.name }}</span>
+              <span class="select-file" *ngIf="!selectedFiles"> {{ 'PROFILE.SELECTED_PHOTO' | translate }}</span>
           </label>
-        
+
         <button *ngIf="selectedFiles" class="black" (click)="upload()" [class.auth-spinner]="uploadingPhoto">
             {{'PROFILE.SAVE_PHOTO' | translate}}
         </button>

@@ -13,6 +13,7 @@ import { ComponentsModule } from '@shared/components/components.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '@shared';
 import {PatientProfileComponent} from "./patient-profile/patient-profile.component";
+import {SpinnerModule} from "../components/components.module";
 
 @NgModule({
   declarations: [
@@ -22,19 +23,20 @@ import {PatientProfileComponent} from "./patient-profile/patient-profile.compone
     BillingComponent,
     PatientProfileComponent
   ],
-  imports: [
-    CommonModule,
-    NgChartsModule,
-    NgxEchartsModule.forRoot({
-      echarts: () => import('echarts'),
-    }),
-    PatientRoutingModule,
-    NgApexchartsModule,
-    NgScrollbarModule,
-    ComponentsModule,
-    SharedModule,
-    TranslateModule,
+    imports: [
+        CommonModule,
+        NgChartsModule,
+        NgxEchartsModule.forRoot({
+            echarts: () => import('echarts'),
+        }),
+        PatientRoutingModule,
+        NgApexchartsModule,
+        NgScrollbarModule,
+        ComponentsModule,
+        SharedModule,
+        TranslateModule,
+        SpinnerModule,
 
-  ],
+    ],
 })
 export class PatientModule {}

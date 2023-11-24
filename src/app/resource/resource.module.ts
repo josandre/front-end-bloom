@@ -14,19 +14,21 @@ import {UiModule} from "../ui/ui.module";
 import { ModifyComponent } from './modify/modify.component';
 import { UserResourcesListComponent } from './user-resources-list/user-resources-list.component';
 import {TranslateModule} from "@ngx-translate/core";
+import {SpinnerModule} from "../components/components.module";
 @NgModule({
   declarations: [ComposeResourceComponent, MyResourcesComponent, ReadResourceComponent, ModifyComponent, UserResourcesListComponent],
-  imports: [
-    CommonModule,
-    ResourceRoutingModule,
-    CKEditorModule,
-    ComponentsModule,
-    SharedModule,
-    DragDropModule,
-    NgApexchartsModule,
-    NgScrollbarModule,
-    UiModule,
-    TranslateModule,
-  ],
+    imports: [
+        CommonModule,
+        ResourceRoutingModule,
+        CKEditorModule,
+        ComponentsModule,
+        SharedModule,
+        DragDropModule,
+        NgApexchartsModule,
+        NgScrollbarModule,
+        UiModule,
+        TranslateModule,
+        SpinnerModule,
+    ],
 })
 export class ResourceModule {}

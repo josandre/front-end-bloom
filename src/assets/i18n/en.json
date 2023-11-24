@@ -678,6 +678,8 @@
     "LOADING_MESSAGES": "Loading conversation messages",
     "ENTER_TEXT_HERE": "Enter text here..",
     "SEARCH": "Search"
+  },
+  "NO_PATIENTS": {
+    "MESSAGE": "Nothing to see here..."
   }
-
 }

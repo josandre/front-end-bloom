@@ -228,7 +228,7 @@
   },
   "PATIENTS_LISTS": {
     "ADD_NEW": "Nuevo paciente",
-    "SEE_MEDICAL_RECORD": "Expediente médico",
+    "SEE_MEDICAL_RECORD": "Ver expediente médico",
     "PATIENT_ID": "Id del paciente",
     "MESSAGE_LOADING": "Esto podría tomar unos segundos!",
     "MESSAGE_NO_DATA": "Aún no hay data registrada"
@@ -676,6 +676,8 @@
     "LOADING_MESSAGES": "Leyendo mensajes",
     "ENTER_TEXT_HERE": "Ingrese su texto aquí...",
     "SEARCH": "Buscar"
+  },
+  "NO_PATIENTS": {
+    "MESSAGE": "Nada que ver aquí..."
   }
-
 }

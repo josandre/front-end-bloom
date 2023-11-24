@@ -9,7 +9,6 @@
 
         <div class="center" *ngIf="isLoading">
             <app-spinner *ngIf="isLoading" [isLoading]="isLoading" [message]="messageLoading | translate"></app-spinner>
-            <app-wink *ngIf="patientsIsEmpty() && !isLoading" [message]="messageData | translate"></app-wink>
         </div>
 
         <div class="container">
@@ -40,6 +39,12 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div *ngIf="!isLoading && patients.length === 0">
+        <div class="center-img">
+            <img src="assets/images/Bloom%20triste.png" width="150px" height="150px"  alt="Responsive image">
+        </div>
+        <div class="text-muted center-message"> {{'NO_PATIENTS.MESSAGE' | translate}}</div>
     </div>
 
 

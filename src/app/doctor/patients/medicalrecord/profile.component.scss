@@ -36,3 +36,16 @@ select:disabled {
 .right {
   float: right;
 }
+
+.center-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

@@ -188,5 +188,11 @@
   </div>
   <div class="center" >
     <app-spinner *ngIf="isLoading" [isLoading]="isLoading" [message]="message | translate"></app-spinner>
+    <div *ngIf="!isLoading && patient === undefined">
+      <div class="center-img">
+        <img src="assets/images/Bloom%20triste.png" width="150px" height="150px"  alt="Responsive image">
+      </div>
+      <div class="text-muted center-message"> {{'NO_PATIENTS.MESSAGE' | translate}}</div>
+    </div>
   </div>
 </section>

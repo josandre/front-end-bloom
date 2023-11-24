@@ -1,16 +1,22 @@
 <section class="content">
   <div class="content-block">
     <div class="block-header">
-      <!-- breadcrumb -->
       <app-breadcrumb [title]="'PATIENT_BREADCRUM.FORUMS.TITLE' | translate" [items]="[]"></app-breadcrumb>
-
     </div>
+
+
+    <div>
+
+      <div class="center" *ngIf="loading">
+        <app-spinner [isLoading]="true" [message]="message | translate"></app-spinner>
+      </div>
 
     <!--All Posts-->
     <div *ngIf="forumState === ForumStates.ShowAllPosts">
 
       <!--All posts card-->
-      <div class="card">
+      <div class="card" *ngIf="!loading">
+
         <div class="header">
           <h1>{{'MENUITEMS.FORUMS.POSTS_TITLE' | translate}}</h1>
           <div></div>
@@ -20,9 +26,10 @@
           <!--All posts-->
           <button mat-flat-button color="primary" (click)="openNewPostDialog()">{{'MENUITEMS.FORUMS.CREATE_POST' | translate}}</button>
 
-          <div class="center" *ngIf="postsLoaded === false">
-            <app-spinner [isLoading]="true" [message]="message | translate"></app-spinner>
-          </div>
+
+          <div *ngIf="postsLoaded === false">
+          <app-loading-card></app-loading-card>
+        </div>
 
           <!--Posts container-->
           <div *ngIf="postsLoaded === true" class="posts-container">
@@ -152,5 +159,6 @@
       </div>
 
     </div>
+  </div>
   </div>
 </section>

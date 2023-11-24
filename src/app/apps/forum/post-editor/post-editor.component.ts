@@ -40,13 +40,11 @@ export class PostEditorComponent implements OnInit {
     this.forumService.savePost(newPost).
     subscribe(
       response => {
-        console.log(response);
         this.closeDialog();
         this.forumComponent?.getPosts();
       },
       error => {
         this.editorEnabled = true;
-        console.log(error);
       }
     );
   }

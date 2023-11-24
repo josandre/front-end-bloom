@@ -39,7 +39,6 @@ export class ForumComponent implements OnInit {
   load = true
   message = 'hola'
 
-
   constructor(
     private readonly authService:AuthService,
     private readonly forumService:ForumServiceService,
@@ -51,7 +50,6 @@ export class ForumComponent implements OnInit {
   ngOnInit(): void {
     // Get current user info
     this.currentUser = this.authService.currentUserValue;
-    console.log(this.currentUser);
 
     // Retrieve all the posts
     this.getPosts();
@@ -67,12 +65,10 @@ export class ForumComponent implements OnInit {
     this.forumService.getAllPosts()
     .subscribe(
       data => {
-
         this.posts = data;
         this.postsLoaded = true;
       },
       error => {
-        console.log(error);
         this.posts = Array(0).fill(null);
         this.postsLoaded = true;
       }
@@ -127,11 +123,9 @@ export class ForumComponent implements OnInit {
         this.forumService.deletePost(this.currentPost.id).
         subscribe(
           response => {
-            console.log(response);
             this.getPosts();
           },
           error => {
-            console.log(error);
             this.getPosts();
           }
         );
@@ -155,11 +149,8 @@ export class ForumComponent implements OnInit {
 
         this.postEditorTitle = this.currentPost.title;
         this.postEditorContent = this.currentPost.experience;
-        console.log(this.currentPost);
       },
-      error => {
-        console.log(error);
-      }
+      error => {}
     );
   }
 
@@ -192,11 +183,9 @@ export class ForumComponent implements OnInit {
     this.forumService.updatePost(updatedPost).
     subscribe(
       response => {
-        console.log(response);
         this.reloadPost();
       },
       error => {
-        console.log(error);
         this.postEditorEnabled = true;
       }
     );

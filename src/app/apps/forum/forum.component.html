@@ -18,15 +18,9 @@
 
         <div class="card-content">
           <!--All posts-->
-          <button mat-flat-button color="primary" (click)="openNewPostDialog()">{{'MENUITEMS.FORUMS.CREATE_POST' |
-            translate}}</button>
+          <button mat-flat-button color="primary" (click)="openNewPostDialog()">{{'MENUITEMS.FORUMS.CREATE_POST' | translate}}</button>
 
-<!--          &lt;!&ndash;Posts loading&ndash;&gt;-->
-<!--          <div *ngIf="postsLoaded === false">-->
-<!--            <app-loading-card></app-loading-card>-->
-<!--          </div>-->
-
-          <div class="center" *ngIf="!postLoaded">
+          <div class="center" *ngIf="postsLoaded === false">
             <app-spinner [isLoading]="true" [message]="message | translate"></app-spinner>
           </div>
 
@@ -50,13 +44,10 @@
 
     <!--Open post-->
     <div *ngIf="forumState === ForumStates.OpenPost">
-      Post loading
+      <!--Post loading-->
       <div *ngIf="postLoaded === false">
         <app-loading-card></app-loading-card>
       </div>
-
-
-
 
       <!--Post loaded-->
       <div *ngIf="postLoaded === true">
@@ -69,7 +60,7 @@
             </div>
 
             <!--Default user options-->
-            <div *ngIf="currentPost?.userId !== currentUser?.id" class="post-options-container">
+            <div *ngIf="showAdvancedOptions() === false" class="post-options-container">
               <button mat-flat-button color="primary" (click)="showPosts()">{{'MENUITEMS.FORUMS.BACK' |
                 translate}}</button>
             </div>
@@ -152,7 +143,7 @@
                 [userImage]="comment.userImage"
                 [date]="comment.creationDate"
                 [content]="comment.content"
-                [showAdvancedOptions]="comment?.userId === currentUser?.id">
+                [showAdvancedOptions]="showAdvancedOptions() === true">
               </app-comment>
             </div>
           </div>

@@ -1,1 +1,11 @@
-
+.no-results-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 3rem;
+  justify-content: center;
+  flex-direction: column;
+  img {
+    max-width: 10rem;
+  }
+}

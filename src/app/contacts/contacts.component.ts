@@ -17,7 +17,7 @@ import { DeleteComponent } from './delete/delete.component';
 
 export class ContactsComponent implements OnInit {
   dataSource: MatTableDataSource<Contact>;
-  displayedColumns: string[] = ['select', 'name', 'email', 'relation', 'actions'];
+  displayedColumns: string[] = ['name', 'email', 'relation', 'actions'];
   isLoading = true; 
   isFiltering = false;
   selection = new SelectionModel<Contact>(true, []);

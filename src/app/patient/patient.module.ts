@@ -37,6 +37,7 @@ import {SpinnerModule} from "../components/components.module";
         SharedModule,
         TranslateModule,
         CKEditorModule,
+        SpinnerModule,
     ],
 })
 export class PatientModule {

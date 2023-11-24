@@ -745,5 +745,10 @@
     "SUCCESS":"Paciente agregado",
     "EMAIL_REGISTRED":"",
     "USER_NOT_ADDED":"Usuario no agregado"
+  },
+  "SNACKBAR_FORGOT_PASSWORD":{
+    "SUCCESS":"¡Todo listo! Le enviamos un correo electrónico con sus nuevos datos.",
+    "ERROR":"Hubo un problema al restablecer tu contraseña. Comuníquese con support-bloomapp@gmail.com para obtener más información.",
+    "DONE":"Done"
   }
 }

@@ -748,7 +748,13 @@
     "SUCCESS":"Patient added",
     "EMAIL_REGISTRED":"Your email is already registered",
     "USER_NOT_ADDED":"The user is not acceptable"    
+  },
+  "SNACKBAR_FORGOT_PASSWORD":{
+    "SUCCESS":"All set! We sent an email with your new details.",
+    "ERROR":"There was an issue resetting your password. Please contact support-bloomapp@gmail.com for more information.",
+    "DONE":"Done"
   }
+
   
 
 }

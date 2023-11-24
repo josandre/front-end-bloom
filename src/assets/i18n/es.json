@@ -273,6 +273,10 @@
     "ANXIETY_ATTACKS": "Ataques de Ansiedad",
     "NUMBER_OF_ATTACKS": "Cantidad de ataques"
   },
+  "DASHBOARD_ADMIN": {
+    "WELCOME_TITLE": "¡Bienvenido de nuevo!",
+    "WELCOME_TEXT": "Cada día es una nueva oportunidad para liderar con excelencia y forjar caminos innovadores. Su visión y esfuerzo continuo son el motor que impulsa nuestro éxito. ¡Gracias por su incansable dedicación y por hacer que cada día cuente!"
+  },
   "SIGN_UP_PATIENTS": {
     "NEW_PATIENT": "Paciente nuevo",
     "DETAILS": "Ingresar datos para la cuenta del paciente",

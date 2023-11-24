@@ -8,7 +8,7 @@
       "LIST": {
         "DASHBOARD1": "Tablero 1",
         "DASHBOARD2": "Tablero 2",
-        "DOCTOR-DASHBOARD": "Tablero médico",
+        "DOCTOR-DASHBOARD": "Tablero Médico",
         "PATIENT-DASHBOARD": "Tablero Paciente"
       }
     },
@@ -230,7 +230,7 @@
     "ADD_NEW": "Nuevo paciente",
     "SEE_MEDICAL_RECORD": "Expediente médico",
     "PATIENT_ID": "Id del paciente",
-    "MESSAGE_LOADING": "Esto puedo tomar unos segundos!",
+    "MESSAGE_LOADING": "Esto podría tomar unos segundos!",
     "MESSAGE_NO_DATA": "Aún no hay data registrada"
   },
   "PROFILES": {

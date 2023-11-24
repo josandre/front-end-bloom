@@ -42,7 +42,7 @@ export class DashboardDoctorService {
 
   getEvents(): Observable<Event[]> {
     const currentUser = this.getCurrentUser();
-    const URL = `${this.baseUrl}/events`;
+    const URL = `${this.baseUrl}/events/specialist/${currentUser.id}`;
     console.log('getEvents', currentUser)
     return this.http.get<Event[]>(URL, {
       headers: { 'Authorization':  `Bearer ${currentUser.token}` }

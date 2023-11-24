@@ -35,8 +35,6 @@ export class ForumComponent implements OnInit {
 
   // User info
   currentUser?:any;
-
-  loading: boolean = false
   message = 'MENUITEMS.FORUMS.MESSAGE'
 
   constructor(
@@ -61,17 +59,14 @@ export class ForumComponent implements OnInit {
     this.postLoaded = false;
 
     this.postsLoaded = false;
-    this.loading = true
     this.showPosts();
     this.forumService.getAllPosts()
     .subscribe(
       data => {
         this.posts = data;
         this.postsLoaded = true;
-        this.loading = false
       },
       error => {
-        this.loading = false
         this.posts = Array(0).fill(null);
         this.postsLoaded = true;
       }

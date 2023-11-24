@@ -1,0 +1,62 @@
+.content-preview-card {
+    padding: 10px;
+
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-color: #bdbdbd;
+    width: 100%;
+    margin: auto;
+
+    .user-section {
+        display: flex;
+        flex-direction: row;
+
+        .user-image {
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+
+            background-color: #d5d5d5;  
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+
+            margin-right: 16px;
+        }
+        .user-info {
+            width: 50%;
+        }
+        
+        .options {
+            width: 50%;
+            display: flex;
+            flex-direction: row-reverse;
+            height: 40px;
+
+            button {
+                margin-left: 5px;
+            }
+        }
+
+        .username {
+            font-size: larger;
+            margin-bottom: 6px;
+        }
+
+        .date {
+            color: #999999;
+        }
+    }
+
+    .title-section {
+        .post-title {
+
+        }
+    }
+
+    .content-section {
+
+    }
+}

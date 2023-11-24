@@ -13,6 +13,7 @@ import {
 import { ROUTES } from './sidebar-items';
 import { RouteInfo } from './sidebar.metadata';
 import { AuthService, Role } from '@core';
+import {UploadFileService} from "../../global/upload-file/upload-file.service";
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -36,7 +37,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
     private renderer: Renderer2,
     public elementRef: ElementRef,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private readonly uploadFileService : UploadFileService
   ) {
     this.elementRef.nativeElement.closest('body');
     this.routerObj = this.router.events.subscribe((event) => {
@@ -145,4 +147,10 @@ export class SidebarComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+
+  photoManager(){
+    return this.uploadFileService.getPhoto('assets/images/user.png');
+  }
+
 }

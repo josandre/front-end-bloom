@@ -17,9 +17,9 @@ import {
   TableElement,
   UnsubscribeOnDestroyAdapter,
 } from '@shared';
-import { formatDate } from '@angular/common';
 import { DoctorService } from '../service/doctor.service';
 import {MatTableDataSource} from "@angular/material/table";
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-alldoctors',
@@ -32,9 +32,13 @@ export class AlldoctorsComponent
 {
   displayedColumns = [
     'id',
+    'lastName',
+    'name',
     'username',
     'actions'
   ];
+
+  message : string = 'hola'
 
   dataSource: MatTableDataSource<Doctor> = new MatTableDataSource<Doctor>([]);
   loading: boolean = false
@@ -45,6 +49,7 @@ export class AlldoctorsComponent
   constructor(
     private snackBar: MatSnackBar,
     public doctorService: DoctorService,
+    private translate: TranslateService
   ) {
     super();
   }
@@ -68,7 +73,9 @@ export class AlldoctorsComponent
         this.dataSource = new MatTableDataSource<Doctor>(doctors)
         this.loading = false
       },
-      error: (error) => {}
+      error: (error) => {
+        this.loading = false
+      }
     });
   }
 
@@ -79,9 +86,9 @@ export class AlldoctorsComponent
    this.dataSource.filter = filterText;
   }
 
-  // export table data in excel file
+
   exportExcel() {
-    // key name with space add in brackets
+
     const exportData: Partial<TableElement>[] =
       this.dataSource.filteredData.map((x) => ({
         Name: x.userName,
@@ -107,13 +114,15 @@ export class AlldoctorsComponent
   setState(row: Doctor){
     row.active = !row.active
       this.doctorService.changeState(row.id).subscribe(() => {
-          this.openSnackBar("Doctor state changed", "Close")
+          this.openSnackBar('ADMIN_SNACKBAR.DOCTOR_SUCCESS', 'ADMIN_SNACKBAR.CLOSE')
       }, () => {
-        this.openSnackBar("Server error", "Close")
+        this.openSnackBar('ADMIN_SNACKBAR.SERVER_ERROR', 'ADMIN_SNACKBAR.CLOSE')
       })
   }
 
-  openSnackBar(message: string, action: string){
-    this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'end'})
+  openSnackBar(message: string, action: string) {
+    this.translate.get([message,action]).subscribe((translations: any) => {
+      this.snackBar.open(translations[message], translations[action], { verticalPosition: 'top', horizontalPosition: 'end',duration: 4000 })
+    });
   }
 }

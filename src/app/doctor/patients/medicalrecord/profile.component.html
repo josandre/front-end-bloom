@@ -1,0 +1,198 @@
+<section class="content">
+  <div *ngIf="medicalRecord !== undefined || patient !== undefined;">
+    <div class="content-block">
+      <div class="block-header">
+
+      <app-breadcrumb [title]="'DOCTOR_BREADCRUM.PATIENTS.TITLE' | translate" [items]="[]" [active_item]="'DOCTOR_BREADCRUM.PATIENTS.ACTIVE_ITEM' | translate"></app-breadcrumb>
+      </div>
+
+      <div class="row clearfix" *ngIf="!isLoading">
+        <div class="col-lg-4 col-md-12">
+          <div class="card">
+            <div class="m-b-20">
+              <div class="contact-grid">
+                <div class="profile-header bg-blue pt-3">
+                  <div class="user-name">{{ patient?.name }} {{ patient?.lastName }}</div>
+                  <div class="name-center">{{ patient?.email }}</div>
+                </div>
+
+                <div class=" image">
+                <img src="{{getPhoto(patient?.photo)}}" class="img-photo user-img-circle user-img" alt="">
+                </div>
+
+                <p>
+                  {{ patient?.address }}
+                </p>
+                <div>
+                  <span class="phone">
+                    <i class="material-icons">phone</i>{{ patient?.phone }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="card">
+            <mat-tab-group mat-align-tabs="start">
+
+              <!-- Family medical record -->
+              <mat-tab label="{{'MEDICAL_RECORD.INFO.FAMILY_MEDICAL_HISTORY' | translate}}">
+                <div class="p-4">
+                  <form class="example-form validate-form disabled-style">
+                    <mat-form-field class="example-full-width" appearance="fill">
+                      <textarea matInput [formControl]="familyMedicalHistoryControl" cdkTextareaAutosize
+                                #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                                required [ngClass]="{'color-black' : !isFormEnabled(familyMedicalHistoryControl)}"></textarea>
+                      <mat-error *ngIf="familyMedicalHistoryControl?.hasError('required')">
+                        {{'MEDICAL_RECORD.INFO.REQUIRED' | translate}} *
+                      </mat-error>
+                    </mat-form-field>
+                    <div class="example-button-container pt-2">
+                      <button mat-mini-fab color="primary" *ngIf="!isFormEnabled(familyMedicalHistoryControl)"
+                              (click)="familyMedicalHistoryControl.enable()">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                      <button mat-raised-button [disabled]="!familyMedicalHistoryControl.valid"
+                              *ngIf="isFormEnabled(familyMedicalHistoryControl)"
+                              (click)="updateMedicalRecord()">{{'MEDICAL_RECORD.INFO.SAVE' | translate}}
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </mat-tab>
+
+              <!-- Anxieties -->
+              <mat-tab label="{{'MEDICAL_RECORD.INFO.ANXIETIES' | translate}}">
+                <div class="p-4">
+                  <form>
+                    <mat-form-field class="example-chip-list" appearance="fill">
+                      <mat-label>{{ patient?.name }} {{'MEDICAL_RECORD.INFO.ANXIETIES' | translate}}</mat-label>
+                      <mat-chip-list #chipList aria-label="anxieties" multiple [formControl]="anxitiesControl">
+                        <mat-chip color="primary" *ngFor="let anxiety of anxieties" [value]="anxiety"
+                                  (removed)="removeAnxietyType(anxiety)" selected>
+                          {{ anxiety }}
+                        </mat-chip>
+                        <input placeholder="{{'MEDICAL_RECORD.INFO.ANXIETY_TYPE' | translate}}" [matChipInputFor]="chipList"
+                               (matChipInputTokenEnd)="addAnxietyTypeFromInput($event)">
+                      </mat-chip-list>
+                    </mat-form-field>
+                    <div class="example-button-container">
+                      <button mat-mini-fab color="primary" *ngIf="!isFormEnabled(anxitiesControl)"
+                              (click)="anxitiesControl.enable()">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                      <button mat-raised-button *ngIf="isFormEnabled(anxitiesControl)"
+                              (click)="anxitiesControl.disable()">{{'MEDICAL_RECORD.INFO.QUIT' | translate}}
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+          <p class="font-italic text-muted">
+            {{'MEDICAL_RECORD.INFO.UPDATED' | translate}} {{ getFormattedDateWithTime(medicalRecord?.lastUpdate) }}
+          </p>
+        </div>
+        <div class="col-lg-8 col-md-12">
+          <div class="card">
+            <mat-tab-group>
+              <mat-tab>
+                <ng-template mat-tab-label>
+                  <mat-icon class="example-tab-icon msr-2">folder</mat-icon>
+                  {{'MEDICAL_RECORD.INFO.MEDICAL_HISTORY' | translate}}
+                </ng-template>
+                <div>
+                  <mat-paginator [pageSize]="pageSize" [length]="medicalHistories?.length"
+                                 (page)="currentPage = $event.pageIndex + 1">
+                  </mat-paginator>
+                </div>
+                <div class="px-3 text-muted">
+                  <strong><small>{{'MEDICAL_RECORD.INFO.APPOINTMENT_DATE' | translate}}</small></strong>
+                </div>
+                <div *ngFor="let medicalHistory of paginatedItems">
+                  <ng-container>
+                    <mat-accordion class="w-100">
+                      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                            <div class="header">
+                              <h2><strong>
+                                <mat-icon>calendar_today</mat-icon>
+                              </strong></h2>
+                            </div>
+                          </mat-panel-title>
+                          <mat-panel-description>
+                            {{ getFormattedDate(medicalHistory.creationDate)}}
+                          </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                          <mat-divider></mat-divider>
+                          <div class="project_widget">
+                            <div class="header">
+                              <h2><strong>{{'MEDICAL_RECORD.INFO.NOTES' | translate}}</strong></h2>
+                            </div>
+                            <div class="body">
+                              <ul>
+                                <li><strong>{{'MEDICAL_RECORD.INFO.ANXIETY_LEVEL' | translate}}:</strong> {{ 'MEDICAL_RECORD.MEDICAL_HISTORY.ANXIETY_LEVEL.' + medicalHistory.anxietyLevel | translate }}</li>
+                                <li><strong>{{'MEDICAL_RECORD.INFO.OBSERVATIONS' | translate}}:</strong> {{ medicalHistory.observations }}</li>
+                                <li><strong>{{'MEDICAL_RECORD.INFO.TREATMENT_STARTED_ON' | translate}}:</strong> {{getFormattedDate(medicalHistory.treatmentStartDate)}}</li>
+                                <li><strong>{{'MEDICAL_RECORD.INFO.TREATMENT_ENDED_ON' | translate}}:</strong> {{ getFormattedDate(medicalHistory.treatmentEndDate)}}</li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                          <div class="project_widget">
+                            <div class="header">
+                              <h2><strong>{{'MEDICAL_RECORD.INFO.RECIPE' | translate}}</strong></h2>
+                            </div>
+                            <div class="body">
+                              <ul>
+                                <li><strong>{{'MEDICAL_RECORD.INFO.INDICATIONS' | translate}}:</strong> {{ medicalHistory?.medicalRecipe?.indications }}
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="right">
+                          <button mat-icon-button (click)="updateMedicalHistory(medicalHistory)"
+                                  class="tbl-action-btn">
+                            <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
+                          </button>
+                          <button mat-icon-button (click)="deleteMedicalHistory(medicalHistory.id)"
+                                  class="tbl-action-btn">
+                            <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
+                          </button>
+                        </div>
+                      </mat-expansion-panel>
+                    </mat-accordion>
+                  </ng-container>
+                </div>
+                <ng-container class="no-results" *ngIf="medicalHistories?.length === 0">
+                  <div class="pt-5 px-3 py-md-3">
+                    <p class="text-muted">{{'MEDICAL_RECORD.INFO.APPOINTMENT_REGISTRED' | translate}}.</p>
+                  </div>
+                </ng-container>
+              </mat-tab>
+            </mat-tab-group>
+            <div class="m-l-10 p-3">
+              <button mat-mini-fab color="primary" class="right" (click)="addMedicalHistory()">
+                <mat-icon class="col-white">add</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="center" *ngIf="isLoading">
+    <app-spinner *ngIf="isLoading" [isLoading]="isLoading" [message]="message | translate"></app-spinner>
+    <div *ngIf="!isLoading && patient === undefined">
+      <div class="center-img">
+        <img src="assets/images/Bloom%20triste.png" width="150px" height="150px"  alt="Responsive image">
+      </div>
+      <div class="text-muted center-message"> {{'DOCTOR_NOT_ALLOWED.MESSAGE' | translate}}</div>
+    </div>
+  </div>
+</section>

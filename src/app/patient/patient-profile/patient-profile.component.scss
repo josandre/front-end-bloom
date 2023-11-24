@@ -1,0 +1,60 @@
+.btn{
+  background-color: #4b5365;
+  color: white;
+  border-radius: 3px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.select-file{
+  font-size: 13px;
+  padding: 20px;
+}
+
+::ng-deep snack-bar-container simple-snack-bar .mat-simple-snackbar-action {
+  color: white;
+}
+
+.btn-select{
+  background-color: rgb(232, 231, 241);
+  border-radius: 3px;
+  color: rgb(3, 0, 0);
+  padding: 3px;
+  font-size: 13px;
+}
+.spinner-form{
+  display: flex;
+  justify-content: center;
+}
+
+.password-section{
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-mat{
+  width: 95%;
+}
+
+.black{
+  background-color: black;
+  color: white;
+}
+
+.img-photo{
+  border-radius: 22px !important;
+}
+
+.spinner{
+  display: flex;
+  justify-content: space-around;
+}
+
+.file-input {
+  display: none;
+}

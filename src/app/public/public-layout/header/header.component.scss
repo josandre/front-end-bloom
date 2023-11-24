@@ -31,9 +31,7 @@ header {
 .header-top {
   padding: 12px 0px 15px 0px;
   background: map-get($colors, 'complement');
-  .row {
-    display: none;
-  }
+
 }
 
 .left_info ul li {
@@ -86,6 +84,7 @@ header i.fa.fa-mobile {
 
 .header-main {
   padding: 21px 0;
+
   button {
     background-color: #38a6c5;
     color: #fff;
@@ -97,6 +96,7 @@ header i.fa.fa-mobile {
     font-weight: 500;
     padding: 15px 40px;
     margin-left: 2rem;
+
     @media only screen and (max-width: 1024px) {
       display: none;
     }
@@ -111,6 +111,7 @@ nav#cssmenu ul {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+
   li {
     flex: 1 0 3rem;
   }
@@ -119,22 +120,37 @@ nav#cssmenu ul {
 .logo {
   position: relative;
   z-index: 123;
-  padding: 10px;
-  font: 18px verdana;
-  background-color: gray;
+  padding: 0;
   float: left;
+
   @media only screen and (max-width: 1024px) {
     display: none;
   }
 }
 
 .logo img {
-  max-width: 170px;
-  opacity: 0;
+  max-width: 90px;
 }
 
-.logo a {
-  color: #6DDB07;
+.language-switcher {
+  gap: 0.5rem;
+  display: flex;
+  button {
+    background-color: #ceebff;
+    color: #38a6c5;
+    display: inline-block;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    font-size: 13px !important;
+    font-weight: 500;
+    padding: 7px 22px;
+    transition: all 0.3s ease-in-out;
+    &.active {
+      background-color: #3f67c4;
+      color: #fff;
+    }
+  }
 }
 
 #cssmenu,
@@ -560,6 +576,4 @@ img {
   width: 100%;
 }
 
-@media only screen and (max-width: 1024px) {
-
-}
+@media only screen and (max-width: 1024px) {}

@@ -1,350 +1,92 @@
+
 <section class="content">
   <div class="content-block">
     <div class="block-header">
       <!-- breadcrumb -->
-      <app-breadcrumb [title]="'Basic Table'" [items]="['Tables']" [active_item]="'Basic Table'"></app-breadcrumb>
-    </div>
-    <!-- Basic Table -->
-    <div class="row clearfix">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="card">
-          <div class="header">
-            <h2>
-              <strong>Basic</strong> Table</h2>
+      <app-breadcrumb [title]="'ADMIN_BREADCRUM.RESOURCES.TITLE' | translate"[items]="[]" [active_item]="'ADMIN_BREADCRUM.RESOURCES.ACTIVE_ITEM' | translate"></app-breadcrumb>
 
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="card">
+          <div class="materialTableHeader">
+            <div class="left">
+              <ul class="header-buttons-left ms-0">
+                <li class="tbl-title">
+                  <h2>{{'ADMIN_RESOURCES.SEARCH_BY' | translate}}</h2>
+                </li>
+                <li class="tbl-search-box">
+                  <label for="search-input"><i class="material-icons search-icon">search</i></label>
+                  <input placeholder="{{'ADMIN_RESOURCES.SEARCH' | translate}}" type="text"  (keyup)="applyFilter($event.target)" class="browser-default search-field"
+                    aria-label="Search box">
+                </li>
+              </ul>
+            </div>
+            
           </div>
-          <div class="body table-responsive">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>FIRST NAME</th>
-                  <th>LAST NAME</th>
-                  <th>USERNAME</th>
+          <div class="boxs mail_listing">
+            <div class="inbox-center table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th class="text-center"></th>
+
+                    <th colspan="3">
+                      <div class="inbox-header">
+                        <div class="mail-option no-pad-left">
+                          <div class="email-btn-group m-l-15">
+                            <button mat-icon-button aria-label="Example icon-button with a heart icon" (click)="deleteResource()">
+                              <mat-icon>delete</mat-icon>
+                            </button>
+                     
+
+                          </div>
+                        </div>
+                      </div>
+                    </th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                <tr >
+                  <td class="tbl-checkbox"></td>
+
+                  <td class="hidden-xs" >{{'ADMIN_RESOURCES.TITLE' | translate}}</td>
+
+                  <td class="max-texts">{{'ADMIN_RESOURCES.CONTENT' | translate}}</td>
+
+                  <td class="max-texts" > {{'ADMIN_RESOURCES.POST_DADE' | translate}}</td>
+
                 </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                </tr>
-                <tr>
-                  <th scope="row">4</th>
-                  <td>Larry</td>
-                  <td>Jellybean</td>
-                  <td>@lajelly</td>
-                </tr>
-                <tr>
-                  <th scope="row">5</th>
-                  <td>Larry</td>
-                  <td>Kikat</td>
-                  <td>@lakitkat</td>
-                </tr>
-              </tbody>
-            </table>
+
+                  <tr *ngFor="let r of resourcesList">
+                    <td class="tbl-checkbox">
+                      <mat-checkbox class="example-margin" (click)="readResourceCheck(r.id)"></mat-checkbox>
+                    </td>
+
+                    <td class="hidden-xs" >{{r.title}}</td>
+
+                    <td class="max-texts">
+                      <a routerLink="../../resource/read-resource" (click)="readResource(r.id)"  [innerHTML]="r.content.substring(0,200)"></a>
+                    </td>
+
+                    <td class="max-texts" > {{r.date}} </td>
+
+                  </tr> 
+
+                </tbody>
+              </table>
+            </div>
+                <!-- Loading spinner -->
+              <div *ngIf="loading" class="tbl-spinner">
+                <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
+                </mat-progress-spinner>
+              </div>
+           
           </div>
         </div>
       </div>
     </div>
-    <!-- #END# Basic Table -->
-    <!-- Striped Rows -->
-    <div class="row clearfix">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="card">
-          <div class="header">
-            <h2>
-              <strong>Striped</strong> Rows</h2>
-
-          </div>
-          <div class="body table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>FIRST NAME</th>
-                  <th>LAST NAME</th>
-                  <th>USERNAME</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                </tr>
-                <tr>
-                  <th scope="row">4</th>
-                  <td>Larry</td>
-                  <td>Jellybean</td>
-                  <td>@lajelly</td>
-                </tr>
-                <tr>
-                  <th scope="row">5</th>
-                  <td>Larry</td>
-                  <td>Kikat</td>
-                  <td>@lakitkat</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- #END# Striped Rows -->
-    <!-- Bordered Table -->
-    <div class="row clearfix">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="card">
-          <div class="header">
-            <h2>
-              <strong>Bordered</strong> Table</h2>
-
-          </div>
-          <div class="body table-responsive">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>FIRST NAME</th>
-                  <th>LAST NAME</th>
-                  <th>USERNAME</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                </tr>
-                <tr>
-                  <th scope="row">4</th>
-                  <td>Larry</td>
-                  <td>Jellybean</td>
-                  <td>@lajelly</td>
-                </tr>
-                <tr>
-                  <th scope="row">5</th>
-                  <td>Larry</td>
-                  <td>Kikat</td>
-                  <td>@lakitkat</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- #END# Bordered Table -->
-    <!-- Hover Rows -->
-    <div class="row clearfix">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="card">
-          <div class="header">
-            <h2>
-              <strong>Hover</strong> Rows</h2>
-
-          </div>
-          <div class="body table-responsive">
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>FIRST NAME</th>
-                  <th>LAST NAME</th>
-                  <th>USERNAME</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                </tr>
-                <tr>
-                  <th scope="row">4</th>
-                  <td>Larry</td>
-                  <td>Jellybean</td>
-                  <td>@lajelly</td>
-                </tr>
-                <tr>
-                  <th scope="row">5</th>
-                  <td>Larry</td>
-                  <td>Kikat</td>
-                  <td>@lakitkat</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- #END# Hover Rows -->
-    <!-- Condensed Table -->
-    <div class="row clearfix">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="card">
-          <div class="header">
-            <h2>
-              <strong>Condensed</strong> Table</h2>
-
-          </div>
-          <div class="body table-responsive">
-            <table class="table table-condensed">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>FIRST NAME</th>
-                  <th>LAST NAME</th>
-                  <th>USERNAME</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                </tr>
-                <tr>
-                  <th scope="row">4</th>
-                  <td>Larry</td>
-                  <td>Jellybean</td>
-                  <td>@lajelly</td>
-                </tr>
-                <tr>
-                  <th scope="row">5</th>
-                  <td>Larry</td>
-                  <td>Kikat</td>
-                  <td>@lakitkat</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- #END# Condensed Table -->
-    <!-- #START# Colorful rows -->
-    <div class="row clearfix">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="card">
-          <div class="header">
-            <h2>
-              <strong>Colorful</strong> Rows</h2>
-
-          </div>
-          <div class="body table-responsive">
-            <table class="table table-condensed">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>FIRST NAME</th>
-                  <th>LAST NAME</th>
-                  <th>USERNAME</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="bg-purple">
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr class="l-bg-green">
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr class="l-bg-orange">
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                </tr>
-                <tr class="l-bg-cyan">
-                  <th scope="row">4</th>
-                  <td>Larry</td>
-                  <td>Jellybean</td>
-                  <td>@lajelly</td>
-                </tr>
-                <tr class="l-bg-purple">
-                  <th scope="row">5</th>
-                  <td>Larry</td>
-                  <td>Kikat</td>
-                  <td>@lakitkat</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- #END# Colorful rows -->
   </div>
 </section>

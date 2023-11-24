@@ -7,6 +7,7 @@ import { EditPatientComponent } from './edit-patient/edit-patient.component';
 import { PatientProfileComponent } from './patient-profile/patient-profile.component';
 import { ComponentsModule } from '@shared/components/components.module';
 import { SharedModule } from '@shared';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { SharedModule } from '@shared';
     ReactiveFormsModule,
     ComponentsModule,
     SharedModule,
+    TranslateModule,
   ],
   providers: [],
 })

@@ -1,0 +1,109 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <br>
+      <app-breadcrumb [title]="'DOCTOR_BREADCRUM.RESOURCES.TITLE' | translate" [active_item]="'DOCTOR_BREADCRUM.RESOURCES.ACTIVE_ITEM' | translate"></app-breadcrumb>
+    </div>
+
+    <div class="center" *ngIf="isEmpty || flag">
+      <app-spinner [isLoading]="flag" [message]="message | translate"></app-spinner>
+      <app-wink *ngIf="isEmpty && !flag" [message]="messageData | translate"></app-wink>
+    </div>
+
+    <div class="row" *ngIf="!isEmpty && !flag" >
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="card" >
+          <div class="materialTableHeader">
+            <div class="left">
+              <ul class="header-buttons-left ms-0">
+                <li class="tbl-title">
+                  <h2>Search by title</h2>
+                </li>
+                <li class="tbl-search-box">
+                  <label for="search-input"><i class="material-icons search-icon">search</i></label>
+                  <input placeholder="Search" type="text"  (keyup)="applyFilter($event.target)" class="browser-default search-field"
+                    aria-label="Search box">
+                </li>
+              </ul>
+            </div>
+
+          </div>
+          <div class="boxs mail_listing">
+            <div class="inbox-center table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th colspan="5">
+                      <div class="inbox-header">
+                        <div class="mail-option no-pad-left">
+                          <div class="email-btn-group m-l-15">
+
+                            <button mat-icon-button aria-label="Example icon-button with a heart icon" (click)="deleteResource()">
+                              <mat-icon>delete</mat-icon>
+                            </button>
+
+                          </div>
+                        </div>
+                      </div>
+                    </th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                <tr >
+                  <td class="tbl-checkbox"></td>
+                  <td class="hidden-xs" >{{'MENUITEMS.RESOURCES.EDIT' | translate}}</td>
+                  <td class="hidden-xs" >{{'MENUITEMS.RESOURCES.TITLE' | translate}}</td>
+
+                  <td class="max-texts">{{'MENUITEMS.RESOURCES.CONTENT' | translate}}</td>
+
+                  <td class="max-texts" > {{'MENUITEMS.RESOURCES.DATE' | translate}}</td>
+
+                </tr>
+
+                  <tr *ngFor="let r of resourcesList">
+                    <td class="tbl-checkbox">
+                      <mat-checkbox class="example-margin" (click)="readResourceCheck(r.id)"></mat-checkbox>
+                    </td >
+                    <td>
+                      <a routerLink="/resource/modify" (click)="sessionResource(r.id)"><mat-icon>edit</mat-icon></a>
+                    <td class="hidden-xs" >{{r.title}}</td>
+
+                    <td class="max-texts">
+                      <a routerLink="/resource/read-resource" (click)="sessionResource(r.id)" [innerHTML]="r.content.substring(0,200)"></a>
+                    </td>
+
+                    <td class="max-texts" > {{r.date}} </td>
+
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+            <div class="row">
+              <div class="col-sm-7 ">
+                <p class="p-15">{{'MENUITEMS.RESOURCES.SHOWING' | translate}} 1 - 15 of 200</p>
+              </div>
+              <div class="col-sm-5 text-end">
+                <div class="float-end">
+                  <div class="email-btn-group m-l-15">
+                    <button mat-icon-button aria-label="Example icon-button with a heart icon">
+                      <mat-icon>navigate_before</mat-icon>
+                    </button>
+                    <button mat-icon-button aria-label="Example icon-button with a heart icon">
+                      <mat-icon>navigate_next</mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</section>

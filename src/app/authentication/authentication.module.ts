@@ -10,7 +10,8 @@ import { LockedComponent } from './locked/locked.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@shared';
-
+import {SpinnerModule} from "../components/components.module";
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -21,12 +22,15 @@ import { SharedModule } from '@shared';
     LockedComponent,
     ForgotPasswordComponent,
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AuthenticationRoutingModule,
-    SharedModule,
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AuthenticationRoutingModule,
+        SharedModule,
+        SpinnerModule,
+        TranslateModule
+        
+    ],
 })
 export class AuthenticationModule {}

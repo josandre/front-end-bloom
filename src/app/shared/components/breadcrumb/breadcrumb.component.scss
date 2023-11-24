@@ -1,0 +1,9 @@
+.breadcrumb-item:not(:last-child):after {
+
+    content: "\f105";
+    font-family: "Font Awesome 5 Free";
+    font-size: 18px;
+    font-weight: 900;
+    padding: 0px 5px;
+
+  }

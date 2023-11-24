@@ -1,0 +1,22 @@
+::ng-deep snack-bar-container simple-snack-bar .mat-simple-snackbar-action {
+  color: white;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.no-results-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 3rem;
+  justify-content: center;
+  flex-direction: column;
+  img {
+    max-width: 10rem;
+  }
+}

@@ -1,0 +1,193 @@
+
+<section class="content" >
+
+  <div class="content-block" >
+    <div class="block-header">
+      <app-breadcrumb [title]="'DOCTOR_BREADCRUM.PROFILE.TITLE' | translate"></app-breadcrumb>
+    </div>
+
+    <div class="center" *ngIf="loading">
+      <app-spinner [isLoading]="loading" [message]="message | translate"></app-spinner>
+    </div>
+
+    <div class="row clearfix" *ngIf="!loading">
+      <div class="col-lg-5 col-md-12" >
+        <div class="card">
+          <div class="m-b-20">
+            <div class="contact-grid">
+              <div class="profile-header bg-dark">
+                <div class="user-name">{{specialist?.user?.name + " " + specialist?.user?.lastName}}</div>
+                <div class="name-center">{{ 'PROFILE.' + specialist?.speciality | translate }}</div>
+              </div>
+
+              <div class="image">
+                <img src="{{photoManager()}}" class="img-photo user-img-circle user-img" alt="User Image" />
+              </div>
+              <p>
+                {{specialist?.location}}
+                <br />{{specialist?.college}}
+              </p>
+              <div>
+                <span class="phone">
+                  <i class="material-icons">phone</i>{{specialist?.user?.phone}}</span>
+              </div>
+            </div>
+          </div>
+
+<!--          <input type="file" id="customFile" class="btn" (change)="selectFile($event)" placeholder="FileData To Upload">-->
+          <input type="file" id="customFile" class="file-input" (change)="selectFile($event)">
+          <label for="customFile" class="btn">
+            <span class="btn-select">{{ 'PROFILE.SELECT_FILE' | translate }}  </span>
+            <span class="select-file" *ngIf="selectedFiles">{{ selectedFiles[0]?.name }}</span>
+            <span class="select-file" *ngIf="!selectedFiles"> {{ 'PROFILE.SELECTED_PHOTO' | translate }}</span>
+          </label>
+          <button *ngIf="selectedFiles" class="black" (click)="upload()" [class.auth-spinner]="uploadingPhoto" >{{'PROFILES.SAVE_NEW_PROFILE_PHOTO' | translate}}</button>
+        </div>
+      </div>
+      <div class="col-lg-7 col-md-12" *ngIf="!loading">
+        <div class="card">
+          <mat-tab-group>
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon msr-2">settings</mat-icon>
+                {{'PROFILES.SETTINGS' | translate}}
+              </ng-template>
+              <div class="header">
+                <h2>
+                  <strong>{{'PROFILES.SECURITY_SETTINGS' | translate}} </strong></h2>
+              </div>
+
+              <div class="spinner-form"  *ngIf="isLoadingPassword">
+                <mat-spinner ></mat-spinner>
+              </div>
+
+              <form class="validate-form " *ngIf="!isLoadingPassword" [formGroup]="passwordForm" (ngSubmit)="onSubmitPassword()">
+              <div class="body">
+                <div class="example-container" >
+
+                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-label>{{'PROFILES.CURRENT_PASSWORD' | translate}}</mat-label>
+                    <input matInput type="password" formControlName="currentPassword">
+                  </mat-form-field>
+
+                  <div class="password-section">
+                    <mat-form-field class="input-mat mb-3" appearance="outline">
+                      <mat-label>{{'PROFILES.NEW_PASSWORD' | translate}}</mat-label>
+                      <input matInput type="password" formControlName="newPassword" >
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                      <mat-label>{{'PROFILES.CONFIRM_PASSWORD' | translate}}</mat-label>
+                      <input matInput type="password" formControlName="confirmPassword" >
+                      <mat-error >
+                        {{'PROFILE.PASSWORD_NOT_MATCH' | translate}}
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+
+                </div>
+                <button *ngIf="!isLoadingPassword" mat-raised-button color="primary" type="submit" [disabled]="passwordForm.invalid">{{'PROFILES.SAVE' | translate}}</button>
+              </div>
+              </form>
+
+              <div class="header">
+                <h2>
+                  <strong>{{'PROFILES.ACCOUNT_SETTINGS' | translate}} </strong></h2>
+              </div>
+
+              <form class="validate-form " [formGroup]="doctorUpdateForm" (submit)="onSubmit()">
+              <div class="body">
+
+                <div class="spinner-form" *ngIf="isLoadingUserUpdating">
+                  <mat-spinner ></mat-spinner>
+                </div>
+
+                <div class="row clearfix" *ngIf="!isLoadingUserUpdating">
+                  <div class="col-lg-6 col-md-12">
+                    <div class="form-group">
+                      <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>{{'PROFILES.NAME' | translate}}</mat-label>
+                        <input matInput formControlName="name" >
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-12">
+                    <div class="form-group">
+                      <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>{{'PROFILES.LAST_NAME' | translate}}</mat-label>
+                        <input matInput formControlName="lastName">
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-12">
+                    <div class="form-group">
+                      <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>{{'PROFILES.USER_NAME' | translate}}</mat-label>
+                        <input matInput formControlName="userName">
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-12">
+                    <div class="form-group">
+                      <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>{{'PROFILES.EMAIL' | translate}}</mat-label>
+                        <input matInput formControlName="email">
+                        <mat-error *ngIf="doctorUpdateForm.get('email')!.hasError('required') || doctorUpdateForm.get('email')!.touched">
+                          {{'PROFILE.VALID_EMAIL' | translate}}
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-12">
+                    <div class="form-group">
+                      <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>{{'PROFILES.MEDICAL_ID' | translate}}</mat-label>
+                        <input matInput formControlName="medicalId">
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-12">
+                    <div class="form-group">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>{{'PROFILES.COLLEGE' | translate}}</mat-label>
+                        <input matInput formControlName="college">
+                      </mat-form-field>
+                    </div>
+
+                  </div>
+
+                  <div class="col-lg-6 col-md-12">
+                    <div class="form-group">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>{{'PROFILES.PHONE' | translate}}</mat-label>
+                        <input matInput formControlName="phone">
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>{{'PROFILES.LOCATION' | translate}}</mat-label>
+                        <textarea matInput formControlName="location"></textarea>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <button mat-raised-button color="primary" type="submit">{{'PROFILES.SAVE' | translate}}</button>
+                  </div>
+                </div>
+              </div>
+              </form>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>

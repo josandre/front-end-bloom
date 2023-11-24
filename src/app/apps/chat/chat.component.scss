@@ -1,0 +1,80 @@
+.spinner{
+  display: flex;
+  flex-direction: column;
+
+  .img{
+    display: flex;
+    justify-content: space-around;
+    height: 286px;
+  }
+
+  .text{
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.body {
+  min-height: 718px;
+}
+
+.select{
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.chat .chat-header .chat-with{
+  margin-top: 15px;
+}
+
+
+.people-list .chat-list li.active:hover {
+  background-color: rgba(0, 0, 0, 0.17); }
+
+
+.gif{
+  margin-top: 138px;
+  width: 150px;
+  height: 150px;
+  box-shadow: none;
+}
+
+.avatar-user{
+  border-radius: 13px !important;
+}
+
+.msj{
+  width: 90% !important;
+}
+
+.btn{
+  margin-top: 8px;
+  margin-left: -94px;
+}
+
+.cont-msj{
+  display: flex;
+  justify-content: center;
+}
+
+.logo{
+  animation: rotate 2s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes rotate {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(45deg);
+  }
+  75% {
+    transform: rotate(-45deg);
+
+  }
+}
+
+.text{
+  color: gray;
+}

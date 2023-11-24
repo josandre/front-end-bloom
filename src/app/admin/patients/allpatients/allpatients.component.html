@@ -2,7 +2,7 @@
   <div class="content-block">
     <div class="block-header">
       <!-- breadcrumb -->
-      <app-breadcrumb [title]="'All Patient'" [items]="['Patients']" [active_item]="'All Patient'"></app-breadcrumb>
+      <app-breadcrumb [title]="'ADMIN_BREADCRUM.PATIENTS.TITLE' | translate"[items]="[]" [active_item]="'ADMIN_BREADCRUM.PATIENTS.ACTIVE_ITEM' | translate"></app-breadcrumb>
     </div>
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -47,19 +47,30 @@
                   <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
                 </ng-container>
 
-                <!-- UserName Column -->
-                <ng-container matColumnDef="userName">
+                <!-- LastName Column -->
+                <ng-container matColumnDef="lastName">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</mat-header-cell>
+                  <mat-cell *matCellDef="let row"> <span class="mobile-label">Last Name:</span>{{row.lastName}}</mat-cell>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
-                  <mat-cell *matCellDef="let row"> <span class="mobile-label">Name:</span>{{row.userName}}</mat-cell>
+                  <mat-cell *matCellDef="let row"> <span class="mobile-label">Name:</span>{{row.name}}</mat-cell>
+                </ng-container>
+
+                <!-- UserName Column -->
+                <ng-container matColumnDef="username">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Username</mat-header-cell>
+                  <mat-cell *matCellDef="let row"> <span class="mobile-label">Username:</span>{{row.userName}}</mat-cell>
                 </ng-container>
 
                 <!-- actions -->
                 <ng-container matColumnDef="actions">
-                  <mat-header-cell class="pr-0" *matHeaderCellDef>Actions</mat-header-cell>
-                  <mat-cell *matCellDef="let row; let i=index;" class="pr-0">
-                    <button mat-icon-button (click)="setState(row)"  class="tbl-action-btn">
-                      <app-feather-icons [icon]="row.active ? 'check' : 'x'" [class]="'tbl-fav-delete'"></app-feather-icons>
-                    </button>
+                  <mat-header-cell *matHeaderCellDef [ngClass]="'px-3'">State</mat-header-cell>
+                  <mat-cell *matCellDef="let row; let i=index;" class="px-3">
+                    <mat-slide-toggle [(ngModel)]="row.active" (change)="setState(row)" toggle="row.active" class="tbl-action-btn" color="primary">
+                    </mat-slide-toggle>
                   </mat-cell>
                 </ng-container>
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -77,9 +88,6 @@
                 [style.display]="dataSource.data.length === 0 ? '' : 'none'">
                 No results
               </div>
-              <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10"
-                [pageSizeOptions]="[5, 10, 25, 100]">
-              </mat-paginator>
             </div>
           </div>
         </div>

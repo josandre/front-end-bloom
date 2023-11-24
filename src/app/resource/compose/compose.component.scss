@@ -1,0 +1,14 @@
+:host ::ng-deep .ck-editor__editable_inline {
+  min-height: 350px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+::ng-deep snack-bar-container simple-snack-bar .mat-simple-snackbar-action {
+  color: white;
+}

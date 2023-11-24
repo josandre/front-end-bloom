@@ -4,18 +4,16 @@
       <div class="content">
         <span class="sub-title">
           <i class="fas fa-hashtag"></i>
-          Bloom Quiet Mind
+          {{ 'LANDING.BANNER.SUBTITLE' | translate }}
         </span>
         <h1>
-          La herramienta perfecta para
-          la salud de tus pacientes
+          {{ 'LANDING.BANNER.TITLE' | translate }}
         </h1>
         <p>
-          Una nueva era en el manejo de la ansiedad está aquí. Únete a la revolución de la salud mental y empieza a
-          transformar la vida de tus pacientes hoy. Registro fácil y seguro.
+          {{ 'LANDING.BANNER.DESCRIPTION' | translate }}
         </p>
-        <button (click)="navigateToLogin()">
-          Registrate ahora
+        <button (click)="navigateToRegister()">
+          {{ 'LANDING.BANNER.REGISTER_BUTTON' | translate }}
         </button>
       </div>
     </div>
@@ -29,12 +27,8 @@
               <i class="fas fa-notes-medical"></i>
             </div>
             <div class="content">
-              <h3>
-                Tratamiento Personalizado
-              </h3>
-              <p>
-                Perfiles digitales que facilitan una atención precisa y adaptada para cada paciente.
-              </p>
+              <h3>{{ 'LANDING.FEATURES.TITLE_PERSONALIZED' | translate }}</h3>
+              <p>{{ 'LANDING.FEATURES.DESCRIPTION_PERSONALIZED' | translate }}</p>
             </div>
           </div>
         </div>
@@ -44,12 +38,8 @@
               <i class="fas fa-users"></i>
             </div>
             <div class="content">
-              <h3>
-                Apoyo Comunitario
-              </h3>
-              <p>
-                Facilita el camino hacia la recuperación con el apoyo de una comunidad activa para tus pacientes.
-              </p>
+              <h3>{{ 'LANDING.FEATURES.TITLE_COMMUNITY' | translate }}</h3>
+              <p>{{ 'LANDING.FEATURES.DESCRIPTION_COMMUNITY' | translate }}</p>
             </div>
           </div>
         </div>
@@ -59,35 +49,28 @@
               <i class="fas fa-heartbeat"></i>
             </div>
             <div class="content">
-              <h3>
-                Alertas de Ansiedad
-              </h3>
-              <p>
-                Tecnología avanzada para monitorizar y responder rápidamente a los signos de ansiedad.
-              </p>
+              <h3>{{ 'LANDING.FEATURES.TITLE_ALERTS' | translate }}</h3>
+              <p>{{ 'LANDING.FEATURES.DESCRIPTION_ALERTS' | translate }}</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="about" id="about`">
+  <div class="about" id="about">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-7 col-md-12">
           <div class="about-content">
             <span class="sub-title">
-              <i class="fas fa-hashtag"></i> Nosotros
+              <i class="fas fa-hashtag"></i> {{ 'LANDING.ABOUT.TITLE' | translate }}
             </span>
             <h3>
-              Descubre Bloom <br>
-              <span>Quiet Mind</span>
+              {{ 'LANDING.ABOUT.TITLE' | translate }} <br>
+              <span>Bloom Quiet Mind</span>
             </h3>
             <p>
-              Construye una relación más profunda con el bienestar de tus pacientes. Bloom Quiet Mind es tu socio
-              estratégico en el tratamiento de la ansiedad, ofreciéndote herramientas interactivas, personalización
-              basada en perfiles de pacientes y un sinfín de recursos. Nuestro objetivo es simplificar tu práctica
-              clínica y potenciar el progreso de tus pacientes.
+              {{ 'LANDING.ABOUT.DESCRIPTION' | translate }}
             </p>
           </div>
         </div>
@@ -103,11 +86,11 @@
     <div class="container">
       <div class="section-title-warp">
         <span class="sub-title">
-          <i class="fas fa-hashtag"></i> Nuestros objetivos
+          <i class="fas fa-hashtag"></i> {{ 'LANDING.GOALS.SUBTITLE' | translate }}
         </span>
-        <h2>Nuestro Compromiso con la <small> Calidad y la Innovación </small></h2>
+        <h2>{{ 'LANDING.GOALS.TITLE' | translate }}</h2>
         <p>
-          Bloom Quiet Mind tiene como misión empoderar a especialistas y pacientes en la batalla contra la ansiedad.
+          {{ 'LANDING.GOALS.DESCRIPTION' | translate }}
         </p>
       </div>
       <div class="cards">
@@ -116,36 +99,36 @@
             <i class="fas fa-hand-holding-heart"></i>
           </div>
           <h3>
-            Autonomía del Paciente
+            {{ 'LANDING.GOALS.AUTONOMY' | translate }}
           </h3>
-          <p>Incentivamos una participación activa y consciente en cada paso hacia la recuperación.</p>
+          <p>{{ 'LANDING.GOALS.AUTONOMY_DESCRIPTION' | translate }}</p>
         </div>
         <div class="single-goal">
           <div class="icon">
             <i class="fas fa-hand-holding-heart"></i>
           </div>
           <h3>
-            Herramienta Técnica de Vanguardia
+            {{ 'LANDING.GOALS.TECH_TOOL' | translate }}
           </h3>
-          <p>Apoyamos tu labor con datos precisos y seguimiento constante.</p>
+          <p>{{ 'LANDING.GOALS.TECH_TOOL_DESCRIPTION' | translate }}</p>
         </div>
         <div class="single-goal">
           <div class="icon">
             <i class="fas fa-hand-holding-heart"></i>
           </div>
           <h3>
-            Interacción y Entretenimiento
+            {{ 'LANDING.GOALS.INTERACTION' | translate }}
           </h3>
-          <p>Integramos juegos y actividades diseñadas para reducir el estrés y complementar la terapia.</p>
+          <p>{{ 'LANDING.GOALS.INTERACTION_DESCRIPTION' | translate }}</p>
         </div>
         <div class="single-goal">
           <div class="icon">
             <i class="fas fa-hand-holding-heart"></i>
           </div>
           <h3>
-            Seguridad y Privacidad
+            {{ 'LANDING.GOALS.SECURITY' | translate }}
           </h3>
-          <p>Garantizamos un entorno digital seguro para el manejo de información delicada.</p>
+          <p>{{ 'LANDING.GOALS.SECURITY_DESCRIPTION' | translate }}</p>
         </div>
       </div>
     </div>
@@ -156,63 +139,48 @@
         <div class="col-lg-7 col-md-12">
           <div class="services-content">
             <span class="sub-title">
-              <i class="fas fa-hashtag"></i> Servicios
+              <i class="fas fa-hashtag"></i> {{ 'LANDING.SERVICES.SUBTITLE' | translate }}
             </span>
             <h3>
-              Características Innovadoras para
-              <span>Profesionales Innovadores</span>
+              {{ 'LANDING.SERVICES.TITLE' | translate }}
             </h3>
             <p>
-              Cada función de Bloom Quiet Mind está diseñada para brindar una atención integral y personalizada.
-              Descubre cómo nuestros módulos especializados pueden enriquecer tu práctica:
+              {{ 'LANDING.SERVICES.DESCRIPTION' | translate }}
             </p>
             <div class="row">
               <div class="col-lg-6 col-6">
                 <ul class="services-list">
-                  <li>
-                    <i class="fas fa-check"></i> Autenticación Segura
+                  <li><i class="fas fa-check"></i> {{ 'LANDING.SERVICES.LIST.SECURE_AUTHENTICATION' | translate }}</li>
+                  <li><i class="fas fa-check"></i> {{ 'LANDING.SERVICES.LIST.DETAILED_PATIENT_PROFILE' | translate }}
                   </li>
-                  <li>
-                    <i class="fas fa-check"></i> Perfil de Paciente Detallado
-                  </li>
-                  <li>
-                    <i class="fas fa-check"></i> Perfil Médico Integral
-                  </li>
-                  <li>
-                    <i class="fas fa-check"></i> Análisis Profundo con Gráficos
-                  </li>
+                  <li><i class="fas fa-check"></i> {{ 'LANDING.SERVICES.LIST.COMPREHENSIVE_MEDICAL_PROFILE' | translate
+                    }}</li>
+                  <li><i class="fas fa-check"></i> {{ 'LANDING.SERVICES.LIST.IN_DEPTH_ANALYSIS' | translate }}</li>
                 </ul>
               </div>
               <div class="col-lg-6 col-6">
                 <ul class="services-list">
-                  <li>
-                    <i class="fas fa-check"></i> Historial Médico Actualizado
+                  <li><i class="fas fa-check"></i> {{ 'LANDING.SERVICES.LIST.UPDATED_MEDICAL_HISTORY' | translate }}
                   </li>
-                  <li>
-                    <i class="fas fa-check"></i> Alertas y Notificaciones
-                  </li>
-                  <li>
-                    <i class="fas fa-check"></i> Recursos Educativos a Mano
-                  </li>
-                  <li>
-                    <i class="fas fa-check"></i> Comunicación Directa con el Chat
-                  </li>
+                  <li><i class="fas fa-check"></i> {{ 'LANDING.SERVICES.LIST.ALERTS_NOTIFICATIONS' | translate }}</li>
+                  <li><i class="fas fa-check"></i> {{ 'LANDING.SERVICES.LIST.EDUCATIONAL_RESOURCES' | translate }}</li>
+                  <li><i class="fas fa-check"></i> {{ 'LANDING.SERVICES.LIST.DIRECT_COMMUNICATION' | translate }}</li>
                 </ul>
               </div>
             </div>
-            <div class="list">
+            <!-- <div class="list">
               <div class="row">
                 <div class="col-lg-6 col-md-12">
                   <div class="services-info">
                     <i class="fas fa-heartbeat"></i>
                     <div>
-                      <h4>15+ Años</h4>
-                      <span>De experiencia en tecnología</span>
+                      <h4>{{ 'LANDING.SERVICES.EXPERIENCE' | translate }}</h4>
+                      <span>{{ 'LANDING.SERVICES.TECH_EXPERIENCE' | translate }}</span>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
         <div class="col-lg-5 col-md-12">
@@ -221,20 +189,16 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
   <div class="professionals" id="professionals">
     <div class="container">
       <div class="section-title-warp">
         <span class="sub-title">
-          <i class="fas fa-hashtag"></i> Nuestros prefesionales
+          <i class="fas fa-hashtag"></i> {{ 'LANDING.PROFESSIONALS.SUBTITLE' | translate }}
         </span>
-        <h2>Algunos de nuestros profesionales que <small> confían en nosotros</small></h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua.
-        </p>
+        <h2>{{ 'LANDING.PROFESSIONALS.TITLE' | translate }}</h2>
+        <p>{{ 'LANDING.PROFESSIONALS.DESCRIPTION' | translate }}</p>
       </div>
       <div class="controls">
         <form [formGroup]="searchForm">
@@ -242,8 +206,9 @@
             <div class="col-lg-8 col-md-12">
               <div class="search-bar">
                 <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>Buscar...</mat-label>
-                  <input matInput formControlName="inputField" placeholder="Buscar" (keyup)="applyFilter()">
+                  <mat-label>{{ 'LANDING.PROFESSIONALS.SEARCH_LABEL' | translate }}</mat-label>
+                  <input matInput formControlName="inputField"
+                    placeholder="{{ 'LANDING.PROFESSIONALS.SEARCH_LABEL' | translate }}" (keyup)="applyFilter()">
                   <mat-icon matSuffix>search</mat-icon>
                 </mat-form-field>
               </div>
@@ -251,11 +216,11 @@
             <div class="col-lg-4 col-md-12">
               <div class="filter">
                 <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>Profesión</mat-label>
+                  <mat-label>{{ 'LANDING.PROFESSIONALS.PROFESSION_LABEL' | translate }}</mat-label>
                   <mat-select formControlName="selectField" (selectionChange)="applyFilter()">
-                    <mat-option value="">Todos</mat-option> <!-- Añade esta línea -->
-                    <mat-option *ngFor="let profession of uniqueProfessions" [value]="profession">
-                      {{ profession }}
+                    <mat-option value="">{{ 'LANDING.PROFESSIONALS.ALL_PROFESSIONS' | translate }}</mat-option>
+                    <mat-option *ngFor="let role of uniqueRoles" [value]="role">
+                      {{ role }}
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
@@ -265,6 +230,18 @@
         </form>
       </div>
       <div class="professionals-wrapper">
+        <div *ngIf="isLoading" class="preloader pl-size-xl">
+          <div class="preloader pl-size-xl">
+            <div class="spinner-layer pl-cyan">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="doctor-card" *ngFor="let item of filteredDoctorsItems">
           <div class="single-doctor">
             <a class="d-block">
@@ -272,12 +249,12 @@
             </a>
             <div class="doctor-content">
               <h3>{{ item.name }}</h3>
-              <span>{{ item.profession }}</span>
+              <span>{{ item.role }}</span>
             </div>
           </div>
         </div>
-        <p *ngIf="filteredDoctorsItems.length === 0" class="no-results-message">
-          No se encontraron resultados.
+        <p *ngIf="filteredDoctorsItems.length === 0 && !isLoading" class="no-results-message">
+          {{ 'LANDING.PROFESSIONALS.NO_RESULTS' | translate }}
         </p>
       </div>
     </div>
@@ -286,11 +263,11 @@
     <div class="container">
       <div class="section-title-warp">
         <span class="sub-title">
-          <i class="fas fa-hashtag"></i> Testimonios
+          <i class="fas fa-hashtag"></i> {{ 'LANDING.REVIEWS.SUBTITLE' | translate }}
         </span>
-        <h2>Lo Que Dicen Nuestros Colaboradores</h2>
+        <h2>{{ 'LANDING.REVIEWS.TITLE' | translate }}</h2>
         <p>
-          Testimonios reales de especialistas que están transformando la salud mental con Bloom Quiet Mind.
+          {{ 'LANDING.REVIEWS.DESCRIPTION' | translate }}
         </p>
       </div>
       <div class="reviews-wrapper">
@@ -302,11 +279,11 @@
                   <div class="icon">
                     <i class="fas fa-quote-left"></i>
                   </div>
-                  <p>{{ item.reviewText }}</p>
+                  <p>{{ item.reviewText | translate  }}</p>
                   <div class="review-info">
                     <img [src]="item.reviewerImage" alt="image">
-                    <h3>{{ item.reviewerName }}</h3>
-                    <span>{{ item.reviewerPosition }}</span>
+                    <h3>{{ item.reviewerName | translate  }}</h3>
+                    <span>{{ item.reviewerPosition | translate  }}</span>
                   </div>
                 </div>
               </div>
@@ -316,4 +293,5 @@
       </div>
     </div>
   </div>
+  
 </div>

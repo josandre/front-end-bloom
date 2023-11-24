@@ -1,10 +1,11 @@
 import { Component, OnInit} from "@angular/core";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {PatientService} from "../services/Patient.service";
-import {Patient} from "../models/Patient";
+import {PatientService} from "../service/Patient.service";
+import {Patient} from "../model/Patient";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AuthService} from "@core";
-import {ActivatedRoute, Router} from "@angular/router";
+import { Router} from "@angular/router";
+import { TranslateService } from "@ngx-translate/core";
 
 
 @Component({
@@ -15,10 +16,10 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class SignupPatientComponent implements OnInit{
   authForm!: FormGroup;
   hide = true;
-  chide = true;
+  isLoading: boolean = false
+  message: string = 'SIGN_UP_PATIENTS.MESSAGE'
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private patientService: PatientService,  private snackBar: MatSnackBar, private readonly authService: AuthService)  {
-  }
+  constructor(private router: Router, private formBuilder: FormBuilder, private patientService: PatientService,  private snackBar: MatSnackBar, private readonly authService: AuthService,private translate: TranslateService)  {}
 
   ngOnInit() {
     console.log(this.authService.currentUserValue.id)
@@ -59,7 +60,7 @@ export class SignupPatientComponent implements OnInit{
   }
 
   onSubmit(){
-    console.log(this.authForm.valid, 'valid')
+    this.isLoading = true
 
     if(this.authForm.valid){
       const patient : Patient = new Patient({
@@ -72,20 +73,20 @@ export class SignupPatientComponent implements OnInit{
         phone : this.authForm.controls['phone'].value,
         address : this.authForm.controls['address'].value })
 
-      console.log(patient)
-
       this.patientService.registerPatient(patient).subscribe((res) => {
+        this.isLoading = false;
         switch (res) {
           case 200:{
-            this.openSnackBar("Patient added", "Close")
+            this.openSnackBar('SNACKBAR_PATIENT_SIGNUP.SUCCESS', 'SNACKBAR_PATIENT_SIGNUP.CLOSE')
             this.router.navigate(['/doctor/patients']);
             break;
           }
         }
       }, error => {
+        this.isLoading = false;
             switch (error.error) {
               case 404:{
-                this.openSnackBar("The patient was not added", "Close" );
+                this.openSnackBar('SNACKBAR_PATIENT_SIGNUP.USER_NOT_ADDED', 'SNACKBAR_PATIENT_SIGNUP.CLOSE' );
                 break;
               }
             }
@@ -94,8 +95,9 @@ export class SignupPatientComponent implements OnInit{
     }
   }
 
-  openSnackBar(message: string, action: string){
-    this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'end'})
+  openSnackBar(message: string, action: string) {
+    this.translate.get([message,action]).subscribe((translations: any) => {
+    this.snackBar.open(translations[message], translations[action], { verticalPosition: 'top', horizontalPosition: 'end',duration: 4000 })
+    });
   }
-
 }

@@ -1,0 +1,165 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <app-breadcrumb [title]="'PATIENT_BREADCRUM.FORUMS.TITLE' | translate" [items]="[]"></app-breadcrumb>
+    </div>
+
+    <div>
+      <!--All Posts-->
+      <div *ngIf="forumState === ForumStates.ShowAllPosts">
+
+        <!--Loading card-->
+        <div *ngIf="postsLoaded === false">
+          <div class="center">
+            <app-spinner [isLoading]="true" [message]="message | translate"></app-spinner>
+          </div>
+        </div>
+
+        <!--All posts card-->
+        <div class="card" *ngIf="postsLoaded === true">
+          <div class="header">
+            <h1>{{'MENUITEMS.FORUMS.POSTS_TITLE' | translate}}</h1>
+            <div></div>
+          </div>
+
+          <div class="card-content">
+            <!--All posts-->
+            <button mat-flat-button color="primary" (click)="openNewPostDialog()">{{'MENUITEMS.FORUMS.CREATE_POST' | translate}}</button>
+
+            <!--Posts container-->
+            <div class="posts-container">
+              <app-post-preview *ngFor="let post of posts" [userImage]="post.userImage" [userName]="post.userName"
+                [date]="post.creationDate" [postTitle]="post.title" [postContent]="post.expericence"
+                (click)="openPost(post.postId)"></app-post-preview>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!--Waiting response-->
+      <div *ngIf="forumState === ForumStates.WaitingResponse">
+        <div class="center">
+          <app-spinner [isLoading]="true" [message]="message | translate"></app-spinner>
+        </div>
+      </div>
+
+
+      <!--Open post-->
+      <div *ngIf="forumState === ForumStates.OpenPost">
+        <!--Post loading-->
+        <div *ngIf="postLoaded === false">
+          <div class="center" *ngIf="postsLoaded">
+            <app-spinner [isLoading]="true" [message]="message | translate"></app-spinner>
+          </div>
+        </div>
+
+        <!--Post loaded-->
+        <div *ngIf="postLoaded === true">
+          <!--Post info-->
+          <div class="card">
+            <div class="header">
+              <div class="posts-title-container">
+                <h1>{{ currentPost.title }}</h1>
+              </div>
+
+              <!--Default user options-->
+              <div *ngIf="showAdvancedOptions() === false" class="post-options-container">
+                <button mat-flat-button color="primary" (click)="getPosts()">{{'MENUITEMS.FORUMS.BACK' |
+                  translate}}</button>
+              </div>
+
+              <!--Owner user options-->
+              <div *ngIf="showAdvancedOptions() === true" class="post-options-container">
+                <button mat-flat-button color="primary" (click)="getPosts()">{{'MENUITEMS.FORUMS.BACK' |
+                  translate}}</button>
+                <button type="button" class="btn btn-outline-danger" (click)="deletePost()">{{'MENUITEMS.FORUMS.DELETE'
+                  | translate}}</button>
+                <button mat-stroked-button class="stroked-btn" (click)="editPost()">{{'MENUITEMS.FORUMS.EDIT' |
+                  translate}}</button>
+              </div>
+            </div>
+
+            <!--User, date and content-->
+            <div class="card-content">
+              <div class="post-info-container">
+                <div *ngIf="postLoaded === true">
+                  <div class="user-section">
+                    <div class="user-image" [style]="getUserImageStyle()">
+                    </div>
+
+                    <div>
+                      <p class="username">{{ currentPost.userName }}</p>
+                      <p class="date">{{ currentPost.creationDate | date : "yyyy-MM-dd" }}</p>
+                    </div>
+                  </div>
+
+                  <!--Content view-->
+                  <div *ngIf="editingPost === false">
+                    <div class="content-section">
+                      <h2>{{ currentPost.title }}</h2>
+                      <p>{{ currentPost.experience }}</p>
+                    </div>
+                  </div>
+
+                  <!--Editor-->
+                  <div *ngIf="editingPost === true">
+                    <div class="content-section">
+                      <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>{{'MENUITEMS.FORUMS.POST_TITLE' | translate}}</mat-label>
+                        <input matInput [(ngModel)]="postEditorTitle">
+                      </mat-form-field>
+                      <br>
+                      <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>{{'MENUITEMS.FORUMS.POST_CONTENT' | translate}}</mat-label>
+                        <textarea matInput [(ngModel)]="postEditorContent"></textarea>
+                      </mat-form-field>
+
+                      <!--Interactable buttons-->
+                      <div *ngIf="postEditorEnabled === true" class="example-button-row">
+                        <button mat-flat-button color="primary" (click)="updatePost()">{{'MENUITEMS.FORUMS.SAVE_POST' |
+                          translate}}</button>
+                        <button mat-stroked-button class="stroked-btn"
+                          (click)="closePostEditor()">{{'MENUITEMS.FORUMS.CANCEL' | translate}}</button>
+                      </div>
+
+                      <!--Disabled buttons-->
+                      <div *ngIf="postEditorEnabled === false" class="example-button-row">
+                        <button mat-flat-button class="flat-btn-disabled" disabled>{{'MENUITEMS.FORUMS.SAVE_POST' |
+                          translate}}</button>
+                        <button mat-flat-button class="flat-btn-disabled" disabled>{{'MENUITEMS.FORUMS.CANCEL' |
+                          translate}}</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--Comments-->
+          <div class="card">
+            <div class="header">
+              <h1>{{'MENUITEMS.FORUMS.COMMENTS_SECTION' | translate}}</h1>
+            </div>
+
+            <div class="card-content">
+              <button mat-flat-button color="primary"
+                (click)="openNewCommentDialog()">{{'MENUITEMS.FORUMS.CREATE_COMMENT'
+                | translate}}</button>
+              <div>
+                <app-comment *ngFor="let comment of currentPost.comments" [forumComponent]="this"
+                  [commentID]="comment.id" [userName]="comment.userName" [userImage]="comment.userImage"
+                  [date]="comment.creationDate" [content]="comment.content"
+                  [showAdvancedOptions]="showAdvancedOptions() === true">
+                </app-comment>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

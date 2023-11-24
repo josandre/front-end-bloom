@@ -2,6 +2,7 @@ import { Role } from './role';
 
 export class User {
   id: number;
+  actualUserId: number;
   img: string;
   username: string;
   password: string;
@@ -9,6 +10,7 @@ export class User {
   lastName: string;
   role: string;
   token: string;
+  photo?: string;
 
   constructor(partial?:Partial<User>) {
     if(partial){

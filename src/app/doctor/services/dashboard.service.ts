@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { AuthService } from "@core";
 import { API_URL } from "../../../config";
 import { PatientCounts } from "../models/dashboard";
+import { Event, MedicalRecordI } from "app/patient/dashboard/dashboard.service";
 
 @Injectable({
   providedIn: 'root'
@@ -33,4 +34,19 @@ export class DashboardDoctorService {
       headers: { 'Authorization':  `Bearer ${this.currentUser.token}` }
     });
   }
+
+  getEvents(): Observable<Event[]> {
+    const URL = `${this.baseUrl}/events`;
+    return this.http.get<Event[]>(URL, {
+      headers: { 'Authorization':  `Bearer ${this.currentUser.token}` }
+    });
+  }
+
+  getMedicalRecords(): Observable<MedicalRecordI[]> {
+    const URL = `${this.baseUrl}/medical-records/doctor/${this.currentUser.id}`;
+    return this.http.get<MedicalRecordI[]>(URL, {
+      headers: { 'Authorization':  `Bearer ${this.currentUser.token}` }
+    });
+  }
+
 }

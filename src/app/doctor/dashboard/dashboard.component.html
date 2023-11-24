@@ -2,7 +2,7 @@
   <div class="content-block">
     <div class="block-header">
       <!-- breadcrumb -->
-      <app-breadcrumb [title]="'Doctor Dashboard'" [items]="[]" [active_item]="'Dashboard'"></app-breadcrumb>
+      <app-breadcrumb [title]="'DOCTOR_BREADCRUM.DASHBOARD.TITLE' | translate" [items]="[]"></app-breadcrumb>
     </div>
     <!-- Widgets -->
     <div class="row">
@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <div class="card card-statistic-2">
           <div class="clearfix">
             <div class="card-icon shadow-primary bg-orange">
@@ -60,25 +60,8 @@
             </div>
           </div>
         </div>
-      </div>      
-      <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <div class="card card-statistic-2">
-          <div class="clearfix">
-            <div class="card-icon shadow-primary bg-red">
-              <i class="material-icons align-middle">face</i>
-            </div>
-            <div class="card-right">
-              <div>
-                <h5 class="float-end responsive-font">{{ 'DASHBOARD_DOCTOR.INCREASED_ANXIETY_LEVELS' | translate }}</h5>
-              </div>
-              <div class="m-r-10 m-l-10">
-                <h3 class="font-weight-bold float-end mb-0 responsive-font-2">5</h3>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
-      <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <div class="card card-statistic-2">
           <div class="clearfix">
             <div class="card-icon shadow-primary bg-cyan">
@@ -111,8 +94,7 @@
           </div>
         </div>
       </div>
-      
-      <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <div class="card card-statistic-2">
           <div class="clearfix">
             <div class="card-icon shadow-primary bg-green">
@@ -144,11 +126,11 @@
             </div>
           </div>
         </div>
-      </div>     
+      </div>
     </div>
     <!-- #END# Widgets -->
     <div class="row">
-      <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
         <div class="card" style="height: calc(100% - 24px);">
           <div class="card-body">
             <div class="float-start">
@@ -156,62 +138,83 @@
               <h5> <span class="text-muted font-12"></span></h5>
             </div>
             <div class="mb-5">
-              <apx-chart
-              [series]="topAnxietyCasesOptions.series!"
-              [chart]="topAnxietyCasesOptions.chart!"
-              [dataLabels]="topAnxietyCasesOptions.dataLabels!"
-              [stroke]="topAnxietyCasesOptions.stroke!"
-              [colors]="topAnxietyCasesOptions.colors!"
-              [title]="topAnxietyCasesOptions.title!"
-              [subtitle]="topAnxietyCasesOptions.subtitle!"
-              [plotOptions]="topAnxietyCasesOptions.plotOptions!"
-              [yaxis]="topAnxietyCasesOptions.yaxis!"
-              [xaxis]="topAnxietyCasesOptions.xaxis!"
-              [tooltip]="topAnxietyCasesOptions.tooltip!"
-            ></apx-chart>
+              <ng-container *ngIf="isLoadingTopAnxietyCases; else topAnxietyCasesLoaded">
+                <div class="loader-chart">
+                  <div class="preloader pl-size-xl">
+                    <div class="spinner-layer pl-cyan">
+                      <div class="circle-clipper left">
+                        <div class="circle"></div>
+                      </div>
+                      <div class="circle-clipper right">
+                        <div class="circle"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-template #topAnxietyCasesLoaded>
+                <ng-container *ngIf="topAnxietyCases.length > 0; else noDataTemplate">
+                  <apx-chart [series]="topAnxietyCasesOptions.series!" [chart]="topAnxietyCasesOptions.chart!"
+                    [dataLabels]="topAnxietyCasesOptions.dataLabels!" [stroke]="topAnxietyCasesOptions.stroke!"
+                    [colors]="topAnxietyCasesOptions.colors!" [title]="topAnxietyCasesOptions.title!"
+                    [subtitle]="topAnxietyCasesOptions.subtitle!" [plotOptions]="topAnxietyCasesOptions.plotOptions!"
+                    [yaxis]="topAnxietyCasesOptions.yaxis!" [xaxis]="topAnxietyCasesOptions.xaxis!"
+                    [tooltip]="topAnxietyCasesOptions.tooltip!"></apx-chart>
+                </ng-container>
+                <ng-template #noDataTemplate>
+                  
+                  <div class="loader-chart">
+                    <p> {{ 'DASHBOARD_DOCTOR.NO_DATA_FOR_ATTACKS' | translate }} </p>
+                  </div>
+                </ng-template>
+              </ng-template>
+
             </div>
           </div>
         </div>
       </div>
-      <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+      <!-- <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
         <div class="card">
           <div class="header">
             <h2>{{ 'DASHBOARD_DOCTOR.PATIENT_GROUPING_CHART' | translate }}</h2>
           </div>
           <div class="body">
-            <div id="chart">
-              <apx-chart [series]="anxietyLevelGroupingOptions.series!" [chart]="anxietyLevelGroupingOptions.chart!"
-                [labels]="anxietyLevelGroupingOptions.labels!" [responsive]="anxietyLevelGroupingOptions.responsive!"
-                [dataLabels]="anxietyLevelGroupingOptions.dataLabels!" [legend]="anxietyLevelGroupingOptions.legend!" 
-                [colors]="anxietyLevelGroupingOptions.colors!"
-                class="apex-pie-center">
-              </apx-chart>
-            </div>
-            <div class="table-responsive m-t-15">
-              <table class="table align-items-center">
-                <tbody>
-                  <ng-container *ngFor="let level of levels; let i = index">
-                    <tr>
-                      <td>
-                        <i class="fa fa-circle" 
-                           [class.col-green]="i === 0" 
-                           [class.col-cyan]="i === 1" 
-                           [class.col-blue]="i === 2" 
-                           [class.col-yellow]="i === 3" 
-                           [class.col-orange]="i === 4"
-                           msr-2></i>
-                           {{ 'DASHBOARD_DOCTOR.LEVEL' | translate }}  {{ level.level }}
-                      </td>
-                      <td>{{ level.patients }} {{ 'DASHBOARD_DOCTOR.PATIENTS' | translate }} </td>
-                      <td>{{ percentages[i] }}%</td>
-                    </tr>
-                  </ng-container>
-                </tbody>
-              </table>
-            </div>
+            <ng-container *ngIf="isLoadingAnxietyLevels; else anxietyLevelChartLoaded">
+              <div class="loader-chart">
+                <div class="preloader pl-size-xl">
+                  <div class="spinner-layer pl-cyan">
+                    <div class="circle-clipper left">
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                      <div class="circle"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+            <ng-template #anxietyLevelChartLoaded>
+              <div class="table-responsive m-t-15">
+                <table class="table align-items-center">
+                  <tbody>
+                    <ng-container *ngFor="let level of levels; let i = index">
+                      <tr>
+                        <td>
+                        
+                          <i class="fa fa-circle" [ngClass]="{ 'col-green': i === 0, 'col-cyan': i === 1 }"></i>
+                          {{ level.name }} 
+                        </td>
+                        <td>{{ level.patients }} {{ 'DASHBOARD_DOCTOR.PATIENTS' | translate }}</td>
+                        <td>{{ percentages[i] }}%</td>
+                      </tr>
+                    </ng-container>
+                  </tbody>
+                </table>
+              </div>
+            </ng-template>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </section>

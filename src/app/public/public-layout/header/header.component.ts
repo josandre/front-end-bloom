@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header-landing',
@@ -7,14 +8,29 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  currentLang: string;
 
-  constructor(private router: Router) { }
-
-  ngOnInit(): void {
+  constructor(
+    private router: Router,
+    private translate: TranslateService
+  ) {
+    this.currentLang = 'en'; // Idioma predeterminado
   }
 
-  //Navegación a la página de login
+  ngOnInit(): void {
+    this.translate.use(this.currentLang);
+  }
+
   navigateToLogin(): void {
     this.router.navigate(['/authentication/signin']);
+  }
+
+  changeLanguage(lang: string): void {
+    this.currentLang = lang;
+    this.translate.use(lang);
+  }
+
+  isLanguageActive(lang: string): boolean {
+    return this.currentLang === lang;
   }
 }

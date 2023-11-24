@@ -15,11 +15,13 @@ import {
   ApexResponsive,
 } from 'ng-apexcharts';
 import { AuthService } from "@core";
-import { TOP_ANSIETY_CASES } from './provitionals/top-anxiety-cases';
+import { Case, TOP_ANSIETY_CASES } from './provitionals/top-anxiety-cases';
 import { Group, LEVELS } from './provitionals/anxiety-level-group';
 import { PatientCounts } from '../models/dashboard';
 import { DashboardDoctorService } from '../services/dashboard.service';
 import { TranslateService } from '@ngx-translate/core';
+import { Event, MedicalRecordI } from 'app/patient/dashboard/dashboard.service';
+import { Subscription } from 'rxjs';
 
 export type topAnxietyCases = {
   series: ApexAxisChartSeries;
@@ -54,17 +56,23 @@ export class DashboardComponent implements OnInit {
   @ViewChild('chart')
   chart!: ChartComponent;
   
+  private langChangeSubscription: Subscription;
+
   public topAnxietyCasesOptions: Partial<topAnxietyCases>;
   public anxietyLevelGroupingOptions: Partial<anxietyLevelGroupingChart>;
 
-  public levels = LEVELS;
+  public levels = LEVELS; // Asegúrate de que esté importado correctamente
   public percentages: number[] = [];
+  public isLoadingAnxietyLevels = true;
 
   name: string;
   public patientCounts: PatientCounts;
   public resourceCounts: Number; 
   public isLoadingPatients = true;
-  public isLoadingResources = true; // Variable para la carga de recursos
+  public isLoadingResources = true; 
+
+  isLoadingTopAnxietyCases = true; 
+  topAnxietyCases: Case[] = []; 
 
   constructor(
     private readonly authService: AuthService,
@@ -78,9 +86,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.name = this.authService.currentUserValue.firstName + " " + this.authService.currentUserValue.lastName
-    this.percentages = this.calculatePercentages(LEVELS);
 
-    // Llamar al servicio y manejar la carga de datos de pacientes
     this.dashboardService.getCountPatients().subscribe(
       (data) => {
         this.patientCounts = data;
@@ -91,8 +97,6 @@ export class DashboardComponent implements OnInit {
         this.isLoadingPatients = false; // En caso de error, también dejamos de cargar
       }
     );
-
-    // Llamar al servicio de recursos y manejar la carga de datos de recursos
     this.dashboardService.getCountResources().subscribe(
       (data) => {
         console.log(data)
@@ -105,20 +109,98 @@ export class DashboardComponent implements OnInit {
       }
     );
 
-    this.initTopAnxietyCases();
-    this.initAnxietyLevelGroupingChart();
+    this.dashboardService.getEvents().subscribe(
+      events => {
+        this.processTopAnxietyCases(events);
+        this.isLoadingTopAnxietyCases = false;
+      },
+      error => {
+        console.error('Error al obtener eventos:', error);
+        this.isLoadingTopAnxietyCases = false;
+      }
+    );
+
+    this.dashboardService.getMedicalRecords().subscribe(
+      records => {
+        this.processMedicalRecords(records);
+      },
+      error => {
+        console.error('Error al obtener registros médicos:', error);
+      }
+    );
+    this.langChangeSubscription = this.translate.onLangChange.subscribe(() => {
+      this.updateGraphTranslations();
+    });
+  }
+  ngOnDestroy() {
+    if (this.langChangeSubscription) {
+      this.langChangeSubscription.unsubscribe();
+    }
   }
 
-  private calculatePercentages(levels: Group[]): number[] {
+  private processMedicalRecords(records: MedicalRecordI[]) {
+    const groupCounts: { [key: string]: number } = this.levels.reduce((acc: any, level: any) => {
+      acc[level.level] = 0;
+      return acc;
+    }, {});
+
+    records.forEach(record => {
+      record.medicalHistories.forEach((history : any) => {
+        const level = history.anxietyLevel || 'INDETERMINATE';
+        groupCounts[level] += 1;
+      });
+    });
+
+    this.updateAnxietyLevels(groupCounts);
+    this.isLoadingAnxietyLevels = false;
+  }
+  
+
+  private updateAnxietyLevels(counts: { [key: string]: number }) {
+    const totalPatients = Object.values(counts).reduce((sum, count) => sum + count, 0);
+    
+    this.levels.forEach(level => {
+      const levelCount = counts[level.level];
+      level.patients = levelCount;
+      this.percentages[parseInt(level.level) - 1] = parseFloat(((levelCount / totalPatients) * 100).toFixed(1));
+    });
+  }
+  
+  
+  private calculatePercentages(levels: Group[]): void {
     const totalPatients = levels.reduce((sum, level) => sum + level.patients, 0);
-    return levels.map(level => parseFloat(((level.patients / totalPatients) * 100).toFixed(1)));
+    levels.forEach((level, index) => {
+      this.percentages[index] = parseFloat(((level.patients / totalPatients) * 100).toFixed(1));
+      console.log(`Level: ${level.level}, Percentage: ${this.percentages[index]}%`);
+    });
+  }
+  
+  
+  private processTopAnxietyCases(events: Event[]) {
+    const counts: {[key: string]: number} = {};
+    events.forEach(event => {
+      const patientName = `${event.user.name} ${event.user.lastName}`;
+      counts[patientName] = (counts[patientName] || 0) + 1;
+    });
+  
+    const sortedCases = Object.entries(counts)
+      .map(([name, cases]) => ({ name, cases }))
+      .sort((a, b) => b.cases - a.cases)
+      .slice(0, 5); 
+  
+    this.topAnxietyCases = sortedCases;
+    this.initTopAnxietyCases();
+  }
+
+  private updateGraphTranslations() {
+    this.initTopAnxietyCases();
   }
 
 
   private initTopAnxietyCases() {
 
-    const categories = TOP_ANSIETY_CASES.map(c => c.name);
-    const seriesData = TOP_ANSIETY_CASES.map(c => c.cases);
+    const categories = this.topAnxietyCases.map(c => c.name);
+    const seriesData = this.topAnxietyCases.map(c => c.cases);
   
     this.topAnxietyCasesOptions = {
       series: [
@@ -142,8 +224,6 @@ export class DashboardComponent implements OnInit {
       },
       colors: [
         "#e53935", // Rojo brillante al inicio
-        "#fb8c00", // Naranja intenso
-        "#ec407a", // Rosa fuerte
         "#fdd835", // Amarillo brillante
         "#7cb342", // Verde claro
         "#26a69a", // Verde azulado
@@ -161,8 +241,10 @@ export class DashboardComponent implements OnInit {
         style: {
           colors: ["#fff"]
         },
-        formatter: function(val, opt) {
-          return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val + " ataques";
+        formatter: (val, opt) => {
+          // Usar el servicio de traducción aquí
+          const attacksTranslation = this.translate.instant('DASHBOARD_DOCTOR.ATTACKS');
+          return `${opt.w.globals.labels[opt.dataPointIndex]}:  ${val} ${attacksTranslation}`;
         },
         offsetX: 0,
         dropShadow: {
@@ -181,15 +263,6 @@ export class DashboardComponent implements OnInit {
           show: false
         }
       },
-      // title: {
-      //   text: "Custom DataLabels",
-      //   align: "center",
-      //   floating: true
-      // },
-      // subtitle: {
-      //   text: "Category Names as DataLabels inside bars",
-      //   align: "center"
-      // },
       tooltip: {
         theme: "dark",
         x: {
@@ -205,24 +278,46 @@ export class DashboardComponent implements OnInit {
       }
     };
   }
-  private initAnxietyLevelGroupingChart() {
 
-    const percentages = this.calculatePercentages(LEVELS);
+  // private initAnxietyLevelGroupingChart() {
 
-    this.anxietyLevelGroupingOptions = {
-      series: percentages,
-      chart: {
-        type: 'pie',
-        width: 270,
-      },
-      legend: {
-        show: false,
-      },
-      dataLabels: {
-        enabled: true,
-      },
-      labels: ['Nivel 1', 'Nivel 2', 'Nivel 3', 'Nivel 4', 'Nivel 5'],
-      colors: ['#4caf50', '#00bcd4', '#2196f3', '#f9cb40', '#bb2e45']
-    };
-  }
+  //   const percentages = this.calculatePercentages(LEVELS);
+
+  //   this.anxietyLevelGroupingOptions = {
+  //     series: percentages,
+  //     chart: {
+  //       type: 'pie',
+  //       width: 270,
+  //     },
+  //     legend: {
+  //       show: false,
+  //     },
+  //     dataLabels: {
+  //       enabled: true,
+  //     },
+  //     labels: ['Nivel 1', 'Nivel 2', 'Nivel 3', 'Nivel 4', 'Nivel 5'],
+  //     colors: ['#4caf50', '#00bcd4', '#2196f3', '#f9cb40', '#bb2e45']
+  //   };
+  // }
+}
+
+interface MedicalRecipe {
+  id: number;
+  name: string;
+  creationDate: string;
+  indications: string;
+}
+
+interface MedicalHistory {
+  id: number;
+  creationDate: string;
+  observations: string;
+  anxietyLevel: 'INDETERMINATE' | 'MINIMAL' | 'MILD' | 'MODERATE' | 'SEVERE' | 'DEBILITATING' | null;
+  treatmentStartDate: string;
+  treatmentEndDate: string;
+  medicalRecipe: MedicalRecipe;
+  readable: boolean;
+  monthsOfTreatment: number;
+  yearsOfTreatment: number;
+  daysOfTreatment: number;
 }

@@ -1,9 +1,9 @@
 <div class="container">
-  <p mat-dialog-title class="text-muted">Are you sure?</p>
+  <p mat-dialog-title class="text-muted">{{'MEDICAL_RECORD.MEDICAL_HISTORY.DELETE_CONFIRMATION' | translate}}</p>
   <div mat-dialog-actions class="mb-1">
     <button mat-flat-button color="warn" [mat-dialog-close]="1" (click)="confirmDelete()">
-      Delete
+      {{'MEDICAL_RECORD.MEDICAL_HISTORY.DELETE' | translate}}
     </button>
-    <button mat-flat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+    <button mat-flat-button (click)="onNoClick()" tabindex="-1">{{'MEDICAL_RECORD.MEDICAL_HISTORY.CANCEL' | translate}}</button>
   </div>
 </div>

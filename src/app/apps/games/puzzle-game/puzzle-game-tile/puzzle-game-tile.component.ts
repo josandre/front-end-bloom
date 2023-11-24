@@ -11,7 +11,8 @@ export class PuzzleGameTileComponent implements OnInit, AfterContentChecked {
   @Input() tilesNumber:number;
   @Input() tileSize:number;
   @Input() disabled:boolean;
-
+  @Input() showTileNumber:boolean;
+  
   @HostBinding('style.top.px') topPosition:number;
   @HostBinding('style.left.px') leftPosition:number;
   @HostBinding('style.width.px') width:number;

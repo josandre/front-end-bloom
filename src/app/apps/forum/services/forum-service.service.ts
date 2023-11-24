@@ -41,6 +41,15 @@ export class ForumServiceService {
   }
 
   /**
+   * Use this function to update an existing post
+   * @param data info about the modified post
+   * @returns 
+   */
+  updatePost(data:{id:number, title:string, experience:string}) : Observable<any> {
+    return this.http.put(POSTS_ENDPOINT, data, {headers: this.generateHeader()});
+  }
+
+  /**
    * Use this function to delete an existing post
    * @param postID Unique identifier of the post
    * @returns 
@@ -56,6 +65,15 @@ export class ForumServiceService {
    */
   saveComment(data:{content:string, post:{id:number}, user:{id:number}}) : Observable<any> {
     return this.http.post(COMMENTS_ENDPOINT, data, {headers: this.generateHeader()});
+  }
+
+  /**
+   * Use this function to update an existing comment
+   * @param data info about the modified comment
+   * @returns 
+   */
+  updateComment(data:{id:number, content:string}) : Observable<any> {
+    return this.http.put(COMMENTS_ENDPOINT, data, {headers: this.generateHeader()});
   }
 
   /**

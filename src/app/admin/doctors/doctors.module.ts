@@ -7,6 +7,7 @@ import { AddDoctorComponent } from './add-doctor/add-doctor.component';
 import { EditDoctorComponent } from './edit-doctor/edit-doctor.component';
 import { ComponentsModule } from '@shared/components/components.module';
 import { SharedModule } from '@shared';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { SharedModule } from '@shared';
     DoctorsRoutingModule,
     ComponentsModule,
     SharedModule,
+    TranslateModule,
   ],
   providers: [],
 })

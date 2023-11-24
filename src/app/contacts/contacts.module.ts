@@ -8,7 +8,7 @@ import { DeleteComponent } from './delete/delete.component';
 import { ContactsService } from './contacts.service';
 import { ComponentsModule } from '@shared/components/components.module';
 import { SharedModule } from '@shared';
-
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [ContactsComponent, contactForm, DeleteComponent],
   imports: [
@@ -18,6 +18,8 @@ import { SharedModule } from '@shared';
     AdvanceTableRoutingModule,
     ComponentsModule,
     SharedModule,
+    TranslateModule,
+
   ],
   providers: [ContactsService],
 })

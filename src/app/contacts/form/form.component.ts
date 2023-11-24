@@ -16,7 +16,7 @@ export interface DialogData {
 })
 export class FormComponent {
   action: string;
-  dialogTitle?: string;
+  dialogTitle: string;
   contactForm: FormGroup;
   isDetails = false;
   contact: Contact;
@@ -32,7 +32,7 @@ export class FormComponent {
   ) {
     this.action = data.action;
     this.contact = this.action === 'edit' ? data.contact : Contact.createEmpty();
-    this.dialogTitle = this.action === 'edit' ? 'Editar Contacto' : 'Nuevo Contacto';
+    this.dialogTitle = this.action === 'edit' ? 'CONTACT_FORM.EDIT_CONTACT' : 'CONTACT_FORM.NEW_CONTACT';
     this.isDetails = this.action === 'details';
     this.contactForm = this.createContactForm();
   }

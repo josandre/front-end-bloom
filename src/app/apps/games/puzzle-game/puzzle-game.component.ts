@@ -45,6 +45,8 @@ export class PuzzleGameComponent implements OnInit {
   tilesNumber:number = 0;
   tiles?: PuzzleTile[] = Array(Math.pow(this.tilesNumber, 2)).fill(null);
   matrixSize:number = 0;
+  showTileNumbers:boolean = true;
+  showSolution:boolean = false;
 
   // Game state variables
   currentScore:number = 0;

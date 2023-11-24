@@ -2,7 +2,7 @@
   <div class="content-block" *ngIf="patients != null">
     <div class="block-header section-header">
 
-      <app-breadcrumb [title]="'Patients'" [items]="[]" [active_item]="'Patients'"></app-breadcrumb>
+      <app-breadcrumb [title]="'DOCTOR_BREADCRUM.PATIENTS.TITLE' | translate"></app-breadcrumb>
       <button mat-flat-button color="primary" class="btn-create-patient" [routerLink]="['/doctor/patient']">Add
         new</button>
     </div>

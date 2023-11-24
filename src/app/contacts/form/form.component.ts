@@ -52,11 +52,11 @@ export class FormComponent {
     }
     this.isLoading = true; // Activa el spinner
     const formValues = this.contactForm.getRawValue();
-    const userId = this.contactsService.currentUser.id; // Asumiendo que puedes obtener el id del usuario conectado desde el servicio
-
+    const currentUser = this.contactsService.getCurrentUser(); // Usar getCurrentUser() para obtener la información del usuario actual
+  
     const contactData = {
       ...formValues,
-      user: { id: userId }
+      user: { id: currentUser.id }
     };
   
     if (this.action === 'add') {

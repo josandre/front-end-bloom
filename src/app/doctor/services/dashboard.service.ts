@@ -12,41 +12,49 @@ import { Event, MedicalRecordI } from "app/patient/dashboard/dashboard.service";
 
 export class DashboardDoctorService {
   private readonly baseUrl = API_URL;
-  private readonly currentUser;
 
   constructor(
     private readonly http: HttpClient,
     private authenticationService: AuthService
-  ) {
-    this.currentUser = this.authenticationService.currentUserValue;
+  ) {}
+
+  private getCurrentUser() {
+    return this.authenticationService.currentUserValue;
   }
 
   getCountPatients(): Observable<PatientCounts> {
-    const URL = `${this.baseUrl}/count-patients/${this.currentUser.id}`;
+    const currentUser = this.getCurrentUser();
+    const URL = `${this.baseUrl}/count-patients/${currentUser.id}`;
+    console.log('getCountPatients', currentUser)
     return this.http.get<PatientCounts>(URL, {
-      headers: { 'Authorization':  `Bearer ${this.currentUser.token}` }
+      headers: { 'Authorization':  `Bearer ${currentUser.token}` }
     });
   }
 
   getCountResources(): Observable<number> {
-    const URL = `${this.baseUrl}/resource/countByMedId/${this.currentUser.id}`;
+    const currentUser = this.getCurrentUser();
+    const URL = `${this.baseUrl}/resource/countByMedId/${currentUser.id}`;
+    console.log('getCountResources', currentUser)
     return this.http.get<number>(URL, {
-      headers: { 'Authorization':  `Bearer ${this.currentUser.token}` }
+      headers: { 'Authorization':  `Bearer ${currentUser.token}` }
     });
   }
 
   getEvents(): Observable<Event[]> {
+    const currentUser = this.getCurrentUser();
     const URL = `${this.baseUrl}/events`;
+    console.log('getEvents', currentUser)
     return this.http.get<Event[]>(URL, {
-      headers: { 'Authorization':  `Bearer ${this.currentUser.token}` }
+      headers: { 'Authorization':  `Bearer ${currentUser.token}` }
     });
   }
 
   getMedicalRecords(): Observable<MedicalRecordI[]> {
-    const URL = `${this.baseUrl}/medical-records/doctor/${this.currentUser.id}`;
+    const currentUser = this.getCurrentUser();
+    const URL = `${this.baseUrl}/medical-records/doctor/${currentUser.id}`;
+    console.log('getMedicalRecords', currentUser)
     return this.http.get<MedicalRecordI[]>(URL, {
-      headers: { 'Authorization':  `Bearer ${this.currentUser.token}` }
+      headers: { 'Authorization':  `Bearer ${currentUser.token}` }
     });
   }
-
 }

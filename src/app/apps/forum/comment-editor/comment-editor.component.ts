@@ -39,10 +39,12 @@ export class CommentEditorComponent implements OnInit {
 
     this.editorEnabled = false;
     this.forumComponent?.onWaitingResponse();
+    this.closeDialog();
+    
     this.forumService.saveComment(newComment).
     subscribe(
       response => {
-        this.closeDialog();
+        
         this.forumComponent?.openPost(this.currentPostID);
       },
       error => {

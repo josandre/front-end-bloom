@@ -12,6 +12,8 @@ export class MyResourcesComponent implements OnInit{
 
   message: string = 'MENUITEMS.RESOURCES.MESSAGE'
 
+  messageData: string = 'PATIENTS_LISTS.MESSAGE_NO_DATA'
+
   constructor(private readonly resourceService: ResourceService,private snackBar: MatSnackBar) {
     this.selectedResourceIds=[];
     }
@@ -20,7 +22,8 @@ export class MyResourcesComponent implements OnInit{
   originalResourcesList: Resource[];
   selectedResourceIds: number[];
 
-  flag: boolean = true;
+  flag: boolean = false;
+  isEmpty: boolean = false;
 
   ngOnInit(){
     this.flag = true;
@@ -28,9 +31,17 @@ export class MyResourcesComponent implements OnInit{
       resources =>{
         this.resourcesList = resources;
         this.originalResourcesList=[...resources]
-        // this.flag = false;
-      }
 
+        if(!this.resourcesList || !this.resourcesList.length){
+          this.isEmpty = true
+        }
+
+        if(!this.originalResourcesList || !this.originalResourcesList.length){
+          this.isEmpty = true
+        }
+
+        this.flag = false;
+      }
     )
   }
 

@@ -6,7 +6,12 @@
       <app-breadcrumb [title]="'DOCTOR_BREADCRUM.RESOURCES.TITLE' | translate" [active_item]="'DOCTOR_BREADCRUM.RESOURCES.ACTIVE_ITEM' | translate"></app-breadcrumb>
     </div>
 
-    <div class="row" *ngIf="!flag">
+    <div class="center" *ngIf="isEmpty || flag">
+      <app-spinner [isLoading]="flag" [message]="message | translate"></app-spinner>
+      <app-wink *ngIf="isEmpty && !flag" [message]="messageData | translate"></app-wink>
+    </div>
+
+    <div class="row" *ngIf="!isEmpty && !flag" >
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="card" >
           <div class="materialTableHeader">
@@ -99,8 +104,6 @@
     </div>
   </div>
 
-  <div class="center" *ngIf="flag" >
-    <app-spinner [isLoading]="flag" [message]="message | translate"></app-spinner>
-  </div>
+
 
 </section>

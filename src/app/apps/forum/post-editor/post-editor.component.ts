@@ -35,12 +35,15 @@ export class PostEditorComponent implements OnInit {
       }
     }
 
+    console.log(newPost);
+
     this.editorEnabled = false;
     this.forumComponent?.onWaitingResponse();
+    this.closeDialog();
+
     this.forumService.savePost(newPost).
     subscribe(
       response => {
-        this.closeDialog();
         this.forumComponent?.getPosts();
       },
       error => {

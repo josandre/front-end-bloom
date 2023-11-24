@@ -730,9 +730,11 @@
     "PASSWORD_REQUIRED":"Password is required",
     "REMEMBER":"Remember me",
     "FORGOT":"Forgot Password?",
-    "LOGIN":"Login"
-
-
+    "LOGIN":"Login",
+    "LANDING" : "Back to landing page"
+  },
+  "PATIENT": {
+    "NO_RESULTS": "No resources available."
   },
   "SNACKBAR_SIGNUP":{
     "CLOSE":"Close",
@@ -745,8 +747,8 @@
     "CLOSE":"Close",
     "SUCCESS":"Patient added",
     "EMAIL_REGISTRED":"Your email is already registered",
-    "USER_NOT_ADDED":"The user is not acceptable"
-
+    "USER_NOT_ADDED":"The user is not acceptable"    
   }
+  
 
 }

@@ -55,6 +55,15 @@
 
                 </tr>
 
+                <tr *ngIf="resourcesList?.length === 0">
+                  <td colspan="4"> 
+                    <div class="no-results-container">
+                      <img src="assets/images/pages/BloomGuiño.png" alt="bloom">
+                      <h4>{{ 'PATIENT.NO_RESULTS' | translate }}</h4>
+                    </div>
+                  </td>
+                </tr>
+
                 </tbody>
               </table>
                             <!-- Loading spinner -->
@@ -64,9 +73,6 @@
                             </div>
             </div>
             <div class="row">
-              <div class="col-sm-7 ">
-                <p class="p-15">{{'MENUITEMS.RESOURCES.SHOWING' | translate}} 1 - 15 of 200</p>
-              </div>
               <div class="col-sm-5 text-end">
                 <div class="float-end">
                   <div class="email-btn-group m-l-15">

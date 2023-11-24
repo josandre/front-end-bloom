@@ -42,21 +42,7 @@
                 <div class="body overflow-auto" *ngIf="dataSource">
                   <div class="responsive_table">
                     <table mat-table [dataSource]="dataSource" matSort class="mat-cell advance-table w-100">
-                      <!-- Checkbox Column -->
-                      <ng-container matColumnDef="select">
-                        <mat-header-cell *matHeaderCellDef [ngClass]="'tbl-col-width-per-6'">
-                          <mat-checkbox (change)="$event ? masterToggle() : null"
-                            [checked]="selection.hasValue() && isAllSelected()"
-                            [indeterminate]="selection.hasValue() && !isAllSelected()" [ngClass]="'tbl-checkbox'">
-                          </mat-checkbox>
-                        </mat-header-cell>
-                        <mat-cell *matCellDef="let row" [ngClass]="'tbl-col-width-per-6'">
-                          <mat-checkbox (click)="$event.stopPropagation()"
-                            (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
-                            [ngClass]="'tbl-checkbox'">
-                          </mat-checkbox>
-                        </mat-cell>
-                      </ng-container>
+
 
                       <!-- ID Column -->
                       <ng-container matColumnDef="id">
@@ -119,15 +105,18 @@
 
                     <div *ngIf="!isLoading">
                       <div *ngIf="dataSource.data.length === 0 && !isFiltering" class="no-results">
-                        {{ 'CONTACTS.NO_CONTACTS_AVAILABLE' | translate }}
+                        <div class="no-results-container">
+                          <img src="assets\images\pages\BloomGuiño.png" alt="bloom">
+                          <h4>{{ 'CONTACTS.NO_CONTACTS_AVAILABLE' | translate }}</h4>
+                        </div>
                       </div>
                       <div *ngIf="dataSource.data.length === 0 && isFiltering" class="no-results">
-                        {{ 'CONTACTS.NO_RESULTS_FOUND' | translate }}
+                        <div class="no-results-container">
+                          <img src="assets\images\pages\BloomGuiño.png" alt="bloom">
+                          <h4>{{ 'CONTACTS.NO_RESULTS_FOUND' | translate }}</h4>
+                        </div>
                       </div>
                     </div>
-
-                    <mat-paginator #paginator [length]="dataSource.data.length" [pageIndex]="0" [pageSize]="10"
-                      [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
                   </div>
                 </div>
               </div>

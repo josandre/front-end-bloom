@@ -728,9 +728,11 @@
     "PASSWORD_REQUIRED":"Contraseña requerida",
     "REMEMBER":"Recordar credenciales",
     "FORGOT":"Olvidé mi contraseña",
-    "LOGIN":"Iniciar sesión"
-
-
+    "LOGIN":"Iniciar sesión",
+    "LANDING": "Volver a la pagina de inicio"
+  },
+  "PATIENT": {
+    "NO_RESULTS": "No hay contactos disponibles."
   },
   "SNACKBAR_SIGNUP":{
     "CLOSE":"Cerrar",
@@ -743,7 +745,5 @@
     "SUCCESS":"Paciente agregado",
     "EMAIL_REGISTRED":"",
     "USER_NOT_ADDED":"Usuario no agregado"
-
   }
-
 }

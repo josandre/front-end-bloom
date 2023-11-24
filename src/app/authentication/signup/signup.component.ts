@@ -26,10 +26,8 @@ export class SignupComponent implements OnInit {
     {value: 'therapist', viewValue:  'psychiatrist'},
     {value: 'psychology', viewValue: 'psychology'},
   ];
+  isLoading: boolean = false;
 
-
-
-  // @ts-ignore
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private userService: SpecialistService, private snackBar: MatSnackBar,
   ) {}
 
@@ -83,6 +81,8 @@ export class SignupComponent implements OnInit {
     this.submitted = true;
 
     if(this.authForm.valid){
+      this.isLoading = true;
+
       const specialist : Specialist = new Specialist({
           college : this.authForm.controls['college'].value,
           location: this.authForm.controls['location'].value,
@@ -98,15 +98,15 @@ export class SignupComponent implements OnInit {
       )
 
       this.userService.doctorsRegister(specialist).subscribe((res) => {
-        console.log(res)
         switch (res){
-
           case 200:{
             this.openSnackBar("User added", "Close" );
             this.router.navigate(['authentication/signin']);
             break;
           }
         }
+
+        this.isLoading = false;
 
       }, error => {
         switch (error.error) {
@@ -121,6 +121,8 @@ export class SignupComponent implements OnInit {
             break;
           }
         }
+
+        this.isLoading = false;
       })
     }
   }

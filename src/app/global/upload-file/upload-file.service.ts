@@ -54,4 +54,5 @@ export class UploadFileService {
 
     return this.showPhoto(photoURL);
   }
+
 }

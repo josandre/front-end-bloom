@@ -7,6 +7,7 @@ import {FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from "@ang
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Password} from "./models/Password";
 import {User} from "./models/User";
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-doctor-profile',
@@ -15,7 +16,7 @@ import {User} from "./models/User";
 })
 export class DoctorProfileComponent implements OnInit{
   specialist : Specialist ;
-  loading : boolean = true;
+  loading : boolean = false;
   selectedFiles: FileList | null | undefined;
   currentFileUpload: File | null | undefined;
   progress: { percentage: number } = { percentage: 0 };
@@ -27,16 +28,20 @@ export class DoctorProfileComponent implements OnInit{
   userId: number | undefined
   isLoadingPassword: boolean = false;
   isLoadingUserUpdating: boolean = false;
+  message: string = 'PROFILES.MESSAGE'
 
   constructor(private readonly doctorProfileService: DoctorService, private uploadService: UploadFileService, private readonly authService: AuthService,
-  private formBuilder: FormBuilder, private snackBar: MatSnackBar) {
+  private formBuilder: FormBuilder, private snackBar: MatSnackBar,
+  private translate: TranslateService
+  ) {
     this.initFormUser();
     this.initFormPass();
   }
 
   ngOnInit(): void {
-
+    this.loading = true
     this.doctorProfileService.getDataUser().subscribe((specialist) => {
+
       this.specialist = specialist;
       this.loading = false;
       this.userId = specialist.user?.id;
@@ -51,6 +56,8 @@ export class DoctorProfileComponent implements OnInit{
       this.doctorUpdateForm.controls['phone'].setValue(specialist.user?.phone);
 
     }, (error) => {
+      this.loading = false
+      this.openSnackBar('PROFILE.SNACKBAR.GET_USER.ERROR','PROFILE.SNACKBAR.ACTIONS.CLOSE')
       console.error('Error al obtener datos del usuario:', error);
     })
 
@@ -150,6 +157,10 @@ export class DoctorProfileComponent implements OnInit{
     }
   }
 
+  getSelectFileButtonText(): string {
+    // Traduce el texto del botón según el idioma actual
+    return this.translate.instant('PROFILE.PROFILE.SAVE_PHOTO');
+  }
 
   onSubmit(){
     this.isLoadingUserUpdating = true;
@@ -174,17 +185,17 @@ export class DoctorProfileComponent implements OnInit{
 
 
       this.doctorProfileService.updateDoctor(doc).subscribe((res) => {
-        this.openSnackBar("User updated", "Close");
         this.isLoadingUserUpdating = false;
+        this.openSnackBar('PROFILE.SNACKBAR.UPDATE_USER.SUCCESS','PROFILE.SNACKBAR.ACTIONS.CLOSE');
         switch (res) {
           case 200:{
-            this.openSnackBar("User updated", "Close");
+            //this.openSnackBar('PROFILE.SNACKBAR.UPDATE_USER.SUCCESS','PROFILE.SNACKBAR.ACTIONS.CLOSE');
             break;
           }
         }
       }, error => {
         this.isLoadingUserUpdating = false;
-        this.openSnackBar("The user was not updated", "Close" );
+        this.openSnackBar('PROFILE.SNACKBAR.UPDATE_USER.ERROR', 'PROFILE.SNACKBAR.ACTIONS.CLOSE' );
       })
     }
   }
@@ -205,7 +216,7 @@ export class DoctorProfileComponent implements OnInit{
         this.isLoadingPassword = false;
         switch (res) {
           case 200:{
-            this.openSnackBar("Password updated", "Close");
+            this.openSnackBar('PROFILE.SNACKBAR.UPDATE_PASSWORD.SUCCESS', 'PROFILE.SNACKBAR.ACTIONS.CLOSE');
             break;
           }
         }
@@ -215,7 +226,7 @@ export class DoctorProfileComponent implements OnInit{
 
         switch (error.error) {
           case 404:{
-            this.openSnackBar("Current password does not match", "Close" );
+            this.openSnackBar('PROFILE.SNACKBAR.UPDATE_PASSWORD.ERROR', 'PROFILE.SNACKBAR.ACTIONS.CLOSE');
             break;
           }
         }
@@ -223,8 +234,10 @@ export class DoctorProfileComponent implements OnInit{
     }
   }
 
-  openSnackBar(message: string, action: string){
-    this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'end'})
+  openSnackBar(message: string, action: string) {
+    this.translate.get([message,action]).subscribe((translations: any) => {
+      this.snackBar.open(translations[message], translations[action], { verticalPosition: 'top', horizontalPosition: 'end',duration: 4000 })
+    });
   }
 
   private resetPassControl(controlName: string): void {

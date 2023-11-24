@@ -121,7 +121,7 @@ export class ComposeResourceComponent implements OnInit{
 
   openSnackBar(message: string, action: string){
 
-    this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'center', duration: 3000} )
+    this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'end', duration: 3000} )
   }
 
 }

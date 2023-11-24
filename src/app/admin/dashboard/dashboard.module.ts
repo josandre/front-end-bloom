@@ -8,6 +8,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ComponentsModule } from '@shared/components/components.module';
 import { SharedModule } from '@shared';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [MainComponent, Dashboard2Component],
@@ -19,6 +20,7 @@ import { SharedModule } from '@shared';
     NgScrollbarModule,
     ComponentsModule,
     SharedModule,
+    TranslateModule,
   ],
 })
 export class DashboardModule {}

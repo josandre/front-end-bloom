@@ -2,7 +2,8 @@
   <div class="content-block">
     <div class="block-header">
       <!-- breadcrumb -->
-      <app-breadcrumb [title]="'Forums'" [items]="['Apps']" [active_item]="'Forums'"></app-breadcrumb>
+      <app-breadcrumb [title]="'PATIENT_BREADCRUM.FORUMS.TITLE' | translate" [items]="[]"></app-breadcrumb>
+
     </div>
 
     <!--All Posts-->
@@ -20,9 +21,13 @@
           <button mat-flat-button color="primary" (click)="openNewPostDialog()">{{'MENUITEMS.FORUMS.CREATE_POST' |
             translate}}</button>
 
-          <!--Posts loading-->
-          <div *ngIf="postsLoaded === false">
-            <app-loading-card></app-loading-card>
+<!--          &lt;!&ndash;Posts loading&ndash;&gt;-->
+<!--          <div *ngIf="postsLoaded === false">-->
+<!--            <app-loading-card></app-loading-card>-->
+<!--          </div>-->
+
+          <div class="center" *ngIf="!postLoaded">
+            <app-spinner [isLoading]="true" [message]="message | translate"></app-spinner>
           </div>
 
           <!--Posts container-->
@@ -41,12 +46,17 @@
       <app-loading-card></app-loading-card>
     </div>
 
+
+
     <!--Open post-->
     <div *ngIf="forumState === ForumStates.OpenPost">
-      <!--Post loading-->
+      Post loading
       <div *ngIf="postLoaded === false">
         <app-loading-card></app-loading-card>
       </div>
+
+
+
 
       <!--Post loaded-->
       <div *ngIf="postLoaded === true">
@@ -106,13 +116,13 @@
                       <mat-label>{{'MENUITEMS.FORUMS.POST_CONTENT' | translate}}</mat-label>
                       <textarea matInput [(ngModel)]="postEditorContent"></textarea>
                     </mat-form-field>
-  
+
                     <!--Interactable buttons-->
                     <div *ngIf="postEditorEnabled === true" class="example-button-row">
                       <button mat-flat-button color="primary" (click)="updatePost()">{{'MENUITEMS.FORUMS.SAVE_POST' | translate}}</button>
                       <button mat-stroked-button class="stroked-btn" (click)="closePostEditor()">{{'MENUITEMS.FORUMS.CANCEL' | translate}}</button>
                     </div>
-  
+
                     <!--Disabled buttons-->
                     <div *ngIf="postEditorEnabled === false" class="example-button-row">
                       <button mat-flat-button class="flat-btn-disabled" disabled>{{'MENUITEMS.FORUMS.SAVE_POST' | translate}}</button>
@@ -135,12 +145,12 @@
             <button mat-flat-button color="primary" (click)="openNewCommentDialog()">{{'MENUITEMS.FORUMS.CREATE_COMMENT'
               | translate}}</button>
             <div>
-              <app-comment *ngFor="let comment of currentPost.comments" 
-                [forumComponent]="this" 
+              <app-comment *ngFor="let comment of currentPost.comments"
+                [forumComponent]="this"
                 [commentID]="comment.id"
-                [userName]="comment.userName" 
+                [userName]="comment.userName"
                 [userImage]="comment.userImage"
-                [date]="comment.creationDate" 
+                [date]="comment.creationDate"
                 [content]="comment.content"
                 [showAdvancedOptions]="comment?.userId === currentUser?.id">
               </app-comment>

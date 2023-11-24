@@ -2,7 +2,7 @@
   <div class="content-block">
     <div class="block-header">
       <br>
-      <h1>{{'MENUITEMS.RESOURCES.COMPOSE' | translate}}</h1>
+      <app-breadcrumb [title]="'DOCTOR_BREADCRUM.RESOURCES.TITLE' | translate" [active_item]="'DOCTOR_BREADCRUM.RESOURCES.ACTIVE_ITEM2' | translate"></app-breadcrumb>
     </div>
     <div class="center" *ngIf="postingFlag" >
       <mat-spinner></mat-spinner>

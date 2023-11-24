@@ -3,7 +3,13 @@
   color: white;
   border-radius: 3px;
 }
-
+.btn-select{
+  background-color: rgb(232, 231, 241);
+  border-radius: 3px;
+  color: rgb(3, 0, 0);
+  padding: 3px;
+  font-size: 13px;
+}
 .spinner-form{
   display: flex;
   justify-content: center;
@@ -34,4 +40,21 @@
 
 .file-input {
   display: none;
+}
+
+.loading{
+  margin-top: 50px;
+}
+
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.select-file{
+  font-size: 13px;
+  padding: 20px;
 }

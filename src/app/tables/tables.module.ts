@@ -8,6 +8,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { MaterialTableComponent } from './material-table/material-table.component';
 import { ComponentsModule } from '@shared/components/components.module';
 import { SharedModule } from '@shared';
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [
     BasicTableComponent,
@@ -22,6 +23,7 @@ import { SharedModule } from '@shared';
     NgxDatatableModule,
     ComponentsModule,
     SharedModule,
+    TranslateModule,
   ],
 })
 export class TablesModule {}

@@ -6,6 +6,7 @@ import {MedicalRecordService} from '../service/medicalrecord.service';
 import {MedicalHistory} from '../model/MedicalHistory';
 import {MedicalRecipe} from '../model/MedicalRecipe';
 import {AnxietyLevel} from "../model/AnxietyLevel";
+import { TranslateService } from '@ngx-translate/core';
 
 export interface DialogData {
   id: number;
@@ -24,7 +25,6 @@ export class MedicalhistoryDialogComponent {
   dialogTitle: string;
   medicalHistoryForm: FormGroup;
   anxietyLevelOptions: string[] = Object.keys(AnxietyLevel);
-
   medicalHistory: MedicalHistory;
   medicalRecipe: MedicalRecipe;
   medicalRecordId: number = this.data.id;
@@ -34,7 +34,8 @@ export class MedicalhistoryDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     public medicalRecordService: MedicalRecordService,
     private formBuilder: FormBuilder,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private translate: TranslateService
   ) {
 
     this.action = data.action;
@@ -42,9 +43,9 @@ export class MedicalhistoryDialogComponent {
     if (this.action === "edit") {
       this.medicalHistory = data.medicalHistory;
       this.medicalRecipe = data.medicalHistory.medicalRecipe;
-      this.dialogTitle = 'Update Medical History';
+      this.dialogTitle = 'MEDICAL_RECORD.MEDICAL_HISTORY.UPDATE_MEDICAL_HISTORY';
     } else {
-      this.dialogTitle = 'New Medical History';
+      this.dialogTitle = 'MEDICAL_RECORD.MEDICAL_HISTORY.NEW_MEDICAL_HISTORY';
       const blankObject = {} as MedicalHistory;
       this.medicalHistory = new MedicalHistory(blankObject);
       this.medicalRecipe = new MedicalRecipe(blankObject);
@@ -83,6 +84,8 @@ export class MedicalhistoryDialogComponent {
 
   public confirmAction(): void {
     if (this.medicalHistoryForm.valid) {
+
+      
       this.medicalHistory.observations = this.medicalHistoryForm.controls['observations'].value;
       this.medicalHistory.anxietyLevel = this.medicalHistoryForm.controls['anxietyLevel'].value;
       this.medicalHistory.treatmentStartDate = this.medicalHistoryForm.controls['treatmentStartDate'].value;
@@ -105,14 +108,14 @@ export class MedicalhistoryDialogComponent {
       .subscribe((response) => {
         switch (response) {
           case 200:{
-            this.openSnackBar("Medical history added!", "Close")
+            this.openSnackBar('MEDICAL_RECORD.SNACKBAR.CREATE_MEDICAL_HISTORY.SUCCESS', 'MEDICAL_RECORD.SNACKBAR.ACTIONS.CLOSE')
             break;
           }
         }
       }, error => {
         switch (error) {
           case 400:{
-            this.openSnackBar("Something went wrong while trying to add medical history", "Try again");
+            this.openSnackBar('MEDICAL_RECORD.SNACKBAR.CREATE_MEDICAL_HISTORY.ERROR', 'MEDICAL_RECORD.SNACKBAR.ACTIONS.TRY_AGAIN');
             break;
           }
         }
@@ -124,14 +127,14 @@ export class MedicalhistoryDialogComponent {
       .subscribe((response) => {
         switch (response) {
           case 200:{
-            this.openSnackBar("Medical history updated!", "Close")
+            this.openSnackBar('MEDICAL_RECORD.SNACKBAR.UPDATE_MEDICAL_HISTORY.SUCCESS', 'MEDICAL_RECORD.SNACKBAR.ACTIONS.CLOSE')
             break;
           }
         }
       }, error => {
         switch (error) {
           case 400:{
-            this.openSnackBar("Something went wrong while trying to update medical history", "Try again");
+            this.openSnackBar('MEDICAL_RECORD.SNACKBAR.UPDATE_MEDICAL_HISTORY.ERROR', 'MEDICAL_RECORD.SNACKBAR.ACTIONS.TRY_AGAIN');
             break;
           }
         }
@@ -139,6 +142,8 @@ export class MedicalhistoryDialogComponent {
   }
 
   openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, { verticalPosition: 'top', horizontalPosition: 'end' })
+    this.translate.get([message,action]).subscribe((translations: any) => {
+      this.snackBar.open(translations[message], translations[action], { verticalPosition: 'top', horizontalPosition: 'end',duration: 4000 })
+    });
   }
 }

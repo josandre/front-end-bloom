@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, EMPTY, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {API_URL} from "../../../config";
 import {User} from "@core/models/user";
@@ -36,7 +36,7 @@ export class AuthService {
     }, ).pipe(map((r) => {
        const decodedToken = jwtDecode(r.token);
        const currentUser = new User({...decodedToken, token: r.token})
-
+       localStorage.setItem('currentUser', JSON.stringify(currentUser))
        this.currentUserSubject.next(currentUser)
 
        return currentUser
@@ -47,6 +47,14 @@ export class AuthService {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(this.currentUserValue);
     return of({ success: false });
+  }
+
+  changePassword(userEmail: string): Observable<any> {
+    const url = `${this.baseUrl}/change-password`;
+
+    return this.http.post<any>(url, {
+      userEmail
+    })
   }
 }
 

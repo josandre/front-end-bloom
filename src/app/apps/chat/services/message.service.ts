@@ -17,7 +17,6 @@ export class MessageService {
   getMessagesByConversationId(conversationId: number): Observable<MessageResponse>{
     const currentUser = this.authService.currentUserValue
     const senderId = currentUser.actualUserId ?? currentUser.id
-
     const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.authService.currentUserValue.token)
     const url = `${this.baseUrl}/messages/${conversationId}/${senderId}`
     return this.http.get<MessageResponse>(url,{headers: header});

@@ -16,6 +16,10 @@
   padding: 20px;
 }
 
+::ng-deep snack-bar-container simple-snack-bar .mat-simple-snackbar-action {
+  color: white;
+}
+
 .btn-select{
   background-color: rgb(232, 231, 241);
   border-radius: 3px;

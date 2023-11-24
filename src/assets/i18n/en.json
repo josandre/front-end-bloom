@@ -236,7 +236,7 @@
   "DASHBOARD_ADMIN": {
     "WELCOME_TITLE": "Welcome back!",
     "WELCOME_TEXT": "Every day is a new opportunity to lead with excellence and forge innovative paths. Your vision and ongoing effort are the driving force behind our success. Thank you for your tireless dedication and for making every day count!"
-  },  
+  },
   "DASHBOARD_PATIENT": {
     "WELLCOME_TITLE": "Welcome back",
     "WELLCOME_TEXT": "We would like to take this opportunity to welcome you to our practice and to thank you for choosing our physicians to participate in your healthcare. We look forward to providing you with personalized, comprehensive health care focusing on wellness and prevention.",
@@ -467,22 +467,18 @@
     "RESOURCES": {
       "TITLE": "My Resources",
       "ACTIVE_ITEM": "My Resources"
-
     },
     "FORUMS": {
       "TITLE": "Forums",
       "ACTIVE_ITEM": ""
-
     },
     "GAME": {
       "TITLE": "Games Section",
       "ACTIVE_ITEM": ""
-
     },
     "CONTACTS": {
       "TITLE": "Contacts",
       "ACTIVE_ITEM": ""
-
     }
   },
   "ADMIN_BREADCRUM": {
@@ -507,79 +503,79 @@
 
   "MEDICAL_RECORD":{
     "INFO": {
-      "REQUIRED":"value is required",
-      "SAVE":"Save",
-      "UPDATED":"Updated",
-      "QUIT":"Quit",
-      "MEDICAL_HISTORY":"Medical History",
-      "APPOINTMENT_DATE":"Appointment date",
-      "NOTES":"Notes",
-      "ANXIETY_LEVEL":"Anxiety Level",
+      "REQUIRED": "value is required",
+      "SAVE": "Save",
+      "UPDATED": "Updated",
+      "QUIT": "Quit",
+      "MEDICAL_HISTORY": "Medical History",
+      "APPOINTMENT_DATE": "Appointment date",
+      "NOTES": "Notes",
+      "ANXIETY_LEVEL": "Anxiety Level",
       "OBSERVATIONS": "Observations",
-      "TREATMENT_STARTED_ON":"Treatment started on",
-      "TREATMENT_ENDED_ON":"Treatment ended on",
-      "RECIPE":"Recipe",
-      "NAME_RECIPE":"Name",
-      "INDICATIONS":"Indications",
-      "APPOINTMENT_REGISTRED":"No appointments registered",
-      "FAMILY_MEDICAL_HISTORY":"Family Medical History",
-      "ANXIETIES":"Anxietys",
-      "ANXIETY_TYPE":"New anxiety type..."
+      "TREATMENT_STARTED_ON": "Treatment started on",
+      "TREATMENT_ENDED_ON": "Treatment ended on",
+      "RECIPE": "Recipe",
+      "NAME_RECIPE": "Name",
+      "INDICATIONS": "Indications",
+      "APPOINTMENT_REGISTRED": "No appointments registered",
+      "FAMILY_MEDICAL_HISTORY": "Family Medical History",
+      "ANXIETIES": "Anxieties",
+      "ANXIETY_TYPE": "New anxiety type..."
     },
-    "SNACKBAR":{
-      "ACTIONS":{
-        "TRY_AGAIN":"Try again",
+    "SNACKBAR": {
+      "ACTIONS": {
+        "TRY_AGAIN": "Try again",
         "CLOSE": "Close"
       },
       "ADD_ANXIETY_TYPE": {
         "TEXT": "This anxiety type already exits",
-        "SUCCESS":"Anxiety type has been added successfully!",
-        "ERROR":"Something went wrong while trying to register anxiety type"
+        "SUCCESS": "Anxiety type has been added successfully!",
+        "ERROR": "Something went wrong while trying to register anxiety type"
       },
-      "GET_MEDICAL_RECORD":{
-        "FILL_OUT":"Family medical history has yet to be filled out",
-        "ERROR":"User not allowed"
+      "GET_MEDICAL_RECORD": {
+        "FILL_OUT": "Family medical history has yet to be filled out",
+        "ERROR": "User not allowed"
       },
-      "REMOVE_ANXIETY_TYPE":{
+      "REMOVE_ANXIETY_TYPE": {
         "SUCCESS": "Anxiety type has been deleted successfully!",
-        "ERROR":"Something went wrong while trying to delete anxiety type"
+        "ERROR": "Something went wrong while trying to delete anxiety type"
       },
-      "UPDATE_MEDICAL_RECORD":{
+      "UPDATE_MEDICAL_RECORD": {
         "SUCCESS": "Family medical history updated",
-        "ERROR":"Something went wrong while trying to update medical record"
+        "ERROR": "Something went wrong while trying to update medical record"
       },
-      "CREATE_MEDICAL_HISTORY":{
-        "SUCCESS":"Medical history added!",
-        "ERROR":"Something went wrong while trying to add medical history"
+      "CREATE_MEDICAL_HISTORY": {
+        "SUCCESS": "Medical history added!",
+        "ERROR": "Something went wrong while trying to add medical history"
       },
-      "UPDATE_MEDICAL_HISTORY":{
-        "SUCCESS":"Medical history updated!",
-        "ERROR":"Something went wrong while trying to update medical history"
+      "UPDATE_MEDICAL_HISTORY": {
+        "SUCCESS": "Medical history updated!",
+        "ERROR": "Something went wrong while trying to update medical history"
       },
-      "DELETE_MEDICAL_HISTORY":{
-        "SUCCESS":"Medical history deleted!",
-        "ERROR":"Something went wrong while trying to delete medical history"
+      "DELETE_MEDICAL_HISTORY": {
+        "SUCCESS": "Medical history deleted!",
+        "ERROR": "Something went wrong while trying to delete medical history"
       }
     },
-    "MEDICAL_HISTORY":{
+    "MEDICAL_HISTORY": {
       "MESSAGE": "We are getting your data",
-      "NEW_MEDICAL_HISTORY":"New Medical History",
-      "UPDATE_MEDICAL_HISTORY":"Update Medical History",
-      "OBSERVATIONS":"Observations",
-      "OBSERVATIONS_REQUIRED":"Please write observations",
-      "TREATMENT_DURATION":"Treatment duration",
-      "START_DATE":"Start date",
-      "END_DATE":"End date",
-      "ANXIETY_LEVEL_DETECTED":"Anxiety level detected",
-      "ANXIETY_LEVEL_REQUIRED":"Anxiety level is required",
-      "RECIPE":"Recipe",
-      "NAME_RECIPE":"Name",
-      "NAME_RECIPE_REQUIRED":"Name is required",
-      "INDICATIONS":"Indications",
-      "INDICATIONS_REQUIRED":"Please write indications",
-      "SAVE":"Save",
-      "CANCEL":"Cancel",
-      "ANXIETY_LEVEL":{
+      "NEW_MEDICAL_HISTORY": "New Medical History",
+      "UPDATE_MEDICAL_HISTORY": "Update Medical History",
+      "OBSERVATIONS": "Observations",
+      "OBSERVATIONS_REQUIRED": "Please write observations",
+      "TREATMENT_DURATION": "Treatment duration",
+      "START_DATE": "Start date",
+      "END_DATE": "End date",
+      "ANXIETY_LEVEL_DETECTED": "Anxiety level detected",
+      "ANXIETY_LEVEL_REQUIRED": "Anxiety level is required",
+      "RECIPE": "Recipe",
+      "NAME_RECIPE": "Name",
+      "NAME_RECIPE_REQUIRED": "Name is required",
+      "INDICATIONS": "Indications",
+      "INDICATIONS_REQUIRED": "Please write indications",
+      "SAVE": "Save",
+      "CANCEL": "Cancel",
+      "ANXIETY_LEVEL": {
         "MINIMAL": "Minimal",
         "MILD": "Mild",
         "MODERATE": "Moderate",
@@ -588,54 +584,54 @@
         "INDETERMINATE": "Indeterminate"
 
       },
-      "DELETE_CONFIRMATION":"Are you sure?",
+      "DELETE_CONFIRMATION": "Are you sure?",
       "DELETE": "Delete"
     }
 
   },
-  "PROFILE":{
-      "SELECTED_PHOTO":"No files selected",
-      "SAVE_PHOTO":"Save new profile photo",
-      "SELECT_FILE":"Select File",
-      "SETTINGS":"Settings",
-      "SECURITY":"Security",
-      "CURRENT_PASSWORD":"Current password",
-      "NEW_PASSWORD":"New password",
-      "CONFIRM_PASSWORD":"Confirm Password",
-      "PASSWORD_NOT_MATCH":"Password do not match",
-      "SAVE":"Save",
-      "ACCOUNT":"Account",
-      "ACCOUNT_SETTINGS":"Settings",
-      "NAME":"Name",
-      "LAST_NAME":"Last Name",
-      "USER_NAME":"User Name",
-      "EMAIL":"Email",
-      "VALID_EMAIL":"Please enter a valid email address",
-      "MEDICAL_ID":"Medical id",
-      "COLLEGE":"College",
-      "PHONE":"Phone",
-      "LOCATION":"Location",
-      "ADDRESS":"Address",
-      "SNACKBAR":{
-        "ACTIONS":{
-          "TRY_AGAIN":"Try again",
-          "CLOSE": "Close"
-        },
-        "GET_USER":{
-          "ERROR":"Error getting user data"
-        },
-        "UPDATE_USER": {
-          "SUCCESS":"User updated",
-          "ERROR":"The user was not updated"
-        },
-        "UPDATE_PASSWORD": {
-          "SUCCESS":"Password updated",
-          "ERROR":"Current password does not match"
-        }
+  "PROFILE": {
+    "SELECTED_PHOTO": "No files selected",
+    "SAVE_PHOTO": "Save new profile photo",
+    "SELECT_FILE": "Select File",
+    "SETTINGS": "Settings",
+    "SECURITY": "Security",
+    "CURRENT_PASSWORD": "Current password",
+    "NEW_PASSWORD": "New password",
+    "CONFIRM_PASSWORD": "Confirm Password",
+    "PASSWORD_NOT_MATCH": "Password do not match",
+    "SAVE": "Save",
+    "ACCOUNT": "Account",
+    "ACCOUNT_SETTINGS": "Settings",
+    "NAME": "Name",
+    "LAST_NAME": "Last Name",
+    "USER_NAME": "User Name",
+    "EMAIL": "Email",
+    "VALID_EMAIL": "Please enter a valid email address",
+    "MEDICAL_ID": "Medical id",
+    "COLLEGE": "College",
+    "PHONE": "Phone",
+    "LOCATION": "Location",
+    "ADDRESS": "Address",
+    "SNACKBAR": {
+      "ACTIONS": {
+        "TRY_AGAIN": "Try again",
+        "CLOSE": "Close"
       },
-      "psychology":"Psychology",
-      "therapist":"Therapist"
+      "GET_USER": {
+        "ERROR": "Error getting user data"
+      },
+      "UPDATE_USER": {
+        "SUCCESS": "User updated",
+        "ERROR": "The user was not updated"
+      },
+      "UPDATE_PASSWORD": {
+        "SUCCESS": "Password updated",
+        "ERROR": "Current password does not match"
+      }
     },
+    "psychology": "Psychology",
+    "therapist": "Therapist"
+  },
   "PROFILES": {
     "SETTINGS": "Settings",
     "SECURITY_SETTINGS": "Security Settings",
@@ -679,64 +675,65 @@
     "ENTER_TEXT_HERE": "Enter text here..",
     "SEARCH": "Search"
   },
-  "ADMIN_RESOURCES":{
-    "TITLE":"Title",
-    "CONTENT":"Content",
-    "POST_DADE":"Post date",
-    "SEARCH_BY":"Search by title",
-    "SEARCH":"Search"
-
+  "ADMIN_RESOURCES": {
+    "TITLE": "Title",
+    "CONTENT": "Content",
+    "POST_DADE": "Post date",
+    "SEARCH_BY": "Search by title",
+    "SEARCH": "Search"
   },
-  "SING_UP":{
-    "TITLE":"Sign Up",
+  "SING_UP": {
+    "TITLE": "Sign Up",
     "INFO": "Enter details to create your account",
-    "NAME":"Name",
-    "NAME_REQUIRED":"Name is required",
-    "LAST_NAME":"Last Name",
-    "LAST_NAME_REQUIRED":"Last name is required",
-    "MEDICAL_ID":"Medical Id",
-    "MEDICAL_ID_REQUIRED":"Medical id is required",
-    "COLLEGE":"College",
-    "COLLEGE_REQUIRED":"College is required",
-    "CLINIC_LOCATION":"Clinic Location",
-    "CLINIC_LOCATION_REQUIRED":"Clinical location is required",
-    "SPECIALITY_REQUIRED":"Speciality id is required",
-    "USER_NAME":"User Name",
-    "USER_NAME_REQUIRED":"User name is required",
-    "EMAIL":"Email",
-    "EMAIL_REQUIRED":"Please enter a valid email address",
-    "PASSWORD":"Password",
-    "PASSWORD_REQUIRED":"Password is required",
-    "CONFIRM_PASSWORD":"Confirm Password",
-    "CONFIRM_PASSWORD_REQUIRED":"Confirm Password is required",
-    "LOGIN":"Log In",
-    "REGISTRED":"Already Registered?",
-    "REGISTER":"Register",
-    "SPECIALITY":{
-      "psychology":"psychology",
-      "therapist":"therapist",
-      "NAME":"Speciality"
+    "NAME": "Name",
+    "NAME_REQUIRED": "Name is required",
+    "LAST_NAME": "Last Name",
+    "LAST_NAME_REQUIRED": "Last name is required",
+    "MEDICAL_ID": "Medical Id",
+    "MEDICAL_ID_REQUIRED": "Medical id is required",
+    "COLLEGE": "College",
+    "COLLEGE_REQUIRED": "College is required",
+    "CLINIC_LOCATION": "Clinic Location",
+    "CLINIC_LOCATION_REQUIRED": "Clinical location is required",
+    "SPECIALITY_REQUIRED": "Speciality id is required",
+    "USER_NAME": "User Name",
+    "USER_NAME_REQUIRED": "User name is required",
+    "EMAIL": "Email",
+    "EMAIL_REQUIRED": "Please enter a valid email address",
+    "PASSWORD": "Password",
+    "PASSWORD_REQUIRED": "Password is required",
+    "CONFIRM_PASSWORD": "Confirm Password",
+    "CONFIRM_PASSWORD_REQUIRED": "Confirm Password is required",
+    "LOGIN": "Log In",
+    "REGISTRED": "Already Registered?",
+    "REGISTER": "Register",
+    "SPECIALITY": {
+      "psychology": "psychology",
+      "therapist": "therapist",
+      "NAME": "Speciality"
     }
 
   },
-  "LOGIN":{
-    "WELCOME":"Welcome to Bloom ",
-    "NEED":"Need an account?",
-    "SIGNUP":"Sign Up",
-    "SIGNIN":"Sign In",
-    "EMAIL":"Email",
-    "EMAIL_REQUIRED":"Email is required",
-    "PASSWORD":"Password",
-    "PASSWORD_REQUIRED":"Password is required",
-    "REMEMBER":"Remember me",
-    "FORGOT":"Forgot Password?",
-    "LOGIN":"Login",
-    "LANDING" : "Back to landing page",
+  "LOGIN": {
+    "WELCOME": "Welcome to Bloom ",
+    "NEED": "Need an account?",
+    "SIGNUP": "Sign Up",
+    "SIGNIN": "Sign In",
+    "EMAIL": "Email",
+    "EMAIL_REQUIRED": "Email is required",
+    "PASSWORD": "Password",
+    "PASSWORD_REQUIRED": "Password is required",
+    "REMEMBER": "Remember me",
+    "FORGOT": "Forgot Password?",
+    "LOGIN": "Login",
+    "LANDING": "Back to landing page",
     "ERROR":"unauthorized"
-
   },
   "PATIENT": {
     "NO_RESULTS": "No resources available."
+  },
+  "DOCTOR_NOT_ALLOWED": {
+    "MESSAGE": "Nothing to see here..."
   },
   "SNACKBAR_SIGNUP":{
     "CLOSE":"Close",
@@ -749,7 +746,7 @@
     "CLOSE":"Close",
     "SUCCESS":"Patient added",
     "EMAIL_REGISTRED":"Your email is already registered",
-    "USER_NOT_ADDED":"The user is not acceptable"    
+    "USER_NOT_ADDED":"The user is not acceptable"
   },
   "SNACKBAR_FORGOT_PASSWORD":{
     "SUCCESS":"All set! We sent an email with your new details.",
@@ -795,6 +792,6 @@
 
   }
 
-  
+
 
 }

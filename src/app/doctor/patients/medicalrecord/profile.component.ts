@@ -67,6 +67,14 @@ export class ProfileComponent implements OnInit {
     return '';
   }
 
+  getFormattedDateWithTime(date?:Date): string {
+    moment.locale(this.translate.currentLang);
+    if (date) {
+      return moment(date).format("MMMM D, YYYY HH:mm");
+    }
+    return '';
+  }
+
   ngOnInit(): void {
     this.getMedicalRecord(Number(this.route.snapshot.paramMap.get('id')));
     this.getPatient(Number(this.route.snapshot.paramMap.get('id')));
@@ -217,27 +225,45 @@ export class ProfileComponent implements OnInit {
   }
 
   addMedicalHistory() {
-    this.dialog.open(MedicalhistoryDialogComponent,{
+    const dialogMedicalHistory = this.dialog.open(MedicalhistoryDialogComponent,{
       data: {
         id: this.medicalRecordId,
         patient: this.medicalHistory,
         action: 'add',
       },
     });
+
+    dialogMedicalHistory.afterClosed().subscribe((result) => {
+      if (result === 1) {
+        this.getMedicalRecord(Number(this.route.snapshot.paramMap.get('id')));
+      }
+    });
   }
 
   updateMedicalHistory(medicalHistoryUpdate: MedicalHistory) {
-    this.dialog.open(MedicalhistoryDialogComponent, {
+    const dialogMedicalHistory = this.dialog.open(MedicalhistoryDialogComponent, {
       data: {
         medicalHistory: medicalHistoryUpdate,
         action: 'edit',
       },
     });
+
+    dialogMedicalHistory.afterClosed().subscribe((result) => {
+      if (result === 1) {
+        this.getMedicalRecord(Number(this.route.snapshot.paramMap.get('id')));
+      }
+    });
   }
 
   deleteMedicalHistory(medicalHistoryId: number) {
-    this.dialog.open(DeleteMedicalhistoryDialogComponent, {
+    const dialogMedicalHistory = this.dialog.open(DeleteMedicalhistoryDialogComponent, {
       data: {id: medicalHistoryId},
+    });
+
+    dialogMedicalHistory.afterClosed().subscribe((result) => {
+      if (result === 1) {
+        this.getMedicalRecord(Number(this.route.snapshot.paramMap.get('id')));
+      }
     });
   }
 

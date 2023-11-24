@@ -8,7 +8,7 @@
       "LIST": {
         "DASHBOARD1": "Tablero 1",
         "DASHBOARD2": "Tablero 2",
-        "DOCTOR-DASHBOARD": "Tablero médico",
+        "DOCTOR-DASHBOARD": "Tablero Médico",
         "PATIENT-DASHBOARD": "Tablero Paciente"
       }
     },
@@ -228,9 +228,9 @@
   },
   "PATIENTS_LISTS": {
     "ADD_NEW": "Nuevo paciente",
-    "SEE_MEDICAL_RECORD": "Expediente médico",
+    "SEE_MEDICAL_RECORD": "Ver expediente médico",
     "PATIENT_ID": "Id del paciente",
-    "MESSAGE_LOADING": "Esto puedo tomar unos segundos!",
+    "MESSAGE_LOADING": "Esto podría tomar unos segundos!",
     "MESSAGE_NO_DATA": "Aún no hay data registrada"
   },
   "PROFILES": {
@@ -714,7 +714,7 @@
       "therapist":"Terapeuta",
       "NAME":"Espacialidad"
     }
-    
+
 
   },
   "LOGIN":{
@@ -734,6 +734,9 @@
   },
   "PATIENT": {
     "NO_RESULTS": "No hay contactos disponibles."
+  },
+  "DOCTOR_NOT_ALLOWED": {
+    "MESSAGE": "Nada que ver aquí..."
   },
   "SNACKBAR_SIGNUP":{
     "CLOSE":"Cerrar",
@@ -789,5 +792,4 @@
     "SERVER_ERROR":"Error del servidor",
     "PATIENT_SUCCESS":"Cambió el estado del usuario"
   }
-
 }

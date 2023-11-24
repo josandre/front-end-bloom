@@ -28,6 +28,7 @@ export class PatientsComponent implements OnInit{
       .subscribe(
         data => {
           this.patients = data;
+          console.log(this.patients)
           this.isLoading = false;
 
          if(!this.patients || !this.patients.length) {

@@ -729,10 +729,65 @@
     "REMEMBER":"Recordar credenciales",
     "FORGOT":"Olvidé mi contraseña",
     "LOGIN":"Iniciar sesión",
-    "LANDING": "Volver a la pagina de inicio"
+    "LANDING": "Volver a la pagina de inicio",
+    "ERROR":"No autorizado"
   },
   "PATIENT": {
     "NO_RESULTS": "No hay contactos disponibles."
+  },
+  "SNACKBAR_SIGNUP":{
+    "CLOSE":"Cerrar",
+    "SUCCESS":"Usuario registrado",
+    "EMAIL_REGISTRED":"El correo ya se encuentra registrado",
+    "USER_NOT_ACCEPTABLE":"Usuario no permitido"
+  },
+  "SNACKBAR_PATIENT_SIGNUP":{
+    "CLOSE":"Cerrar",
+    "SUCCESS":"Paciente agregado",
+    "EMAIL_REGISTRED":"",
+    "USER_NOT_ADDED":"Usuario no agregado"
+  },
+  "SNACKBAR_FORGOT_PASSWORD":{
+    "SUCCESS":"¡Todo listo! Le enviamos un correo electrónico con sus nuevos datos.",
+    "ERROR":"Hubo un problema al restablecer tu contraseña. Comuníquese con support-bloomapp@gmail.com para obtener más información.",
+    "DONE":"Done"
+  },
+  "FORGOT_PASSWORD":{
+   "RESET_PASSWORD":"Restablecer la contraseña",
+   "HELP":"Dejanos ayudarte",
+   "EMAIL_REGISTRED":"Ingrese su dirección de correo electrónico registrada.",
+   "EMAIL":"Correo Electrónico",
+   "EMAI_VALID":"Por favor, introduce una dirección de correo electrónico válida",
+   "RESET":"Restablecer mi contraseña",
+   "LOGIN":"Iniciar sesión"
+  },
+  "DIARY_ENTRY":{
+    "TITLE":"Mi diario",
+    "ACTIONS":{
+      "CLOSE":"Cerrar",
+      "TRY_AGAIN":"Intente de nuevo"
+    },
+    "GET":{
+      "ERROR":"Hubo un problema al obtener la información del diario"
+    },
+    "ADD":{
+      "SUCCESS":"La información se puede guardar",
+      "ERROR":" Algo salió mal al intertar agregar la entrada"
+    },
+    "SAVE":{
+      "SUCCESS":"La información se guardó",
+      "ERROR":"Algo salió mal al intentar guardar la entrada"
+    },
+    "DELETE":{
+      "SUCCESS":"Se ha eliminado la entrada",
+      "ERROR":"Algo salió mal al intentar eliminar la entrada"
+    }
+  },
+  "ADMIN_SNACKBAR":{
+    "CLOSE":"Cerrar",
+    "DOCTOR_SUCCESS":"Cambió el estado del doctor",
+    "SERVER_ERROR":"Error del servidor",
+    "PATIENT_SUCCESS":"Cambió el estado del usuario"
   }
 
 }

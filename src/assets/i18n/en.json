@@ -731,10 +731,70 @@
     "REMEMBER":"Remember me",
     "FORGOT":"Forgot Password?",
     "LOGIN":"Login",
-    "LANDING" : "Back to landing page"
+    "LANDING" : "Back to landing page",
+    "ERROR":"unauthorized"
+
   },
   "PATIENT": {
     "NO_RESULTS": "No resources available."
+  },
+  "SNACKBAR_SIGNUP":{
+    "CLOSE":"Close",
+    "SUCCESS":"User added",
+    "EMAIL_REGISTRED":"Your email is already registered",
+    "USER_NOT_ACCEPTABLE":"The user is not acceptable"
+
+  },
+  "SNACKBAR_PATIENT_SIGNUP":{
+    "CLOSE":"Close",
+    "SUCCESS":"Patient added",
+    "EMAIL_REGISTRED":"Your email is already registered",
+    "USER_NOT_ADDED":"The user is not acceptable"    
+  },
+  "SNACKBAR_FORGOT_PASSWORD":{
+    "SUCCESS":"All set! We sent an email with your new details.",
+    "ERROR":"There was an issue resetting your password. Please contact support-bloomapp@gmail.com for more information.",
+    "DONE":"Done"
+  },
+  "FORGOT_PASSWORD":{
+    "RESET_PASSWORD":"Reset Password",
+    "HELP":"Let Us Help You",
+    "EMAIL_REGISTRED":"Enter your registered email address.",
+    "EMAIL":"Email",
+    "EMAI_VALID":"Please enter a valid email address",
+    "RESET":"Reset My Password",
+    "LOGIN":"Login?"
+   },
+   "DIARY_ENTRY":{
+    "TITLE":"My Diary",
+    "ACTIONS":{
+      "CLOSE":"Close",
+      "TRY_AGAIN":"Try again"
+    },
+    "GET":{
+      "ERROR":"Something went wrong while trying to get diary"
+    },
+    "ADD":{
+      "SUCCESS":"Entry can now be saved",
+      "ERROR":" Something went wrong while trying to add entry"
+    },
+    "SAVE":{
+      "SUCCESS":"Entry has been saved",
+      "ERROR":"Something went wrong while trying to save entry"
+    },
+    "DELETE":{
+      "SUCCESS":"Entry has been deleted",
+      "ERROR":"Something went wrong while trying to delete entry"
+    }
+  },
+  "ADMIN_SNACKBAR":{
+    "CLOSE":"Close",
+    "DOCTOR_SUCCESS":"Doctor state changed",
+    "SERVER_ERROR":"Server error",
+    "PATIENT_SUCCESS":"Patient state changed"
+
   }
+
+  
 
 }

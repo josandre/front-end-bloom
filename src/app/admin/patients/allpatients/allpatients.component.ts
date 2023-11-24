@@ -19,6 +19,7 @@ import {
 
 import {PatientService} from "./service/patient.service";
 import {MatTableDataSource} from "@angular/material/table";
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-allpatients',
@@ -46,6 +47,8 @@ export class AllpatientsComponent
   constructor(
     private snackBar: MatSnackBar,
     public patientService: PatientService,
+    private translate: TranslateService
+
   ) {
     super();
   }
@@ -110,14 +113,16 @@ export class AllpatientsComponent
   setState(row: Patient){
     row.active = !row.active
       this.patientService.changeState(row.id).subscribe(() => {
-          this.openSnackBar("Patient state changed", "Close")
+          this.openSnackBar('ADMIN_SNACKBAR.PATIENT_SUCCESS','ADMIN_SNACKBAR.CLOSE' )
       }, () => {
-        this.openSnackBar("Server error", "Close")
+        this.openSnackBar('ADMIN_SNACKBAR.SERVER_ERROR','ADMIN_SNACKBAR.CLOSE')
       })
   }
 
-  openSnackBar(message: string, action: string){
-    this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'end'})
+  openSnackBar(message: string, action: string) {
+    this.translate.get([message,action]).subscribe((translations: any) => {
+      this.snackBar.open(translations[message], translations[action], { verticalPosition: 'top', horizontalPosition: 'end',duration: 4000 })
+    });
   }
 
   private maskName(name: string): string {

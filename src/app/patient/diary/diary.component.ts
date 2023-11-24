@@ -6,6 +6,7 @@ import {DiaryService} from "./service/diary.service";
 import {Diary} from "./model/diary";
 import {Entry} from "./model/entry";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-diary',
@@ -30,7 +31,8 @@ export class DiaryComponent implements OnInit {
 
     constructor(
         public diaryService: DiaryService,
-        public snackBar: MatSnackBar) {
+        public snackBar: MatSnackBar,
+        private translate: TranslateService) {
         this.Editor = ClassicEditor;
         this.editorHidden = true;
     }
@@ -51,6 +53,8 @@ export class DiaryComponent implements OnInit {
                     this.loading = false;
                 },
                 error => {
+                    this.openSnackBar('DIARY_ENTRY.GET.ERROR', 'DIARY_ENTRY.ACTIONS.CLOSE');
+
                     console.log(error.status);
                 });
     }
@@ -69,7 +73,7 @@ export class DiaryComponent implements OnInit {
             .subscribe(
                 (data) => {
                     console.log(data);
-                    this.openSnackBar("Entry can now be saved", "Close");
+                    this.openSnackBar('DIARY_ENTRY.ADD.SUCCESS', 'DIARY_ENTRY.ACTIONS.CLOSE');
                     this.currentEntryId = data;
                     this.entryWasCreated = true;
                     this.refreshEntries();
@@ -77,7 +81,7 @@ export class DiaryComponent implements OnInit {
                 error => {
                     switch (error.status) {
                         case -1: {
-                            this.openSnackBar("Something went wrong while trying to register anxiety type", "Try again");
+                            this.openSnackBar('DIARY_ENTRY.ADD.ERROR', 'DIARY_ENTRY.ACTIONS.TRY_AGAIN');
                             break;
                         }
                     }
@@ -93,13 +97,13 @@ export class DiaryComponent implements OnInit {
             .subscribe(
                 (response) => {
                     console.log(response);
-                    this.openSnackBar("Entry has been saved", "Close");
+                    this.openSnackBar('DIARY_ENTRY.SAVE.SUCCESS', 'DIARY_ENTRY.ACTIONS.CLOSE');
                     this.refreshEntries();
                 },
                 error => {
                     console.log(error);
 
-                    this.openSnackBar("Something went wrong while trying to save entry", "Try again");
+                    this.openSnackBar('DIARY_ENTRY.SAVE.SUCCESS', 'DIARY_ENTRY.ACTIONS.TRY_AGAIN');
                 });
     }
 
@@ -113,12 +117,12 @@ export class DiaryComponent implements OnInit {
                 (response) => {
                     console.log(response);
                     this.currentEntryId = undefined;
-                    this.openSnackBar("Entry has been deleted", "Close");
+                    this.openSnackBar( 'DIARY_ENTRY.DELETE.SUCCESS',  'DIARY_ENTRY.ACTIONS.CLOSE');
                     this.refreshEntries();
                 },
                 error => {
                     console.log(error);
-                    this.openSnackBar("Something went wrong while trying to delete entry", "Try again");
+                    this.openSnackBar('DIARY_ENTRY.DELETE.ERROR', 'DIARY_ENTRY.ACTIONS.TRY_AGAIN');
                 });
     }
 
@@ -159,6 +163,8 @@ export class DiaryComponent implements OnInit {
     }
 
     openSnackBar(message: string, action: string) {
-        this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'end', duration: 3000});
-    }
+        this.translate.get([message,action]).subscribe((translations: any) => {
+          this.snackBar.open(translations[message], translations[action], { verticalPosition: 'top', horizontalPosition: 'end',duration: 4000 })
+        });
+      }
 }

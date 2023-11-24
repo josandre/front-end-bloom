@@ -31,11 +31,12 @@ export class SignupComponent implements OnInit {
   currentLang: string;
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private userService: SpecialistService, private snackBar: MatSnackBar,private translate: TranslateService
   ) {
-    this.translate.setDefaultLang('es');
+    this.currentLang = 'en';
   }
 
 
   ngOnInit() {
+    this.translate.use(this.currentLang);
     this.authForm = this.formBuilder.group({
       username: new FormControl("", {
         validators:[Validators.required],
@@ -103,7 +104,7 @@ export class SignupComponent implements OnInit {
       this.userService.doctorsRegister(specialist).subscribe((res) => {
         switch (res){
           case 200:{
-            this.openSnackBar("User added", "Close" );
+            this.openSnackBar('SNACKBAR_SIGNUP.SUCCESS', 'SNACKBAR_SIGNUP.CLOSE' );
             this.router.navigate(['authentication/signin']);
             break;
           }
@@ -114,13 +115,13 @@ export class SignupComponent implements OnInit {
       }, error => {
         switch (error.error) {
           case 409:{
-            this.openSnackBar("Your email is already registered", "Close" );
+            this.openSnackBar('SNACKBAR_SIGNUP.EMAIL_REGISTRED', 'SNACKBAR_SIGNUP.CLOSE' );
             break;
 
           }
 
           case 404:{
-            this.openSnackBar("The user is not acceptable", "Close" );
+            this.openSnackBar('SNACKBAR_SIGNUP.EMAIL_REGISTRED', "Close" );
             break;
           }
         }
@@ -130,8 +131,10 @@ export class SignupComponent implements OnInit {
     }
   }
 
-  openSnackBar(message: string, action: string){
-    this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'end', duration: 3000})
+  openSnackBar(message: string, action: string) {
+    this.translate.get([message,action]).subscribe((translations: any) => {
+    this.snackBar.open(translations[message], translations[action], { verticalPosition: 'top', horizontalPosition: 'end',duration: 4000 })
+    });
   }
   changeLanguage(lang: string): void {
     this.currentLang = lang;

@@ -62,7 +62,7 @@ export class SigninComponent implements OnInit {
             this.loading = false;
           },
           error: (error) => {
-            this.error = "unauthorized";
+            this.error = 'LOGIN.ERROR';
             this.submitted = false;
             this.loading = false;
           }

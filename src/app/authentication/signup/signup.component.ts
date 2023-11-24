@@ -10,6 +10,7 @@ import {Specialist} from "./models/Specialist";
 import {SpecialistService} from "./services/Specialist.service";
 import {User} from "./models/User";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import { TranslateService } from '@ngx-translate/core'; // Importa el servicio de traducción
 
 @Component({
   selector: 'app-signup',
@@ -27,9 +28,11 @@ export class SignupComponent implements OnInit {
     {value: 'psychology', viewValue: 'psychology'},
   ];
   isLoading: boolean = false;
-
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private userService: SpecialistService, private snackBar: MatSnackBar,
-  ) {}
+  currentLang: string;
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private userService: SpecialistService, private snackBar: MatSnackBar,private translate: TranslateService
+  ) {
+    this.translate.setDefaultLang('es');
+  }
 
 
   ngOnInit() {
@@ -129,5 +132,13 @@ export class SignupComponent implements OnInit {
 
   openSnackBar(message: string, action: string){
     this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'end', duration: 3000})
+  }
+  changeLanguage(lang: string): void {
+    this.currentLang = lang;
+    this.translate.use(lang);
+  }
+
+  isLanguageActive(lang: string): boolean {
+    return this.currentLang === lang;
   }
 }

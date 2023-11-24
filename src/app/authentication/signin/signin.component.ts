@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import {AuthService, Role} from "@core";
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -19,7 +20,8 @@ export class SigninComponent implements OnInit {
   loading = false;
   error = '';
   hide = true;
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private authService: AuthService) {}
+  currentLang: string;
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private authService: AuthService,private translate: TranslateService) {}
 
   ngOnInit() {
     this.authForm = this.formBuilder.group({
@@ -63,5 +65,13 @@ export class SigninComponent implements OnInit {
           }
         })
     }
+  }
+  changeLanguage(lang: string): void {
+    this.currentLang = lang;
+    this.translate.use(lang);
+  }
+
+  isLanguageActive(lang: string): boolean {
+    return this.currentLang === lang;
   }
 }

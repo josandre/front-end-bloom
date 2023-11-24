@@ -204,7 +204,8 @@
       "LOGOUT": "Logout",
       "TASKLIST": "Task List",
       "ADDTASK": "Add Task",
-      "MODTASK": "Edit Task"
+      "MODTASK": "Edit Task",
+      "MESSAGE": "We are reading your resources"
     },
     "PROGRESS-SECTION": {
       "TITLE": "Progreso Medico"
@@ -223,6 +224,13 @@
     "PATIENTS": "Patients",
     "ATTACKS": "attacks",
     "NO_DATA_FOR_ATTACKS": "No data for attacks recorded."
+  },
+  "PATIENTS_LISTS": {
+    "ADD_NEW": "Add new",
+    "SEE_MEDICAL_RECORD": "See medical record",
+    "PATIENT_ID": "Patient Id",
+    "MESSAGE_LOADING": "This may take some seconds",
+    "MESSAGE_NO_DATA": "You don't have any data yet"
   },
   "DASHBOARD_PATIENT": {
     "WELLCOME_TITLE": "Welcome back",
@@ -453,22 +461,22 @@
     "RESOURCES": {
       "TITLE": "My Resources",
       "ACTIVE_ITEM": "My Resources"
-  
+
     },
     "FORUMS": {
       "TITLE": "Forums",
       "ACTIVE_ITEM": ""
-  
+
     },
     "GAME": {
       "TITLE": "Games Section",
       "ACTIVE_ITEM": ""
-  
+
     },
     "CONTACTS": {
       "TITLE": "Contacts",
       "ACTIVE_ITEM": ""
-  
+
     }
   },
   "ADMIN_BREADCRUM": {
@@ -490,7 +498,7 @@
       "ACTIVE_ITEM": "All Doctors"
     }
   },
-  
+
   "MEDICAL_RECORD":{
     "INFO": {
       "REQUIRED":"value is required",
@@ -516,7 +524,7 @@
       "ACTIONS":{
         "TRY_AGAIN":"Try again",
         "CLOSE": "Close"
-      }, 
+      },
       "ADD_ANXIETY_TYPE": {
         "TEXT": "This anxiety type already exits",
         "SUCCESS":"Anxiety type has been added successfully!",
@@ -548,6 +556,7 @@
       }
     },
     "MEDICAL_HISTORY":{
+      "MESSAGE": "We are getting your data",
       "NEW_MEDICAL_HISTORY":"New Medical History",
       "UPDATE_MEDICAL_HISTORY":"Update Medical History",
       "OBSERVATIONS":"Observations",
@@ -571,12 +580,12 @@
         "SEVERE": "Severe",
         "DEBILITATING": "Debilitating",
         "INDETERMINATE": "Indeterminate"
-        
+
       },
       "DELETE_CONFIRMATION":"Are you sure?",
       "DELETE": "Delete"
     }
-    
+
   },
   "PROFILE":{
       "SELECTED_PHOTO":"No files selected",
@@ -605,7 +614,7 @@
         "ACTIONS":{
           "TRY_AGAIN":"Try again",
           "CLOSE": "Close"
-        }, 
+        },
         "GET_USER":{
           "ERROR":"Error getting user data"
         },
@@ -620,5 +629,49 @@
       },
       "psychology":"Psychology",
       "therapist":"Therapist"
-    }
+    },
+  "PROFILES": {
+    "SETTINGS": "Settings",
+    "SECURITY_SETTINGS": "Security Settings",
+    "CURRENT_PASSWORD": "Current Password",
+    "NEW_PASSWORD": "New password",
+    "CONFIRM_PASSWORD": "Confirm password",
+    "SAVE": "Save",
+    "NAME": "Name",
+    "LAST_NAME": "Last Name",
+    "USER_NAME": "User Name",
+    "EMAIL": "EMAIL",
+    "MEDICAL_ID": "Medical Id",
+    "COLLEGE": "College",
+    "PHONE": "Phone",
+    "LOCATION": "Location",
+    "ACCOUNT_SETTINGS": "Account Settings",
+    "SAVE_NEW_PROFILE_PHOTO": "Save new profile photo",
+    "MESSAGE": "We are loading your data"
+  },
+  "SIGN_UP_PATIENTS": {
+    "NEW_PATIENT": "New Patient",
+    "DETAILS": "Enter details to create you patient account",
+    "NAME": "Name",
+    "LAST_NAME": "Last Name",
+    "CITIZEN_ID": "Citizen Id",
+    "USERNAME": "User Name",
+    "PHONE": "Phone",
+    "ADDRESS": "Address",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "SAVE": "Save",
+    "MESSAGE": "Saving the new patient"
+  },
+  "MESSAGES_SYSTEM": {
+    "LOADING_CONVERSATIONS": "We are reading your conversations",
+    "NOT_NEW_MESSAGES": "No new messages",
+    "NEW_MESSAGES": "new messages",
+    "SELECT_CONVERSATION": "Select a conversation",
+    "ANY_CONVERSATION": "You do not have any conversation yet",
+    "LOADING_MESSAGES": "Loading conversation messages",
+    "ENTER_TEXT_HERE": "Enter text here..",
+    "SEARCH": "Search"
+  }
+
 }

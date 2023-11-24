@@ -1,7 +1,7 @@
 <section class="content">
   <div class="content-block">
     <div class="block-header">
-      <!-- breadcrumb -->
+
       <app-breadcrumb [title]="'DOCTOR_BREADCRUM.CHAT.TITLE' | translate" [items]="[]"></app-breadcrumb>
     </div>
     <div class="row">
@@ -10,15 +10,17 @@
           <div class="body">
             <div id="plist" class="people-list">
               <div class="form-line m-b-15">
-                <input type="text" class="form-control" [ngModel]="word" (ngModelChange)="filter($event)" placeholder="Search..." />
+                <input type="text" class="form-control" [ngModel]="word" (ngModelChange)="filter($event)"
+                       [placeholder]="'MESSAGES_SYSTEM.SEARCH' | translate"
+                        />
               </div>
               <div class="tab-content"  >
                 <ng-scrollbar style="height: 590px" visibility="hover">
                   <div class="spinner" *ngIf="!conversationSelected && isLoading">
                     <div class="img">
-                      <img  class="gif" src="assets/gif/loading-bloom.gif" alt="avatar" width="70px" height="70px">
+                      <img  class="gif logo" src="assets/images/Bloom.png" alt="avatar" width="70px" height="70px">
                     </div>
-                    <div class="text">{{"We are reading your conversations..."}}</div>
+                    <div class="text">{{'MESSAGES_SYSTEM.LOADING_CONVERSATIONS' | translate}}</div>
                   </div>
                   <div id="chat_user" >
                     <ul class="chat-list list-unstyled m-b-0" *ngFor="let conversation of conversations">
@@ -26,7 +28,7 @@
                         <img class="avatar-user" src="{{getPhoto(conversation.photo)}}" alt="avatar">
                         <div class="about">
                           <div class="name">{{conversation.name + " " + conversation.lastName}}</div>
-                          <div>{{conversation.newMessages === 0 ? 'No new messages' : conversation.newMessages + " new messages"}}</div>
+                          <div>{{conversation.newMessages === 0 ? ('MESSAGES_SYSTEM.NOT_NEW_MESSAGES' | translate) : conversation.newMessages + 'MESSAGES_SYSTEM.NEW_MESSAGES' | translate }}</div>
                         </div>
                       </li>
                     </ul>
@@ -42,15 +44,15 @@
         <div class="img">
           <img  class="gif" src="assets/gif/bloom-blink.gif" alt="avatar">
         </div>
-        <div class="text">{{conversations.length != 0 ? "Select a conversation" : "You do not have any conversation yet" }}</div>
+        <div class="text">{{conversations.length != 0 ? ('MESSAGES_SYSTEM.SELECT_CONVERSATION' | translate)  : 'MESSAGES_SYSTEM.ANY_CONVERSATION' | translate }}</div>
       </div>
 
 
       <div class="spinner col-xs-12 col-sm-12 col-md-9 col-lg-9 card select" *ngIf="isConversationSelected && isLoading">
         <div class="img">
-          <img  class="gif" src="assets/gif/full-loading-bloom.gif" alt="avatar">
+          <img  class="gif logo" src="assets/images/Bloom.png" alt="avatar">
         </div>
-        <div class="text">{{"Loading conversation messages..."}}</div>
+        <div class="text">{{'MESSAGES_SYSTEM.LOADING_MESSAGES' | translate}}</div>
       </div>
 
       <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9" *ngIf="isConversationSelected && !isLoading">
@@ -86,13 +88,15 @@
                     </ul>
                   </div>
                 </ng-scrollbar>
-                <div  class="chat-message clearfix">
+                <div  class="chat-message clearfix cont-msj">
                   <div class="form-group">
                     <div class="form-line">
-                      <mat-form-field class="example-full-width" appearance="outline"
+                      <mat-form-field class="example-full-width msj" appearance="outline"
                                       [hideRequiredMarker]="hideRequiredControl.value">
                         <input
-                          matInput placeholder="Enter text here.."
+                          matInput
+                          placeholder="Enter text here.."
+                          [placeholder]="'MESSAGES_SYSTEM.ENTER_TEXT_HERE' | translate"
                           required
                           formControlName="message"
                         >
@@ -100,12 +104,13 @@
                       </mat-form-field>
                     </div>
                   </div>
-                  <div class="chat-upload">
-                    <button
-                      mat-mini-fab class="bg-deep-orange msr-2"
+                  <div class="chat-upload btn">
+                    <button mat-mini-fab
+                      color="primary"
                       type="submit" >
-                      <i class="material-icons">send</i>
+                      <mat-icon class="col-white">send</mat-icon>
                     </button>
+
                   </div>
                 </div>
               </form>

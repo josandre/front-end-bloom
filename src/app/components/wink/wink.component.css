@@ -1,0 +1,21 @@
+.spinner{
+  display: flex;
+  flex-direction: column;
+}
+
+.img{
+  display: flex;
+  justify-content: space-around;
+}
+
+
+.select{
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.text{
+  display: flex;
+  justify-content: center;
+  color: grey;
+}

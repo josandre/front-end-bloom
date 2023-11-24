@@ -23,6 +23,7 @@ import {UploadFileService} from "../../../global/upload-file/upload-file.service
 import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
 
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -36,6 +37,8 @@ export class ProfileComponent implements OnInit {
   patient: Patient | undefined;
   anxieties: Set<string>;
   anxitiesControl: FormControl;
+  isLoading: boolean = true
+  message:string =  'MEDICAL_RECORD.MEDICAL_HISTORY.MESSAGE'
 
   @ViewChild('autosize') autosize: CdkTextareaAutosize;
   familyMedicalHistoryControl: FormControl;
@@ -53,7 +56,7 @@ export class ProfileComponent implements OnInit {
     private snackBar: MatSnackBar,
     private readonly fileService: UploadFileService,
     private translate: TranslateService) {
-      
+
   }
 
   getFormattedDate(date?:Date): string {
@@ -63,14 +66,14 @@ export class ProfileComponent implements OnInit {
     }
     return '';
   }
-  
+
   ngOnInit(): void {
     this.getMedicalRecord(Number(this.route.snapshot.paramMap.get('id')));
     this.getPatient(Number(this.route.snapshot.paramMap.get('id')));
     this.initializeForms();
     this.anxieties = new Set<string>();
     this.anxitiesControl.disable();
-    this.familyMedicalHistoryControl.disable();    
+    this.familyMedicalHistoryControl.disable();
   }
 
   initializeForms() {
@@ -81,9 +84,12 @@ export class ProfileComponent implements OnInit {
   }
 
   getMedicalRecord(id: number): void {
+    this.isLoading = true
+
     this.medicalRecordService.getMedicalRecordByPatient(id)
       .subscribe(
         data => {
+          this.isLoading = false
           this.medicalRecord = data;
           this.medicalRecordId = this.medicalRecord.id;
           this.medicalHistories = this.medicalRecord.medicalHistories;
@@ -95,10 +101,12 @@ export class ProfileComponent implements OnInit {
           }));
 
           if (this.medicalRecord.familyMedicalHistory === null) {
+            this.isLoading = false
            this.openSnackBar('MEDICAL_RECORD.SNACKBAR.GET_MEDICAL_RECORD.FILL_OUT','MEDICAL_RECORD.SNACKBAR.ACTIONS.CLOSE');
           }
         },
         error => {
+          this.isLoading = false
           switch (error.status) {
             case 400: {
               this.openSnackBar('MEDICAL_RECORD.SNACKBAR.GET_MEDICAL_RECORD.ERROR','MEDICAL_RECORD.SNACKBAR.ACTIONS.CLOSE');

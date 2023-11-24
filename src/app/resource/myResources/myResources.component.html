@@ -5,12 +5,10 @@
       <br>
       <app-breadcrumb [title]="'DOCTOR_BREADCRUM.RESOURCES.TITLE' | translate" [active_item]="'DOCTOR_BREADCRUM.RESOURCES.ACTIVE_ITEM' | translate"></app-breadcrumb>
     </div>
-    <div class="center" *ngIf="!flag" >
-      <mat-spinner></mat-spinner>
-    </div>
-    <div class="row" *ngIf="flag">
+
+    <div class="row" *ngIf="!flag">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <div class="card">
+        <div class="card" >
           <div class="materialTableHeader">
             <div class="left">
               <ul class="header-buttons-left ms-0">
@@ -100,4 +98,9 @@
       </div>
     </div>
   </div>
+
+  <div class="center" *ngIf="flag" >
+    <app-spinner [isLoading]="flag" [message]="message | translate"></app-spinner>
+  </div>
+
 </section>

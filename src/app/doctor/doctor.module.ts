@@ -21,6 +21,7 @@ import { MedicalhistoryDialogComponent } from './patients/medicalrecord/medicalh
 import {SignupPatientComponent} from "./patients/signupPatient/signup-patient.component";
 import {DoctorProfileComponent} from "./doctor-profile/doctor-profile.component";
 import { DeleteMedicalhistoryDialogComponent } from './patients/medicalrecord/delete-medicalhistory-dialog/delete-medicalhistory-dialog.component';
+import {SpinnerModule} from "../components/components.module";
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { DeleteMedicalhistoryDialogComponent } from './patients/medicalrecord/de
     ComponentsModule,
     SharedModule,
     TranslateModule,
+    SpinnerModule,
   ],
   providers: [AppointmentsService],
 })

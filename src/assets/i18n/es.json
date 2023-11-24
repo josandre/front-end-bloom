@@ -207,7 +207,8 @@
       "LOGOUT": "Salir",
       "TASKLIST": "Lista de Tareas",
       "ADDTASK": "Agregar Tarea",
-      "MODTASK": "Editar Tarea"
+      "MODTASK": "Editar Tarea",
+      "MESSAGE": "Estamos leyendo tu recursos"
     }
   },
   "DASHBOARD_DOCTOR": {
@@ -223,6 +224,32 @@
     "PATIENTS": "Pacientes",
     "ATTACKS": "ataques",
     "NO_DATA_FOR_ATTACKS": "No hay datos de ataques registrados."
+  },
+  "PATIENTS_LISTS": {
+    "ADD_NEW": "Nuevo paciente",
+    "SEE_MEDICAL_RECORD": "Expediente médico",
+    "PATIENT_ID": "Id del paciente",
+    "MESSAGE_LOADING": "Esto puedo tomar unos segundos!",
+    "MESSAGE_NO_DATA": "Aún no hay data registrada"
+  },
+  "PROFILES": {
+    "SETTINGS": "Ajustes",
+    "SECURITY_SETTINGS": "Configuraciones de Seguridad",
+    "CURRENT_PASSWORD": "Contraseña Actual",
+    "NEW_PASSWORD": "Nueva Contraseña",
+    "CONFIRM_PASSWORD": "Confirmar Contraseña",
+    "SAVE": "Guardar",
+    "NAME": "Nombre",
+    "LAST_NAME": "Apellidos",
+    "USER_NAME": "Nombre de Usuario",
+    "EMAIL": "Correo Electrónico",
+    "MEDICAL_ID": "Identificación médica",
+    "COLLEGE": "Universidad",
+    "PHONE": "Teléfono",
+    "LOCATION": "Ubicación",
+    "ACCOUNT_SETTINGS": "Configuraciones de la cuenta",
+    "SAVE_NEW_PROFILE_PHOTO": "Guardar nueva foto",
+    "MESSAGE": "Estamos cargando tus datos"
   },
   "DASHBOARD_PATIENT": {
     "WELLCOME_TITLE": "¡Bienvenido de nuevo!",
@@ -245,6 +272,20 @@
     "SESSIONS": "Sesiones",
     "ANXIETY_ATTACKS": "Ataques de Ansiedad",
     "NUMBER_OF_ATTACKS": "Cantidad de ataques"
+  },
+  "SIGN_UP_PATIENTS": {
+    "NEW_PATIENT": "Paciente nuevo",
+    "DETAILS": "Ingresar datos para la cuenta del paciente",
+    "NAME": "Nombre",
+    "LAST_NAME": "Apellidos",
+    "CITIZEN_ID": "Cédula",
+    "USERNAME": "Nombre de Usuario",
+    "PHONE": "Teléfono",
+    "ADDRESS": "Dirección",
+    "EMAIL": "Correo Electrónico",
+    "PASSWORD": "Contraseña",
+    "SAVE": "Guardar",
+    "MESSAGE": "Registrando al nuevo paciente"
   },
   "ANXIETY_LEVEL": {
     "MINIMAL": "Mínimo",
@@ -453,22 +494,22 @@
     "RESOURCES": {
       "TITLE": "Mis Recursos",
       "ACTIVE_ITEM": ""
-  
+
     },
     "FORUMS": {
       "TITLE": "Foro",
       "ACTIVE_ITEM": ""
-  
+
     },
     "GAME": {
       "TITLE": "Sección de Juegos",
       "ACTIVE_ITEM": ""
-  
+
     },
     "CONTACTS": {
       "TITLE": "Contactos",
       "ACTIVE_ITEM": ""
-  
+
     }
   },
   "ADMIN_BREADCRUM": {
@@ -547,6 +588,7 @@
       }
     },
     "MEDICAL_HISTORY":{
+      "MESSAGE": "Estamos recolectando datos",
       "NEW_MEDICAL_HISTORY":"Nuevo historial médico",
       "UPDATE_MEDICAL_HISTORY":"Actualizar historial médico",
       "OBSERVATIONS":"Observaciones",
@@ -570,7 +612,7 @@
         "SEVERE": "Severo",
         "DEBILITATING": "Debilitante",
         "INDETERMINATE": "Indeterminado"
-        
+
       },
       "DELETE_CONFIRMATION":"¿Seguro que desea eliminar el historial médico?",
       "DELETE": "Eliminar"
@@ -603,7 +645,7 @@
       "ACTIONS":{
         "TRY_AGAIN":"Intente de nuevo",
         "CLOSE": "Cerrar"
-      }, 
+      },
       "GET_USER":{
         "ERROR":"Error al obtener datos del usuario"
       },
@@ -618,5 +660,16 @@
     },
     "psychology":"Psicología",
     "therapist":"Terapeuta"
+  },
+  "MESSAGES_SYSTEM": {
+    "LOADING_CONVERSATIONS": "Estamos leyendo tus conversaciones",
+    "NOT_NEW_MESSAGES": "No hay mensajes",
+    "NEW_MESSAGES": "Mensajes nuevos",
+    "SELECT_CONVERSATION": "Seleccione una conversación",
+    "ANY_CONVERSATION": "No tiene conversación aún",
+    "LOADING_MESSAGES": "Leyendo mensajes",
+    "ENTER_TEXT_HERE": "Ingrese su texto aquí...",
+    "SEARCH": "Buscar"
   }
+
 }

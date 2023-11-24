@@ -28,14 +28,14 @@
   border-radius: 0;
 
   &:hover {
-    background-color: #9cd3e3;
+    background-color: #ebf6f9;
     transition: 0.3s;
     border-radius: 10px;
   }
 }
 
 .opened-entry {
-  background-color: #9cd3e3;
+  background-color: #9cd3e3 !important;
   transition: 0.3s;
   border-radius: 10px;
 }
@@ -111,4 +111,9 @@
     margin: 0;
   }
 }
+
+.container-tags {
+  background-color: white;
+}
+
 

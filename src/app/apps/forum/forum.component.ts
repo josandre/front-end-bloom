@@ -36,8 +36,8 @@ export class ForumComponent implements OnInit {
   // User info
   currentUser?:any;
 
-  load = true
-  message = 'hola'
+  loading: boolean = false
+  message = 'MENUITEMS.FORUMS.MESSAGE'
 
 
   constructor(
@@ -51,7 +51,6 @@ export class ForumComponent implements OnInit {
   ngOnInit(): void {
     // Get current user info
     this.currentUser = this.authService.currentUserValue;
-    console.log(this.currentUser);
 
     // Retrieve all the posts
     this.getPosts();
@@ -63,16 +62,17 @@ export class ForumComponent implements OnInit {
     this.postLoaded = false;
 
     this.postsLoaded = false;
+    this.loading = true
     this.showPosts();
     this.forumService.getAllPosts()
     .subscribe(
       data => {
-
         this.posts = data;
         this.postsLoaded = true;
+        this.loading = false
       },
       error => {
-        console.log(error);
+        this.loading = false
         this.posts = Array(0).fill(null);
         this.postsLoaded = true;
       }

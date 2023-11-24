@@ -17,7 +17,6 @@ import {
   TableElement,
   UnsubscribeOnDestroyAdapter,
 } from '@shared';
-import { formatDate } from '@angular/common';
 import { DoctorService } from '../service/doctor.service';
 import {MatTableDataSource} from "@angular/material/table";
 
@@ -37,6 +36,8 @@ export class AlldoctorsComponent
     'username',
     'actions'
   ];
+
+  message : string = 'hola'
 
   dataSource: MatTableDataSource<Doctor> = new MatTableDataSource<Doctor>([]);
   loading: boolean = false
@@ -70,7 +71,9 @@ export class AlldoctorsComponent
         this.dataSource = new MatTableDataSource<Doctor>(doctors)
         this.loading = false
       },
-      error: (error) => {}
+      error: (error) => {
+        this.loading = false
+      }
     });
   }
 
@@ -81,9 +84,9 @@ export class AlldoctorsComponent
    this.dataSource.filter = filterText;
   }
 
-  // export table data in excel file
+
   exportExcel() {
-    // key name with space add in brackets
+
     const exportData: Partial<TableElement>[] =
       this.dataSource.filteredData.map((x) => ({
         Name: x.userName,

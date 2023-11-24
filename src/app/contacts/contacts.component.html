@@ -4,7 +4,12 @@
       <!-- breadcrumb -->
       <app-breadcrumb [title]="'PATIENT_BREADCRUM.CONTACTS.TITLE' | translate" [items]="[]"></app-breadcrumb>
     </div>
-    <div class="row">
+
+    <div class="center" *ngIf="isLoading">
+      <app-spinner [isLoading]="true" [message]="message | translate"></app-spinner>
+    </div>
+
+    <div class="row" *ngIf="!isLoading">
       <div class="col-md-12">
         <div class="tabbable-line">
           <div class="row">
@@ -111,10 +116,6 @@
 
                     </table>
 
-                    <div *ngIf="isLoading" class="tbl-spinner">
-                      <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
-                      </mat-progress-spinner>
-                    </div>
 
                     <div *ngIf="!isLoading">
                       <div *ngIf="dataSource.data.length === 0 && !isFiltering" class="no-results">

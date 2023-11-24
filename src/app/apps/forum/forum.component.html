@@ -1,34 +1,35 @@
 <section class="content">
   <div class="content-block">
     <div class="block-header">
-      <!-- breadcrumb -->
       <app-breadcrumb [title]="'PATIENT_BREADCRUM.FORUMS.TITLE' | translate" [items]="[]"></app-breadcrumb>
-
     </div>
 
-    <!--All Posts-->
-    <div *ngIf="forumState === ForumStates.ShowAllPosts">
+
+    <div>
+
+      <div class="center" *ngIf="loading">
+        <app-spinner [isLoading]="true" [message]="message | translate"></app-spinner>
+      </div>
 
       <!--All posts card-->
-      <div class="card">
+      <div class="card" *ngIf="!loading">
+
         <div class="header">
           <h1>{{'MENUITEMS.FORUMS.POSTS_TITLE' | translate}}</h1>
           <div></div>
         </div>
+
+
 
         <div class="card-content">
           <!--All posts-->
           <button mat-flat-button color="primary" (click)="openNewPostDialog()">{{'MENUITEMS.FORUMS.CREATE_POST' |
             translate}}</button>
 
-<!--          &lt;!&ndash;Posts loading&ndash;&gt;-->
-<!--          <div *ngIf="postsLoaded === false">-->
-<!--            <app-loading-card></app-loading-card>-->
-<!--          </div>-->
 
-          <div class="center" *ngIf="!postLoaded">
-            <app-spinner [isLoading]="true" [message]="message | translate"></app-spinner>
-          </div>
+          <div *ngIf="postsLoaded === false">
+          <app-loading-card></app-loading-card>
+        </div>
 
           <!--Posts container-->
           <div *ngIf="postsLoaded === true" class="posts-container">

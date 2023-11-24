@@ -48,7 +48,7 @@
                       </mat-error>
                     </mat-form-field>
                     <div class="example-button-container pt-2">
-                      <button mat-mini-fab color="primary"
+                      <button mat-mini-fab color="primary" *ngIf="!isFormEnabled(familyMedicalHistoryControl)"
                               (click)="familyMedicalHistoryControl.enable()">
                         <mat-icon>edit</mat-icon>
                       </button>
@@ -77,7 +77,7 @@
                       </mat-chip-list>
                     </mat-form-field>
                     <div class="example-button-container">
-                      <button mat-mini-fab color="primary"
+                      <button mat-mini-fab color="primary" *ngIf="!isFormEnabled(anxitiesControl)"
                               (click)="anxitiesControl.enable()">
                         <mat-icon>edit</mat-icon>
                       </button>
@@ -134,7 +134,7 @@
                             </div>
                             <div class="body">
                               <ul>
-                                <li><strong>{{'MEDICAL_RECORD.INFO.ANXIETY_LEVEL' | translate}}:</strong>{{ 'MEDICAL_RECORD.MEDICAL_HISTORY.ANXIETY_LEVEL.' + medicalHistory.anxietyLevel | translate }}</li>
+                                <li><strong>{{'MEDICAL_RECORD.INFO.ANXIETY_LEVEL' | translate}}:</strong> {{ 'MEDICAL_RECORD.MEDICAL_HISTORY.ANXIETY_LEVEL.' + medicalHistory.anxietyLevel | translate }}</li>
                                 <li><strong>{{'MEDICAL_RECORD.INFO.OBSERVATIONS' | translate}}:</strong> {{ medicalHistory.observations }}</li>
                                 <li><strong>{{'MEDICAL_RECORD.INFO.TREATMENT_STARTED_ON' | translate}}:</strong> {{getFormattedDate(medicalHistory.treatmentStartDate)}}</li>
                                 <li><strong>{{'MEDICAL_RECORD.INFO.TREATMENT_ENDED_ON' | translate}}:</strong> {{ getFormattedDate(medicalHistory.treatmentEndDate)}}</li>
@@ -149,7 +149,6 @@
                             </div>
                             <div class="body">
                               <ul>
-                                <li><strong>{{'MEDICAL_RECORD.INFO.NAME_RECIPE' | translate}}:</strong> {{ medicalHistory?.medicalRecipe?.name }}</li>
                                 <li><strong>{{'MEDICAL_RECORD.INFO.INDICATIONS' | translate}}:</strong> {{ medicalHistory?.medicalRecipe?.indications }}
                                 </li>
                               </ul>

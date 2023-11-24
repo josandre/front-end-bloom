@@ -236,7 +236,7 @@
   "DASHBOARD_ADMIN": {
     "WELCOME_TITLE": "Welcome back!",
     "WELCOME_TEXT": "Every day is a new opportunity to lead with excellence and forge innovative paths. Your vision and ongoing effort are the driving force behind our success. Thank you for your tireless dedication and for making every day count!"
-  },  
+  },
   "DASHBOARD_PATIENT": {
     "WELLCOME_TITLE": "Welcome back",
     "WELLCOME_TEXT": "We would like to take this opportunity to welcome you to our practice and to thank you for choosing our physicians to participate in your healthcare. We look forward to providing you with personalized, comprehensive health care focusing on wellness and prevention.",
@@ -523,7 +523,7 @@
       "INDICATIONS":"Indications",
       "APPOINTMENT_REGISTRED":"No appointments registered",
       "FAMILY_MEDICAL_HISTORY":"Family Medical History",
-      "ANXIETIES":"Anxietys",
+      "ANXIETIES":"Anxieties",
       "ANXIETY_TYPE":"New anxiety type..."
     },
     "SNACKBAR":{

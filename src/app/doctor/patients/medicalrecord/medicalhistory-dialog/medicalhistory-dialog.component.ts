@@ -70,7 +70,6 @@ export class MedicalhistoryDialogComponent {
       anxietyLevel: [this.medicalHistory.anxietyLevel],
       treatmentStartDate: [this.medicalHistory.treatmentStartDate],
       treatmentEndDate: [this.medicalHistory.treatmentEndDate],
-      name: [this.medicalRecipe.name],
       indications: [this.medicalRecipe.indications],
     });
   }
@@ -85,12 +84,11 @@ export class MedicalhistoryDialogComponent {
   public confirmAction(): void {
     if (this.medicalHistoryForm.valid) {
 
-      
+
       this.medicalHistory.observations = this.medicalHistoryForm.controls['observations'].value;
       this.medicalHistory.anxietyLevel = this.medicalHistoryForm.controls['anxietyLevel'].value;
       this.medicalHistory.treatmentStartDate = this.medicalHistoryForm.controls['treatmentStartDate'].value;
       this.medicalHistory.treatmentEndDate = this.medicalHistoryForm.controls['treatmentEndDate'].value;
-      this.medicalRecipe.name = this.medicalHistoryForm.controls['name'].value;
       this.medicalRecipe.indications = this.medicalHistoryForm.controls['indications'].value;
 
       this.medicalHistory.medicalRecipe = this.medicalRecipe;

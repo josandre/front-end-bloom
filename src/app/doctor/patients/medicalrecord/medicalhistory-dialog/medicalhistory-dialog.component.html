@@ -60,18 +60,6 @@
         </mat-label>
       </div>
       <div class="row">
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-          <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>{{'MEDICAL_RECORD.MEDICAL_HISTORY.NAME_RECIPE' | translate}}</mat-label>
-            <input matInput formControlName="name" required>
-            <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>face</mat-icon>
-            <mat-error *ngIf="medicalHistoryForm.get('name')?.hasError('required')">
-              {{'MEDICAL_RECORD.MEDICAL_HISTORY.NAME_RECIPE_REQUIRED' | translate}}
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>{{'MEDICAL_RECORD.MEDICAL_HISTORY.INDICATIONS' | translate}}</mat-label>

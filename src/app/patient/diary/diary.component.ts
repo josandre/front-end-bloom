@@ -24,7 +24,7 @@ export class DiaryComponent implements OnInit {
 
     entries?: Entry[];
     currentEntryId?: number;
-    entryCanBeSaved: boolean;
+    entryWasCreated: boolean;
 
     loading: boolean;
 
@@ -56,13 +56,13 @@ export class DiaryComponent implements OnInit {
     }
 
     addEntry(): void {
-        this.entryCanBeSaved = false;
+        this.entryWasCreated = false;
         this.editorHidden = false;
         this.editorContent = "";
         this.currentEntryId = undefined;
 
         const entry: Entry = new Entry({
-            content: ""
+            content: "<p></p>"
         });
 
         this.diaryService.createEntry(this.diaryId, entry)
@@ -71,8 +71,8 @@ export class DiaryComponent implements OnInit {
                     console.log(data);
                     this.openSnackBar("Entry can now be saved", "Close");
                     this.currentEntryId = data;
+                    this.entryWasCreated = true;
                     this.refreshEntries();
-                    this.entryCanBeSaved = true;
                 },
                 error => {
                     switch (error.status) {
@@ -89,8 +89,6 @@ export class DiaryComponent implements OnInit {
             content: this.Editor.editorInstance.getData(),
         });
 
-        console.log(this.Editor.editorInstance.getData())
-
         this.diaryService.updateEntry(this.currentEntryId!, entry)
             .subscribe(
                 (response) => {
@@ -105,11 +103,32 @@ export class DiaryComponent implements OnInit {
                 });
     }
 
+    deleteEntry(): void {
+        this.editorHidden = true;
+        this.editorContent = "";
+        this.entries = this.entries?.filter((entry) => entry.id !== this.currentEntryId);
+
+        this.diaryService.deleteEntry(this.currentEntryId!)
+            .subscribe(
+                (response) => {
+                    console.log(response);
+                    this.currentEntryId = undefined;
+                    this.openSnackBar("Entry has been deleted", "Close");
+                    this.refreshEntries();
+                },
+                error => {
+                    console.log(error);
+                    this.openSnackBar("Something went wrong while trying to delete entry", "Try again");
+                });
+    }
+
     setEditorContent(entry: Entry) {
         this.editorHidden = false;
         this.currentEntryId = entry.id;
+        console.log(entry.id);
         this.editorContent = entry.content;
-        this.entryCanBeSaved = true;
+        console.log(this.editorContent);
+        this.entryWasCreated = true;
     }
 
     generatePreview(content: string, maxLengthPerLine: number): string {
@@ -136,7 +155,7 @@ export class DiaryComponent implements OnInit {
     closeEditor() {
         this.editorHidden = true;
         this.currentEntryId = undefined;
-        this.entryCanBeSaved = false;
+        this.entryWasCreated = false;
     }
 
     openSnackBar(message: string, action: string) {

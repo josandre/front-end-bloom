@@ -48,13 +48,13 @@
                             <button mat-mini-fab (click)="closeEditor()">
                                 <mat-icon>close</mat-icon>
                             </button>
-                            <button mat-mini-fab (click)="saveEntry()" *ngIf="entryCanBeSaved">
-                                <mat-icon>save</mat-icon>
-                            </button>
                             <button mat-mini-fab>
                                 <mat-icon>smart_toy</mat-icon>
                             </button>
-                            <button mat-icon-button [matMenuTriggerFor]="moreToolsMenu" aria-label="icon-button with a menu">
+                            <button mat-mini-fab (click)="saveEntry()" *ngIf="entryWasCreated">
+                                <mat-icon>save</mat-icon>
+                            </button>
+                            <button mat-icon-button [matMenuTriggerFor]="moreToolsMenu" *ngIf="entryWasCreated" aria-label="icon-button with a menu">
                                 <mat-icon>more_vert</mat-icon>
                             </button>
                             <mat-menu #moreToolsMenu="matMenu">
@@ -66,7 +66,7 @@
                                     <mat-icon class="icon-color">info</mat-icon>
                                     <span>Details</span>
                                 </button>
-                              <button mat-menu-item>
+                              <button mat-menu-item (click)="deleteEntry()">
                                 <mat-icon class="icon-color">delete</mat-icon>
                                 <span>Delete</span>
                               </button>

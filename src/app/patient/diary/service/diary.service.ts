@@ -44,4 +44,10 @@ export class DiaryService {
 
       return this.http.put(url, entry, {headers: this.header});
     }
+
+    deleteEntry(entryId: number) {
+        const url = `${this.baseUrl}/entries/${entryId}`;
+
+        return this.http.delete(url, {headers: this.header});
+    }
 }

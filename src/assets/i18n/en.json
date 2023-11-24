@@ -727,6 +727,13 @@
     "LOGIN":"Login"
 
 
+  },
+  "SNACKBAR_SIGNUP":{
+    "CLOSE":"Close",
+    "SUCCESS":"User added",
+    "EMAIL_REGISTRED":"Your email is already registered",
+    "USER_NOT_ACCEPTABLE":"The user is not acceptable"
+
   }
 
 }

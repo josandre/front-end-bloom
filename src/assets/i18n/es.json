@@ -725,6 +725,13 @@
     "LOGIN":"Iniciar sesión"
 
 
+  },
+  "SNACKBAR_SIGNUP":{
+    "CLOSE":"Cerrar",
+    "SUCCESS":"Usuario registrado",
+    "EMAIL_REGISTRED":"El correo ya se encuentra registrado",
+    "USER_NOT_ACCEPTABLE":"Usuario no permitido"
+
   }
 
 }

@@ -197,7 +197,7 @@
       "CREATE": "Crear Recurso",
       "MODIFY": "Modificar Recurso",
       "MY-PATIENTS": "Mis Pacientes",
-      "POST": "Salvar",
+      "POST": "Guardar",
       "COMPOSE": "Crear Nuevo Recurso",
       "TITLE": "Titulo",
       "EDIT": "Editar",
@@ -213,6 +213,28 @@
       "MESSAGE_READ": "Estamos leyendo el recurso",
       "MESSAGE_UPDATE": "Estamos modificando el recurso",
       "MESSAGE_CREATED": "Estamos creando un nuevo recurso"
+
+    },
+    "RESOURCESNACK": {
+      "TASKADD": "Tarea agregada exitosamente",
+      "TASKNOTADD": "La tarea no fue agregada",
+      "TASKMOD": "Tarea modificada exitosamente",
+      "TASKNOTMOD": "La tarea no fue editada",
+      "TASKDEL": "La tarea fue eliminada exitosamente",
+      "TASKNOTDEL": "La tarea no fue eliminada",
+      "TASKCHECK": "La tarea ha sido completada exitosamente",
+      "TASKNOTCHECK": "La tarea no ha sido completada",
+      "RESDEL": "El recurso fue eliminado exitosamente",
+      "ERROR": "Hubo un error",
+      "CREATERES": "Creando un nuevo recurso, por favor espere un momento...",
+      "RESADD": "El recurso fue creado exitosamente",
+      "RESNOTADD": "El recurso no fue creado",
+      "NOCONTENT": "Por favor agregue contenido",
+      "NOTITLE": "Por favor agregue un titulo",
+      "NOPATIENT": "Por favor seleccione al menos un paciente",
+      "MODRES": "Modificando el recurso, por favor espere un momento...",
+      "RESMOD": "El recurso ha sido modificado exitosamente",
+      "RESNOTMOD": "El recurso no ha sido modificado"
     }
   },
   "DASHBOARD_DOCTOR": {

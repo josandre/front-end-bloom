@@ -6,7 +6,7 @@ import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {User} from "../models/User";
 import {Resource} from "../models/Resource";
-
+import {TranslateService} from "@ngx-translate/core";
 @Component({
   selector: 'app-modify',
   templateUrl: './modify.component.html',
@@ -41,7 +41,10 @@ export class ModifyComponent implements OnInit {
       updateOn: 'submit'
     })
   })
-  constructor(private readonly resourceService: ResourceService, private router: Router, private snackBar: MatSnackBar) {}
+  constructor(private readonly resourceService: ResourceService,
+              private router: Router,
+              private snackBar: MatSnackBar,
+              private readonly translate:TranslateService) {}
   ngOnInit(){
     this.loading = true
     this.resourceService.getMyPatients().subscribe(
@@ -82,11 +85,11 @@ export class ModifyComponent implements OnInit {
 
       if (content != '' && resourcetitle != '' && this.id != null){
         this.postingFlag = true;
-        this.openSnackBar("Modifying your resource please wait...", "Close");
+        this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.MODRES'), "Close");
         this.resourceService.resourceUpdate(tempResource,parseInt(this.id)).subscribe((res: NonNullable<unknown>) => {
           switch (res) {
             case 200:{
-              this.openSnackBar("Resource edited successfully", "Close");
+              this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.RESMOD'), "Close");
               this.router.navigate(['/resource/my-resources']);
               break;
             }
@@ -94,16 +97,16 @@ export class ModifyComponent implements OnInit {
         }, error => {
           switch (error.error) {
             case 401:
-              this.openSnackBar("The resource was not edited", "Close" );
+              this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.RESNOTMOD'), "Close" );
               this.router.navigate(['/resource/my-resources']);
               break;
           }
         })
       }else {
         if (content === '')
-          this.openSnackBar("Please fill out the content", "Close");
+          this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.NOCONTENT'), "Close");
         if (resourcetitle === '')
-          this.openSnackBar("Please write a title", "Close");
+          this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.NOTITLE'), "Close");
       }
 
     }

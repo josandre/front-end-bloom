@@ -7,6 +7,9 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
 import Swal from 'sweetalert2';
+import {TranslateService} from "@ngx-translate/core";
+
+
 
 @Component({
   selector: 'app-read-resource',
@@ -18,7 +21,8 @@ export class ReadResourceComponent implements OnInit{
   formGroup!: FormGroup;
   constructor(private readonly resourceService: ResourceService,
               private router: Router,
-              private snackBar: MatSnackBar) {  }
+              private snackBar: MatSnackBar,
+              private readonly translate:TranslateService) {  }
   id: string|null;
   resource: Resource;
   patientsList: User[];
@@ -90,7 +94,7 @@ onSubmit(){
 
       switch (res) {
         case 200:{
-          this.openSnackBar("Task added successfully", "Close");
+          this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.TASKADD'), "Close");
           this.router.navigate(['/resource/my-resources']);
           break;
         }
@@ -98,7 +102,7 @@ onSubmit(){
     }, error => {
       switch (error.error) {
         case 404:
-          this.openSnackBar("The task was not added", "Close" );
+          this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.TASKNOTADD'), "Close" );
           this.router.navigate(['/resource/my-resources']);
           break;
       }
@@ -128,14 +132,14 @@ onSubmit(){
           this.resourceService.userCheckTask(task1).subscribe((res: NonNullable<unknown>) =>{
             switch (res) {
               case 200:{
-                this.openSnackBar("Task changed successfully", "Close");
+                this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.TASKCHECK'), "Close");
                 break;
               }
             }
           }, error => {
             switch (error.error) {
               case 404:
-                this.openSnackBar("The task was not changed", "Close" );
+                this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.TASKNOTCHECK'), "Close" );
                 break;
             }
           })
@@ -156,7 +160,7 @@ onSubmit(){
         this.resourceService.deleteTask(node.valueOf()).subscribe( ( res: NonNullable<unknown>) =>{
           switch (res) {
             case 200:{
-              this.openSnackBar("Task deleted successfully", "Close");
+              this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.TASKDEL'), "Close");
               this.router.navigate(['/resource/my-resources']);
               break;
             }
@@ -164,7 +168,7 @@ onSubmit(){
         }, error => {
             switch (error.error) {
               case 404:
-                this.openSnackBar("The task was not deleted", "Close" );
+                this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.TASKNOTDEL'), "Close" );
                 this.router.navigate(['/resource/my-resources']);
                 break;
             }
@@ -199,7 +203,7 @@ onSubmit(){
         return this.resourceService.modTask(id, dato).subscribe((res: NonNullable<unknown>) =>{
           switch (res) {
             case 200:{
-              this.openSnackBar("Task modified successfully", "Close");
+              this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.TASKMOD'), "Close");
               this.router.navigate(['/resource/my-resources']);
               break;
             }
@@ -207,7 +211,7 @@ onSubmit(){
         }, error => {
           switch (error.error) {
             case 404:
-              this.openSnackBar("The task was not modified", "Close" );
+              this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.TASKNOTMOD'), "Close" );
               this.router.navigate(['/resource/my-resources']);
               break;
           }

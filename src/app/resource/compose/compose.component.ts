@@ -6,7 +6,7 @@ import {Resource} from "../models/Resource";
 import {User} from "../models/User";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
-
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-compose-resource',
@@ -29,7 +29,8 @@ export class ComposeResourceComponent implements OnInit{
 
   constructor(private readonly resourceService: ResourceService,
               private router: Router,
-              private snackBar: MatSnackBar) {}
+              private snackBar: MatSnackBar,
+              private readonly translate:TranslateService) {}
 
   ngOnInit(){
 
@@ -70,11 +71,11 @@ export class ComposeResourceComponent implements OnInit{
 
       if (content != '' && resourcetitle != '' && this.patientListToJson() != '[]'){
         this.postingFlag = true;
-        this.openSnackBar("Creating a new resource please wait...", "Close");
+        this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.CREATERES'), "Close");
         this.resourceService.resourceRegister(resource).subscribe((res: NonNullable<unknown>) => {
           switch (res) {
             case 200:{
-              this.openSnackBar("Resource added successfully", "Close");
+              this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.RESADD'), "Close");
               this.router.navigate(['/resource/my-resources']);
               break;
             }
@@ -82,18 +83,18 @@ export class ComposeResourceComponent implements OnInit{
         }, error => {
           switch (error.error) {
             case 404:
-              this.openSnackBar("The resource was not added", "Close" );
+              this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.RESNOTADD'), "Close" );
               this.router.navigate(['/resource/my-resources']);
               break;
           }
         })
       }else {
         if (content === '')
-        this.openSnackBar("Please fill out the content", "Close");
+        this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.NOCONTENT'), "Close");
         if (resourcetitle === '')
-          this.openSnackBar("Please write a title", "Close");
+          this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.NOTITLE'), "Close");
         if (this.patientListToJson() === '[]')
-          this.openSnackBar("Please select at least one patient", "Close");
+          this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.NOPATIENT'), "Close");
       }
 
     }
@@ -126,7 +127,7 @@ export class ComposeResourceComponent implements OnInit{
 
   openSnackBar(message: string, action: string){
 
-    this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'end', duration: 3000} )
+    this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'center', duration: 3000} )
   }
 
 }

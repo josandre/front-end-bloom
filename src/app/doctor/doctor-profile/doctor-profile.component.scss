@@ -54,6 +54,10 @@
   height: 100vh;
 }
 
+::ng-deep snack-bar-container simple-snack-bar .mat-simple-snackbar-action {
+  color: white;
+}
+
 .select-file{
   font-size: 13px;
   padding: 20px;

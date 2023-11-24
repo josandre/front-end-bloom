@@ -7,12 +7,7 @@
         {{ 'PATIENTS_LISTS.ADD_NEW' | translate }}</button>
     </div>
 
-    <div class="center" *ngIf="isLoading" >
-      <app-spinner *ngIf="isLoading" [isLoading]="isLoading" [message]="messageLoading | translate"></app-spinner>
-      <app-wink *ngIf="patientsIsEmpty() && !isLoading" [message]="messageData | translate"></app-wink>
-    </div>
-
-    <div class="row">
+    <div class="row" *ngIf="!isLoading && !isEmpty">
       <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3" *ngFor="let patient of patients">
         <div class="card py-3 py-md-3">
           <div class=" d-flex justify-content-between px-3 px-md-4">
@@ -41,5 +36,9 @@
     </div>
   </div>
 
+  <div class="center" *ngIf="isLoading || isEmpty">
+    <app-spinner *ngIf="isLoading" [isLoading]="isLoading" [message]="messageLoading | translate"></app-spinner>
+    <app-wink *ngIf="isEmpty && !isLoading" [message]="messageData | translate"></app-wink>
+  </div>
 
 </section>

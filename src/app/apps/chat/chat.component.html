@@ -28,7 +28,7 @@
                         <img class="avatar-user" src="{{getPhoto(conversation.photo)}}" alt="avatar">
                         <div class="about">
                           <div class="name">{{conversation.name + " " + conversation.lastName}}</div>
-                          <div>{{conversation.newMessages === 0 ? ('MESSAGES_SYSTEM.NOT_NEW_MESSAGES' | translate) : conversation.newMessages + 'MESSAGES_SYSTEM.NEW_MESSAGES' | translate }}</div>
+                          <div>{{conversation.newMessages === 0 ? ('MESSAGES_SYSTEM.NOT_NEW_MESSAGES' | translate) : (conversation.newMessages + '  MESSAGES_SYSTEM.NOT_NEW_MESSAGES' | translate) }}</div>
                         </div>
                       </li>
                     </ul>

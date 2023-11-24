@@ -10,26 +10,31 @@ import { API_URL } from "../../../config";
 
 export class DashboardDoctorService {
   private readonly baseUrl = API_URL;
-  private readonly currentUser;
 
   constructor(
     private readonly http: HttpClient,
     private authenticationService: AuthService
-  ) {
-    this.currentUser = this.authenticationService.currentUserValue;
+  ) {}
+
+  private getCurrentUser() {
+    return this.authenticationService.currentUserValue;
   }
 
   getEvents(): Observable<Event[]> {
-    const URL = `${this.baseUrl}/events/${this.currentUser.id}`;
+    const currentUser = this.getCurrentUser();
+    const URL = `${this.baseUrl}/events/${currentUser.id}`;
+    console.log('getEvents', currentUser)
     return this.http.get<Event[]>(URL, {
-      headers: { 'Authorization':  `Bearer ${this.currentUser.token}` }
+      headers: { 'Authorization':  `Bearer ${currentUser.token}` }
     });
   }
 
   getMedicalRecord(): Observable<MedicalRecordI> {
-    const URL = `${this.baseUrl}/medical-records/${this.currentUser.id}`;
+    const currentUser = this.getCurrentUser();
+    const URL = `${this.baseUrl}/medical-records/${currentUser.id}`;
+    console.log('getMedicalRecord', currentUser)
     return this.http.get<MedicalRecordI>(URL, {
-      headers: { 'Authorization':  `Bearer ${this.currentUser.token}` }
+      headers: { 'Authorization':  `Bearer ${currentUser.token}` }
     });
   }
 }

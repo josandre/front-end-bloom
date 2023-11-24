@@ -8,6 +8,7 @@ import { EditDoctorComponent } from './edit-doctor/edit-doctor.component';
 import { ComponentsModule } from '@shared/components/components.module';
 import { SharedModule } from '@shared';
 import { TranslateModule } from '@ngx-translate/core';
+import {SpinnerModule} from "../../components/components.module";
 
 @NgModule({
   declarations: [
@@ -15,15 +16,16 @@ import { TranslateModule } from '@ngx-translate/core';
     AddDoctorComponent,
     EditDoctorComponent,
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    DoctorsRoutingModule,
-    ComponentsModule,
-    SharedModule,
-    TranslateModule,
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        DoctorsRoutingModule,
+        ComponentsModule,
+        SharedModule,
+        TranslateModule,
+        SpinnerModule,
+    ],
   providers: [],
 })
 export class DoctorsModule {}

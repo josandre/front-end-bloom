@@ -13,6 +13,9 @@ import {
   ApexResponsive,
   ApexGrid,
 } from 'ng-apexcharts';
+
+import { AuthService } from "@core";
+
 export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
@@ -40,9 +43,14 @@ export class MainComponent implements OnInit {
   public smallChart3Options!: Partial<ChartOptions>;
   public smallChart4Options!: Partial<ChartOptions>;
   public barChartOptions!: Partial<ChartOptions>;
+  name: string;
+
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  constructor() {}
+  constructor(
+    private readonly authService: AuthService,
+  ) {}
   ngOnInit() {
+    this.name = this.authService.currentUserValue.firstName + " " + this.authService.currentUserValue.lastName
     this.smallChart1();
     this.smallChart2();
     this.smallChart3();

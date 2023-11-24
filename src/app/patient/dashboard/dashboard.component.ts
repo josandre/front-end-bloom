@@ -19,8 +19,6 @@ import {
   ApexFill
 } from 'ng-apexcharts';
 import { AuthService } from "@core";
-import { AXIENTY_PROGRESS } from './provitionals/anxiety-progress';
-import { RECORDED_ATTACKS } from './provitionals/recorded-attacks';
 import { TranslateService } from '@ngx-translate/core';
 import { DashboardDoctorService, MedicalRecordI } from './dashboard.service';
 import * as moment from 'moment';

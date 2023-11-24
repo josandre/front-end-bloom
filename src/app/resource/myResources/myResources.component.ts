@@ -3,7 +3,7 @@ import {ResourceService} from "../services/Resource.Service";
 import {Resource} from "../models/Resource";
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {Task} from "../models/Task";
-
+import {TranslateService} from "@ngx-translate/core";
 @Component({
   selector: 'app-inbox',
   templateUrl: './myResources.component.html',
@@ -11,7 +11,9 @@ import {Task} from "../models/Task";
 })
 export class MyResourcesComponent implements OnInit{
 
-  constructor(private readonly resourceService: ResourceService,private snackBar: MatSnackBar) {
+  constructor(private readonly resourceService: ResourceService,
+              private snackBar: MatSnackBar,
+              private readonly translate:TranslateService) {
     this.selectedResourceIds=[];
     }
 
@@ -68,7 +70,7 @@ export class MyResourcesComponent implements OnInit{
     this.resourceService.deleteResourse(this.selectedResourceIds).subscribe((res) => {
       switch (res) {
         case 200:{
-          this.openSnackBar("Resource deleted", "Close");
+          this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.RESDEL'), "Close");
           // Usar filter para crear una nueva lista que excluya los objetos con los IDs a eliminar
           this.resourcesList = this.resourcesList.filter(resource => !this.selectedResourceIds.includes(resource.id));
           this.originalResourcesList=[...this.resourcesList]
@@ -78,7 +80,7 @@ export class MyResourcesComponent implements OnInit{
         }
       }
     }, error => {
-        this.openSnackBar("Something went wrong", "Close" );
+        this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.ERROR'), "Close" );
 
         })
   }
@@ -88,7 +90,7 @@ export class MyResourcesComponent implements OnInit{
     this.resourceService.deleteResourse(this.selectedResourceIds).subscribe((res) => {
       switch (res) {
         case 200:{
-          this.openSnackBar("Resource deleted", "Close");
+          this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.RESDEL'), "Close");
           // Usar filter para crear una nueva lista que excluya los objetos con los IDs a eliminar
           this.resourcesList = this.resourcesList.filter(resource => !this.selectedResourceIds.includes(resource.id));
           this.originalResourcesList=[...this.resourcesList]
@@ -98,13 +100,13 @@ export class MyResourcesComponent implements OnInit{
         }
       }
     }, error => {
-      this.openSnackBar("Something went wrong", "Close" );
+      this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.ERROR'), "Close" );
 
     })
   }
 
   openSnackBar(message: string, action: string){
-    this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'end'})
+    this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'center', duration: 3000})
   }
 
   protected readonly Task = Task;

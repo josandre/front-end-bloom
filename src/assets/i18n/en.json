@@ -205,10 +205,32 @@
       "TASKLIST": "Task List",
       "ADDTASK": "Add Task",
       "MODTASK": "Edit Task"
-    },
-    "PROGRESS-SECTION": {
-      "TITLE": "Progreso Medico"
+
     }
+  },
+  "RESOURCESNACK": {
+    "TASKADD": "Task added successfully",
+    "TASKNOTADD": "Task was not added",
+    "TASKMOD": "Task edited successfully",
+    "TASKNOTMOD": "Task was not edited",
+    "TASKDEL": "Task deleted successfully",
+    "TASKNOTDEL": "Task was not deleted",
+    "TASKCHECK": "Task was completed successfully",
+    "TASKNOTCHECK": "Task was not completed",
+    "RESDEL": "Resource deleted",
+    "ERROR": "There was an error",
+    "CREATERES": "Creating a new resource, please wait...",
+    "RESADD": "Resource created successfully",
+    "RESNOTADD": "Resources was not created",
+    "NOCONTENT": "Please fill out the content",
+    "NOTITLE": "Please fill out a title",
+    "NOPATIENT": "Please choose at least one patient",
+    "MODRES": "Modifying your resource, please wait...",
+    "RESMOD": "Resource was modified successfully",
+    "RESNOTMOD": "Resource was not modified"
+  },
+  "PROGRESS-SECTION": {
+    "TITLE": "Progreso Medico"
   },
   "DASHBOARD_DOCTOR": {
     "WELLCOME_TITLE": "Wellcome back",
@@ -453,22 +475,22 @@
     "RESOURCES": {
       "TITLE": "My Resources",
       "ACTIVE_ITEM": "My Resources"
-  
+
     },
     "FORUMS": {
       "TITLE": "Forums",
       "ACTIVE_ITEM": ""
-  
+
     },
     "GAME": {
       "TITLE": "Games Section",
       "ACTIVE_ITEM": ""
-  
+
     },
     "CONTACTS": {
       "TITLE": "Contacts",
       "ACTIVE_ITEM": ""
-  
+
     }
   },
   "ADMIN_BREADCRUM": {
@@ -490,7 +512,7 @@
       "ACTIVE_ITEM": "All Doctors"
     }
   },
-  
+
   "MEDICAL_RECORD":{
     "INFO": {
       "REQUIRED":"value is required",
@@ -516,7 +538,7 @@
       "ACTIONS":{
         "TRY_AGAIN":"Try again",
         "CLOSE": "Close"
-      }, 
+      },
       "ADD_ANXIETY_TYPE": {
         "TEXT": "This anxiety type already exits",
         "SUCCESS":"Anxiety type has been added successfully!",
@@ -571,12 +593,12 @@
         "SEVERE": "Severe",
         "DEBILITATING": "Debilitating",
         "INDETERMINATE": "Indeterminate"
-        
+
       },
       "DELETE_CONFIRMATION":"Are you sure?",
       "DELETE": "Delete"
     }
-    
+
   },
   "PROFILE":{
       "SELECTED_PHOTO":"No files selected",
@@ -605,7 +627,7 @@
         "ACTIONS":{
           "TRY_AGAIN":"Try again",
           "CLOSE": "Close"
-        }, 
+        },
         "GET_USER":{
           "ERROR":"Error getting user data"
         },

@@ -1,51 +1,44 @@
 <section class="content">
-    <div class="content-block">
-        <div class="block-header section-header">
+  <div class="content-block">
+    <div class="block-header section-header">
 
-            <app-breadcrumb [title]="'DOCTOR_BREADCRUM.PATIENTS.TITLE' | translate"></app-breadcrumb>
-            <button mat-flat-button color="primary" class="btn-create-patient" [routerLink]="['/doctor/patient']">Add
-                {{ 'PATIENTS_LISTS.ADD_NEW' | translate }}</button>
-        </div>
+      <app-breadcrumb [title]="'DOCTOR_BREADCRUM.PATIENTS.TITLE' | translate"></app-breadcrumb>
+      <button mat-flat-button color="primary" class="btn-create-patient" [routerLink]="['/doctor/patient']">
+        {{ 'PATIENTS_LISTS.ADD_NEW' | translate }}</button>
+    </div>
 
-        <div class="center" *ngIf="isLoading">
-            <app-spinner *ngIf="isLoading" [isLoading]="isLoading" [message]="messageLoading | translate"></app-spinner>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3" *ngFor="let patient of patients">
-                    <div class="card py-3 py-md-3">
-                        <div class=" d-flex justify-content-between px-3 px-md-4">
-                            <img src="{{getPhoto(patient.photo)}}" height="80px" width="80px" alt=""
-                                 class="rounded-circle">
-                            <div class="">
-                                <h6 class="patient-name">{{ patient.name }} {{ patient.lastName }}</h6>
-                                <p>{{'PATIENTS_LISTS.PATIENT_ID' | translate}}: {{ patient.id }}</p>
-                            </div>
-                        </div>
-                        <hr class="light-hr">
-                        <div class="d-flex flex-column justify-content-start w-100 px-3 px-md-4">
-                            <div><i class="fas fa-map-marker-alt pt-3 psr-3"></i>{{ patient.address }}</div>
-                            <div><i class="fas fa-phone pt-3 psr-3"></i>{{ patient.phone }}</div>
-                        </div>
-                        <hr class="light-hr">
-                        <div class="d-flex justify-content-around px-4">
-                            <button mat-stroked-button color="primary"
-                                    routerLink="/doctor/medical-record/{{ patient.id }}">
-                                {{'PATIENTS_LISTS.SEE_MEDICAL_RECORD' | translate}}
-                            </button>
-                        </div>
-                    </div>
-                </div>
+    <div class="row" *ngIf="!isLoading && !isEmpty">
+      <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3" *ngFor="let patient of patients">
+        <div class="card py-3 py-md-3">
+          <div class=" d-flex justify-content-between px-3 px-md-4">
+            <img src="{{getPhoto(patient.photo)}}" height="80px" width="80px" alt="" class="rounded-circle">
+            <div class="">
+              <h6 class="patient-name">{{ patient.name }} {{ patient.lastName }}</h6>
+              <p>{{'PATIENTS_LISTS.PATIENT_ID' | translate}}: {{ patient.id }}</p>
             </div>
+          </div>
+          <hr class="light-hr">
+          <div class="d-flex flex-column justify-content-start w-100 px-3 px-md-4">
+            <div><i class="fas fa-map-marker-alt pt-3 psr-3"></i>{{ patient.address }}</div>
+            <div><i class="fas fa-phone pt-3 psr-3"></i>{{ patient.phone }}</div>
+          </div>
+          <hr class="light-hr">
+          <div class="d-flex justify-content-between px-3 px-md-4">
+          </div>
+          <hr class="light-hr">
+          <div class="d-flex justify-content-around px-4">
+            <button mat-stroked-button color="primary" routerLink="/doctor/medical-record/{{ patient.id }}">
+              {{'PATIENTS_LISTS.SEE_MEDICAL_RECORD' | translate}}
+            </button>
+          </div>
         </div>
+      </div>
     </div>
-    <div *ngIf="!isLoading && patients.length === 0">
-        <div class="center-img">
-            <img src="assets/images/Bloom%20triste.png" width="150px" height="150px"  alt="Responsive image">
-        </div>
-        <div class="text-muted center-message"> {{'NO_PATIENTS.MESSAGE' | translate}}</div>
-    </div>
+  </div>
 
+  <div class="center" *ngIf="isLoading || isEmpty">
+    <app-spinner *ngIf="isLoading" [isLoading]="isLoading" [message]="messageLoading | translate"></app-spinner>
+    <app-wink *ngIf="isEmpty && !isLoading" [message]="messageData | translate"></app-wink>
+  </div>
 
 </section>

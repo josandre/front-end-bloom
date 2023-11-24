@@ -14,7 +14,7 @@ export class PatientsComponent implements OnInit{
   patients: Patient[];
 
   isLoading: boolean = false
-
+  isEmpty: boolean = false
   messageLoading: string = 'PATIENTS_LISTS.MESSAGE_LOADING'
   messageData: string = 'PATIENTS_LISTS.MESSAGE_NO_DATA'
 
@@ -30,14 +30,14 @@ export class PatientsComponent implements OnInit{
           this.patients = data;
           console.log(this.patients)
           this.isLoading = false;
+
+         if(!this.patients || !this.patients.length) {
+           this.isEmpty = true
+         }
         },
         error => {
           console.log(error.status);
         });
-  }
-
-  patientsIsEmpty(){
-    return !this.patients || !this.patients.length;
   }
 
 

@@ -679,7 +679,61 @@
     "ENTER_TEXT_HERE": "Enter text here..",
     "SEARCH": "Search"
   },
-  "NO_PATIENTS": {
-    "MESSAGE": "Nothing to see here..."
+  "ADMIN_RESOURCES":{
+    "TITLE":"Title",
+    "CONTENT":"Content",
+    "POST_DADE":"Post date",
+    "SEARCH_BY":"Search by title",
+    "SEARCH":"Search"
+
+  },
+  "SING_UP":{
+    "TITLE":"Sign Up",
+    "INFO": "Enter details to create your account",
+    "NAME":"Name",
+    "NAME_REQUIRED":"Name is required",
+    "LAST_NAME":"Last Name",
+    "LAST_NAME_REQUIRED":"Last name is required",
+    "MEDICAL_ID":"Medical Id",
+    "MEDICAL_ID_REQUIRED":"Medical id is required",
+    "COLLEGE":"College",
+    "COLLEGE_REQUIRED":"College is required",
+    "CLINIC_LOCATION":"Clinic Location",
+    "CLINIC_LOCATION_REQUIRED":"Clinical location is required",
+    "SPECIALITY_REQUIRED":"Speciality id is required",
+    "USER_NAME":"User Name",
+    "USER_NAME_REQUIRED":"User name is required",
+    "EMAIL":"Email",
+    "EMAIL_REQUIRED":"Please enter a valid email address",
+    "PASSWORD":"Password",
+    "PASSWORD_REQUIRED":"Password is required",
+    "CONFIRM_PASSWORD":"Confirm Password",
+    "CONFIRM_PASSWORD_REQUIRED":"Confirm Password is required",
+    "LOGIN":"Log In",
+    "REGISTRED":"Already Registered?",
+    "REGISTER":"Register",
+    "SPECIALITY":{
+      "psychology":"psychology",
+      "therapist":"therapist",
+      "NAME":"Speciality"
+    }
+
+  },
+  "LOGIN":{
+    "WELCOME":"Welcome to Bloom ",
+    "NEED":"Need an account?",
+    "SIGNUP":"Sign Up",
+    "SIGNIN":"Sign In",
+    "EMAIL":"Email",
+    "EMAIL_REQUIRED":"Email is required",
+    "PASSWORD":"Password",
+    "PASSWORD_REQUIRED":"Password is required",
+    "REMEMBER":"Remember me",
+    "FORGOT":"Forgot Password?",
+    "LOGIN":"Login",
+    "LANDING" : "Back to landing page"
+  },
+  "PATIENT": {
+    "NO_RESULTS": "No resources available."
   }
 }

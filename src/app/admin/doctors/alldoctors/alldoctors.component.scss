@@ -4,3 +4,7 @@
   align-items: center;
   height: 100vh;
 }
+
+::ng-deep snack-bar-container simple-snack-bar .mat-simple-snackbar-action {
+  color: white;
+}

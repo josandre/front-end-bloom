@@ -34,7 +34,8 @@ export class ForumComponent implements OnInit {
   postEditorContent:string;
 
   // User info
-  currentUser?:any;
+  currentUser:any;
+  currentUserID:number;
   message = 'MENUITEMS.FORUMS.MESSAGE'
 
   constructor(
@@ -48,6 +49,7 @@ export class ForumComponent implements OnInit {
   ngOnInit(): void {
     // Get current user info
     this.currentUser = this.authService.currentUserValue;
+    this.currentUserID = this.currentUser.actualUserId ?? this.currentUser.id;
 
     // Retrieve all the posts
     this.getPosts();
@@ -76,7 +78,7 @@ export class ForumComponent implements OnInit {
   showAdvancedOptions(): boolean {
     let result = false;
     // Owner check
-    if (this.currentPost?.userId === this.currentUser?.id) {
+    if (this.currentPost?.userId === this.currentUserID) {
       result = true;
     }
     // Admin check
@@ -89,14 +91,14 @@ export class ForumComponent implements OnInit {
 
   openNewPostDialog(): void {
     const postDialog = this.dialogModel.open(PostEditorComponent, {width: '720px', height: '480px', disableClose: false})
-    postDialog.componentInstance.currentUserID = this.currentUser.id;
+    postDialog.componentInstance.currentUserID = this.currentUserID;
     postDialog.componentInstance.forumComponent = this;
   }
 
   openNewCommentDialog(): void {
     const commentDialog = this.dialogModel.open(CommentEditorComponent, {width: '720px', height: '480px', disableClose: false})
     commentDialog.componentInstance.currentPostID = this.currentPost.id;
-    commentDialog.componentInstance.currentUserID = this.currentUser.id;
+    commentDialog.componentInstance.currentUserID = this.currentUserID;
     commentDialog.componentInstance.forumComponent = this;
   }
 

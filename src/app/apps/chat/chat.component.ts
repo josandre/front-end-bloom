@@ -86,7 +86,8 @@ export class ChatComponent implements OnInit, OnDestroy{
       })
 
       this.webSocketService.sendMessage(message);
-      this.authForm.controls['message'].setValue("")
+      // this.authForm.controls['message'].setValue("")
+      this.resetPassControl('message')
     }
 
   }
@@ -136,5 +137,14 @@ export class ChatComponent implements OnInit, OnDestroy{
 
   getPhoto(urlPhoto: string){
     return this.fileService.getPhotoToList('assets/images/user/user.png', urlPhoto);
+  }
+
+
+  private resetPassControl(controlName: string): void {
+    const control = this.authForm.controls[controlName]
+    control.setValue('')
+    control.markAsPristine()
+    control.setErrors(null)
+    control.markAsUntouched()
   }
 }

@@ -5,9 +5,15 @@
       <br>
       <h1>{{'MENUITEMS.RESOURCES.MODIFY' | translate}}</h1>
     </div>
-    <div class="center" *ngIf="postingFlag" >
-      <mat-spinner></mat-spinner>
+
+    <div class="center" *ngIf="postingFlag">
+      <app-spinner [isLoading]="postingFlag" [message]="message | translate" ></app-spinner>
     </div>
+
+    <div class="center" *ngIf="loading">
+      <app-spinner [isLoading]="loading" [message]="messageRead | translate" ></app-spinner>
+    </div>
+
     <div class="row" *ngIf="!postingFlag">
       <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
         <div class="card">

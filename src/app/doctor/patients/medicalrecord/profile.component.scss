@@ -43,6 +43,10 @@ select:disabled {
   align-items: center;
 }
 
+::ng-deep snack-bar-container simple-snack-bar .mat-simple-snackbar-action {
+  color: white;
+}
+
 .center-message {
   display: flex;
   justify-content: center;

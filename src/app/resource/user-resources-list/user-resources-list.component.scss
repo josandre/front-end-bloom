@@ -2,6 +2,13 @@
   color: white;
 }
 
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .no-results-container {
   display: flex;
   align-items: center;

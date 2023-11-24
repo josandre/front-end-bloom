@@ -10,7 +10,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class UserResourcesListComponent implements OnInit {
 
-  constructor(private readonly resourceService: ResourceService,private snackBar: MatSnackBar) {  
+  message: string = 'MENUITEMS.RESOURCES.MESSAGE'
+
+  messageData: string = 'PATIENTS_LISTS.MESSAGE_NO_DATA'
+
+  constructor(private readonly resourceService: ResourceService,private snackBar: MatSnackBar) {
     this.selectedResourceIds=[];
   }
 
@@ -19,13 +23,24 @@ export class UserResourcesListComponent implements OnInit {
   selectedResourceIds: number[];
 
   flag: boolean = false;
+  isEmpty: boolean = false;
   ngOnInit(){
+    this.flag = true;
 
     this.resourceService.getResourcesbyUserId().subscribe(
       resources =>{
         this.resourcesList = resources;
         this.originalResourcesList=[...resources]
-        this.flag = true;
+
+        if(!this.resourcesList || !this.resourcesList.length){
+          this.isEmpty = true
+        }
+
+        if(!this.originalResourcesList || !this.originalResourcesList.length){
+          this.isEmpty = true
+        }
+        this.flag = false;
+
       }
     )
 
@@ -46,7 +61,7 @@ export class UserResourcesListComponent implements OnInit {
   readResourceCheck(id: number) {
     console.log(id);
     const index = this.selectedResourceIds.indexOf(id);
-  
+
     if (index === -1) {
       // Si no se encontró el ID en el arreglo, lo añade
       this.selectedResourceIds.push(id);

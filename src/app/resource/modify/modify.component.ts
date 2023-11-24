@@ -22,6 +22,11 @@ export class ModifyComponent implements OnInit {
   id: string|null;
   resource: Resource;
   patientsList: User[];
+
+  loading : boolean = false
+
+  message : string = 'MENUITEMS.RESOURCES.MESSAGE_UPDATE'
+  messageRead: string = 'MENUITEMS.RESOURCES.MESSAGE_READ'
   role = this.resourceService.getRole();
   checkedList: Array<number> = [];
   jsoniedList: Array<string> = [];
@@ -38,7 +43,7 @@ export class ModifyComponent implements OnInit {
   })
   constructor(private readonly resourceService: ResourceService, private router: Router, private snackBar: MatSnackBar) {}
   ngOnInit(){
-
+    this.loading = true
     this.resourceService.getMyPatients().subscribe(
       patients =>{ this.patientsList = patients;
         this.flag = true;},
@@ -50,7 +55,7 @@ export class ModifyComponent implements OnInit {
       this.resourceService.getResourceById(parseInt(this.id)).subscribe(
         data => {
           this.resource = data;
-          //this.patientsList = JSON.parse(JSON.stringify(data.users));
+          this.loading = false
           sessionStorage.removeItem('resourceId');
           sessionStorage.clear();
           this.editor.editorInstance.setData(this.resource.content);

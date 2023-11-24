@@ -5,7 +5,13 @@
       <br>
       <app-breadcrumb [title]="'PATIENT_BREADCRUM.RESOURCES.TITLE' | translate"></app-breadcrumb>
     </div>
-    <div class="row">
+
+    <div class="center" *ngIf="isEmpty || flag">
+      <app-spinner [isLoading]="flag" [message]="message | translate"></app-spinner>
+      <app-wink *ngIf="isEmpty && !flag" [message]="messageData | translate"></app-wink>
+    </div>
+
+    <div class="row" *ngIf="!isEmpty && !flag">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="card">
           <div class="materialTableHeader">
@@ -21,7 +27,7 @@
                 </li>
               </ul>
             </div>
-            
+
           </div>
           <div class="boxs mail_listing">
             <div class="inbox-center table-responsive">
@@ -43,7 +49,7 @@
 
                 <tr *ngFor="let r of resourcesList">
                   <td class="tbl-checkbox">
-                  
+
                   </td>
                   <td class="hidden-xs" >{{r.title}}</td>
 
@@ -56,7 +62,7 @@
                 </tr>
 
                 <tr *ngIf="resourcesList?.length === 0">
-                  <td colspan="4"> 
+                  <td colspan="4">
                     <div class="no-results-container">
                       <img src="assets/images/pages/BloomGuiño.png" alt="bloom">
                       <h4>{{ 'PATIENT.NO_RESULTS' | translate }}</h4>
@@ -66,11 +72,7 @@
 
                 </tbody>
               </table>
-                            <!-- Loading spinner -->
-                            <div *ngIf="!flag" class="tbl-spinner">
-                              <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
-                              </mat-progress-spinner>
-                            </div>
+
             </div>
             <div class="row">
               <div class="col-sm-5 text-end">

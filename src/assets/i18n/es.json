@@ -209,7 +209,10 @@
       "TASKLIST": "Lista de Tareas",
       "ADDTASK": "Agregar Tarea",
       "MODTASK": "Editar Tarea",
-      "MESSAGE": "Estamos leyendo tu recursos"
+      "MESSAGE": "Estamos leyendo los recursos",
+      "MESSAGE_READ": "Estamos leyendo el recurso",
+      "MESSAGE_UPDATE": "Estamos modificando el recurso",
+      "MESSAGE_CREATED": "Estamos creando un nuevo recurso"
     }
   },
   "DASHBOARD_DOCTOR": {

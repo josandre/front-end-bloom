@@ -19,11 +19,13 @@ export class ComposeResourceComponent implements OnInit{
   public editor: any = ClassicEditor;
   data: string = "";
   flag: boolean = false;
+  message : string = 'MENUITEMS.RESOURCES.MESSAGE_CREATED'
   postingFlag: boolean = false;
   patientsList: User[];
   checkedList: Array<number> = [];
   jsoniedList: Array<string> = [];
   checks = document.querySelectorAll(".check");
+  creating : boolean = false
 
   constructor(private readonly resourceService: ResourceService,
               private router: Router,
@@ -42,9 +44,12 @@ export class ComposeResourceComponent implements OnInit{
       })
     })
 
+    this.flag = true
+
     this.resourceService.getMyPatients().subscribe(
       patients =>{ this.patientsList = patients;
-        this.flag = true;},
+        this.flag = false;
+        },
       error => {console.log(error)}
     )
   }

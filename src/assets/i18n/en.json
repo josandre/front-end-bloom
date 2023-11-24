@@ -206,7 +206,10 @@
       "TASKLIST": "Task List",
       "ADDTASK": "Add Task",
       "MODTASK": "Edit Task",
-      "MESSAGE": "We are reading your resources"
+      "MESSAGE": "We are reading your resources",
+      "MESSAGE_READ": "We are reading the resource",
+      "MESSAGE_UPDATE": "We are updating the resource",
+      "MESSAGE_CREATED": "We are creating a new resource"
     },
     "PROGRESS-SECTION": {
       "TITLE": "Progreso Medico"
@@ -558,7 +561,7 @@
       }
     },
     "MEDICAL_HISTORY": {
-      "MESSAGE": "We are getting your data",
+      "MESSAGE": "We are getting the data",
       "NEW_MEDICAL_HISTORY": "New Medical History",
       "UPDATE_MEDICAL_HISTORY": "Update Medical History",
       "OBSERVATIONS": "Observations",

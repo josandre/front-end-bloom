@@ -25,9 +25,13 @@ export class ReadResourceComponent implements OnInit{
   checkedList: Array<number> = [];
   flag: boolean = false;
   role = this.resourceService.getRole();
+
+  message : string = 'MENUITEMS.RESOURCES.MESSAGE_READ'
   ngOnInit() {
 
+    this.flag = true
     this.id = sessionStorage.getItem('resourseId');
+
     if(this.id != null) {
       this.resourceService.getResourceById(parseInt(this.id)).subscribe(
         data => {
@@ -50,7 +54,7 @@ export class ReadResourceComponent implements OnInit{
           }
           sessionStorage.removeItem('resourceId');
           sessionStorage.clear();
-          this.flag = true;
+          this.flag = false;
         },
         error => {
           console.log(error);

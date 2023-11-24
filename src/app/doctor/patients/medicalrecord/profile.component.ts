@@ -37,7 +37,7 @@ export class ProfileComponent implements OnInit {
   patient: Patient | undefined;
   anxieties: Set<string>;
   anxitiesControl: FormControl;
-  isLoading: boolean = true
+  isLoading: boolean = false
   message:string =  'MEDICAL_RECORD.MEDICAL_HISTORY.MESSAGE'
 
   @ViewChild('autosize') autosize: CdkTextareaAutosize;

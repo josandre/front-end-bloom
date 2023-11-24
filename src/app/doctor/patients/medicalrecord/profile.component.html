@@ -2,11 +2,11 @@
   <div *ngIf="medicalRecord !== undefined || patient !== undefined;">
     <div class="content-block">
       <div class="block-header">
-        <!-- breadcrumb -->
+
       <app-breadcrumb [title]="'DOCTOR_BREADCRUM.PATIENTS.TITLE' | translate" [items]="[]" [active_item]="'DOCTOR_BREADCRUM.PATIENTS.ACTIVE_ITEM' | translate"></app-breadcrumb>
       </div>
-      <!-- Your content goes here  -->
-      <div class="row clearfix">
+
+      <div class="row clearfix" *ngIf="!isLoading">
         <div class="col-lg-4 col-md-12">
           <div class="card">
             <div class="m-b-20">
@@ -186,7 +186,7 @@
       </div>
     </div>
   </div>
-  <div class="center" >
+  <div class="center" *ngIf="isLoading">
     <app-spinner *ngIf="isLoading" [isLoading]="isLoading" [message]="message | translate"></app-spinner>
     <div *ngIf="!isLoading && patient === undefined">
       <div class="center-img">

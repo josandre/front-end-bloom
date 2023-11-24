@@ -187,10 +187,13 @@
         "SHOW-TILE-NUMBERS": "Show tile numbers"
       }
     },
+    "PROGRESS-SECTION": {
+      "TITLE": "Progreso Medico"
+    },
     "RESOURCES": {
       "RESOURCES": "Resources",
       "MY-RESOURCES": "My Resources",
-      "READ": "Read Resource",
+      "READ": "Read",
       "CREATE": "Create Resource",
       "MODIFY": "Modify Resource",
       "MY-PATIENTS": "My Patients",
@@ -205,7 +208,10 @@
       "LOGOUT": "Logout",
       "TASKLIST": "Task List",
       "ADDTASK": "Add Task",
-      "MODTASK": "Edit Task"
+      "MODTASK": "Edit Task",
+      "MESSAGE": "We are reading your resources",
+      "SEARCH": "Search",
+      "SEARCHBYTITLE": "Search by title"
 
     }
   },
@@ -229,7 +235,8 @@
     "MODRES": "Modifying your resource, please wait...",
     "RESMOD": "Resource was modified successfully",
     "RESNOTMOD": "Resource was not modified"
-  },
+    },
+
   "PROGRESS-SECTION": {
     "TITLE": "Progreso Medico",
       "MODTASK": "Edit Task",

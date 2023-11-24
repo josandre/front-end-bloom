@@ -193,7 +193,7 @@
     "RESOURCES": {
       "RESOURCES": "Recursos",
       "MY-RESOURCES": "Mis Recursos",
-      "READ": "Leer Recurso",
+      "READ": "Leer",
       "CREATE": "Crear Recurso",
       "MODIFY": "Modificar Recurso",
       "MY-PATIENTS": "Mis Pacientes",
@@ -209,6 +209,8 @@
       "TASKLIST": "Lista de Tareas",
       "ADDTASK": "Agregar Tarea",
       "MODTASK": "Editar Tarea",
+      "SEARCH": "Buscar",
+      "SEARCHBYTITLE": "Buscar por titulo",
       "MESSAGE": "Estamos leyendo los recursos",
       "MESSAGE_READ": "Estamos leyendo el recurso",
       "MESSAGE_UPDATE": "Estamos modificando el recurso",

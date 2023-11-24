@@ -670,6 +670,13 @@
     "LOADING_MESSAGES": "Leyendo mensajes",
     "ENTER_TEXT_HERE": "Ingrese su texto aquí...",
     "SEARCH": "Buscar"
+  },
+  "ADMIN_RESOURCES":{
+    "TITLE":"Título",
+    "CONTENT":"Contenido",
+    "POST_DADE":"Fcha de registro",
+    "SEARCH_BY":"Buscar por título",
+    "SEARCH":"Buscar"
   }
 
 }

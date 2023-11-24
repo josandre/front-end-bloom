@@ -672,6 +672,14 @@
     "LOADING_MESSAGES": "Loading conversation messages",
     "ENTER_TEXT_HERE": "Enter text here..",
     "SEARCH": "Search"
+  },
+  "ADMIN_RESOURCES":{
+    "TITLE":"Title",
+    "CONTENT":"Content",
+    "POST_DADE":"Post date",
+    "SEARCH_BY":"Search by title",
+    "SEARCH":"Search"
+
   }
 
 }

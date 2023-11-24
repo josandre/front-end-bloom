@@ -5,6 +5,7 @@
       <br>
       <app-breadcrumb [title]="'PATIENT_BREADCRUM.RESOURCES.TITLE' | translate"></app-breadcrumb>
     </div>
+
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="card">
@@ -16,12 +17,12 @@
                 </li>
                 <li class="tbl-search-box">
                   <label for="search-input"><i class="material-icons search-icon">search</i></label>
-                  <input placeholder="Search" type="text"  (keyup)="applyFilter($event.target)" class="browser-default search-field"
+                  <input placeholder="Search" type="text" id="search-input" (keyup)="applyFilter($event.target)" class="browser-default search-field"
                     aria-label="Search box">
                 </li>
               </ul>
             </div>
-            
+
           </div>
           <div class="boxs mail_listing">
             <div class="inbox-center table-responsive">
@@ -43,7 +44,7 @@
 
                 <tr *ngFor="let r of resourcesList">
                   <td class="tbl-checkbox">
-                  
+
                   </td>
                   <td class="hidden-xs" >{{r.title}}</td>
 

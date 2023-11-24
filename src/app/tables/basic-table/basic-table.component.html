@@ -14,11 +14,11 @@
             <div class="left">
               <ul class="header-buttons-left ms-0">
                 <li class="tbl-title">
-                  <h2>Search by Title</h2>
+                  <h2>{{'ADMIN_RESOURCES.SEARCH_BY' | translate}}</h2>
                 </li>
                 <li class="tbl-search-box">
                   <label for="search-input"><i class="material-icons search-icon">search</i></label>
-                  <input placeholder="Search" type="text"  (keyup)="applyFilter($event.target)" class="browser-default search-field"
+                  <input placeholder="{{'ADMIN_RESOURCES.SEARCH' | translate}}" type="text"  (keyup)="applyFilter($event.target)" class="browser-default search-field"
                     aria-label="Search box">
                 </li>
               </ul>
@@ -36,10 +36,6 @@
                       <div class="inbox-header">
                         <div class="mail-option no-pad-left">
                           <div class="email-btn-group m-l-15">
-
-                            <button mat-icon-button aria-label="Example icon-button with a heart icon">
-                              <mat-icon>keyboard_return</mat-icon>
-                            </button>
                             <button mat-icon-button aria-label="Example icon-button with a heart icon" (click)="deleteResource()">
                               <mat-icon>delete</mat-icon>
                             </button>
@@ -56,11 +52,11 @@
                 <tr >
                   <td class="tbl-checkbox"></td>
 
-                  <td class="hidden-xs" >Title</td>
+                  <td class="hidden-xs" >{{'ADMIN_RESOURCES.TITLE' | translate}}</td>
 
-                  <td class="max-texts">Content</td>
+                  <td class="max-texts">{{'ADMIN_RESOURCES.CONTENT' | translate}}</td>
 
-                  <td class="max-texts" > Post date</td>
+                  <td class="max-texts" > {{'ADMIN_RESOURCES.POST_DADE' | translate}}</td>
 
                 </tr>
 

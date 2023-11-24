@@ -22,8 +22,9 @@ export class DashboardDoctorService {
 
   getEvents(): Observable<Event[]> {
     const currentUser = this.getCurrentUser();
-    const URL = `${this.baseUrl}/events/${currentUser.id}`;
+    const URL = `${this.baseUrl}/events/user/${currentUser.id}`;
     console.log('getEvents', currentUser)
+    console.log('getEvents', currentUser.token)
     return this.http.get<Event[]>(URL, {
       headers: { 'Authorization':  `Bearer ${currentUser.token}` }
     });
@@ -33,6 +34,7 @@ export class DashboardDoctorService {
     const currentUser = this.getCurrentUser();
     const URL = `${this.baseUrl}/medical-records/${currentUser.id}`;
     console.log('getMedicalRecord', currentUser)
+    console.log('getMedicalRecord', currentUser.token)
     return this.http.get<MedicalRecordI>(URL, {
       headers: { 'Authorization':  `Bearer ${currentUser.token}` }
     });

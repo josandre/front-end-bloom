@@ -731,7 +731,9 @@
     "REMEMBER":"Remember me",
     "FORGOT":"Forgot Password?",
     "LOGIN":"Login",
-    "LANDING" : "Back to landing page"
+    "LANDING" : "Back to landing page",
+    "ERROR":"unauthorized"
+
   },
   "PATIENT": {
     "NO_RESULTS": "No resources available."

@@ -51,7 +51,7 @@
               <a class="txt1" routerLink="/">{{'LOGIN.LANDING' | translate}}</a>
               <a class="txt1" routerLink="/authentication/forgot-password">{{'LOGIN.FORGOT' | translate}}</a>
             </div>
-            <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+            <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error | translate}}</div>
             <div class="container-auth-form-btn">
               <div style="text-align:center">
                 <button mat-raised-button color="primary" [class.auth-spinner]="loading" [disabled]="loading"

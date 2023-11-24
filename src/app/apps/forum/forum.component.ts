@@ -36,6 +36,8 @@ export class ForumComponent implements OnInit {
   // User info
   currentUser?:any;
 
+  load = true
+  message = 'hola'
 
 
   constructor(

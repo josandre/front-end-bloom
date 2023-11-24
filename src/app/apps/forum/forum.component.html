@@ -21,9 +21,13 @@
           <button mat-flat-button color="primary" (click)="openNewPostDialog()">{{'MENUITEMS.FORUMS.CREATE_POST' |
             translate}}</button>
 
-          <!--Posts loading-->
-          <div *ngIf="postsLoaded === false">
-            <app-loading-card></app-loading-card>
+<!--          &lt;!&ndash;Posts loading&ndash;&gt;-->
+<!--          <div *ngIf="postsLoaded === false">-->
+<!--            <app-loading-card></app-loading-card>-->
+<!--          </div>-->
+
+          <div class="center" *ngIf="!postLoaded">
+            <app-spinner [isLoading]="true" [message]="message | translate"></app-spinner>
           </div>
 
           <!--Posts container-->
@@ -46,10 +50,13 @@
 
     <!--Open post-->
     <div *ngIf="forumState === ForumStates.OpenPost">
-      <!--Post loading-->
+      Post loading
       <div *ngIf="postLoaded === false">
         <app-loading-card></app-loading-card>
       </div>
+
+
+
 
       <!--Post loaded-->
       <div *ngIf="postLoaded === true">

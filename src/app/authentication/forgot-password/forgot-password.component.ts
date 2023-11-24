@@ -39,10 +39,10 @@ export class ForgotPasswordComponent implements OnInit {
     this.authService.changePassword(userEmail)
       .subscribe({
         next: () => {
-          this.snackBar.open("All set! We will send an email with your new password if your email is registered.", '', {verticalPosition: 'top', horizontalPosition: 'end'})
+          this.snackBar.open("All set! We sent an email with your new details.", 'Done', {verticalPosition: 'top', horizontalPosition: 'end'})
         },
         error: () => {
-          this.snackBar.open("There was an issue resetting your password. Please contact support-bloomapp@gmail.com for more information.", '', {verticalPosition: 'top', horizontalPosition: 'end'})
+          this.snackBar.open("There was an issue resetting your password. Please contact support-bloomapp@gmail.com for more information.", 'Done', {verticalPosition: 'top', horizontalPosition: 'end'})
         }
       })
   }

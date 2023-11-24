@@ -737,6 +737,12 @@
     "SUCCESS":"Usuario registrado",
     "EMAIL_REGISTRED":"El correo ya se encuentra registrado",
     "USER_NOT_ACCEPTABLE":"Usuario no permitido"
+  },
+  "SNACKBAR_PATIENT_SIGNUP":{
+    "CLOSE":"Cerrar",
+    "SUCCESS":"Paciente agregado",
+    "EMAIL_REGISTRED":"",
+    "USER_NOT_ADDED":"Usuario no agregado"
 
   }
 

@@ -740,6 +740,13 @@
     "EMAIL_REGISTRED":"Your email is already registered",
     "USER_NOT_ACCEPTABLE":"The user is not acceptable"
 
+  },
+  "SNACKBAR_PATIENT_SIGNUP":{
+    "CLOSE":"Close",
+    "SUCCESS":"Patient added",
+    "EMAIL_REGISTRED":"Your email is already registered",
+    "USER_NOT_ADDED":"The user is not acceptable"
+
   }
 
 }

@@ -31,11 +31,12 @@ export class SignupComponent implements OnInit {
   currentLang: string;
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private userService: SpecialistService, private snackBar: MatSnackBar,private translate: TranslateService
   ) {
-    this.translate.setDefaultLang('es');
+    this.currentLang = 'en';
   }
 
 
   ngOnInit() {
+    this.translate.use(this.currentLang);
     this.authForm = this.formBuilder.group({
       username: new FormControl("", {
         validators:[Validators.required],

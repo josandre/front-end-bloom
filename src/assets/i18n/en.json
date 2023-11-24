@@ -730,9 +730,11 @@
     "PASSWORD_REQUIRED":"Password is required",
     "REMEMBER":"Remember me",
     "FORGOT":"Forgot Password?",
-    "LOGIN":"Login"
-
-
+    "LOGIN":"Login",
+    "LANDING" : "Back to landing page"
+  },
+  "PATIENT": {
+    "NO_RESULTS": "No resources available."
   }
 
 }

@@ -55,11 +55,11 @@
 
                 </tr>
 
-                <tr *ngIf="resourcesList.length === 0">
+                <tr *ngIf="resourcesList?.length === 0">
                   <td colspan="4"> 
                     <div class="no-results-container">
                       <img src="assets/images/pages/BloomGuiño.png" alt="bloom">
-                      <h4>{{ 'CONTACTS.NO_CONTACTS_AVAILABLE' | translate }}</h4>
+                      <h4>{{ 'PATIENT.NO_RESULTS' | translate }}</h4>
                     </div>
                   </td>
                 </tr>

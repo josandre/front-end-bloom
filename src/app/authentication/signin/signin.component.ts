@@ -21,9 +21,12 @@ export class SigninComponent implements OnInit {
   error = '';
   hide = true;
   currentLang: string;
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private authService: AuthService,private translate: TranslateService) {}
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private authService: AuthService,private translate: TranslateService) {
+    this.currentLang = 'en';
+  }
 
   ngOnInit() {
+    this.translate.use(this.currentLang);
     this.authForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required],

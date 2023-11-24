@@ -753,7 +753,16 @@
     "SUCCESS":"All set! We sent an email with your new details.",
     "ERROR":"There was an issue resetting your password. Please contact support-bloomapp@gmail.com for more information.",
     "DONE":"Done"
-  }
+  },
+  "FORGOT_PASSWORD":{
+    "RESET_PASSWORD":"Reset Password",
+    "HELP":"Let Us Help You",
+    "EMAIL_REGISTRED":"Enter your registered email address.",
+    "EMAIL":"Email",
+    "EMAI_VALID":"Please enter a valid email address",
+    "RESET":"Reset My Password",
+    "LOGIN":"Login?"
+   }
 
   
 

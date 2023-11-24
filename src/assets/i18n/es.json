@@ -750,5 +750,14 @@
     "SUCCESS":"¡Todo listo! Le enviamos un correo electrónico con sus nuevos datos.",
     "ERROR":"Hubo un problema al restablecer tu contraseña. Comuníquese con support-bloomapp@gmail.com para obtener más información.",
     "DONE":"Done"
+  },
+  "FORGOT_PASSWORD":{
+   "RESET_PASSWORD":"Restablecer la contraseña",
+   "HELP":"Dejanos ayudarte",
+   "EMAIL_REGISTRED":"Ingrese su dirección de correo electrónico registrada.",
+   "EMAIL":"Correo Electrónico",
+   "EMAI_VALID":"Por favor, introduce una dirección de correo electrónico válida",
+   "RESET":"Restablecer mi contraseña",
+   "LOGIN":"Iniciar sesión"
   }
 }

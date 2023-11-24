@@ -733,5 +733,8 @@
   },
   "PATIENT": {
     "NO_RESULTS": "No hay contactos disponibles."
+  },
+  "DOCTOR_NOT_ALLOWED": {
+    "MESSAGE": "Nada que ver aquí..."
   }
 }

@@ -9,19 +9,28 @@
       <div class="form-section" >
         <app-spinner  [isLoading]="isLoading" message="we are creating your profile"></app-spinner>
         <div class="auth-wrapper" *ngIf="!isLoading">
-          <h2 class="welcome-msg"> Sign Up </h2>
-          <p class="auth-signup-text text-muted">Enter details to create your account</p>
+          <div class="col-md-5 col-sm-12 right_info">
+            <div class="language-switcher">
+                <button (click)="changeLanguage('es')" [class.active]="isLanguageActive('es')">ES</button>
+                <button (click)="changeLanguage('en')" [class.active]="isLanguageActive('en')">EN</button>
+            </div>
+        </div>
+          <h2 class="welcome-msg">{{'SING_UP.TITLE' | translate}} </h2>
+          
+          
+            
+          <p class="auth-signup-text text-muted">{{'SING_UP.INFO' | translate}}</p>
           <form class="validate-form " [formGroup]="authForm" (ngSubmit)="onSubmit()">
             <div class="sections">
             <div class="section-letf">
               <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                   <mat-form-field class="example-full-width" appearance="outline">
-                    <mat-label>Name</mat-label>
+                    <mat-label>{{'SING_UP.NAME' | translate}}</mat-label>
                     <input matInput formControlName="name" required>
                     <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>face</mat-icon>
                     <mat-error *ngIf="authForm.get('name')!.hasError('required')">
-                      Name is required
+                      {{'SING_UP.NAME_REQUIRED' | translate}}
                     </mat-error>
                   </mat-form-field>
                 </div>
@@ -30,11 +39,11 @@
               <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                   <mat-form-field class="example-full-width" appearance="outline">
-                    <mat-label>Last Name</mat-label>
+                    <mat-label>{{'SING_UP.LAST_NAME' | translate}}</mat-label>
                     <input matInput formControlName="lastName" required>
                     <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>face</mat-icon>
                     <mat-error *ngIf="authForm.get('lastName')!.hasError('required')">
-                      Last name is required
+                      {{'SING_UP.LAST_NAME_REQUIRED' | translate}}
                     </mat-error>
                   </mat-form-field>
                 </div>
@@ -43,11 +52,11 @@
               <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                   <mat-form-field class="example-full-width" appearance="outline">
-                    <mat-label>Medical Id</mat-label>
+                    <mat-label>{{'SING_UP.MEDICAL_ID' | translate}}</mat-label>
                     <input matInput formControlName="medicalId" required>
                     <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>credit_card</mat-icon>
                     <mat-error *ngIf="authForm.get('medicalId')!.hasError('required')">
-                      Medical id is required
+                      {{'SING_UP.MEDICAL_ID_REQUIRED' | translate}}
                     </mat-error>
                   </mat-form-field>
                 </div>
@@ -56,11 +65,11 @@
               <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                   <mat-form-field class="example-full-width" appearance="outline">
-                    <mat-label>College</mat-label>
+                    <mat-label>{{'SING_UP.COLLEGE' | translate}}</mat-label>
                     <input matInput formControlName="college" required>
                     <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>apartment</mat-icon>
                     <mat-error *ngIf="authForm.get('college')!.hasError('required')">
-                      College is required
+                       {{'SING_UP.COLLEGE_REQUIRED' | translate}}
                     </mat-error>
                   </mat-form-field>
                 </div>
@@ -69,11 +78,11 @@
               <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                   <mat-form-field class="example-full-width" appearance="outline">
-                    <mat-label>Clinic Location</mat-label>
+                    <mat-label>{{'SING_UP.CLINIC_LOCATION' | translate}}</mat-label>
                     <input matInput formControlName="location" required>
                     <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>location_on</mat-icon>
                     <mat-error *ngIf="authForm.get('location')!.hasError('required')">
-                       Clinical location is required
+                        {{'SING_UP.CLINIC_LOCATION_REQUIRED' | translate}}
                     </mat-error>
                   </mat-form-field>
                 </div>
@@ -84,15 +93,15 @@
               <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                   <mat-form-field class="example-full-width" appearance="outline">
-                    <mat-label>Speciality</mat-label>
+                    <mat-label>{{'SING_UP.SPECIALITY.NAME' | translate}}</mat-label>
                     <mat-select matInput formControlName="speciality" required>
                       <mat-option *ngFor="let specility of specialist" [value]="specility.value">
-                        {{specility.viewValue}}
+                        {{ 'SING_UP.SPECIALITY.' + specility.value | translate }}
                       </mat-option>
                     </mat-select>
                     <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>contact_mail</mat-icon>
                     <mat-error *ngIf="authForm.get('speciality')!.hasError('required')">
-                      Speciality id is required
+                      {{'SING_UP.SPECIALITY_REQUIRED' | translate}}
                     </mat-error>
                   </mat-form-field>
                 </div>
@@ -101,11 +110,11 @@
               <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                   <mat-form-field class="example-full-width" appearance="outline">
-                    <mat-label>Username</mat-label>
+                    <mat-label>{{'SING_UP.USER_NAME' | translate}}</mat-label>
                     <input matInput formControlName="username" required>
                     <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>face</mat-icon>
                     <mat-error *ngIf="authForm.get('username')!.hasError('required')">
-                      User name is required
+                       {{'SING_UP.USER_NAME_REQUIRED' | translate}}
                     </mat-error>
                   </mat-form-field>
                 </div>
@@ -114,11 +123,11 @@
               <div class="row">
                 <div class="col-xl-12col-lg-12 col-md-12 col-sm-12 mb-2">
                   <mat-form-field class="example-full-width" appearance="outline">
-                    <mat-label>Email</mat-label>
+                    <mat-label>{{'SING_UP.EMAIL' | translate}}</mat-label>
                     <input matInput formControlName="email" required>
                     <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>mail</mat-icon>
                     <mat-error *ngIf="authForm.get('email')!.hasError('required') || authForm.get('email')!.touched">
-                      Please enter a valid email address
+                       {{'SING_UP.EMAIL_REQUIRED' | translate}}
                     </mat-error>
                   </mat-form-field>
                 </div>
@@ -127,12 +136,12 @@
               <div class="row">
                 <div class="col-xl-12col-lg-12 col-md-12 col-sm-12 mb-2">
                   <mat-form-field class="example-full-width" appearance="outline">
-                    <mat-label>Password</mat-label>
+                    <mat-label>{{'SING_UP.PASSWORD' | translate}}</mat-label>
                     <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" required>
                     <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix (click)="hide = !hide">
                       {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     <mat-error *ngIf="authForm.get('password')!.hasError('required')">
-                      Password is required
+                      {{'SING_UP.PASSWORD_REQUIRED' | translate}}
                     </mat-error>
                   </mat-form-field>
                 </div>
@@ -140,12 +149,12 @@
               <div class="row">
                 <div class="col-xl-12col-lg-12 col-md-12 col-sm-12 mb-2">
                   <mat-form-field class="example-full-width" appearance="outline">
-                    <mat-label>Confirm Password</mat-label>
+                    <mat-label>{{'SING_UP.CONFIRM_PASSWORD' | translate}}</mat-label>
                     <input matInput formControlName="cpassword" [type]="chide ? 'password' : 'text'" required>
                     <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix (click)="chide = !chide">
                       {{chide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     <mat-error *ngIf="authForm.get('cpassword')!.hasError('required')">
-                      Confirm Password is required
+                       {{'SING_UP.CONFIRM_PASSWORD_REQUIRED' | translate}}
                     </mat-error>
                   </mat-form-field>
                 </div>
@@ -155,15 +164,15 @@
 
             <div class="flex-sb-m w-full  p-b-20">
               <div>
-                <span>Already Registered? <a routerLink="/authentication/signin">
-                    Login
+                <span>{{'SING_UP.REGISTRED' | translate}} <a routerLink="/authentication/signin">
+                     {{'SING_UP.LOGIN' | translate}}
                   </a></span>
               </div>
             </div>
 
             <div class="container-auth-form-btn">
               <button mat-raised-button color="primary" class="auth-form-btn"  type="submit"  >
-                Register
+                 {{'SING_UP.REGISTER' | translate}}
               </button>
             </div>
 

@@ -677,6 +677,54 @@
     "POST_DADE":"Fcha de registro",
     "SEARCH_BY":"Buscar por título",
     "SEARCH":"Buscar"
+  },
+  "SING_UP":{
+    "TITLE":"Reistrarme",
+    "INFO": "Ingrese los datos para crear su cuenta",
+    "NAME":"Nombre",
+    "NAME_REQUIRED":"Nombre requerido",
+    "LAST_NAME":"Apellidos",
+    "LAST_NAME_REQUIRED":"Apellidos requeridos",
+    "MEDICAL_ID":"Identificación médica",
+    "MEDICAL_ID_REQUIRED":"Identificación médica requerida",
+    "COLLEGE":"Universidad",
+    "COLLEGE_REQUIRED":"Universidad requerida",
+    "CLINIC_LOCATION":"Ubicación de la clínica",
+    "CLINIC_LOCATION_REQUIRED":"Ubicación de la clínica requerida",
+    "SPECIALITY_REQUIRED":"Especialidad ",
+    "USER_NAME":"Nombre de usuario",
+    "USER_NAME_REQUIRED":"Nombre de usuario",
+    "EMAIL":"Correo",
+    "EMAIL_REQUIRED":"Por favor, introduce una dirección de correo válida",
+    "PASSWORD":"Contraseña",
+    "PASSWORD_REQUIRED":"Contraseña requerida",
+    "CONFIRM_PASSWORD":"Confirmar Contraseña",
+    "CONFIRM_PASSWORD_REQUIRED":"Confirmar Contraseña requerida",
+    "LOGIN":"Iniciar sesión",
+    "REGISTRED":"Tengo una cuenta",
+    "REGISTER":"Registro",
+    "SPECIALITY":{
+      "psychology":"Psicología",
+      "therapist":"Terapeuta",
+      "NAME":"Espacialidad"
+    }
+    
+
+  },
+  "LOGIN":{
+    "WELCOME":"Bienvenido a Bloom ",
+    "NEED":"Necesitas una cuenta?",
+    "SIGNUP":"Registrarme",
+    "SIGNIN":"Iniciar sesión",
+    "EMAIL":"Correo",
+    "EMAIL_REQUIRED":"El correo electrónico es obligatorio",
+    "PASSWORD":"Contraseña",
+    "PASSWORD_REQUIRED":"Contraseña requerida",
+    "REMEMBER":"Recordar credenciales",
+    "FORGOT":"Olvidé mi contraseña",
+    "LOGIN":"Iniciar sesión"
+
+
   }
 
 }

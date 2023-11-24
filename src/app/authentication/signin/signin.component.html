@@ -7,20 +7,26 @@
     <div class="col-sm-6 auth-form-section">
       <div class="form-section">
         <div class="auth-wrapper">
-          <h2 class="welcome-msg"> Welcome to Bloom </h2>
-          <p class="auth-signup-text text-muted">Need an account?<a routerLink="/authentication/signup"
-              class="sign-up-link">Sign Up
+          <div class="col-md-5 col-sm-12 right_info">
+            <div class="language-switcher">
+                <button (click)="changeLanguage('es')" [class.active]="isLanguageActive('es')">ES</button>
+                <button (click)="changeLanguage('en')" [class.active]="isLanguageActive('en')">EN</button>
+            </div>
+        </div>
+          <h2 class="welcome-msg"> {{'LOGIN.WELCOME' | translate}}</h2>
+          <p class="auth-signup-text text-muted">{{'LOGIN.NEED' | translate}}<a routerLink="/authentication/signup"
+              class="sign-up-link">{{'LOGIN.SIGNUP' | translate}}
             </a></p>
-          <h2 class="login-title">Sign in</h2>
+          <h2 class="login-title">{{'LOGIN.SIGNIN' | translate}}</h2>
           <form class="validate-form" [formGroup]="authForm" (ngSubmit)="onSubmit()">
             <div class="row">
               <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                 <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>Username</mat-label>
+                  <mat-label>{{'LOGIN.EMAIL' | translate}}</mat-label>
                   <input matInput formControlName="username" />
                   <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>face</mat-icon>
                   <mat-error *ngIf="authForm.get('username')!.hasError('required')">
-                    Username is required
+                    {{'LOGIN.EMAIL_REQUIRED' | translate}}
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -28,7 +34,7 @@
             <div class="row">
               <div class="col-xl-12col-lg-12 col-md-12 col-sm-12 mb-2">
                 <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>Password</mat-label>
+                  <mat-label>{{'LOGIN.PASSWORD' | translate}}</mat-label>
                   <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
                   <a href="#" onClick="return false;" matSuffix (click)="hide = !hide"
                     [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
@@ -36,7 +42,7 @@
                       {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                   </a>
                   <mat-error *ngIf="authForm.get('password')!.hasError('required')">
-                    Password is required
+                    {{'LOGIN.PASSWORD_REQUIRED' | translate}}
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -44,19 +50,19 @@
             <div class="d-flex justify-content-between align-items-center mb-5">
               <div class="form-check">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox" value=""> Remember me
+                  <input class="form-check-input" type="checkbox" value=""> {{'LOGIN.REMEMBER' | translate}}
                   <span class="form-check-sign">
                     <span class="check"></span>
                   </span>
                 </label>
               </div>
-              <a class="txt1" routerLink="/authentication/forgot-password">Forgot Password?</a>
+              <a class="txt1" routerLink="/authentication/forgot-password">{{'LOGIN.FORGOT' | translate}}</a>
             </div>
             <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
             <div class="container-auth-form-btn">
               <div style="text-align:center">
                 <button mat-raised-button color="primary" [class.auth-spinner]="loading" [disabled]="loading"
-                  class="auth-form-btn" [disabled]="!authForm.valid " type="submit">Login</button>
+                  class="auth-form-btn" [disabled]="!authForm.valid " type="submit">{{'LOGIN.LOGIN' | translate}}</button>
               </div>
             </div>
           </form>

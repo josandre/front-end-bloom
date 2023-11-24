@@ -153,7 +153,8 @@
       "SAVE_COMMENT": "Guardar Comentario",
       "DELETE_CONFIRMATION_TITLE": "¿Estás seguro?",
       "DELETE_CONFIRMATION_CONTENT": "¡Este cambio no se puede revertir!",
-      "DELETE_CONFIRMATION": "Si, eliminar"
+      "DELETE_CONFIRMATION": "Si, eliminar",
+      "MESSAGE": "Leyendo foro"
     },
     "GAMES-SECTION": {
       "TITLE": "Sección de Juegos",
@@ -311,7 +312,8 @@
     "RELATION": "Relación con el paciente",
     "ACTIONS": "Acciones",
     "NO_CONTACTS_AVAILABLE": "No hay contactos disponibles.",
-    "NO_RESULTS_FOUND": "No se encontraron resultados para tu búsqueda."
+    "NO_RESULTS_FOUND": "No se encontraron resultados para tu búsqueda.",
+    "MESSAGE": "Estamos buscando tus contactos"
   },
   "CONTACT_FORM": {
     "CLOSE": "Cerrar",

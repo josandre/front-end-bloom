@@ -10,6 +10,7 @@ export class LoadingCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    return;
   }
 
 }

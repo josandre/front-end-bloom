@@ -24,12 +24,13 @@ export class ContactsComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  message = 'CONTACTS.MESSAGE'
 
   constructor(public contactsService: ContactsService, public dialog: MatDialog) {}
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource<Contact>([]); 
-    this.loadContacts(); 
+    this.dataSource = new MatTableDataSource<Contact>([]);
+    this.loadContacts();
   }
 
   initSaveContact(contact?: Contact): void {
@@ -47,10 +48,11 @@ export class ContactsComponent implements OnInit {
   addContactToTable(newContact: Contact): void {
     const currentData = this.dataSource.data;
     currentData.push(newContact);
-    this.dataSource.data = currentData; 
+    this.dataSource.data = currentData;
   }
 
   loadContacts() {
+    this.isLoading = true
     this.contactsService.getAll().subscribe((data: Contact[]) => {
       this.dataSource = new MatTableDataSource<Contact>(data);
       this.dataSource.paginator = this.paginator;
@@ -75,19 +77,19 @@ export class ContactsComponent implements OnInit {
     const dialogRef = this.dialog.open(FormComponent, {
       data: { action: 'edit', contact: contact },
     });
-  
+
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.updateContactInTable(result);
       }
     });
   }
-  
+
   updateContactInTable(updatedContact: Contact): void {
     const index = this.dataSource.data.findIndex(c => c.id === updatedContact.id);
     if (index !== -1) {
       this.dataSource.data[index] = updatedContact;
-      this.dataSource.data = [...this.dataSource.data]; 
+      this.dataSource.data = [...this.dataSource.data];
     }
   }
 
@@ -95,7 +97,7 @@ export class ContactsComponent implements OnInit {
     const dialogRef = this.dialog.open(DeleteComponent, {
       data: contact
     });
-  
+
     dialogRef.afterClosed().subscribe((confirmed) => {
       if (confirmed) {
         this.removeContactFromTable(contact);
@@ -107,7 +109,7 @@ export class ContactsComponent implements OnInit {
     const index = this.dataSource.data.findIndex(c => c.id === contactToDelete.id);
     if (index !== -1) {
       this.dataSource.data.splice(index, 1);
-      this.dataSource.data = [...this.dataSource.data]; 
+      this.dataSource.data = [...this.dataSource.data];
     }
   }
 
@@ -124,6 +126,6 @@ export class ContactsComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-  
+
 
 }

@@ -131,7 +131,7 @@ const routes: Routes = [
       {
         path: 'tables/basic-table',
         component: BasicTableComponent
-      }
+      },
     ],
   },
   {

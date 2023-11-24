@@ -153,7 +153,8 @@
       "SAVE_COMMENT": "Save Comment",
       "DELETE_CONFIRMATION_TITLE": "Are you sure?",
       "DELETE_CONFIRMATION_CONTENT": "You won't be able to revert this!",
-      "DELETE_CONFIRMATION": "Yes, delete it"
+      "DELETE_CONFIRMATION": "Yes, delete it",
+      "MESSAGE": "Reading forum"
     },
     "GAMES-SECTION": {
       "TITLE": "Games Section",
@@ -278,7 +279,8 @@
     "RELATION": "Relation with Patient",
     "ACTIONS": "Actions",
     "NO_CONTACTS_AVAILABLE": "No contacts available.",
-    "NO_RESULTS_FOUND": "No results found for your search."
+    "NO_RESULTS_FOUND": "No results found for your search.",
+    "MESSAGE": "We are looking for your contacts"
   },
   "CONTACT_FORM": {
     "CLOSE": "Close",

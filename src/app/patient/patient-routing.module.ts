@@ -4,8 +4,9 @@ import { Routes, RouterModule } from "@angular/router";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { PrescriptionsComponent } from "./prescriptions/prescriptions.component";
 import { MedicalRecordsComponent } from "./medical-records/medical-records.component";
-import { BillingComponent } from "./billing/billing.component";
-import {PatientProfileComponent} from "./patient-profile/patient-profile.component";
+import { PatientProfileComponent } from "./patient-profile/patient-profile.component";
+import {DiaryComponent} from "./diary/diary.component";
+
 const routes: Routes = [
   {
     path: "dashboard",
@@ -27,12 +28,12 @@ const routes: Routes = [
     component: MedicalRecordsComponent,
   },
   {
-    path: "billing",
-    component: BillingComponent,
-  },
-  {
     path: "patient-profile",
     component: PatientProfileComponent,
+  },
+  {
+    path: "diary",
+    component: DiaryComponent,
   },
   { path: "**", component: Page404Component },
 ];

@@ -32,13 +32,11 @@ export class ScoresListComponent implements OnInit {
     .subscribe(
       data => {
         // Get real values
-        console.log(data);
         this.scores = data;
         this.scoresLoaded = true;
       },
       error => {
         // Assign dummy values
-        console.log(error);
         this.scores = Array(0).fill(null);
         this.scoresLoaded = true;
       }

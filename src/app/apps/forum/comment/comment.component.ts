@@ -51,15 +51,12 @@ export class CommentComponent implements OnInit {
         this.forumService.deleteComment(this.commentID).
         subscribe(
           response => {
-            console.log(response);
             this.forumComponent?.openPost(this.forumComponent?.currentPost?.id);
           },
           error => {
-            console.log(error);
             this.forumComponent?.openPost(this.forumComponent?.currentPost?.id);
           }
         );        
-        //Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
       }
     });    
   }
@@ -81,11 +78,9 @@ export class CommentComponent implements OnInit {
     this.forumService.updateComment(updatedComment).
     subscribe(
       response => {
-        console.log(response);
         this.forumComponent?.reloadPost();
       },
       error => {
-        console.log(error);
         this.commentEditorEnabled = false;
       }
     );

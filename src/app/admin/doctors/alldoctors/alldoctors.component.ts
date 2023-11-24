@@ -19,6 +19,7 @@ import {
 } from '@shared';
 import { DoctorService } from '../service/doctor.service';
 import {MatTableDataSource} from "@angular/material/table";
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-alldoctors',
@@ -48,6 +49,7 @@ export class AlldoctorsComponent
   constructor(
     private snackBar: MatSnackBar,
     public doctorService: DoctorService,
+    private translate: TranslateService
   ) {
     super();
   }
@@ -112,13 +114,15 @@ export class AlldoctorsComponent
   setState(row: Doctor){
     row.active = !row.active
       this.doctorService.changeState(row.id).subscribe(() => {
-          this.openSnackBar("Doctor state changed", "Close")
+          this.openSnackBar('ADMIN_SNACKBAR.DOCTOR_SUCCESS', 'ADMIN_SNACKBAR.CLOSE')
       }, () => {
-        this.openSnackBar("Server error", "Close")
+        this.openSnackBar('ADMIN_SNACKBAR.SERVER_ERROR', 'ADMIN_SNACKBAR.CLOSE')
       })
   }
 
-  openSnackBar(message: string, action: string){
-    this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'end'})
+  openSnackBar(message: string, action: string) {
+    this.translate.get([message,action]).subscribe((translations: any) => {
+      this.snackBar.open(translations[message], translations[action], { verticalPosition: 'top', horizontalPosition: 'end',duration: 4000 })
+    });
   }
 }

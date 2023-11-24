@@ -762,6 +762,7 @@
    "LOGIN":"Iniciar sesión"
   },
   "DIARY_ENTRY":{
+    "TITLE":"Mi diario",
     "ACTIONS":{
       "CLOSE":"Cerrar",
       "TRY_AGAIN":"Intente de nuevo"
@@ -781,5 +782,12 @@
       "SUCCESS":"Se ha eliminado la entrada",
       "ERROR":"Algo salió mal al intentar eliminar la entrada"
     }
+  },
+  "ADMIN_SNACKBAR":{
+    "CLOSE":"Cerrar",
+    "DOCTOR_SUCCESS":"Cambió el estado del doctor",
+    "SERVER_ERROR":"Error del servidor",
+    "PATIENT_SUCCESS":"Cambió el estado del usuario"
   }
+
 }

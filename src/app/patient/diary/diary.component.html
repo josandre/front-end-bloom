@@ -2,7 +2,7 @@
     <div class="content-block" [hidden]="loading">
         <div class="block-header">
             <!-- breadcrumb -->
-            <app-breadcrumb *ngIf="diary !== undefined" [title]="'My Diary'"
+            <app-breadcrumb *ngIf="diary !== undefined" [title]="'DIARY_ENTRY.TITLE' | translate"
                             [active_item]="diary.title | titlecase"></app-breadcrumb>
         </div>
         <div class="row container-diary">

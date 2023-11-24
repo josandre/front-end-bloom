@@ -766,6 +766,7 @@
     "LOGIN":"Login?"
    },
    "DIARY_ENTRY":{
+    "TITLE":"My Diary",
     "ACTIONS":{
       "CLOSE":"Close",
       "TRY_AGAIN":"Try again"
@@ -785,6 +786,13 @@
       "SUCCESS":"Entry has been deleted",
       "ERROR":"Something went wrong while trying to delete entry"
     }
+  },
+  "ADMIN_SNACKBAR":{
+    "CLOSE":"Close",
+    "DOCTOR_SUCCESS":"Doctor state changed",
+    "SERVER_ERROR":"Server error",
+    "PATIENT_SUCCESS":"Patient state changed"
+
   }
 
   

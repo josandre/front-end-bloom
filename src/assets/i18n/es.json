@@ -759,5 +759,26 @@
    "EMAI_VALID":"Por favor, introduce una dirección de correo electrónico válida",
    "RESET":"Restablecer mi contraseña",
    "LOGIN":"Iniciar sesión"
+  },
+  "DIARY_ENTRY":{
+    "ACTIONS":{
+      "CLOSE":"Cerrar",
+      "TRY_AGAIN":"Intente de nuevo"
+    },
+    "GET":{
+      "ERROR":"Hubo un problema al obtener la información del diario"
+    },
+    "ADD":{
+      "SUCCESS":"La información se puede guardar",
+      "ERROR":" Algo salió mal al intertar agregar la entrada"
+    },
+    "SAVE":{
+      "SUCCESS":"La información se guardó",
+      "ERROR":"Algo salió mal al intentar guardar la entrada"
+    },
+    "DELETE":{
+      "SUCCESS":"Se ha eliminado la entrada",
+      "ERROR":"Algo salió mal al intentar eliminar la entrada"
+    }
   }
 }

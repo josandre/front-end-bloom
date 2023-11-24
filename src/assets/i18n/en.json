@@ -153,7 +153,8 @@
       "SAVE_COMMENT": "Save Comment",
       "DELETE_CONFIRMATION_TITLE": "Are you sure?",
       "DELETE_CONFIRMATION_CONTENT": "You won't be able to revert this!",
-      "DELETE_CONFIRMATION": "Yes, delete it"
+      "DELETE_CONFIRMATION": "Yes, delete it",
+      "MESSAGE": "Reading forum"
     },
     "GAMES-SECTION": {
       "TITLE": "Games Section",
@@ -235,7 +236,7 @@
     }
   },
   "DASHBOARD_DOCTOR": {
-    "WELLCOME_TITLE": "Wellcome back",
+    "WELLCOME_TITLE": "Welcome back",
     "WELLCOME_TEXT": "Each day brings a new opportunity to impact lives. We are excited about the experiences and achievements that await us. Your dedication and passion make a significant difference!",
     "RESOURCES": "Shared Resources",
     "INCREASED_ANXIETY_LEVELS": "Increased Anxiety Levels",
@@ -255,6 +256,10 @@
     "MESSAGE_LOADING": "This may take some seconds",
     "MESSAGE_NO_DATA": "You don't have any data yet"
   },
+  "DASHBOARD_ADMIN": {
+    "WELCOME_TITLE": "Welcome back!",
+    "WELCOME_TEXT": "Every day is a new opportunity to lead with excellence and forge innovative paths. Your vision and ongoing effort are the driving force behind our success. Thank you for your tireless dedication and for making every day count!"
+  },  
   "DASHBOARD_PATIENT": {
     "WELLCOME_TITLE": "Welcome back",
     "WELLCOME_TEXT": "We would like to take this opportunity to welcome you to our practice and to thank you for choosing our physicians to participate in your healthcare. We look forward to providing you with personalized, comprehensive health care focusing on wellness and prevention.",
@@ -297,7 +302,8 @@
     "RELATION": "Relation with Patient",
     "ACTIONS": "Actions",
     "NO_CONTACTS_AVAILABLE": "No contacts available.",
-    "NO_RESULTS_FOUND": "No results found for your search."
+    "NO_RESULTS_FOUND": "No results found for your search.",
+    "MESSAGE": "We are looking for your contacts"
   },
   "CONTACT_FORM": {
     "CLOSE": "Close",

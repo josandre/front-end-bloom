@@ -36,9 +36,8 @@ export class ForumComponent implements OnInit {
   // User info
   currentUser?:any;
 
-  load = true
-  message = 'hola'
-
+  loading: boolean = false
+  message = 'MENUITEMS.FORUMS.MESSAGE'
 
   constructor(
     private readonly authService:AuthService,
@@ -51,7 +50,6 @@ export class ForumComponent implements OnInit {
   ngOnInit(): void {
     // Get current user info
     this.currentUser = this.authService.currentUserValue;
-    console.log(this.currentUser);
 
     // Retrieve all the posts
     this.getPosts();
@@ -63,16 +61,17 @@ export class ForumComponent implements OnInit {
     this.postLoaded = false;
 
     this.postsLoaded = false;
+    this.loading = true
     this.showPosts();
     this.forumService.getAllPosts()
     .subscribe(
       data => {
-
         this.posts = data;
         this.postsLoaded = true;
+        this.loading = false
       },
       error => {
-        console.log(error);
+        this.loading = false
         this.posts = Array(0).fill(null);
         this.postsLoaded = true;
       }
@@ -127,11 +126,9 @@ export class ForumComponent implements OnInit {
         this.forumService.deletePost(this.currentPost.id).
         subscribe(
           response => {
-            console.log(response);
             this.getPosts();
           },
           error => {
-            console.log(error);
             this.getPosts();
           }
         );
@@ -155,11 +152,8 @@ export class ForumComponent implements OnInit {
 
         this.postEditorTitle = this.currentPost.title;
         this.postEditorContent = this.currentPost.experience;
-        console.log(this.currentPost);
       },
-      error => {
-        console.log(error);
-      }
+      error => {}
     );
   }
 
@@ -192,11 +186,9 @@ export class ForumComponent implements OnInit {
     this.forumService.updatePost(updatedPost).
     subscribe(
       response => {
-        console.log(response);
         this.reloadPost();
       },
       error => {
-        console.log(error);
         this.postEditorEnabled = true;
       }
     );

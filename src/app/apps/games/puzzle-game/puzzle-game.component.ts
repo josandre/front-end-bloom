@@ -90,17 +90,13 @@ export class PuzzleGameComponent implements OnInit {
       }
     };
 
-    console.log('SAVING!');
-    console.log(newScore);
     // Make sure the score is saved
     this.gameScoreService.saveUserScore(newScore).
     subscribe(
       response => {
-        console.log(response);
         this.gameState = this.GameStates.ResultsScreen;
       },
       error => {
-        console.log(error);
         this.gameState = this.GameStates.ResultsScreen;
       }
     );

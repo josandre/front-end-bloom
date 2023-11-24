@@ -4,7 +4,12 @@
       <!-- breadcrumb -->
       <app-breadcrumb [title]="'ADMIN_BREADCRUM.DOCTORS.TITLE' | translate"[items]="[]" [active_item]="'ADMIN_BREADCRUM.DOCTORS.ACTIVE_ITEM' | translate"></app-breadcrumb>
     </div>
-    <div class="row">
+
+    <div class="center" *ngIf="loading">
+      <app-spinner [isLoading]="true" [message]="message | translate"></app-spinner>
+    </div>
+
+    <div class="row" *ngIf="!loading">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
           <div class="materialTableHeader">

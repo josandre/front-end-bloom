@@ -1,26 +1,26 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { CdkTextareaAutosize } from '@angular/cdk/text-field';
-import { ActivatedRoute } from "@angular/router";
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog } from '@angular/material/dialog';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {CdkTextareaAutosize} from '@angular/cdk/text-field';
+import {ActivatedRoute} from "@angular/router";
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialog} from '@angular/material/dialog';
 
-import { FormControl, Validators } from '@angular/forms';
-import { MatChipInputEvent } from '@angular/material/chips';
+import {FormControl, Validators} from '@angular/forms';
+import {MatChipInputEvent} from '@angular/material/chips';
 
-import { MedicalRecordService } from './service/medicalrecord.service';
-import { AnxietyTypeService } from './service/anxietytype.service';
+import {MedicalRecordService} from './service/medicalrecord.service';
+import {AnxietyTypeService} from './service/anxietytype.service';
 
-import { MedicalRecord } from './model/MedicalRecord';
-import { Patient } from '../model/Patient';
-import { AnxietyType } from './model/AnxietyType';
-import { MedicalHistory } from './model/MedicalHistory';
+import {MedicalRecord} from './model/MedicalRecord';
+import {Patient} from '../model/Patient';
+import {AnxietyType} from './model/AnxietyType';
+import {MedicalHistory} from './model/MedicalHistory';
 
-import { MedicalhistoryDialogComponent } from './medicalhistory-dialog/medicalhistory-dialog.component';
+import {MedicalhistoryDialogComponent} from './medicalhistory-dialog/medicalhistory-dialog.component';
 import {
-  DeleteMedicalhistoryDialogComponent
+    DeleteMedicalhistoryDialogComponent
 } from "./delete-medicalhistory-dialog/delete-medicalhistory-dialog.component";
 import {UploadFileService} from "../../../global/upload-file/upload-file.service";
-import { TranslateService } from '@ngx-translate/core';
+import {TranslateService} from '@ngx-translate/core';
 import * as moment from 'moment';
 
 
@@ -210,13 +210,14 @@ export class ProfileComponent implements OnInit {
             }
           }
         }, error => {
+            console.log(error);
           this.openSnackBar('MEDICAL_RECORD.SNACKBAR.UPDATE_MEDICAL_RECORD.ERROR', 'MEDICAL_RECORD.SNACKBAR.ACTIONS.TRY_AGAIN');
-        })
+        });
     }
   }
 
   addMedicalHistory() {
-    this.dialog.open(MedicalhistoryDialogComponent, {
+    this.dialog.open(MedicalhistoryDialogComponent,{
       data: {
         id: this.medicalRecordId,
         patient: this.medicalHistory,

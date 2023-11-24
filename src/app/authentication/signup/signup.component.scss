@@ -10,3 +10,23 @@
 ::ng-deep snack-bar-container simple-snack-bar .mat-simple-snackbar-action {
   color: white;
 }
+.language-switcher {
+  gap: 0.5rem;
+  display: flex;
+  button {
+    background-color: #ceebff;
+    color: #38a6c5;
+    display: inline-block;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    font-size: 13px !important;
+    font-weight: 500;
+    padding: 7px 22px;
+    transition: all 0.3s ease-in-out;
+    &.active {
+      background-color: #3f67c4;
+      color: #fff;
+    }
+  }
+}

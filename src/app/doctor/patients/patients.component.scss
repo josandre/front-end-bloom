@@ -11,11 +11,26 @@
 
 h6.patient-name {
   color: #3158a7;
-} 
+}
 
 .center {
-  display: flex; 
+  display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
+
+::ng-deep .mat-input-element:disabled, .mat-form-field-type-mat-native-select.mat-form-field-disabled .mat-form-field-infix::after {
+  color: #0c0c0c;
+}
+
+::ng-deep .mat-chip.mat-standard-chip.mat-chip-disabled {
+  opacity: 1;
+  color: #0c0c0c;
+}
+
+::ng-deep .mat-chip.mat-standard-chip {
+  background-color: #c3e5ee;
+}
+
+

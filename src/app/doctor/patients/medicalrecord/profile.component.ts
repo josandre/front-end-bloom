@@ -67,6 +67,14 @@ export class ProfileComponent implements OnInit {
     return '';
   }
 
+  getFormattedDateWithTime(date?:Date): string {
+    moment.locale(this.translate.currentLang);
+    if (date) {
+      return moment(date).format("MMMM D, YYYY HH:mm");
+    }
+    return '';
+  }
+
   ngOnInit(): void {
     this.getMedicalRecord(Number(this.route.snapshot.paramMap.get('id')));
     this.getPatient(Number(this.route.snapshot.paramMap.get('id')));

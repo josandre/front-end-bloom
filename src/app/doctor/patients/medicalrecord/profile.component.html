@@ -38,11 +38,11 @@
               <!-- Family medical record -->
               <mat-tab label="{{'MEDICAL_RECORD.INFO.FAMILY_MEDICAL_HISTORY' | translate}}">
                 <div class="p-4">
-                  <form class="example-form validate-form">
+                  <form class="example-form validate-form disabled-style">
                     <mat-form-field class="example-full-width" appearance="fill">
                       <textarea matInput [formControl]="familyMedicalHistoryControl" cdkTextareaAutosize
                                 #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
-                                required></textarea>
+                                required [ngClass]="{'color-black' : !isFormEnabled(familyMedicalHistoryControl)}"></textarea>
                       <mat-error *ngIf="familyMedicalHistoryControl?.hasError('required')">
                         {{'MEDICAL_RECORD.INFO.REQUIRED' | translate}} *
                       </mat-error>
@@ -91,7 +91,7 @@
             </mat-tab-group>
           </div>
           <p class="font-italic text-muted">
-            {{'MEDICAL_RECORD.INFO.UPDATED' | translate}} {{ getFormattedDate(medicalRecord?.lastUpdate) }}
+            {{'MEDICAL_RECORD.INFO.UPDATED' | translate}} {{ getFormattedDateWithTime(medicalRecord?.lastUpdate) }}
           </p>
         </div>
         <div class="col-lg-8 col-md-12">

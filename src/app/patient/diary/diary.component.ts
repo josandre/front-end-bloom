@@ -6,7 +6,7 @@ import {DiaryService} from "./service/diary.service";
 import {Diary} from "./model/diary";
 import {Entry} from "./model/entry";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import { TranslateService } from '@ngx-translate/core';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-diary',
@@ -93,6 +93,9 @@ export class DiaryComponent implements OnInit {
             content: this.Editor.editorInstance.getData(),
         });
 
+        console.log(this.Editor.editorInstance.getData());
+        console.log(this.generatePreview(this.Editor.editorInstance.getData(), 15));
+
         this.diaryService.updateEntry(this.currentEntryId!, entry)
             .subscribe(
                 (response) => {
@@ -135,15 +138,24 @@ export class DiaryComponent implements OnInit {
         this.entryWasCreated = true;
     }
 
-    generatePreview(content: string, maxLengthPerLine: number): string {
-        const lines = content.match(/<h1>.*?<\/h1>|<h2>.*?<\/h2>|<h3>.*?<\/h3>|(<p>(?!&nbsp;<\/p>).*?<\/p>)|/g) || [];
+  generatePreview(content: string, maxLengthPerLine: number): string {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(content, 'text/html');
 
-        const truncatedLines = lines
-            .slice(0, 3)
-            .map((line) => (line.length > maxLengthPerLine ? line.substring(0, maxLengthPerLine) + '...' : line));
+    const elements = Array.from(doc.body.children);
 
-        return truncatedLines.join('\n');
-    }
+    elements.forEach((element, index) => {
+      if (index >= 3) {
+        element.remove(); // Remove any extra lines beyond the third line
+      } else {
+        const textContent = element.textContent || '';
+
+        element.innerHTML = textContent.length > maxLengthPerLine ? textContent.substring(0, maxLengthPerLine) + '...' : textContent;
+      }
+    });
+
+    return doc.body.innerHTML;
+  }
 
     refreshEntries() {
         this.diaryService.getEntriesByDiary(this.diaryId)

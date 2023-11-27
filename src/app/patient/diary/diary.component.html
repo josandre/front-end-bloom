@@ -14,19 +14,19 @@
                                   tabindex="0" *ngFor="let entry of entries"
                                   (click)="setEditorContent(entry)">
                             <div class="row">
-                                <div class="col-6">
-                                    <div class="entry-content" [innerHTML]="generatePreview(entry.content, 15)">
-                                    </div>
-                                    <div class="pt-3">
-                                        <small>{{ entry.date | date:'shortTime' }}</small>
+                                <div class="col-8">
+                                  <div class="entry-content" [innerHTML]="generatePreview(entry.content, 15)">
                                     </div>
                                 </div>
-                                <div class="col">
+                                <div class="col-4">
                                     <div class="card-date">
                                         <span class="align-middle week-day">{{ entry.date | date:"E" | uppercase }}</span>
                                         <span class="align-middle">{{ entry.date | date:"M/d" }}</span>
                                     </div>
                                 </div>
+                              <div class="pt-1">
+                                <small>{{ entry.date | date:'shortTime' }}</small>
+                              </div>
                             </div>
                         </mat-card>
                     </div>

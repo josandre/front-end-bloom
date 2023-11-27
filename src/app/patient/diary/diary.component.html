@@ -42,7 +42,7 @@
                             <button mat-mini-fab (click)="closeEditor()">
                                 <mat-icon>close</mat-icon>
                             </button>
-                            <button mat-mini-fab>
+                            <button mat-mini-fab (click)="generateJournalPrompt()">
                                 <mat-icon>smart_toy</mat-icon>
                             </button>
                             <button mat-mini-fab (click)="saveEntry()" *ngIf="entryWasCreated">
@@ -68,7 +68,9 @@
                             </mat-menu>
                         </div>
                     </div>
-
+                  <div *ngIf="generatingPrompt">
+                    <mat-progress-bar mode="buffer"></mat-progress-bar>
+                  </div>
                     <div class="row">
                         <div [hidden]="editorHidden">
                             <div class="col-lg-12">
@@ -94,7 +96,7 @@
         </div>
     </div>
     <div *ngIf="loading" class="center">
-        <mat-spinner></mat-spinner>
+      <app-spinner [isLoading]="loading"></app-spinner>
     </div>
 </section>
 

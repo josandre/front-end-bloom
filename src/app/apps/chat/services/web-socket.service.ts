@@ -25,7 +25,8 @@ export class WebSocketService{
   public openWebSocket() {
     const currentUser = this.authService.currentUserValue
     const userId = currentUser.actualUserId ?? currentUser.id
-    this.websocket = new WebSocket(`ws://3.12.241.49:8080/chat?id=${userId}`)
+    this.websocket = new WebSocket(`ws://3.12.136.135:8080/chat?id=${userId}`)
+
     this.websocket.onopen = (event)=> {
       console.log('open', event)
     }

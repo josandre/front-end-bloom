@@ -136,6 +136,9 @@
     "CONTACTS": {
       "TEXT": "Contactos"
     },
+    "DIARY": {
+      "TITLE": "Mi Diario"
+    },
     "FORUMS": {
       "TITLE": "Foros",
       "POSTS_TITLE": "Publicaciones",
@@ -768,7 +771,7 @@
    "LOGIN":"Iniciar sesión"
   },
   "DIARY_ENTRY":{
-    "TITLE":"Mi diario",
+    "TITLE":"Mi Diario",
     "ACTIONS":{
       "CLOSE":"Cerrar",
       "TRY_AGAIN":"Intente de nuevo"

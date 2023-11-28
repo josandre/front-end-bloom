@@ -136,6 +136,9 @@
     "CONTACTS": {
       "TEXT": "Contacts"
     },
+    "DIARY": {
+      "TITLE": "My Diary"
+    },
     "FORUMS": {
       "TITLE": "Forums",
       "POSTS_TITLE": "Posts",

@@ -54,9 +54,9 @@ export class DiaryService {
     return this.http.delete(url, {headers: header});
   }
 
-  generateJournalPrompt(): Observable<string> {
+  generateJournalPrompt(locale: string): Observable<string> {
     const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.authService.currentUserValue.token)
-    const url = `${this.baseUrl}/journal-prompts/generate`;
+    const url = `${this.baseUrl}/journal-prompts/generate/${locale}`;
 
     return this.http.get<string>(url, {headers: header});
   }

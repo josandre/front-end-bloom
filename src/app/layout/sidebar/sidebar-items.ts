@@ -291,7 +291,7 @@ export const ROUTES: RouteInfo[] = [
     },
     {
         path: '/patient/diary',
-        title: 'My Diary',
+        title: 'MENUITEMS.DIARY.TITLE',
         iconType: 'material-icons-two-tone',
         icon: 'book',
         class: '',

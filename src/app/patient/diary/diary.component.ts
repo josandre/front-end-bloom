@@ -7,6 +7,7 @@ import {Diary} from "./model/diary";
 import {Entry} from "./model/entry";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {TranslateService} from '@ngx-translate/core';
+import * as moment from "moment/moment";
 
 @Component({
   selector: 'app-diary',
@@ -33,7 +34,7 @@ export class DiaryComponent implements OnInit {
   constructor(
     public diaryService: DiaryService,
     public snackBar: MatSnackBar,
-    private translate: TranslateService) {
+    public translate: TranslateService) {
     this.Editor = ClassicEditor;
     this.editorHidden = true;
   }
@@ -131,6 +132,7 @@ export class DiaryComponent implements OnInit {
   }
 
   setEditorContent(entry: Entry) {
+    console.log(this.translate.currentLang);
     this.editorHidden = false;
     this.currentEntryId = entry.id;
     this.editorContent = entry.content;
@@ -139,7 +141,7 @@ export class DiaryComponent implements OnInit {
 
   generateJournalPrompt() {
     this.generatingPrompt = true;
-    this.diaryService.generateJournalPrompt()
+    this.diaryService.generateJournalPrompt(this.translate.currentLang)
       .subscribe(
         (data => {
           this.editorContent = `<strong>${data}</strong><br>${this.editorContent}`;
@@ -181,6 +183,14 @@ export class DiaryComponent implements OnInit {
     this.editorHidden = true;
     this.currentEntryId = undefined;
     this.entryWasCreated = false;
+  }
+
+  getFormattedWeekDay(date?:Date): string {
+    moment.locale(this.translate.currentLang);
+    if (date) {
+      return moment(date).format("ddd");
+    }
+    return '';
   }
 
   openSnackBar(message: string, action: string) {

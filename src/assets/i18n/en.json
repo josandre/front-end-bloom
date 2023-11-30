@@ -136,6 +136,9 @@
     "CONTACTS": {
       "TEXT": "Contacts"
     },
+    "DIARY": {
+      "TITLE": "My Diary"
+    },
     "FORUMS": {
       "TITLE": "Forums",
       "POSTS_TITLE": "Posts",
@@ -209,41 +212,34 @@
       "TASKLIST": "Task List",
       "ADDTASK": "Add Task",
       "MODTASK": "Edit Task",
-      "MESSAGE": "We are reading your resources",
       "SEARCH": "Search",
-      "SEARCHBYTITLE": "Search by title"
-
-    }
-  },
-  "RESOURCESNACK": {
-    "TASKADD": "Task added successfully",
-    "TASKNOTADD": "Task was not added",
-    "TASKMOD": "Task edited successfully",
-    "TASKNOTMOD": "Task was not edited",
-    "TASKDEL": "Task deleted successfully",
-    "TASKNOTDEL": "Task was not deleted",
-    "TASKCHECK": "Task was completed successfully",
-    "TASKNOTCHECK": "Task was not completed",
-    "RESDEL": "Resource deleted",
-    "ERROR": "There was an error",
-    "CREATERES": "Creating a new resource, please wait...",
-    "RESADD": "Resource created successfully",
-    "RESNOTADD": "Resources was not created",
-    "NOCONTENT": "Please fill out the content",
-    "NOTITLE": "Please fill out a title",
-    "NOPATIENT": "Please choose at least one patient",
-    "MODRES": "Modifying your resource, please wait...",
-    "RESMOD": "Resource was modified successfully",
-    "RESNOTMOD": "Resource was not modified"
-    },
-
-  "PROGRESS-SECTION": {
-    "TITLE": "Progreso Medico",
-      "MODTASK": "Edit Task",
+      "SEARCHBYTITLE": "Search by title",
       "MESSAGE": "We are reading your resources",
       "MESSAGE_READ": "We are reading the resource",
       "MESSAGE_UPDATE": "We are updating the resource",
       "MESSAGE_CREATED": "We are creating a new resource"
+    },
+    "RESOURCESNACK": {
+      "TASKADD": "Task added successfully",
+      "TASKNOTADD": "Task was not added",
+      "TASKMOD": "Task edited successfully",
+      "TASKNOTMOD": "Task was not edited",
+      "TASKDEL": "Task deleted successfully",
+      "TASKNOTDEL": "Task was not deleted",
+      "TASKCHECK": "Task was completed successfully",
+      "TASKNOTCHECK": "Task was not completed",
+      "RESDEL": "Resource deleted",
+      "ERROR": "There was an error",
+      "CREATERES": "Creating a new resource, please wait...",
+      "RESADD": "Resource created successfully",
+      "RESNOTADD": "Resources was not created",
+      "NOCONTENT": "Please fill out the content",
+      "NOTITLE": "Please fill out a title",
+      "NOPATIENT": "Please choose at least one patient",
+      "MODRES": "Modifying your resource, please wait...",
+      "RESMOD": "Resource was modified successfully",
+      "RESNOTMOD": "Resource was not modified"
+    }
   },
   "DASHBOARD_DOCTOR": {
     "WELLCOME_TITLE": "Welcome back",
@@ -500,22 +496,18 @@
     "RESOURCES": {
       "TITLE": "My Resources",
       "ACTIVE_ITEM": "My Resources"
-
     },
     "FORUMS": {
       "TITLE": "Forums",
       "ACTIVE_ITEM": ""
-
     },
     "GAME": {
       "TITLE": "Games Section",
       "ACTIVE_ITEM": ""
-
     },
     "CONTACTS": {
       "TITLE": "Contacts",
       "ACTIVE_ITEM": ""
-
     }
   },
   "ADMIN_BREADCRUM": {
@@ -798,77 +790,37 @@
     "EMAI_VALID":"Please enter a valid email address",
     "RESET":"Reset My Password",
     "LOGIN":"Login?"
-   },
-   "DIARY_ENTRY": {
-     "TITLE": "My Diary",
-     "ACTIONS": {
-       "CLOSE": "Close",
-       "TRY_AGAIN": "Try again"
-     },
-     "GET": {
-       "ERROR": "Something went wrong while trying to get diary"
-     },
-     "ADD": {
-       "SUCCESS": "Entry can now be saved",
-       "ERROR": " Something went wrong while trying to add entry"
-     },
-     "SAVE": {
-       "SUCCESS": "Entry has been saved",
-       "ERROR": "Something went wrong while trying to save entry"
-     },
-     "DELETE": {
-       "SUCCESS": "Entry has been deleted",
-       "ERROR": "Something went wrong while trying to delete entry",
-       "PROFILE": {
-         "SELECTED_PHOTO": "No files selected",
-         "SAVE_PHOTO": "Save new profile photo",
-         "SELECT_FILE": "Select File",
-         "SETTINGS": "Settings",
-         "SECURITY": "Security",
-         "CURRENT_PASSWORD": "Current password",
-         "NEW_PASSWORD": "New password",
-         "CONFIRM_PASSWORD": "Confirm Password",
-         "PASSWORD_NOT_MATCH": "Password do not match",
-         "SAVE": "Save",
-         "ACCOUNT": "Account",
-         "ACCOUNT_SETTINGS": "Settings",
-         "NAME": "Name",
-         "LAST_NAME": "Last Name",
-         "USER_NAME": "User Name",
-         "EMAIL": "Email",
-         "VALID_EMAIL": "Please enter a valid email address",
-         "MEDICAL_ID": "Medical id",
-         "COLLEGE": "College",
-         "PHONE": "Phone",
-         "LOCATION": "Location",
-         "ADDRESS": "Address",
-         "SNACKBAR": {
-           "ACTIONS": {
-             "TRY_AGAIN": "Try again",
-             "CLOSE": "Close"
-           },
-           "GET_USER": {
-             "ERROR": "Error getting user data"
-           },
-           "UPDATE_USER": {
-             "SUCCESS": "User updated",
-             "ERROR": "The user was not updated"
-           },
-           "UPDATE_PASSWORD": {
-             "SUCCESS": "Password updated",
-             "ERROR": "Current password does not match"
-           }
-         },
-         "psychology": "Psychology",
-         "therapist": "Therapist"
-       }
-     },
-     "ADMIN_SNACKBAR": {
-       "CLOSE": "Close",
-       "DOCTOR_SUCCESS": "Doctor state changed",
-       "SERVER_ERROR": "Server error",
-       "PATIENT_SUCCESS": "Patient state changed"
-     }
-   }
+  },
+  "DIARY_ENTRY":{
+    "TITLE":"My Diary",
+    "ACTIONS":{
+      "CLOSE":"Close",
+      "TRY_AGAIN":"Try again"
+    },
+    "GET":{
+      "ERROR":"Something went wrong while trying to get diary"
+    },
+    "ADD":{
+      "SUCCESS":"Entry can now be saved",
+      "ERROR":" Something went wrong while trying to add entry"
+    },
+    "SAVE":{
+      "SUCCESS":"Entry has been saved",
+      "ERROR":"Something went wrong while trying to save entry"
+    },
+    "DELETE":{
+      "SUCCESS":"Entry has been deleted",
+      "ERROR":"Something went wrong while trying to delete entry"
+    }
+  },
+  "ADMIN_SNACKBAR":{
+    "CLOSE":"Close",
+    "DOCTOR_SUCCESS":"Doctor state changed",
+    "SERVER_ERROR":"Server error",
+    "PATIENT_SUCCESS":"Patient state changed"
+
+  }
+
+
 
 }

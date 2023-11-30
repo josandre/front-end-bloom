@@ -136,6 +136,9 @@
     "CONTACTS": {
       "TEXT": "Contactos"
     },
+    "DIARY": {
+      "TITLE": "Mi Diario"
+    },
     "FORUMS": {
       "TITLE": "Foros",
       "POSTS_TITLE": "Publicaciones",
@@ -197,7 +200,7 @@
       "CREATE": "Crear Recurso",
       "MODIFY": "Modificar Recurso",
       "MY-PATIENTS": "Mis Pacientes",
-      "POST": "Guardar",
+      "POST": "Salvar",
       "COMPOSE": "Crear Nuevo Recurso",
       "TITLE": "Titulo",
       "EDIT": "Editar",
@@ -215,7 +218,6 @@
       "MESSAGE_READ": "Estamos leyendo el recurso",
       "MESSAGE_UPDATE": "Estamos modificando el recurso",
       "MESSAGE_CREATED": "Estamos creando un nuevo recurso"
-
     },
     "RESOURCESNACK": {
       "TASKADD": "Tarea agregada exitosamente",
@@ -783,16 +785,16 @@
     "DONE":"Done"
   },
   "FORGOT_PASSWORD":{
-   "RESET_PASSWORD":"Restablecer la contraseña",
-   "HELP":"Dejanos ayudarte",
-   "EMAIL_REGISTRED":"Ingrese su dirección de correo electrónico registrada.",
-   "EMAIL":"Correo Electrónico",
-   "EMAI_VALID":"Por favor, introduce una dirección de correo electrónico válida",
-   "RESET":"Restablecer mi contraseña",
-   "LOGIN":"Iniciar sesión"
+    "RESET_PASSWORD":"Restablecer la contraseña",
+    "HELP":"Dejanos ayudarte",
+    "EMAIL_REGISTRED":"Ingrese su dirección de correo electrónico registrada.",
+    "EMAIL":"Correo Electrónico",
+    "EMAI_VALID":"Por favor, introduce una dirección de correo electrónico válida",
+    "RESET":"Restablecer mi contraseña",
+    "LOGIN":"Iniciar sesión"
   },
   "DIARY_ENTRY":{
-    "TITLE":"Mi diario",
+    "TITLE":"Mi Diario",
     "ACTIONS":{
       "CLOSE":"Cerrar",
       "TRY_AGAIN":"Intente de nuevo"

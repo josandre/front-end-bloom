@@ -1,6 +1,6 @@
 :host ::ng-deep .ck-editor__editable_inline {
-  min-height: 460px;
-  max-height: 460px;
+  min-height: 465px;
+  max-height: 465px;
 }
 
 .container-diary {
@@ -57,9 +57,10 @@
   -webkit-box-align: center;
   align-items: center;
   flex-direction: column;
-  margin: 25px;
   border: 1px solid #38a6c5;
   background-color: #c3e5ee;
+  padding: 25px;
+  margin: 10px;
 }
 
 .week-day {

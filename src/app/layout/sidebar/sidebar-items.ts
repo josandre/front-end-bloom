@@ -289,9 +289,9 @@ export const ROUTES: RouteInfo[] = [
         role: ['Patient'],
         submenu: [],
     },
-/*    {
+    {
         path: '/patient/diary',
-        title: 'My Diary',
+        title: 'MENUITEMS.DIARY.TITLE',
         iconType: 'material-icons-two-tone',
         icon: 'book',
         class: '',
@@ -300,6 +300,6 @@ export const ROUTES: RouteInfo[] = [
         badgeClass: '',
         role: ['Patient'],
         submenu: [],
-    },*/
+    },
 ]
 

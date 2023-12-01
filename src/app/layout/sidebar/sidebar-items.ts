@@ -16,11 +16,11 @@ export const ROUTES: RouteInfo[] = [
 
     // Admin Modules
     {
-        path: '',
+        path: '/admin/dashboard',
         title: 'MENUITEMS.DASHBOARD.TEXT',
         iconType: 'material-icons-two-tone',
         icon: 'space_dashboard',
-        class: 'menu-toggle',
+        class: '',
         groupTitle: false,
         badge: '',
         badgeClass: '',
@@ -79,7 +79,7 @@ export const ROUTES: RouteInfo[] = [
     },
     {
         path: '/tables/basic-table',
-        title: 'Resource',
+        title: 'MENUITEMS.RESOURCES.RESOURCES',
         iconType: 'material-icons-two-tone',
         icon: 'edit_note',
         class: '',

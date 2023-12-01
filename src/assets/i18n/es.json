@@ -4,7 +4,7 @@
       "TEXT": "Principal"
     },
     "DASHBOARD": {
-      "TEXT": "Dashboard",
+      "TEXT": "Tablero",
       "LIST": {
         "DASHBOARD1": "Tablero 1",
         "DASHBOARD2": "Tablero 2",
@@ -711,10 +711,15 @@
     "CONTENT":"Contenido",
     "POST_DADE":"Fcha de registro",
     "SEARCH_BY":"Buscar por título",
-    "SEARCH":"Buscar"
+    "SEARCH":"Buscar",
+    "SEARCHNAME": "Buscar por nombre",
+    "LASTNAME": "Apellido",
+    "NAME": "Nombre",
+    "USERNAME": "Usuario",
+    "STATE": "Activo"
   },
   "SING_UP":{
-    "TITLE":"Reistrarme",
+    "TITLE":"Registrarme",
     "INFO": "Ingrese los datos para crear su cuenta",
     "NAME":"Nombre",
     "NAME_REQUIRED":"Nombre requerido",

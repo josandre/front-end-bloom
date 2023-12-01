@@ -16,11 +16,11 @@
             <div class="left">
               <ul class="header-buttons-left ms-0">
                 <li class="tbl-title">
-                  <h2>Doctors search by name</h2>
+                  <h2>{{'ADMIN_RESOURCES.SEARCHNAME' | translate}}</h2>
                 </li>
                 <li class="tbl-search-box">
                   <label for="search-input"><i class="material-icons search-icon">search</i></label>
-                  <input placeholder="Search" type="text" (keyup)="applyFilter($event.target)" class="browser-default search-field"
+                  <input placeholder="{{'ADMIN_RESOURCES.SEARCH' | translate}}"  type="text" (keyup)="applyFilter($event.target)" class="browser-default search-field"
                     aria-label="Search box">
                 </li>
               </ul>
@@ -83,6 +83,7 @@
                 <mat-row *matRowDef="let row; columns: displayedColumns;"
                   [style.cursor]="'pointer'" >
                 </mat-row>
+
               </table>
               <!-- Loading spinner -->
               <div *ngIf="loading" class="tbl-spinner">
@@ -93,6 +94,9 @@
                 [style.display]="dataSource.data.length === 0 ? '' : 'none'">
                 No results
               </div>
+<!--              <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10"-->
+<!--                             [pageSizeOptions]="[5, 10, 25, 100]">-->
+<!--              </mat-paginator>-->
             </div>
           </div>
         </div>

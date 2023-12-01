@@ -709,7 +709,12 @@
     "CONTENT": "Content",
     "POST_DADE": "Post date",
     "SEARCH_BY": "Search by title",
-    "SEARCH": "Search"
+    "SEARCH": "Search",
+    "SEARCHNAME": "Search by name",
+    "LASTNAME": "Last Name",
+    "NAME": "Name",
+    "USERNAME": "Username",
+    "STATE": "Active"
   },
   "SING_UP": {
     "TITLE": "Sign Up",

@@ -1,11 +1,7 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-
-import { HttpClient } from '@angular/common/http';
-import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {MatPaginator, MatPaginatorIntl, PageEvent} from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Doctor } from '../model/Doctor';
-import { DataSource } from '@angular/cdk/collections';
 import {
   MatSnackBar,
   MatSnackBarHorizontalPosition,
@@ -37,21 +33,24 @@ export class AlldoctorsComponent
     'username',
     'actions'
   ];
-
-  message : string = 'hola'
+  message : string;
 
   dataSource: MatTableDataSource<Doctor> = new MatTableDataSource<Doctor>([]);
+
   loading: boolean = false
   selection = new SelectionModel<Doctor>(true, []);
   index?: number;
   id?: number;
   doctor?: Doctor;
+  public pageSlice = this.dataSource.filteredData.slice(0,5);
   constructor(
     private snackBar: MatSnackBar,
     public doctorService: DoctorService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private paginatorIntl: MatPaginatorIntl
   ) {
     super();
+    this.paginatorIntl.itemsPerPageLabel = '';
   }
   @ViewChild(MatPaginator, { static: true })
   paginator!: MatPaginator;
@@ -71,12 +70,14 @@ export class AlldoctorsComponent
     this.doctorService.getAllDoctors().subscribe({
       next: (doctors) => {
         this.dataSource = new MatTableDataSource<Doctor>(doctors)
+        this.pageSlice = this.dataSource.filteredData.slice(0,5);
         this.loading = false
       },
       error: (error) => {
         this.loading = false
       }
     });
+
   }
 
   applyFilter(filterValue: any) {
@@ -85,7 +86,6 @@ export class AlldoctorsComponent
     filterText = filterText.toLowerCase()
    this.dataSource.filter = filterText;
   }
-
 
   exportExcel() {
 
@@ -125,4 +125,15 @@ export class AlldoctorsComponent
       this.snackBar.open(translations[message], translations[action], { verticalPosition: 'top', horizontalPosition: 'end',duration: 4000 })
     });
   }
+
+  OnPageChange(event: PageEvent){
+    // console.log(event);
+    const startIndex = event.pageIndex * event.pageSize;
+    let endIndex = startIndex + event.pageSize;
+    if (endIndex > this.dataSource.filteredData.length){
+      endIndex = this.dataSource.filteredData.length;
+    }
+    this.pageSlice = this.dataSource.filteredData.slice(startIndex,endIndex);
+  }
+
 }

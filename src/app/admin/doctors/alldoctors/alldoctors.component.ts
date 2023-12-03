@@ -2,17 +2,20 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatPaginator, MatPaginatorIntl, PageEvent} from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Doctor } from '../model/Doctor';
+
 import {
   MatSnackBar,
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+
 import { SelectionModel } from '@angular/cdk/collections';
 import {
   TableExportUtil,
   TableElement,
   UnsubscribeOnDestroyAdapter,
 } from '@shared';
+
 import { DoctorService } from '../service/doctor.service';
 import {MatTableDataSource} from "@angular/material/table";
 import { TranslateService } from '@ngx-translate/core';

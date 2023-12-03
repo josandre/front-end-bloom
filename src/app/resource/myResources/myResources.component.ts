@@ -50,6 +50,7 @@ export class MyResourcesComponent implements OnInit {
   sessionResource(id: number) {
     sessionStorage.setItem('resourseId', id.toString());
   }
+
   applyFilter(filterValue: any) {
     let filterText: string = filterValue.value;
     filterText = filterText.trim();
@@ -63,38 +64,7 @@ export class MyResourcesComponent implements OnInit {
       this.resourcesList = [...this.originalResourcesList];
     }
   }
-  readResourceCheck(id: number) {
 
-    const index = this.selectedResourceIds.indexOf(id);
-
-    if (index === -1) {
-
-      this.selectedResourceIds.push(id);
-    } else {
-
-      this.selectedResourceIds.splice(index, 1);
-
-    }
-  }
-
-  deleteResource() {
-    this.resourceService.deleteResourse(this.selectedResourceIds).subscribe((res) => {
-      switch (res) {
-        case 200: {
-          this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.RESDEL'), "Close");
-          // Usar filter para crear una nueva lista que excluya los objetos con los IDs a eliminar
-          this.resourcesList = this.resourcesList.filter(resource => !this.selectedResourceIds.includes(resource.id));
-          this.originalResourcesList = [...this.resourcesList]
-          this.selectedResourceIds = [];
-
-          break;
-        }
-      }
-    }, error => {
-      this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.ERROR'), "Close");
-
-    })
-  }
 
   deleteThisResource(id: number) {
     this.selectedResourceIds = [id];

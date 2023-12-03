@@ -11,56 +11,58 @@
       <app-spinner [isLoading]="flag" [message]="message | translate"></app-spinner>
       <app-wink *ngIf="isEmpty && !flag" [message]="messageData | translate"></app-wink>
     </div>
-        <div class="row" *ngIf="!isEmpty && !flag">
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="card">
-              <div class="materialTableHeader">
-                <div class="left">
-                  <ul class="header-buttons-left ms-0">
-                    <li class="tbl-title">
-                      <h2>{{'MENUITEMS.RESOURCES.SEARCHBYTITLE' | translate}}</h2>
-                    </li>
-                    <li class="tbl-search-box">
-                      <label for="search-input"><i class="material-icons search-icon">search</i></label>
-                      <input placeholder="{{'MENUITEMS.RESOURCES.SEARCH' | translate}}" type="text" id="search-input"
-                             (keyup)="applyFilter($event.target)" class="browser-default search-field" aria-label="Search box">
-                    </li>
-                  </ul>
-                </div>
 
-              </div>
+    <div class="row" *ngIf="!isEmpty && !flag">
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="card">
+          <div class="materialTableHeader">
+            <div class="left">
+              <ul class="header-buttons-left ms-0">
+                <li class="tbl-title">
+                  <h2>{{'MENUITEMS.RESOURCES.SEARCHBYTITLE' | translate}}</h2>
+                </li>
+                <li class="tbl-search-box">
+                  <label for="search-input"><i class="material-icons search-icon">search</i></label>
+                  <input placeholder="{{'MENUITEMS.RESOURCES.SEARCH' | translate}}" type="text" id="search-input"
+                         (keyup)="applyFilter($event.target)" class="browser-default search-field" aria-label="Search box">
+                </li>
+              </ul>
             </div>
-            <hr>
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3" *ngFor="let tempRes of resourcesList">
-            <div class="card py-3 py-md-3" style="overflow: hidden; height: 90% ">
 
-              <div class=" d-flex justify-content-between px-3 px-md-4" style="height: 70% ">
-                <div>
-                  <p class="tempRes-name">{{ tempRes.date }} </p>
-                  <h5 class="tempRes-name">{{ tempRes.title }} </h5>
-                </div>
-              </div>
-
-              <hr class="light-hr">
-
-              <div class="d-flex justify-content-around px-4 float-start" style="height: 20%">
-
-                <button id="btnRead" mat-raised-button style="overflow: clip ; min-height: 40px " color="primary"
-                        routerLink="/resource/read-resource" (click)="sessionResource(tempRes.id)">
-                  {{'MENUITEMS.RESOURCES.READ' | translate}}
-                </button>
-
-                <button class="float-end" mat-icon-button aria-label="Example icon-button with a heart icon"
-                        id="{{tempRes.id}}" (click)="deleteThisResource(tempRes.id)">
-                  <mat-icon>delete</mat-icon>
-                </button>
-
-              </div>
-
-            </div>
           </div>
         </div>
+        <hr>
       </div>
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3" *ngFor="let tempRes of resourcesList">
+        <div class="card py-3 py-md-3" style="overflow: hidden; height: 90% ">
+
+          <div class=" d-flex justify-content-between px-3 px-md-4" style="height: 70% ">
+            <div>
+              <p class="tempRes-name">{{ tempRes.date }} </p>
+              <h5 class="tempRes-name">{{ tempRes.title }} </h5>
+            </div>
+          </div>
+
+          <hr class="light-hr">
+
+          <div class="d-flex justify-content-around px-4 float-start" style="height: 20%">
+
+            <button id="btnRead" mat-raised-button style="overflow: clip ; min-height: 40px " color="primary"
+                    routerLink="/resource/read-resource" (click)="sessionResource(tempRes.id)">
+              {{'MENUITEMS.RESOURCES.READ' | translate}}
+            </button>
+
+            <button class="float-end" mat-icon-button aria-label="Example icon-button with a heart icon"
+                    id="{{tempRes.id}}" (click)="deleteThisResource(tempRes.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
 
 </section>

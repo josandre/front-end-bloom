@@ -9,21 +9,23 @@ import { MaterialTableComponent } from './material-table/material-table.componen
 import { ComponentsModule } from '@shared/components/components.module';
 import { SharedModule } from '@shared';
 import { TranslateModule } from '@ngx-translate/core';
+import {SpinnerModule} from "../components/components.module";
 @NgModule({
   declarations: [
     BasicTableComponent,
     NgxDatatableComponent,
     MaterialTableComponent,
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    TablesRoutingModule,
-    NgxDatatableModule,
-    ComponentsModule,
-    SharedModule,
-    TranslateModule,
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        TablesRoutingModule,
+        NgxDatatableModule,
+        ComponentsModule,
+        SharedModule,
+        TranslateModule,
+        SpinnerModule,
+    ],
 })
 export class TablesModule {}

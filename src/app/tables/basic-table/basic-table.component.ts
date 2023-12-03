@@ -2,7 +2,10 @@ import { Component, OnInit} from '@angular/core';
 import { ResourceService } from './service/resource.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Resource } from './models/Resource';
- 
+import {MatPaginator, MatPaginatorIntl, PageEvent} from '@angular/material/paginator';
+import { TranslateService } from '@ngx-translate/core';
+import {MatTableDataSource} from "@angular/material/table";
+import {Doctor} from "../../admin/doctors/model/Doctor";
 
 @Component({
   selector: 'app-basic-table',
@@ -11,23 +14,56 @@ import { Resource } from './models/Resource';
 })
 export class BasicTableComponent implements OnInit {
 
-  constructor(private readonly resourceService: ResourceService,private snackBar: MatSnackBar) {
+  displayedColumns = [
+    'id',
+    'title',
+    'date'
+  ];
+
+  message: string = '';
+
+  public pageSlice : Resource[];
+  constructor(private readonly resourceService: ResourceService,
+              private snackBar: MatSnackBar,
+              private translate: TranslateService,
+              private paginatorIntl: MatPaginatorIntl
+              ) {
     this.selectedResourceIds=[];
+    this.paginatorIntl.itemsPerPageLabel = '';
     }
 
   resourcesList: Resource[];
   originalResourcesList: Resource[];
   selectedResourceIds: number[];
-  loading:Boolean=true;
+  loading: boolean = true;
 
-  ngOnInit(){
+
+  ngOnInit() {
+    this.loadData();
+  }
+
+  refresh() {
+    this.loadData();
+  }
+
+  public loadData() {
+    this.loading = true
+
     this.resourceService.getResourceList().subscribe(
-      resources =>{ 
+      resources =>{
         this.loading=false
         this.resourcesList = resources;
-        this.originalResourcesList=[...resources]}
-    )
+        this.originalResourcesList=[...resources]
+        this.pageSlice = this.resourcesList.slice(0,5);
+        this.loading = false;
+      },
+      error => {
+        this.loading = false;
+      })
+
+
   }
+
 
   readResource(id: number){
     sessionStorage.setItem('resourseId', id.toString());
@@ -44,11 +80,13 @@ export class BasicTableComponent implements OnInit {
     } else {
       this.resourcesList = [...this.originalResourcesList]; // Restaurar la lista original
     }
+    this.pageSlice = this.resourcesList.slice(0,5);
+    this.loading = false;
   }
   readResourceCheck(id: number) {
     console.log(id);
     const index = this.selectedResourceIds.indexOf(id);
-  
+
     if (index === -1) {
       // Si no se encontró el ID en el arreglo, lo añade
       this.selectedResourceIds.push(id);
@@ -78,8 +116,37 @@ export class BasicTableComponent implements OnInit {
 
         })
   }
+  deleteThisResource(id: number) {
+    this.selectedResourceIds = [id];
+    this.resourceService.deleteResourse(this.selectedResourceIds).subscribe((res) => {
+      switch (res) {
+        case 200: {
+          this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.RESDEL'), "Close");
+          // Usar filter para crear una nueva lista que excluya los objetos con los IDs a eliminar
+          this.resourcesList = this.resourcesList.filter(resource => !this.selectedResourceIds.includes(resource.id));
+          this.originalResourcesList = [...this.resourcesList]
+          this.selectedResourceIds = [];
+          // Restablecer la tabla para mostrar todos los datos
+          break;
+        }
+      }
+    }, error => {
+      this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.ERROR'), "Close");
+
+    })
+  }
   openSnackBar(message: string, action: string){
     this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'end'})
+  }
+
+  OnPageChange(event: PageEvent){
+    // console.log(event);
+    const startIndex = event.pageIndex * event.pageSize;
+    let endIndex = startIndex + event.pageSize;
+    if (endIndex > this.resourcesList.length){
+      endIndex = this.resourcesList.length;
+    }
+    this.pageSlice = this.resourcesList.slice(startIndex,endIndex);
   }
 
 }

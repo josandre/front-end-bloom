@@ -46,19 +46,20 @@ export class DiaryComponent implements OnInit {
 
     getDiary(): void {
         this.diaryService.getDiaryByUser()
-            .subscribe(
-                (data) => {
+            .subscribe({
+                next: (data => {
                     this.diary = data;
                     this.diaryId = this.diary.id;
                     this.entries = this.diary.entries;
 
                     this.loading = false;
-                },
-                error => {
+                }),
+                error: (error => {
                     this.openSnackBar('DIARY_ENTRY.GET.ERROR', 'DIARY_ENTRY.ACTIONS.CLOSE');
 
                     console.log(error.status);
-                });
+                })
+            });
     }
 
     addEntry(): void {
@@ -73,15 +74,15 @@ export class DiaryComponent implements OnInit {
         });
 
         this.diaryService.createEntry(this.diaryId, entry)
-            .subscribe(
-                (data) => {
+            .subscribe({
+                next: (data => {
                     this.currentEntry = data;
                     this.entries?.unshift(this.currentEntry);
                     this.entryWasCreated = true;
 
                     this.openSnackBar('DIARY_ENTRY.ADD.SUCCESS', 'DIARY_ENTRY.ACTIONS.CLOSE');
-                },
-                error => {
+                }),
+                error: (error => {
                     switch (error.status) {
                         case null: {
                             this.openSnackBar('DIARY_ENTRY.ADD.ERROR', 'DIARY_ENTRY.ACTIONS.TRY_AGAIN');
@@ -89,7 +90,8 @@ export class DiaryComponent implements OnInit {
                             break;
                         }
                     }
-                });
+                })
+            });
     }
 
     saveEntry(): void {
@@ -102,17 +104,17 @@ export class DiaryComponent implements OnInit {
             });
 
             this.diaryService.updateEntry(entryUpdate)
-                .subscribe(
-                    (response) => {
+                .subscribe({
+                    next: (response => {
                         console.log(response);
                         this.openSnackBar('DIARY_ENTRY.SAVE.SUCCESS', 'DIARY_ENTRY.ACTIONS.CLOSE');
                         this.refreshEntries();
-                    },
-                    error => {
+                    }),
+                    error: (error => {
                         console.log(error);
-
                         this.openSnackBar('DIARY_ENTRY.SAVE.ERROR', 'DIARY_ENTRY.ACTIONS.TRY_AGAIN');
-                    });
+                    })
+                });
         }
     }
 
@@ -121,17 +123,18 @@ export class DiaryComponent implements OnInit {
         this.entries = this.entries?.filter((entry) => entry.id !== this.currentEntry?.id);
 
         this.diaryService.deleteEntry(this.currentEntry!.id)
-            .subscribe(
-                (response) => {
+            .subscribe({
+                next: (response => {
                     console.log(response);
                     this.closeEditor();
                     this.openSnackBar('DIARY_ENTRY.DELETE.SUCCESS', 'DIARY_ENTRY.ACTIONS.CLOSE');
-                },
-                error => {
+                }),
+                error: (error => {
                     console.log(error);
                     this.refreshEntries();
                     this.openSnackBar('DIARY_ENTRY.DELETE.ERROR', 'DIARY_ENTRY.ACTIONS.TRY_AGAIN');
-                });
+                })
+            });
     }
 
     setEditorContent(entry: Entry) {
@@ -147,15 +150,16 @@ export class DiaryComponent implements OnInit {
         this.generatingPrompt = true;
 
         this.diaryService.generateJournalPrompt(this.translate.currentLang)
-            .subscribe(
-                (data => {
+            .subscribe({
+                next: (data => {
                     this.editorContent = `<strong>${data}</strong><br>${this.editorContent}`;
                     this.generatingPrompt = false;
                 }),
-                error => {
+                error: (error => {
                     console.log(error);
                     this.generatingPrompt = false;
                 })
+            })
     }
 
     generatePreview(content: string, maxLengthPerLine: number): string {
@@ -179,13 +183,14 @@ export class DiaryComponent implements OnInit {
 
     refreshEntries() {
         this.diaryService.getEntriesByDiary(this.diaryId)
-            .subscribe(
-                (data) => {
+            .subscribe({
+                next: (data => {
                     this.entries = data;
-                },
-                error => {
+                }),
+                error: (error => {
                     console.log(error.status);
-                });
+                })
+            });
     }
 
     closeEditor() {

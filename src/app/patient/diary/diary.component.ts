@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-
+import {MatDialog,} from '@angular/material/dialog';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import {DiaryService} from "./service/diary.service";
@@ -8,6 +8,7 @@ import {Entry} from "./model/entry";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {TranslateService} from '@ngx-translate/core';
 import * as moment from "moment/moment";
+import {TitleDialogComponent} from "./edit/title-dialog/title-dialog.component";
 
 @Component({
     selector: 'app-diary',
@@ -23,6 +24,7 @@ export class DiaryComponent implements OnInit {
 
     diary: Diary;
     diaryId: number;
+    diaryTitle: string;
 
     entries?: Entry[];
     currentEntry?: Entry;
@@ -33,6 +35,7 @@ export class DiaryComponent implements OnInit {
 
     constructor(
         public diaryService: DiaryService,
+        public titleDialog: MatDialog,
         public snackBar: MatSnackBar,
         public translate: TranslateService) {
         this.Editor = ClassicEditor;
@@ -50,6 +53,8 @@ export class DiaryComponent implements OnInit {
                 next: (data => {
                     this.diary = data;
                     this.diaryId = this.diary.id;
+                    this.diaryTitle = this.diary.title;
+
                     this.entries = this.diary.entries;
 
                     this.loading = false;
@@ -141,6 +146,19 @@ export class DiaryComponent implements OnInit {
         }
     }
 
+    openTitleDialog(): void {
+        const dialogRef = this.titleDialog.open(TitleDialogComponent, {
+            data: {id: this.diaryId, title: this.diaryTitle},
+            position: {left: '940px'},
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.diaryTitle = result;
+            }
+        });
+    }
+
     public setEditorContent(entry: Entry) {
         this.cleanEditor();
         this.showEditor();
@@ -228,7 +246,7 @@ export class DiaryComponent implements OnInit {
     }
 
     private stopGeneratingPrompt() {
-      this.generatingPrompt = false;
+        this.generatingPrompt = false;
     }
 
     private deselectEntry() {

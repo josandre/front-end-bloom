@@ -26,6 +26,13 @@ export class DiaryService {
     return this.http.get<Diary>(url, {headers: header});
   }
 
+  updateDiary(diaryId: number, diary: Diary) {
+    const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.authService.currentUserValue.token)
+    const url = `${this.baseUrl}/updateDiary/${diaryId}/diary`;
+
+    return this.http.put(url, diary, {headers: header});
+  }
+
   getEntriesByDiary(diaryId: number): Observable<Entry[]> {
     const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.authService.currentUserValue.token)
     const url = `${this.baseUrl}/entries/${diaryId}`;

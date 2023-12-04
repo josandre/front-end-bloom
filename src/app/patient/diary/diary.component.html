@@ -3,7 +3,7 @@
     <div class="block-header">
       <!-- breadcrumb -->
       <app-breadcrumb *ngIf="diary !== undefined" [title]="'DIARY_ENTRY.TITLE' | translate"
-                      [active_item]="diary.title | titlecase"></app-breadcrumb>
+                      [active_item]="this.diaryTitle | titlecase"></app-breadcrumb>
     </div>
     <div class="row pb-3">
       <button mat-mini-fab color="primary" class="float-start mx-3" (click)="addEntry()">
@@ -76,10 +76,10 @@
             <div *ngIf="editorHidden && diary !== undefined" class="diary-details container d-flex align-items-center justify-content-center flex-column">
               <div>
                 <div class="mb-2">
-                  <span class="title">{{ this.diary.title }}</span>
+                  <span class="title">{{ this.diaryTitle }}</span>
                 </div>
                 <div>
-                  <button mat-stroked-button class="mb-2" aria-label="Example icon-button with a menu">
+                  <button mat-stroked-button class="mb-2" aria-label="Example icon-button with a menu" (click)="openTitleDialog()">
                     <mat-icon>more_horiz</mat-icon>
                   </button>
                 </div>

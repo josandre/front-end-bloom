@@ -15,6 +15,7 @@ import {PatientProfileComponent} from './patient-profile/patient-profile.compone
 import {DiaryComponent} from './diary/diary.component';
 import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 import {SpinnerModule} from "../components/components.module";
+import { TitleDialogComponent } from './diary/edit/title-dialog/title-dialog.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import {SpinnerModule} from "../components/components.module";
         PrescriptionsComponent,
         MedicalRecordsComponent,
         PatientProfileComponent,
-        DiaryComponent
+        DiaryComponent,
+        TitleDialogComponent
     ],
     imports: [
         CommonModule,

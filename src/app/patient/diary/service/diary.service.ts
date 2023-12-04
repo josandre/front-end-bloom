@@ -26,6 +26,13 @@ export class DiaryService {
     return this.http.get<Diary>(url, {headers: header});
   }
 
+  updateDiary(diaryId: number, diary: Diary) {
+    const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.authService.currentUserValue.token)
+    const url = `${this.baseUrl}/updateDiary/${diaryId}/diary`;
+
+    return this.http.put(url, diary, {headers: header});
+  }
+
   getEntriesByDiary(diaryId: number): Observable<Entry[]> {
     const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.authService.currentUserValue.token)
     const url = `${this.baseUrl}/entries/${diaryId}`;
@@ -40,11 +47,11 @@ export class DiaryService {
     return this.http.post<Entry>(url, entry, {headers: header});
   }
 
-  updateEntry(entry: Entry) {
+  updateEntry(entry: Entry): Observable<Entry> {
     const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.authService.currentUserValue.token)
     const url = `${this.baseUrl}/updateEntry/${entry.id}/entry`;
 
-    return this.http.put(url, entry, {headers: header});
+    return this.http.put<Entry>(url, entry, {headers: header});
   }
 
   deleteEntry(entryId: number) {

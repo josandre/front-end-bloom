@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-
+import {MatDialog,} from '@angular/material/dialog';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import {DiaryService} from "./service/diary.service";
@@ -8,6 +8,7 @@ import {Entry} from "./model/entry";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {TranslateService} from '@ngx-translate/core';
 import * as moment from "moment/moment";
+import {TitleDialogComponent} from "./edit/title-dialog/title-dialog.component";
 
 @Component({
     selector: 'app-diary',
@@ -23,6 +24,7 @@ export class DiaryComponent implements OnInit {
 
     diary: Diary;
     diaryId: number;
+    diaryTitle: string;
 
     entries?: Entry[];
     currentEntry?: Entry;
@@ -33,6 +35,7 @@ export class DiaryComponent implements OnInit {
 
     constructor(
         public diaryService: DiaryService,
+        public titleDialog: MatDialog,
         public snackBar: MatSnackBar,
         public translate: TranslateService) {
         this.Editor = ClassicEditor;
@@ -44,41 +47,42 @@ export class DiaryComponent implements OnInit {
         this.getDiary();
     }
 
-    getDiary(): void {
+    private getDiary(): void {
         this.diaryService.getDiaryByUser()
             .subscribe({
                 next: (data => {
                     this.diary = data;
                     this.diaryId = this.diary.id;
+                    this.diaryTitle = this.diary.title;
+
                     this.entries = this.diary.entries;
 
                     this.loading = false;
                 }),
                 error: (error => {
                     this.openSnackBar('DIARY_ENTRY.GET.ERROR', 'DIARY_ENTRY.ACTIONS.CLOSE');
-
                     console.log(error.status);
                 })
             });
     }
 
-    addEntry(): void {
-        this.entryWasCreated = false;
-        this.currentEntry = undefined;
+    public addEntry(): void {
+        this.deselectEntry();
 
-        this.editorContent = "<p></p>";
-        this.editorHidden = false;
+        this.setEditorData("<p></p>");
+        this.showEditor();
 
         const entry: Entry = new Entry({
-            content: this.editorContent,
+            content: this.getEditorData(),
         });
 
         this.diaryService.createEntry(this.diaryId, entry)
             .subscribe({
                 next: (data => {
                     this.currentEntry = data;
-                    this.entries?.unshift(this.currentEntry);
                     this.entryWasCreated = true;
+
+                    this.addEntryToList();
 
                     this.openSnackBar('DIARY_ENTRY.ADD.SUCCESS', 'DIARY_ENTRY.ACTIONS.CLOSE');
                 }),
@@ -94,75 +98,93 @@ export class DiaryComponent implements OnInit {
             });
     }
 
-    saveEntry(): void {
+    public saveEntry(): void {
         if (this.currentEntry) {
-            this.currentEntry.content = this.Editor.editorInstance.getData();
+            const entryToUpdate = this.currentEntry;
+            this.currentEntry.content = this.getEditorData();
 
             const entryUpdate: Entry = new Entry({
-                id: this.currentEntry.id,
-                content: this.Editor.editorInstance.getData(),
+                id: entryToUpdate.id,
+                content: this.getEditorData(),
             });
 
             this.diaryService.updateEntry(entryUpdate)
                 .subscribe({
                     next: (response => {
                         console.log(response);
-                        this.openSnackBar('DIARY_ENTRY.SAVE.SUCCESS', 'DIARY_ENTRY.ACTIONS.CLOSE');
                         this.refreshEntries();
+                        this.openSnackBar('DIARY_ENTRY.SAVE.SUCCESS', 'DIARY_ENTRY.ACTIONS.CLOSE');
                     }),
                     error: (error => {
                         console.log(error);
+                        this.refreshEntries();
                         this.openSnackBar('DIARY_ENTRY.SAVE.ERROR', 'DIARY_ENTRY.ACTIONS.TRY_AGAIN');
                     })
                 });
         }
     }
 
-    deleteEntry(): void {
-        this.editorHidden = true;
-        this.entries = this.entries?.filter((entry) => entry.id !== this.currentEntry?.id);
+    public deleteEntry(): void {
+        if (this.currentEntry) {
+            const entryId = this.currentEntry.id;
+            this.removeEntryFromList(entryId);
 
-        this.diaryService.deleteEntry(this.currentEntry!.id)
-            .subscribe({
-                next: (response => {
-                    console.log(response);
-                    this.closeEditor();
-                    this.openSnackBar('DIARY_ENTRY.DELETE.SUCCESS', 'DIARY_ENTRY.ACTIONS.CLOSE');
-                }),
-                error: (error => {
-                    console.log(error);
-                    this.refreshEntries();
-                    this.openSnackBar('DIARY_ENTRY.DELETE.ERROR', 'DIARY_ENTRY.ACTIONS.TRY_AGAIN');
-                })
-            });
+            this.closeEditor();
+
+            this.diaryService.deleteEntry(entryId)
+                .subscribe({
+                    next: (response => {
+                        console.log(response);
+                        this.openSnackBar('DIARY_ENTRY.DELETE.SUCCESS', 'DIARY_ENTRY.ACTIONS.CLOSE');
+                    }),
+                    error: (error => {
+                        console.log(error);
+                        this.refreshEntries();
+                        this.openSnackBar('DIARY_ENTRY.DELETE.ERROR', 'DIARY_ENTRY.ACTIONS.TRY_AGAIN');
+                    })
+                });
+        }
     }
 
-    setEditorContent(entry: Entry) {
-        this.Editor.editorInstance.setData("<p></p>");
-        this.editorHidden = false;
-        this.editorContent = entry.content;
+    openTitleDialog(): void {
+        const dialogRef = this.titleDialog.open(TitleDialogComponent, {
+            data: {id: this.diaryId, title: this.diaryTitle},
+            position: {left: '940px'},
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.diaryTitle = result;
+            }
+        });
+    }
+
+    public setEditorContent(entry: Entry) {
+        this.cleanEditor();
+        this.showEditor();
+        this.setEditorData(entry.content);
 
         this.currentEntry = entry;
         this.entryWasCreated = true;
     }
 
-    generateJournalPrompt() {
+    public generateJournalPrompt() {
         this.generatingPrompt = true;
 
         this.diaryService.generateJournalPrompt(this.translate.currentLang)
             .subscribe({
                 next: (data => {
-                    this.editorContent = `<strong>${data}</strong><br>${this.editorContent}`;
-                    this.generatingPrompt = false;
+                    this.editorContent = `<strong>${data}</strong><br> ${this.getEditorData()}`;
+                    this.stopGeneratingPrompt();
                 }),
                 error: (error => {
                     console.log(error);
-                    this.generatingPrompt = false;
+                    this.stopGeneratingPrompt();
                 })
             })
     }
 
-    generatePreview(content: string, maxLengthPerLine: number): string {
+    public generateEntryPreview(content: string, maxLengthPerLine: number): string {
         const parser = new DOMParser();
         const doc = parser.parseFromString(content, 'text/html');
 
@@ -181,7 +203,7 @@ export class DiaryComponent implements OnInit {
         return doc.body.innerHTML;
     }
 
-    refreshEntries() {
+    private refreshEntries() {
         this.diaryService.getEntriesByDiary(this.diaryId)
             .subscribe({
                 next: (data => {
@@ -193,15 +215,55 @@ export class DiaryComponent implements OnInit {
             });
     }
 
-    closeEditor() {
-        this.editorHidden = true;
-        this.editorContent = "<p></p>";
+    private cleanEditor() {
+        this.setEditorData("<p></p>");
+    }
 
+    private showEditor() {
+        this.editorHidden = false;
+    }
+
+    private hideEditor() {
+        this.editorHidden = true;
+    }
+
+    private addEntryToList() {
+        if (this.currentEntry) {
+            this.entries?.unshift(this.currentEntry);
+        }
+    }
+
+    private removeEntryFromList(entryToRemoveId: number) {
+        this.entries = this.entries?.filter((entry) => entry.id !== entryToRemoveId);
+    }
+
+    private setEditorData(data: string) {
+        this.Editor.editorInstance.setData(data);
+    }
+
+    private getEditorData(): string {
+        return this.Editor.editorInstance.getData();
+    }
+
+    private stopGeneratingPrompt() {
+        this.generatingPrompt = false;
+    }
+
+    private deselectEntry() {
         this.currentEntry = undefined;
         this.entryWasCreated = false;
     }
 
-    getFormattedWeekDay(date?: Date): string {
+    public closeEditor() {
+        this.hideEditor();
+        this.cleanEditor();
+
+        this.deselectEntry();
+
+        this.stopGeneratingPrompt();
+    }
+
+    public getFormattedWeekDay(date?: Date): string {
         moment.locale(this.translate.currentLang);
         if (date) {
             return moment(date).format("ddd");
@@ -209,7 +271,7 @@ export class DiaryComponent implements OnInit {
         return '';
     }
 
-    openSnackBar(message: string, action: string) {
+    private openSnackBar(message: string, action: string) {
         this.translate.get([message, action]).subscribe((translations: any) => {
             this.snackBar.open(translations[message], translations[action], {
                 verticalPosition: 'top',

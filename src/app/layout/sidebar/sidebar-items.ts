@@ -241,6 +241,18 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
     },
     {
+        path: 'calendar',
+        title: 'MENUITEMS.CALENDAR.TITLE',
+        iconType: 'material-icons-two-tone',
+        icon: 'event',
+        class: '',
+        groupTitle: false,
+        badge: '',
+        badgeClass: '',
+        role: ['Doctor', 'Patient'],
+        submenu: [],
+    },
+    {
         path: '',
         title: 'MENUITEMS.RESOURCES.RESOURCES',
         iconType: 'material-icons-two-tone',

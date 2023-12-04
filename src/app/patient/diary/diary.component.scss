@@ -1,6 +1,6 @@
 :host ::ng-deep .ck-editor__editable_inline {
-  min-height: 415px;
-  max-height: 415px;
+  min-height: 420px;
+  max-height: 420px;
 }
 
 .container-diary {
@@ -123,8 +123,19 @@
 }
 
 .diary-details {
-  min-height: 497px;
-  max-height: 497px;
+  min-height: 505px;
+  max-height: 505px;
+  font-size: 1.1rem;
+  color: #2a3040;
+  text-align: center;
+
+  .title {
+    font-weight: 600;
+  }
+
+  .details-content {
+    font-weight: 400;
+  }
 }
 
 

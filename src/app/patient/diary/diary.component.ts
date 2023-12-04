@@ -95,10 +95,11 @@ export class DiaryComponent implements OnInit {
 
     public saveEntry(): void {
         if (this.currentEntry) {
+            const entryToUpdate = this.currentEntry;
             this.currentEntry.content = this.getEditorData();
 
             const entryUpdate: Entry = new Entry({
-                id: this.currentEntry.id,
+                id: entryToUpdate.id,
                 content: this.getEditorData(),
             });
 
@@ -106,6 +107,7 @@ export class DiaryComponent implements OnInit {
                 .subscribe({
                     next: (response => {
                         console.log(response);
+                        this.refreshEntries();
                         this.openSnackBar('DIARY_ENTRY.SAVE.SUCCESS', 'DIARY_ENTRY.ACTIONS.CLOSE');
                     }),
                     error: (error => {
@@ -155,11 +157,11 @@ export class DiaryComponent implements OnInit {
             .subscribe({
                 next: (data => {
                     this.editorContent = `<strong>${data}</strong><br> ${this.getEditorData()}`;
-                    this.generatingPrompt = false;
+                    this.stopGeneratingPrompt();
                 }),
                 error: (error => {
                     console.log(error);
-                    this.generatingPrompt = false;
+                    this.stopGeneratingPrompt();
                 })
             })
     }
@@ -225,6 +227,10 @@ export class DiaryComponent implements OnInit {
         return this.Editor.editorInstance.getData();
     }
 
+    private stopGeneratingPrompt() {
+      this.generatingPrompt = false;
+    }
+
     private deselectEntry() {
         this.currentEntry = undefined;
         this.entryWasCreated = false;
@@ -235,6 +241,8 @@ export class DiaryComponent implements OnInit {
         this.cleanEditor();
 
         this.deselectEntry();
+
+        this.stopGeneratingPrompt();
     }
 
     public getFormattedWeekDay(date?: Date): string {

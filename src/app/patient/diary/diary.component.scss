@@ -1,6 +1,6 @@
 :host ::ng-deep .ck-editor__editable_inline {
-  min-height: 465px;
-  max-height: 465px;
+  min-height: 415px;
+  max-height: 415px;
 }
 
 .container-diary {
@@ -21,6 +21,7 @@
   border-radius: 10px;
   padding: 9px 1px 3px 1px;
   margin-bottom: 0;
+  max-height: 520px;
 }
 
 .card-entry {
@@ -49,7 +50,7 @@
   height: 3rem;
   flex: 0 0 auto;
   line-height: 1.2;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 1px 3px;
   border-radius: 10px;
   display: flex;
   -webkit-box-pack: center;
@@ -119,6 +120,11 @@
 
 .container-tags {
   background-color: white;
+}
+
+.diary-details {
+  min-height: 497px;
+  max-height: 497px;
 }
 
 

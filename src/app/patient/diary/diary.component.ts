@@ -199,12 +199,12 @@ export class DiaryComponent implements OnInit {
         this.setEditorData("<p></p>");
     }
 
-    private hideEditor() {
-        this.editorHidden = true;
-    }
-
     private showEditor() {
         this.editorHidden = false;
+    }
+
+    private hideEditor() {
+        this.editorHidden = true;
     }
 
     private addEntryToList() {

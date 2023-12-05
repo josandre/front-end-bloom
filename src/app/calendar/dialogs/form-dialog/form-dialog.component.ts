@@ -1,17 +1,14 @@
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Component, Inject } from '@angular/core';
-import { CalendarService } from '../../calendar.service';
-import {
-  Validators,
-  FormGroup,
-  FormBuilder, FormControl,
-} from '@angular/forms';
-import { Calendar } from '../../calendar.model';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {Component, Inject} from '@angular/core';
+import {CalendarService} from '../../service/calendar.service';
+import {FormBuilder, FormControl, FormGroup, Validators,} from '@angular/forms';
+import {CalendarEvent} from '../../model/calendar.model';
+import {EventCategory} from "../../model/eventcategory";
 
 export interface DialogData {
   id: number;
   action: string;
-  calendar: Calendar;
+  calendar: CalendarEvent;
 }
 
 @Component({
@@ -23,8 +20,11 @@ export class FormDialogComponent {
   action: string;
   dialogTitle: string;
   calendarForm: FormGroup;
-  calendar: Calendar;
+  calendar: CalendarEvent;
   showDeleteBtn = false;
+
+  categoryOptions: string[] = Object.keys(EventCategory);
+
   constructor(
     public dialogRef: MatDialogRef<FormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
@@ -39,22 +39,21 @@ export class FormDialogComponent {
       this.showDeleteBtn = true;
     } else {
       this.dialogTitle = 'New Event';
-      const blankObject = {} as Calendar;
-      this.calendar = new Calendar(blankObject);
+      const blankObject = {} as CalendarEvent;
+      this.calendar = new CalendarEvent(blankObject);
       this.showDeleteBtn = false;
     }
 
     this.calendarForm = this.createContactForm();
   }
+
   formControl = new FormControl('', [
     Validators.required,
-    // Validators.email,
   ]);
+
   getErrorMessage() {
     return this.formControl.hasError('required')
       ? 'Required field'
-      : this.formControl.hasError('email')
-      ? 'Not a valid email'
       : '';
   }
   createContactForm(): FormGroup {
@@ -68,7 +67,7 @@ export class FormDialogComponent {
     });
   }
   submit() {
-    // emppty stuff
+    // empty stuff
   }
   deleteEvent() {
     this.calendarService.deleteCalendar(this.calendarForm.getRawValue());

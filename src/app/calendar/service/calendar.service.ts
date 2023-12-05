@@ -1,0 +1,63 @@
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, Observable, throwError} from 'rxjs';
+import {CalendarEvent} from '../model/calendar.model';
+import {HttpClient, HttpErrorResponse, HttpHeaders,} from '@angular/common/http';
+import {AuthService} from "@core";
+import {API_URL} from "../../../config";
+
+@Injectable()
+export class CalendarService {
+  private readonly API_URL = 'assets/data/calendar.json';
+  private readonly baseUrl = API_URL;
+
+  dataChange: BehaviorSubject<CalendarEvent[]> = new BehaviorSubject<CalendarEvent[]>([]);
+  // Temporarily stores data from dialogs
+  dialogData!: CalendarEvent;
+  constructor(private http: HttpClient,
+              private readonly authService: AuthService) {}
+
+  public createEvent(event: CalendarEvent) {
+    const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.authService.currentUserValue.token);
+    const userId = this.authService.currentUserValue.id;
+    const url = `${this.baseUrl}/notification/${userId}`;
+
+    return this.http.post(url, event, {headers: header});
+  }
+
+  public getEvents(): Observable<CalendarEvent[]> {
+    const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.authService.currentUserValue.token);
+    const userId = this.authService.currentUserValue.id;
+    const url = `${this.baseUrl}/notificationsUser/${userId}`;
+
+    return this.http.get<CalendarEvent[]>(url, {headers: header});
+  }
+
+  get data(): CalendarEvent[] {
+    return this.dataChange.value;
+  }
+
+  getDialogData() {
+    return this.dialogData;
+  }
+
+  addUpdateCalendar(calendar: CalendarEvent): void {
+    this.dialogData = calendar;
+  }
+
+  deleteCalendar(calendar: CalendarEvent): void {
+    this.dialogData = calendar;
+  }
+
+  errorHandler(error: HttpErrorResponse) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // Get client-side error
+      errorMessage = error.error.message;
+    } else {
+      // Get server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.log(errorMessage);
+    return throwError(errorMessage);
+  }
+}

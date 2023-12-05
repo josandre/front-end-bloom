@@ -16,11 +16,11 @@
             <div class="left">
               <ul class="header-buttons-left ms-0">
                 <li class="tbl-title">
-                  <h2>Doctors search by name</h2>
+                  <h2>{{'ADMIN_RESOURCES.SEARCHNAME' | translate}}</h2>
                 </li>
                 <li class="tbl-search-box">
                   <label for="search-input"><i class="material-icons search-icon">search</i></label>
-                  <input placeholder="Search" type="text" (keyup)="applyFilter($event.target)" class="browser-default search-field"
+                  <input placeholder="{{'ADMIN_RESOURCES.SEARCH' | translate}}" id="search-input" type="text" (keyup)="applyFilter($event.target)" class="browser-default search-field"
                     aria-label="Search box">
                 </li>
               </ul>
@@ -45,7 +45,7 @@
           </div>
           <div class="body overflow-auto">
             <div class="responsive_table">
-              <table mat-table [dataSource]="dataSource" matSort class="mat-cell advance-table w-100">
+              <table mat-table [dataSource]="pageSlice" matSort class="mat-cell advance-table w-100">
                 <!-- ID Column -->
                 <ng-container matColumnDef="id">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
@@ -84,15 +84,23 @@
                   [style.cursor]="'pointer'" >
                 </mat-row>
               </table>
+              <mat-paginator #paginator
+                             [length]="dataSource.filteredData.length"
+                             [pageSize]="5"
+                             [pageSizeOptions]="[5, 10, 25]"
+                             (page) = "OnPageChange($event)">
+              </mat-paginator>
               <!-- Loading spinner -->
               <div *ngIf="loading" class="tbl-spinner">
                 <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
                 </mat-progress-spinner>
               </div>
+
               <div *ngIf="!loading" class="no-results"
                 [style.display]="dataSource.data.length === 0 ? '' : 'none'">
                 No results
               </div>
+
             </div>
           </div>
         </div>

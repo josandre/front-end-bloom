@@ -1,6 +1,5 @@
 import { Component,  OnInit, ViewChild } from '@angular/core';
-
-import { MatPaginator } from '@angular/material/paginator';
+import {MatPaginator, MatPaginatorIntl, PageEvent} from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Patient } from './models/patient.model';
 
@@ -39,18 +38,22 @@ export class AllpatientsComponent
   ];
 
   dataSource: MatTableDataSource<Patient> = new MatTableDataSource<Patient>([]);
+
   loading: boolean = false
   selection = new SelectionModel<Patient>(true, []);
   index?: number;
   id?: number;
   patient?: Patient;
+  public pageSlice = this.dataSource.filteredData.slice(0,5);
   constructor(
     private snackBar: MatSnackBar,
     public patientService: PatientService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private paginatorIntl: MatPaginatorIntl
 
   ) {
     super();
+    this.paginatorIntl.itemsPerPageLabel = '';
   }
   @ViewChild(MatPaginator, { static: true })
   paginator!: MatPaginator;
@@ -73,6 +76,7 @@ export class AllpatientsComponent
           patient.name = this.maskName(patient.name);
         })
         this.dataSource = new MatTableDataSource<Patient>(patients)
+        this.pageSlice = this.dataSource.filteredData.slice(0,5);
         this.loading = false
       },
       error: (error) => {}
@@ -127,6 +131,16 @@ export class AllpatientsComponent
 
   private maskName(name: string): string {
     return name.replace(/./g, '*');
+  }
+
+  OnPageChange(event: PageEvent){
+    // console.log(event);
+    const startIndex = event.pageIndex * event.pageSize;
+    let endIndex = startIndex + event.pageSize;
+    if (endIndex > this.dataSource.filteredData.length){
+      endIndex = this.dataSource.filteredData.length;
+    }
+    this.pageSlice = this.dataSource.filteredData.slice(startIndex,endIndex);
   }
 }
 

@@ -12,85 +12,52 @@
     </div>
 
     <div class="row" *ngIf="!isEmpty && !flag">
+
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="card">
           <div class="materialTableHeader">
             <div class="left">
               <ul class="header-buttons-left ms-0">
                 <li class="tbl-title">
-                  <h2>Search by title</h2>
+                  <h2>{{'MENUITEMS.RESOURCES.SEARCHBYTITLE' | translate}}</h2>
                 </li>
                 <li class="tbl-search-box">
                   <label for="search-input"><i class="material-icons search-icon">search</i></label>
-                  <input placeholder="Search" type="text"  (keyup)="applyFilter($event.target)" class="browser-default search-field"
-                    aria-label="Search box">
+                  <input placeholder="{{'MENUITEMS.RESOURCES.SEARCH' | translate}}" type="text" id="search-input"
+                         (keyup)="applyFilter($event.target)" class="browser-default search-field" aria-label="Search box">
                 </li>
               </ul>
             </div>
 
           </div>
-          <div class="boxs mail_listing">
-            <div class="inbox-center table-responsive">
-              <table class="table table-hover">
-                <thead>
+        </div>
+        <hr>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3" *ngFor="let tempRes of resourcesList">
+        <div class="card py-3 py-md-3" style="overflow: hidden; height: 90% ">
 
-                </thead>
-                <tbody>
-                <tr >
-                  <td></td>
-                  <td class="hidden-xs" >{{'MENUITEMS.RESOURCES.TITLE' | translate}}</td>
-
-                  <td class="max-texts">{{'MENUITEMS.RESOURCES.CONTENT' | translate}}</td>
-
-                  <td class="max-texts" > {{'MENUITEMS.RESOURCES.DATE' | translate}} </td>
-
-                </tr>
-
-
-                <tr *ngFor="let r of resourcesList">
-                  <td class="tbl-checkbox">
-
-                  </td>
-                  <td class="hidden-xs" >{{r.title}}</td>
-
-                  <td class="max-texts">
-                    <a routerLink="/resource/read-resource" (click)="readResource(r.id)"  [innerHTML]="r.content.substring(0,200)"></a>
-                  </td>
-
-                  <td class="max-texts" > {{r.date}} </td>
-
-                </tr>
-
-                <tr *ngIf="resourcesList?.length === 0">
-                  <td colspan="4">
-                    <div class="no-results-container">
-                      <img src="assets/images/pages/BloomGuiño.png" alt="bloom">
-                      <h4>{{ 'PATIENT.NO_RESULTS' | translate }}</h4>
-                    </div>
-                  </td>
-                </tr>
-
-                </tbody>
-              </table>
-
-            </div>
-            <div class="row">
-              <div class="col-sm-5 text-end">
-                <div class="float-end">
-                  <div class="email-btn-group m-l-15">
-                    <button mat-icon-button aria-label="Example icon-button with a heart icon">
-                      <mat-icon>navigate_before</mat-icon>
-                    </button>
-                    <button mat-icon-button aria-label="Example icon-button with a heart icon">
-                      <mat-icon>navigate_next</mat-icon>
-                    </button>
-                  </div>
-                </div>
-              </div>
+          <div class=" d-flex justify-content-between px-3 px-md-4" style="height: 70% ">
+            <div>
+              <p class="tempRes-name">{{ tempRes.date }} </p>
+              <h5 class="tempRes-name">{{ tempRes.title }} </h5>
             </div>
           </div>
+
+          <hr class="light-hr">
+
+          <div class="d-flex justify-content-around px-4 float-start" style="height: 20%">
+
+            <button id="btnRead" mat-raised-button style="overflow: clip ; min-height: 40px " color="primary"
+                    routerLink="/resource/read-resource" (click)="sessionResource(tempRes.id)">
+              {{'MENUITEMS.RESOURCES.READ' | translate}}
+            </button>
+
+          </div>
+
         </div>
       </div>
     </div>
+
   </div>
+
 </section>

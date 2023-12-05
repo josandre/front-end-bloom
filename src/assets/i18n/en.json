@@ -190,10 +190,13 @@
         "SHOW-TILE-NUMBERS": "Show tile numbers"
       }
     },
+    "PROGRESS-SECTION": {
+      "TITLE": "Progreso Medico"
+    },
     "RESOURCES": {
       "RESOURCES": "Resources",
       "MY-RESOURCES": "My Resources",
-      "READ": "Read Resource",
+      "READ": "Read",
       "CREATE": "Create Resource",
       "MODIFY": "Modify Resource",
       "MY-PATIENTS": "My Patients",
@@ -201,6 +204,7 @@
       "COMPOSE": "Create New Resource",
       "TITLE": "Title",
       "EDIT": "Edit",
+      "DELETE": "Delete",
       "CONTENT": "Content",
       "DATE": "Date",
       "SHOWING": "Showing",
@@ -209,13 +213,33 @@
       "TASKLIST": "Task List",
       "ADDTASK": "Add Task",
       "MODTASK": "Edit Task",
+      "SEARCH": "Search",
+      "SEARCHBYTITLE": "Search by title",
       "MESSAGE": "We are reading your resources",
       "MESSAGE_READ": "We are reading the resource",
       "MESSAGE_UPDATE": "We are updating the resource",
       "MESSAGE_CREATED": "We are creating a new resource"
     },
-    "PROGRESS-SECTION": {
-      "TITLE": "Progreso Medico"
+    "RESOURCESNACK": {
+      "TASKADD": "Task added successfully",
+      "TASKNOTADD": "Task was not added",
+      "TASKMOD": "Task edited successfully",
+      "TASKNOTMOD": "Task was not edited",
+      "TASKDEL": "Task deleted successfully",
+      "TASKNOTDEL": "Task was not deleted",
+      "TASKCHECK": "Task was completed successfully",
+      "TASKNOTCHECK": "Task was not completed",
+      "RESDEL": "Resource deleted",
+      "ERROR": "There was an error",
+      "CREATERES": "Creating a new resource, please wait...",
+      "RESADD": "Resource created successfully",
+      "RESNOTADD": "Resources was not created",
+      "NOCONTENT": "Please fill out the content",
+      "NOTITLE": "Please fill out a title",
+      "NOPATIENT": "Please choose at least one patient",
+      "MODRES": "Modifying your resource, please wait...",
+      "RESMOD": "Resource was modified successfully",
+      "RESNOTMOD": "Resource was not modified"
     }
   },
   "DASHBOARD_DOCTOR": {
@@ -686,7 +710,12 @@
     "CONTENT": "Content",
     "POST_DADE": "Post date",
     "SEARCH_BY": "Search by title",
-    "SEARCH": "Search"
+    "SEARCH": "Search",
+    "SEARCHNAME": "Search by name",
+    "LASTNAME": "Last Name",
+    "NAME": "Name",
+    "USERNAME": "Username",
+    "STATE": "Active"
   },
   "SING_UP": {
     "TITLE": "Sign Up",
@@ -767,8 +796,8 @@
     "EMAI_VALID":"Please enter a valid email address",
     "RESET":"Reset My Password",
     "LOGIN":"Login?"
-   },
-   "DIARY_ENTRY":{
+  },
+  "DIARY_ENTRY":{
     "TITLE":"My Diary",
     "ACTIONS":{
       "CLOSE":"Close",

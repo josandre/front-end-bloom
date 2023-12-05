@@ -92,4 +92,16 @@ export class ResourceService {
     return this.http.get<boolean>(URL,{headers: {'Authorization':  `Bearer ${currentUser.token}`}});
   }
 
+  modTask(pId: number, pDescription: string){
+    const task = new Task({
+      id: pId,
+      description: pDescription
+    })
+    const currentUser = this.authenticationService.currentUserValue;
+    const URL = `${this.baseUrl}/task/update/${pId}`;
+    return this.http.put(URL, task, {headers: {'Authorization':  `Bearer ${currentUser.token}`}});
+  }
+  sessionResource(id: number){
+    sessionStorage.setItem('resourseId', id.toString());
+  }
 }

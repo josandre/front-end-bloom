@@ -11,11 +11,11 @@
             <div class="left">
               <ul class="header-buttons-left ms-0">
                 <li class="tbl-title">
-                  <h2>Patients search by name</h2>
+                  <h2>{{'ADMIN_RESOURCES.SEARCHNAME' | translate}}</h2>
                 </li>
                 <li class="tbl-search-box">
                   <label for="search-input"><i class="material-icons search-icon">search</i></label>
-                  <input placeholder="Search" type="text" (keyup)="applyFilter($event.target)" class="browser-default search-field"
+                  <input placeholder="{{'ADMIN_RESOURCES.SEARCH' | translate}}" id="search-input" type="text" (keyup)="applyFilter($event.target)" class="browser-default search-field"
                     aria-label="Search box">
                 </li>
               </ul>
@@ -40,7 +40,7 @@
           </div>
           <div class="body overflow-auto">
             <div class="responsive_table">
-              <table mat-table [dataSource]="dataSource" matSort class="mat-cell advance-table">
+              <table mat-table [dataSource]="pageSlice" matSort class="mat-cell advance-table">
                 <!-- ID Column -->
                 <ng-container matColumnDef="id">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
@@ -49,25 +49,25 @@
 
                 <!-- LastName Column -->
                 <ng-container matColumnDef="lastName">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>{{'ADMIN_RESOURCES.LASTNAME' | translate}}</mat-header-cell>
                   <mat-cell *matCellDef="let row"> <span class="mobile-label">Last Name:</span>{{row.lastName}}</mat-cell>
                 </ng-container>
 
                 <!-- Name Column -->
                 <ng-container matColumnDef="name">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>{{'ADMIN_RESOURCES.NAME' | translate}}</mat-header-cell>
                   <mat-cell *matCellDef="let row"> <span class="mobile-label">Name:</span>{{row.name}}</mat-cell>
                 </ng-container>
 
                 <!-- UserName Column -->
                 <ng-container matColumnDef="username">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>Username</mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>{{'ADMIN_RESOURCES.USERNAME' | translate}}</mat-header-cell>
                   <mat-cell *matCellDef="let row"> <span class="mobile-label">Username:</span>{{row.userName}}</mat-cell>
                 </ng-container>
 
                 <!-- actions -->
                 <ng-container matColumnDef="actions">
-                  <mat-header-cell *matHeaderCellDef [ngClass]="'px-3'">State</mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef [ngClass]="'px-3'">{{'ADMIN_RESOURCES.STATE' | translate}}</mat-header-cell>
                   <mat-cell *matCellDef="let row; let i=index;" class="px-3">
                     <mat-slide-toggle [(ngModel)]="row.active" (change)="setState(row)" toggle="row.active" class="tbl-action-btn" color="primary">
                     </mat-slide-toggle>
@@ -79,6 +79,13 @@
                   [style.cursor]="'pointer'" >
                 </mat-row>
               </table>
+              <mat-paginator #paginator
+                             [length]="dataSource.filteredData.length"
+                             [pageSize]="5"
+                             [pageSizeOptions]="[5, 10, 25]"
+                             (page) = "OnPageChange($event)">
+              </mat-paginator>
+
               <!-- Loading spinner -->
               <div *ngIf="loading" class="tbl-spinner">
                 <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">

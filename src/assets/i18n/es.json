@@ -4,7 +4,7 @@
       "TEXT": "Principal"
     },
     "DASHBOARD": {
-      "TEXT": "Dashboard",
+      "TEXT": "Tablero",
       "LIST": {
         "DASHBOARD1": "Tablero 1",
         "DASHBOARD2": "Tablero 2",
@@ -196,7 +196,7 @@
     "RESOURCES": {
       "RESOURCES": "Recursos",
       "MY-RESOURCES": "Mis Recursos",
-      "READ": "Leer Recurso",
+      "READ": "Leer",
       "CREATE": "Crear Recurso",
       "MODIFY": "Modificar Recurso",
       "MY-PATIENTS": "Mis Pacientes",
@@ -204,6 +204,7 @@
       "COMPOSE": "Crear Nuevo Recurso",
       "TITLE": "Titulo",
       "EDIT": "Editar",
+      "DELETE": "Borrar",
       "CONTENT": "Contenido",
       "DATE": "Fecha",
       "SHOWING": "Mostrando",
@@ -212,10 +213,33 @@
       "TASKLIST": "Lista de Tareas",
       "ADDTASK": "Agregar Tarea",
       "MODTASK": "Editar Tarea",
+      "SEARCH": "Buscar",
+      "SEARCHBYTITLE": "Buscar por titulo",
       "MESSAGE": "Estamos leyendo los recursos",
       "MESSAGE_READ": "Estamos leyendo el recurso",
       "MESSAGE_UPDATE": "Estamos modificando el recurso",
       "MESSAGE_CREATED": "Estamos creando un nuevo recurso"
+    },
+    "RESOURCESNACK": {
+      "TASKADD": "Tarea agregada exitosamente",
+      "TASKNOTADD": "La tarea no fue agregada",
+      "TASKMOD": "Tarea modificada exitosamente",
+      "TASKNOTMOD": "La tarea no fue editada",
+      "TASKDEL": "La tarea fue eliminada exitosamente",
+      "TASKNOTDEL": "La tarea no fue eliminada",
+      "TASKCHECK": "La tarea ha sido completada exitosamente",
+      "TASKNOTCHECK": "La tarea no ha sido completada",
+      "RESDEL": "El recurso fue eliminado exitosamente",
+      "ERROR": "Hubo un error",
+      "CREATERES": "Creando un nuevo recurso, por favor espere un momento...",
+      "RESADD": "El recurso fue creado exitosamente",
+      "RESNOTADD": "El recurso no fue creado",
+      "NOCONTENT": "Por favor agregue contenido",
+      "NOTITLE": "Por favor agregue un titulo",
+      "NOPATIENT": "Por favor seleccione al menos un paciente",
+      "MODRES": "Modificando el recurso, por favor espere un momento...",
+      "RESMOD": "El recurso ha sido modificado exitosamente",
+      "RESNOTMOD": "El recurso no ha sido modificado"
     }
   },
   "DASHBOARD_DOCTOR": {
@@ -688,10 +712,15 @@
     "CONTENT":"Contenido",
     "POST_DADE":"Fcha de registro",
     "SEARCH_BY":"Buscar por título",
-    "SEARCH":"Buscar"
+    "SEARCH":"Buscar",
+    "SEARCHNAME": "Buscar por nombre",
+    "LASTNAME": "Apellido",
+    "NAME": "Nombre",
+    "USERNAME": "Usuario",
+    "STATE": "Activo"
   },
   "SING_UP":{
-    "TITLE":"Reistrarme",
+    "TITLE":"Registrarme",
     "INFO": "Ingrese los datos para crear su cuenta",
     "NAME":"Nombre",
     "NAME_REQUIRED":"Nombre requerido",
@@ -762,13 +791,13 @@
     "DONE":"Done"
   },
   "FORGOT_PASSWORD":{
-   "RESET_PASSWORD":"Restablecer la contraseña",
-   "HELP":"Dejanos ayudarte",
-   "EMAIL_REGISTRED":"Ingrese su dirección de correo electrónico registrada.",
-   "EMAIL":"Correo Electrónico",
-   "EMAI_VALID":"Por favor, introduce una dirección de correo electrónico válida",
-   "RESET":"Restablecer mi contraseña",
-   "LOGIN":"Iniciar sesión"
+    "RESET_PASSWORD":"Restablecer la contraseña",
+    "HELP":"Dejanos ayudarte",
+    "EMAIL_REGISTRED":"Ingrese su dirección de correo electrónico registrada.",
+    "EMAIL":"Correo Electrónico",
+    "EMAI_VALID":"Por favor, introduce una dirección de correo electrónico válida",
+    "RESET":"Restablecer mi contraseña",
+    "LOGIN":"Iniciar sesión"
   },
   "DIARY_ENTRY":{
     "TITLE":"Mi Diario",

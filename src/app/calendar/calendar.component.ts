@@ -26,19 +26,20 @@ export class CalendarComponent
     calendar: CalendarEvent | null;
     public addCusForm: FormGroup;
     dialogTitle: string;
+    filterOptions = 'All';
     calendarData!: CalendarEvent;
     filterItems: string[] = [
-        'work',
-        'personal',
-        'important',
+        'WORK',
+        'PERSONAL',
+        'IMPORTANT',
     ];
 
     calendarEvents?: EventInput[];
 
     public filters: Array<{ name: string; value: string; checked: boolean }> = [
-        {name: 'work', value: 'Work', checked: true},
-        {name: 'personal', value: 'Personal', checked: true},
-        {name: 'important', value: 'Important', checked: true},
+        {name: 'WORK', value: 'Work', checked: true},
+        {name: 'PERSONAL', value: 'Personal', checked: true},
+        {name: 'IMPORTANT', value: 'Important', checked: true},
     ];
 
     constructor(

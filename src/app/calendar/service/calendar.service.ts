@@ -32,6 +32,13 @@ export class CalendarService {
     return this.http.get<CalendarEvent[]>(url, {headers: header});
   }
 
+  public updateEvent(eventId: number, event: CalendarEvent) {
+    const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.authService.currentUserValue.token);
+    const url = `${this.baseUrl}/updateNotification/${eventId}/notification`;
+
+    return this.http.put(url, event, {headers: header});
+  }
+
   get data(): CalendarEvent[] {
     return this.dataChange.value;
   }

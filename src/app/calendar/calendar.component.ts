@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core'
 import {CalendarOptions, EventClickArg, EventInput,} from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -13,6 +13,10 @@ import {CalendarService} from './service/calendar.service';
 import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition,} from '@angular/material/snack-bar';
 import {MatCheckboxChange} from '@angular/material/checkbox';
 import {UnsubscribeOnDestroyAdapter} from '@shared';
+import {TranslateService} from "@ngx-translate/core";
+
+import * as moment from 'moment';
+
 
 @Component({
     selector: 'app-calendar',
@@ -46,6 +50,7 @@ export class CalendarComponent
         private fb: FormBuilder,
         private dialog: MatDialog,
         public calendarService: CalendarService,
+        private translate: TranslateService,
         private snackBar: MatSnackBar
     ) {
         super();
@@ -64,6 +69,7 @@ export class CalendarComponent
     private getEvents(): void {
         this.calendarService.getEvents().subscribe({
             next: (events => {
+                console.log(events);
                 events.forEach((event) => {
                     this.calendarEvents?.push({
                         id: `${event.id}`,
@@ -77,6 +83,7 @@ export class CalendarComponent
                 });
 
                 this.calendarOptions.events = this.calendarEvents;
+                console.log(this.calendarOptions);
             }),
             error: (error => {
                 console.log(error);
@@ -92,6 +99,7 @@ export class CalendarComponent
             center: 'title',
             right: 'dayGridMonth,timeGridWeek,timeGridDay',
         },
+        timeZone: 'America/Costa_Rica',
         initialView: 'dayGridMonth',
         weekends: true,
         editable: true,
@@ -130,6 +138,7 @@ export class CalendarComponent
                     groupId: this.calendarData.category,
                     details: this.calendarData.details,
                 });
+
                 this.calendarOptions.events = this.calendarEvents;
                 this.addCusForm.reset();
                 this.showNotification(
@@ -142,7 +151,7 @@ export class CalendarComponent
         });
     }
 
-    public createEvent() {
+    private createEvent() {
         this.calendarService.createEvent(this.calendarData)
             .subscribe({
                 next: (response => {
@@ -157,7 +166,7 @@ export class CalendarComponent
                     console.log(error);
                     //snackbar
                 })
-            })
+            });
     }
 
     changeCategory(event: MatCheckboxChange, filter: { name: string }) {
@@ -232,6 +241,7 @@ export class CalendarComponent
     editEvent(eventIndex: number, calendarData: CalendarEvent) {
         const calendarEvents = this.calendarEvents!.slice();
         const singleEvent = Object.assign({}, calendarEvents[eventIndex]);
+
         singleEvent.id = calendarData.id;
         singleEvent.title = calendarData.title;
         singleEvent.start = calendarData.startDate;
@@ -240,9 +250,30 @@ export class CalendarComponent
         singleEvent.groupId = calendarData.category;
         singleEvent['details'] = calendarData.details;
         calendarEvents[eventIndex] = singleEvent;
+
+        this.updateEvent(calendarData);
+
         this.calendarEvents = calendarEvents; // reassign the array
 
         this.calendarOptions.events = calendarEvents;
+    }
+
+    private updateEvent(calendarData: CalendarEvent) {
+        this.calendarService.updateEvent(Number(calendarData.id), calendarData)
+            .subscribe({
+                next: (response => {
+                    switch (response) {
+                        case "200": {
+                            //snackbar
+                            break;
+                        }
+                    }
+                }),
+                error: (error => {
+                    console.log(error);
+                    //snackbar
+                })
+            });
     }
 
     createCalendarForm(calendar: CalendarEvent): FormGroup {

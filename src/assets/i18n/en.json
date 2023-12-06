@@ -127,14 +127,14 @@
     "APPS": {
       "TEXT": "-- Apps"
     },
-    "CALENDAR": {
-      "TEXT": "Calendar"
-    },
     "TASK": {
       "TEXT": "Task"
     },
     "CONTACTS": {
       "TEXT": "Contacts"
+    },
+    "CALENDAR": {
+      "TITLE": "Calendar"
     },
     "DIARY": {
       "TITLE": "My Diary"

@@ -310,9 +310,9 @@ export class CalendarComponent
     getClassNameValue(category: string) {
         let className;
 
-        if (category === 'WORK') className = 'fc-event-success';
-        else if (category === 'PERSONAL') className = 'fc-event-warning';
-        else if (category === 'IMPORTANT') className = 'fc-event-primary';
+        if (category === 'WORK') className = 'fc-event-primary';
+        else if (category === 'PERSONAL') className = 'fc-event-info';
+        else if (category === 'IMPORTANT') className = 'fc-event-danger';
 
         return className;
     }

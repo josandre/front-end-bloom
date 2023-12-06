@@ -15,8 +15,6 @@ import {MatCheckboxChange} from '@angular/material/checkbox';
 import {UnsubscribeOnDestroyAdapter} from '@shared';
 import {TranslateService} from "@ngx-translate/core";
 
-import * as moment from 'moment';
-
 
 @Component({
     selector: 'app-calendar',
@@ -30,7 +28,6 @@ export class CalendarComponent
     calendar: CalendarEvent | null;
     public addCusForm: FormGroup;
     dialogTitle: string;
-    filterOptions = 'All';
     calendarData!: CalendarEvent;
     filterItems: string[] = [
         'WORK',
@@ -69,7 +66,6 @@ export class CalendarComponent
     private getEvents(): void {
         this.calendarService.getEvents().subscribe({
             next: (events => {
-                console.log(events);
                 events.forEach((event) => {
                     this.calendarEvents?.push({
                         id: `${event.id}`,
@@ -83,7 +79,6 @@ export class CalendarComponent
                 });
 
                 this.calendarOptions.events = this.calendarEvents;
-                console.log(this.calendarOptions);
             }),
             error: (error => {
                 console.log(error);
@@ -222,6 +217,9 @@ export class CalendarComponent
                 this.addCusForm.reset();
             } else if (result === 'delete') {
                 this.calendarData = this.calendarService.getDialogData();
+
+                this.deleteEvent(Number(calendarData.id));
+
                 this.calendarEvents?.forEach((element) => {
                     if (this.calendarData.id === element.id) {
                         row.event.remove();
@@ -260,6 +258,24 @@ export class CalendarComponent
 
     private updateEvent(calendarData: CalendarEvent) {
         this.calendarService.updateEvent(Number(calendarData.id), calendarData)
+            .subscribe({
+                next: (response => {
+                    switch (response) {
+                        case "200": {
+                            //snackbar
+                            break;
+                        }
+                    }
+                }),
+                error: (error => {
+                    console.log(error);
+                    //snackbar
+                })
+            });
+    }
+
+    private deleteEvent(eventId: number) {
+        this.calendarService.deleteEvent(eventId)
             .subscribe({
                 next: (response => {
                     switch (response) {

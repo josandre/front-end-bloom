@@ -39,6 +39,13 @@ export class CalendarService {
     return this.http.put(url, event, {headers: header});
   }
 
+  public deleteEvent(eventId: number) {
+    const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.authService.currentUserValue.token);
+    const url = `${this.baseUrl}/deleteNotification/${eventId}`;
+
+    return this.http.delete(url, {headers: header});
+  }
+
   get data(): CalendarEvent[] {
     return this.dataChange.value;
   }

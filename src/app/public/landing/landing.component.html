@@ -245,7 +245,7 @@
         <div class="doctor-card" *ngFor="let item of filteredDoctorsItems">
           <div class="single-doctor">
             <a class="d-block">
-              <img [src]="item.image" alt="doctor-image">
+              <img [src]="getPhoto(item.image)" alt="doctor-image">
             </a>
             <div class="doctor-content">
               <h3>{{ item.name }}</h3>

@@ -19,6 +19,8 @@ import {
 import { DoctorService } from '../service/doctor.service';
 import {MatTableDataSource} from "@angular/material/table";
 import { TranslateService } from '@ngx-translate/core';
+import { EmailNotificationService } from 'app/admin/notification/EmailNotificaction.service';
+import { Notificaction } from 'app/admin/notification/EmailNotification';
 
 @Component({
   selector: 'app-alldoctors',
@@ -49,6 +51,7 @@ export class AlldoctorsComponent
   constructor(
     private snackBar: MatSnackBar,
     public doctorService: DoctorService,
+    public emailNotification: EmailNotificationService,
     private translate: TranslateService,
     private paginatorIntl: MatPaginatorIntl
   ) {
@@ -114,14 +117,33 @@ export class AlldoctorsComponent
     });
   }
 
-  setState(row: Doctor){
-    row.active = !row.active
-      this.doctorService.changeState(row.id).subscribe(() => {
-          this.openSnackBar('ADMIN_SNACKBAR.DOCTOR_SUCCESS', 'ADMIN_SNACKBAR.CLOSE')
-      }, () => {
-        this.openSnackBar('ADMIN_SNACKBAR.SERVER_ERROR', 'ADMIN_SNACKBAR.CLOSE')
-      })
+  setState(row: Doctor) {
+    console.log(row);
+  
+    row.active = !row.active;
+    this.doctorService.changeState(row.id).subscribe(() => {
+      this.openSnackBar('ADMIN_SNACKBAR.DOCTOR_SUCCESS', 'ADMIN_SNACKBAR.CLOSE');
+      
+      let notification = new Notificaction({
+        type: 'Doctor Status Change',
+        message: `The status of Dr. ${row.name} has been changed to ${row.active ? 'inactive' : 'active'}.`,
+        email: row.email
+      });
+
+      this.emailNotification.emailNotificate(notification).subscribe(
+        response => {
+          console.log('Notification sent successfully', response);
+        },
+        error => {
+          console.error('Error sending notification', error);
+        }
+      );
+  
+    }, () => {
+      this.openSnackBar('ADMIN_SNACKBAR.SERVER_ERROR', 'ADMIN_SNACKBAR.CLOSE');
+    });
   }
+  
 
   openSnackBar(message: string, action: string) {
     this.translate.get([message,action]).subscribe((translations: any) => {

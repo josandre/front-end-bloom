@@ -507,8 +507,11 @@
           background-color: #fff;
           img {
             max-width: 100%;
-            height: auto;
             border-radius: 10px 10px 0 0;
+            height: 230px;
+            width: 100%;
+            object-fit: scale-down;
+            background: #fff;
           }
 
           .doctor-content {
@@ -516,7 +519,7 @@
             border-radius: 0 0 10px 10px;
             border-bottom: 2px solid map-get($colors, 'complement');
             box-shadow: #959da533 0 8px 24px;
-
+            min-height: 160px;
             h3 {
               margin-bottom: 8px;
               font-size: 1.6rem !important;

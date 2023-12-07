@@ -6,6 +6,9 @@ import {MatPaginator, MatPaginatorIntl, PageEvent} from '@angular/material/pagin
 import { TranslateService } from '@ngx-translate/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {Doctor} from "../../admin/doctors/model/Doctor";
+import { Notificaction } from 'app/admin/notification/EmailNotification';
+import { EmailNotificationService } from 'app/admin/notification/EmailNotificaction.service';
+import { AuthService } from '@core';
 
 @Component({
   selector: 'app-basic-table',
@@ -19,17 +22,20 @@ export class BasicTableComponent implements OnInit {
     'title',
     'date'
   ];
-
+  currentUser:any;
   message: string = '';
 
   public pageSlice : Resource[];
   constructor(private readonly resourceService: ResourceService,
+              private readonly authService:AuthService,
               private snackBar: MatSnackBar,
               private translate: TranslateService,
-              private paginatorIntl: MatPaginatorIntl
+              private paginatorIntl: MatPaginatorIntl,
+              public emailNotification: EmailNotificationService,
               ) {
     this.selectedResourceIds=[];
     this.paginatorIntl.itemsPerPageLabel = '';
+    this.currentUser = this.authService.currentUserValue;
     }
 
   resourcesList: Resource[];
@@ -53,6 +59,7 @@ export class BasicTableComponent implements OnInit {
       resources =>{
         this.loading=false
         this.resourcesList = resources;
+        console.log(resources)
         this.originalResourcesList=[...resources]
         this.pageSlice = this.resourcesList.slice(0,5);
         this.loading = false;
@@ -122,7 +129,18 @@ export class BasicTableComponent implements OnInit {
       switch (res) {
         case 200: {
           this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.RESDEL'), "Close");
-          // Usar filter para crear una nueva lista que excluya los objetos con los IDs a eliminar
+          
+          const deletedResource = this.resourcesList.find(resource => resource.id === id);
+
+          if (deletedResource && this.currentUser?.role === 'Admin') {
+            let notification = new Notificaction({
+              type: 'Resource Deletion',
+              message: `The resource titled '${deletedResource.title}' has been deleted by an admin.`,
+              email: (deletedResource.specialist as any).username
+            });
+            this.emailNotification.emailNotificate(notification).subscribe();
+          }
+        
           this.resourcesList = this.resourcesList.filter(resource => !this.selectedResourceIds.includes(resource.id));
           this.originalResourcesList = [...this.resourcesList]
           this.selectedResourceIds = [];

@@ -6,6 +6,8 @@ import Swal from 'sweetalert2';
 import { ForumServiceService } from '../services/forum-service.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UploadFileService } from 'app/global/upload-file/upload-file.service';
+import { Notificaction } from 'app/admin/notification/EmailNotification';
+import { EmailNotificationService } from 'app/admin/notification/EmailNotificaction.service';
 
 @Component({
   selector: 'app-comment',
@@ -20,14 +22,19 @@ export class CommentComponent implements OnInit {
   @Input() userImage:string;
   @Input() date:string;
   @Input() content:string;
-  
+  @Input() userEmail:string;
+  @Input() postTitle:string;
+  @Input() isAdmin:boolean;
+
   editingComment:boolean = false;
   commentEditorEnabled:boolean = false;
   commentEditorContent:string;
 
   constructor(private readonly forumService:ForumServiceService, 
               private readonly uploadFileService:UploadFileService,
-              private readonly translate:TranslateService) { }
+              private readonly translate:TranslateService,
+              private emailNotification: EmailNotificationService,
+              ) { }
 
   ngOnInit(): void {
     this.date = formatDate(this.date, 'yyyy-MM-dd', 'en');
@@ -51,6 +58,14 @@ export class CommentComponent implements OnInit {
         this.forumService.deleteComment(this.commentID).
         subscribe(
           response => {
+            if (this.isAdmin) {
+              let notification = new Notificaction({
+                type: 'Forum Comment Deleted',
+                message: `Your comment '${this.content}' in the post '${this.postTitle}' has been deleted by an admin.`,
+                email: this.userEmail
+              });
+              this.emailNotification.emailNotificate(notification).subscribe();
+            }
             this.forumComponent?.openPost(this.forumComponent?.currentPost?.id);
           },
           error => {
@@ -65,6 +80,7 @@ export class CommentComponent implements OnInit {
     this.editingComment = true;  
     this.commentEditorEnabled = true;  
     this.commentEditorContent = this.content;
+    console.log(this.isAdmin)
   }
 
   updateComment(): void {
@@ -78,6 +94,14 @@ export class CommentComponent implements OnInit {
     this.forumService.updateComment(updatedComment).
     subscribe(
       response => {
+        if (this.isAdmin) {
+          let notification = new Notificaction({
+            type: 'Forum Comment Edition',
+            message: `Your comment '${this.content}' in the post '${this.postTitle}' has been edited by an admin.`,
+            email: this.userEmail
+          });
+          this.emailNotification.emailNotificate(notification).subscribe();
+        }
         this.forumComponent?.reloadPost();
       },
       error => {

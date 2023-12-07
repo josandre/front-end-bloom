@@ -151,8 +151,8 @@
               <div>
                 <app-comment *ngFor="let comment of currentPost.comments" [forumComponent]="this"
                   [commentID]="comment.id" [userName]="comment.userName" [userImage]="comment.userImage"
-                  [date]="comment.creationDate" [content]="comment.content"
-                  [showAdvancedOptions]="showAdvancedOptions() === true">
+                  [date]="comment.creationDate" [content]="comment.content" [userEmail]="comment.userEmail" [postTitle]="currentPost.title"
+                  [showAdvancedOptions]="showAdvancedOptions() === true" [isAdmin]="this.isAdmin">
                 </app-comment>
               </div>
             </div>

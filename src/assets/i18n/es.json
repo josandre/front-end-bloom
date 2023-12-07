@@ -817,8 +817,20 @@
       "ERROR":"Algo salió mal al intentar guardar la entrada"
     },
     "DELETE":{
+      "BUTTON": "Eliminar",
       "SUCCESS":"Se ha eliminado la entrada",
       "ERROR":"Algo salió mal al intentar eliminar la entrada"
+    },
+    "EDIT": {
+      "DIALOG": {
+        "TITLE": "Editar Nombre del Diario",
+        "LABEL": "Nombre del diario",
+        "SAVE": "Guardar",
+        "CANCEL": "Cancelar"
+      }
+    },
+    "ENTRIES": {
+      "NUMBER": "Entradas"
     }
   },
   "ADMIN_SNACKBAR":{

@@ -64,7 +64,7 @@
                 </button>-->
                 <button mat-menu-item (click)="deleteEntry()">
                   <mat-icon class="icon-color">delete</mat-icon>
-                  <span>Delete</span>
+                  <span>{{'DIARY_ENTRY.DELETE.BUTTON' | translate}}</span>
                 </button>
               </mat-menu>
             </div>
@@ -90,7 +90,7 @@
                 </div>
                 <div class="details-content">
                   <div class="mb-3">
-                    <span>Entries </span>
+                    <span>{{'DIARY_ENTRY.ENTRIES.NUMBER' | translate}} </span>
                     <span>{{ this.entries?.length }}</span>
                   </div>
                 </div>

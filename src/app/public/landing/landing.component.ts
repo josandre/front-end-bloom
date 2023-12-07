@@ -7,6 +7,7 @@ import { REVIEWS } from './reviews.constants';
 import { PublicService } from '../services/public.service'; // Importa el servicio público
 import { Doctor } from '../landing/doctors.constants';
 import { filter } from 'rxjs/operators';
+import { UploadFileService } from 'app/global/upload-file/upload-file.service';
 
 @Component({
   selector: 'app-landing',
@@ -60,7 +61,8 @@ export class LandingComponent implements OnInit {
     private route: ActivatedRoute, 
     private router: Router, 
     private publicService: PublicService,
-    private translate: TranslateService // Inyecta el servicio de traducción
+    private translate: TranslateService,
+    private readonly fileService: UploadFileService
   ) {
     // Configura el servicio de traducción (asegúrate de tenerlo configurado en tu app)
     translate.setDefaultLang('en'); // Establece el idioma predeterminado
@@ -85,6 +87,10 @@ export class LandingComponent implements OnInit {
       selectField: new FormControl(''),
     });
     this.loadDoctors(); // Llama a la función para cargar los doctores
+  }
+
+  getPhoto(urlPhoto: string){
+    return this.fileService.getPhotoToList("assets/images/user/user.png", urlPhoto)
   }
 
   // Carga las profesiones de los doctores
@@ -123,7 +129,6 @@ export class LandingComponent implements OnInit {
   navigateToRegister(): void {
     this.router.navigate(['/authentication/signup']);
   }
-
   // Carga los doctores desde el servicio público
   private loadDoctors(): void {
     this.isLoading = true;

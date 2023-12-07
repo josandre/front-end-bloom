@@ -1,18 +1,25 @@
 import {Injectable} from "@angular/core";
-import {Message} from "../models/Message";
+import {Message} from "../../apps/chat/models/Message";
 import {AuthService} from "@core";
 import {Subject} from "rxjs";
+import {RealTimeEvent} from "../models/RealTimeEvent";
+
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class WebSocketService{
   private websocket : WebSocket;
+
+
   private readonly chatMessages: Map<number, Message[]> = new Map<number, Message[]>();
 
   messageReceived$: Subject<MessageReceivedNotification> = new Subject<MessageReceivedNotification>();
 
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService) {
+    this.openWebSocket();
+  }
 
   addConversationsIntoDict(conversationId: number, messages: Message[]) {
     this.chatMessages.set(conversationId, messages)
@@ -22,17 +29,20 @@ export class WebSocketService{
     return this.chatMessages.get(conversationId);
   }
 
-  public openWebSocket() {
+  private openWebSocket() {
     const currentUser = this.authService.currentUserValue
     const userId = currentUser.actualUserId ?? currentUser.id
-    this.websocket = new WebSocket(`ws://18.216.33.113:8080/chat?id=${userId}`)
+    this.websocket = new WebSocket(`ws://localhost:8080/app?id=${userId}`)
 
     this.websocket.onopen = (event)=> {
       console.log('open', event)
     }
 
     this.websocket.onmessage = (event)=> {
-      const message = JSON.parse(event.data);
+      console.log(event)
+      const eventData = JSON.parse(event.data);
+      const message = eventData.data;
+      console.log(message)
 
       const existingMessages = this.chatMessages.get(message.conversationId) ?? [];
       this.chatMessages.set(message.conversationId, [...existingMessages, message])
@@ -43,7 +53,7 @@ export class WebSocketService{
       }
 
       // Notify to subscribers that I got new message
-      console.log("NOTIFICANDO")
+
       this.messageReceived$.next(messageReceivedNotification)
     }
 
@@ -52,11 +62,15 @@ export class WebSocketService{
     }
   }
 
-  public sendMessage(message: Message){
+  public sendMessage(realTimeEventData: RealTimeEvent){
     const currentUser = this.authService.currentUserValue
-    message.senderId = currentUser.actualUserId ?? currentUser.id
 
-    this.websocket.send(JSON.stringify(message))
+    if(realTimeEventData.data instanceof Message){
+      realTimeEventData.data.senderId = currentUser.actualUserId ?? currentUser.id
+    }
+
+    console.log("data", realTimeEventData)
+    this.websocket.send(JSON.stringify(realTimeEventData))
   }
 
   public closeWebSocket(){

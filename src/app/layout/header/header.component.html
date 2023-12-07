@@ -18,20 +18,19 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <!-- Full Screen Button -->
+
         <li class="fullscreen">
           <button mat-button class="nav-notification-icons" (click)="callFullscreen()"> <i
               class="material-icons-outlined icon-color">
               fullscreen
             </i></button>
         </li>
-        <!-- #END# Full Screen Button -->
-        <!-- #START# Notifications-->
+
         <li>
-<!--          <button mat-button [matMenuTriggerFor]="notificationMenu" class="nav-notification-icons"> <i-->
-<!--              class="material-icons-outlined icon-color">-->
-<!--              notifications_active-->
-<!--            </i></button>-->
+          <button mat-button [matMenuTriggerFor]="notificationMenu" class="nav-notification-icons"> <i
+              class="material-icons-outlined icon-color">
+              notifications_active
+            </i></button>
           <mat-menu #notificationMenu="matMenu" class="nfc-menu">
             <div class="nfc-header">
               <h5 class="mb-0">Notitications</h5>
@@ -42,16 +41,19 @@
                 <div class="noti-list header-menu">
                   <div class="menu">
                     <div>
-                      <button mat-menu-item *ngFor="let notification of notifications" onClick="return false;"
-                        [ngClass]="[notification.status]">
-                        <span class="table-img msg-user ">
-                          <i class="material-icons-two-tone nfc-type-icon"
-                            [ngClass]="[notification.color]">{{notification.icon}}</i>
+                      <button mat-menu-item *ngFor="let notification of notificationsList" onClick="return false;">
+                        <span class="table-img msg-user " [ngSwitch]="notification.category">
+                          <i class="material-icons-two-tone nfc-type-icon" *ngSwitchCase="WORK"
+                            >work</i>
+                           <i class="material-icons-two-tone nfc-type-icon" *ngSwitchCase="PERSONAL"
+                           >email</i>
+                          <i class="material-icons-two-tone nfc-type-icon" *ngSwitchCase="IMPORTANT"
+                          >warning</i>
                         </span>
                         <span class="menu-info">
-                          <span class="menu-title">{{notification.message}}</span>
-                          <span class="menu-desc mt-2">
-                            <i class="material-icons">access_time</i> {{notification.time}}
+                          <span class="menu-title">{{notification.title}}</span>
+                          <span class="menu-desc mt-2" >
+                            <i class="material-icons">access_time</i> {{notification.date}}
                           </span>
                         </span>
                         <span class="nfc-close">
@@ -69,7 +71,7 @@
             </div>
           </mat-menu>
         </li>
-        <!-- #END# Notifications-->
+
         <li class="nav-item">
           <button mat-button [matMenuTriggerFor]="languagemenu" class="lang-dropdown nav-notification-icons"> <img
               *ngIf="flagvalue !== undefined" src="{{flagvalue}}" height="16">
@@ -105,7 +107,6 @@
             </div>
           </mat-menu>
         </li>
-        <!-- #END# Tasks -->
       </ul>
     </div>
   </div>

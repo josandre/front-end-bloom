@@ -15,10 +15,11 @@ import {
   RightSidebarService,
 } from '@core';
 import { UnsubscribeOnDestroyAdapter } from '@shared';
-import {WebSocketService} from "../../global/services/web-socket.service";
+
 import {NotificationsService} from "./services/notifications.service";
 import {SystemNotification} from "./models/SystemNotification";
 import {EventCategoryEnum} from "../../calendar/model/event-category-enum";
+import {WebSocketService} from "../../global/services/web-socket.service";
 
 
 @Component({

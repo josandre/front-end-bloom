@@ -38,6 +38,7 @@ export class ReadResourceComponent implements OnInit {
   taskList: Task[];
   checkedList: Array<number> = [];
   flag: boolean = false;
+  checkflag: boolean = false;
   role = this.resourceService.getRole();
 
   // User info
@@ -78,15 +79,16 @@ export class ReadResourceComponent implements OnInit {
               this.taskList.forEach((task) => {
                 this.resourceService.getTaskChecks(task.id).subscribe(data => {
                   task.done = data;
+                  this.checkflag = true;
                 });
               });
+            }else{
+              if (this.role === 'Doctor'){
+                this.checkflag = true;
+                // Display resource history
+                this.loadHistoryData();
+              }
             }
-            else if (this.role === 'Doctor') {
-              // Display resource history
-              this.loadHistoryData();
-            }
-
-
           }
           sessionStorage.removeItem('resourceId');
           sessionStorage.clear();
@@ -164,19 +166,20 @@ export class ReadResourceComponent implements OnInit {
           this.resourceService.userCheckTask(task1).subscribe((res: NonNullable<unknown>) => {
             switch (res) {
               case 200: {
-                this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.TASKCHECK'), "Close");
+                // this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.TASKCHECK'), "Close");
                 break;
               }
             }
           }, error => {
             switch (error.error) {
               case 404:
-                this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.TASKNOTCHECK'), "Close");
+                // this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.TASKNOTCHECK'), "Close");
                 break;
             }
           })
         }
       });
+      this.checkflag = true;
     }
   }
   removeTask(id: number) {

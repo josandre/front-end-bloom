@@ -104,7 +104,6 @@ export class ResourceService {
   }
 
   getResourceHistory(resourceID: number) : Observable<ResourceHistory[]> {
-    console.log('Yeah');
     const currentUser = this.authenticationService.currentUserValue;
     const URL = `${this.baseUrl}/resource-history/${resourceID}`;
     return this.http.get<ResourceHistory[]>(URL, {headers: {'Authorization':  `Bearer ${currentUser.token}`}});
@@ -113,7 +112,6 @@ export class ResourceService {
   saveResourceHistory(data: {id: number, action: number, user: {id: number}, resource: {id: number}}) {
     const currentUser = this.authenticationService.currentUserValue;
     const URL = `${this.baseUrl}/resource-history`;
-    console.log(data);
     return this.http.post(URL, data, {headers: {'Authorization':  `Bearer ${currentUser.token}`}});
   }
 }

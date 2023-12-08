@@ -715,7 +715,9 @@
     "LASTNAME": "Last Name",
     "NAME": "Name",
     "USERNAME": "Username",
-    "STATE": "Active"
+    "STATE": "Active",
+    "SEARCH_BY_DOCTOR":"Search doctor",
+    "SEARCH_BY_PATIENT":"Search patient"
   },
   "SING_UP": {
     "TITLE": "Sign Up",

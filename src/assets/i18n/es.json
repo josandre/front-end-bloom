@@ -717,7 +717,9 @@
     "LASTNAME": "Apellido",
     "NAME": "Nombre",
     "USERNAME": "Usuario",
-    "STATE": "Activo"
+    "STATE": "Activo",
+    "SEARCH_BY_DOCTOR":"Buscar doctor",
+    "SEARCH_BY_PATIENT":"Buacar paciente"
   },
   "SING_UP":{
     "TITLE":"Registrarme",

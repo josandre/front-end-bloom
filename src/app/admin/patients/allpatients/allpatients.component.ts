@@ -92,6 +92,7 @@ export class AllpatientsComponent
     filterText = filterText.trim();
     filterText = filterText.toLowerCase()
    this.dataSource.filter = filterText;
+   this.pageSlice = this.dataSource.filteredData.slice(0,5);
   }
 
 

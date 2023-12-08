@@ -15,14 +15,11 @@ import {
   RightSidebarService,
 } from '@core';
 import { UnsubscribeOnDestroyAdapter } from '@shared';
+import {WebSocketService} from "../../global/services/web-socket.service";
+import {NotificationsService} from "./services/notifications.service";
+import {SystemNotification} from "./models/SystemNotification";
+import {EventCategory} from "../../global/models/eventcategory";
 
-interface Notifications {
-  message: string;
-  time: string;
-  icon: string;
-  color: string;
-  status: string;
-}
 
 @Component({
   selector: 'app-header',
@@ -34,6 +31,9 @@ export class HeaderComponent
   implements OnInit
 {
   public config!: InConfiguration;
+  WORK: EventCategory.WORK;
+  PERSONAL: EventCategory.PERSONAL;
+  IMPORTANT: EventCategory.IMPORTANT;
   userImg?: string;
   userName: string;
   homePage?: string;
@@ -42,9 +42,10 @@ export class HeaderComponent
   countryName: string | string[] = [];
   langStoreValue?: string;
   defaultFlag?: string;
-  isOpenSidebar?: boolean;
   docElement?: HTMLElement;
   isFullScreen = false;
+  notificationsList: Array<SystemNotification> = [];
+  notificationsCounter = 0;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -55,7 +56,8 @@ export class HeaderComponent
     private authService: AuthService,
     private router: Router,
     public languageService: LanguageService,
-
+    private webSocketService: WebSocketService,
+    private notificationService: NotificationsService
   ) {
     super();
   }
@@ -63,59 +65,9 @@ export class HeaderComponent
   listLang = [
     { text: 'English', flag: 'assets/images/flags/us.svg', lang: 'en' },
     { text: 'Spanish', flag: 'assets/images/flags/spain.svg', lang: 'es' },
-    // { text: 'German', flag: 'assets/images/flags/germany.svg', lang: 'de' },
   ];
-  notifications: Notifications[] = [
-    {
-      message: 'Please check your mail',
-      time: '14 mins ago',
-      icon: 'mail',
-      color: 'nfc-green',
-      status: 'msg-unread',
-    },
-    {
-      message: 'New Patient Added..',
-      time: '22 mins ago',
-      icon: 'person_add',
-      color: 'nfc-blue',
-      status: 'msg-read',
-    },
-    {
-      message: 'Your leave is approved!! ',
-      time: '3 hours ago',
-      icon: 'event_available',
-      color: 'nfc-orange',
-      status: 'msg-read',
-    },
-    {
-      message: 'Lets break for lunch...',
-      time: '5 hours ago',
-      icon: 'lunch_dining',
-      color: 'nfc-blue',
-      status: 'msg-read',
-    },
-    {
-      message: 'Patient report generated',
-      time: '14 mins ago',
-      icon: 'description',
-      color: 'nfc-green',
-      status: 'msg-read',
-    },
-    {
-      message: 'Please check your mail',
-      time: '22 mins ago',
-      icon: 'mail',
-      color: 'nfc-red',
-      status: 'msg-read',
-    },
-    {
-      message: 'Salary credited...',
-      time: '3 hours ago',
-      icon: 'paid',
-      color: 'nfc-purple',
-      status: 'msg-read',
-    },
-  ];
+
+
   ngOnInit() {
     this.userName = this.authService.currentUserValue.firstName +  " " + this.authService.currentUserValue.lastName;
     this.config = this.configService.configData;
@@ -144,7 +96,22 @@ export class HeaderComponent
     } else {
       this.flagvalue = val.map((element) => element.flag);
     }
+
+    this.notificationService.getNotifications().subscribe((notification) => {
+      this.notificationsList = notification.list;
+      console.log("endpoint", this.notificationsList)
+    })
+
+    this.webSocketService.notificationReceived$.subscribe((notifications) => {
+
+      this.notificationsList = [...notifications, ...this.notificationsList]
+      console.log("socket", this.notificationsList)
+      console.log("from socket", notifications)
+      this.notificationsCounter ++;
+    })
+
   }
+
   profile(){
     if(this.authService.currentUserValue.role==='Doctor'){
       this.router.navigate(['/doctor/doctor-profile']);
@@ -152,6 +119,7 @@ export class HeaderComponent
       this.router.navigate(['/patient/patient-profile']);
     }
   }
+
   callFullscreen() {
     if (!this.isFullScreen) {
       if (this.docElement?.requestFullscreen != null) {
@@ -162,12 +130,14 @@ export class HeaderComponent
     }
     this.isFullScreen = !this.isFullScreen;
   }
+
   setLanguage(text: string, lang: string, flag: string) {
     this.countryName = text;
     this.flagvalue = flag;
     this.langStoreValue = lang;
     this.languageService.setLanguage(lang);
   }
+
   mobileMenuSidebarOpen(event: Event, className: string) {
     const hasClass = (event.target as HTMLInputElement).classList.contains(
       className
@@ -178,6 +148,7 @@ export class HeaderComponent
       this.renderer.addClass(this.document.body, className);
     }
   }
+
   callSidemenuCollapse() {
     const hasClass = this.document.body.classList.contains('side-closed');
     if (hasClass) {
@@ -190,11 +161,22 @@ export class HeaderComponent
       localStorage.setItem('collapsed_menu', 'true');
     }
   }
+
   logout() {
+    this.webSocketService.closeWebSocket();
     this.subs.sink = this.authService.logout().subscribe((res) => {
       if (!res.success) {
         this.router.navigate(['/authentication/signin']);
       }
     });
+  }
+
+  startCounter(){
+    this.notificationsCounter = 0;
+
+  }
+
+  getDate(date: Date){
+    return new Date(date).toLocaleDateString()
   }
 }

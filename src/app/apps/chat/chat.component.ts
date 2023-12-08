@@ -1,20 +1,23 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Conversation} from "./models/Conversation";
 import {ConversationService} from "./services/conversation.service";
 import {Message} from "./models/Message";
-import {WebSocketService} from "./services/web-socket.service";
+import {WebSocketService} from "../../global/services/web-socket.service";
 import {AuthService} from "@core";
 import {MessageService} from "./services/message.service";
 import {filter} from "rxjs";
 import {UploadFileService} from "../../global/upload-file/upload-file.service";
+import {RealTimeEvent} from "../../global/models/RealTimeEvent";
+import {RealTimeEventTypeEnum} from "../../global/models/RealTimeEventTypeEnum";
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss'],
 })
-export class ChatComponent implements OnInit, OnDestroy{
+
+export class ChatComponent implements OnInit{
   hideRequiredControl = new FormControl(false);
   conversations : Array<Conversation>
   conversationList: Array<Conversation>
@@ -26,9 +29,13 @@ export class ChatComponent implements OnInit, OnDestroy{
   word= '';
 
 
-  constructor(private readonly messageService: MessageService, private formBuilder: FormBuilder,private readonly conversationService: ConversationService, public webSocketService: WebSocketService, private readonly authService: AuthService,
-  private readonly fileService: UploadFileService) {}
 
+  constructor(private readonly messageService: MessageService,
+              private formBuilder: FormBuilder,
+              private readonly conversationService: ConversationService,
+              public webSocketService: WebSocketService,
+              private readonly authService: AuthService,
+              private readonly fileService: UploadFileService) {}
 
   ngOnInit(): void {
     this.authForm = this.formBuilder.group({
@@ -38,9 +45,7 @@ export class ChatComponent implements OnInit, OnDestroy{
       }),
     })
 
-
     this.loadConversations()
-    this.webSocketService.openWebSocket();
 
     this.webSocketService.messageReceived$
       .pipe(filter(m => this.conversationSelected && m.conversationId == this.conversationSelected.id))
@@ -85,15 +90,15 @@ export class ChatComponent implements OnInit, OnDestroy{
         date: new Date()
       })
 
-      this.webSocketService.sendMessage(message);
-      // this.authForm.controls['message'].setValue("")
+      const realTimeEvent = new RealTimeEvent({
+        data: message
+      })
+
+      this.webSocketService.sendMessage(realTimeEvent);
+
       this.resetPassControl('message')
     }
 
-  }
-
-  ngOnDestroy() {
-    this.webSocketService.closeWebSocket()
   }
 
   getConversationInformation(conversation: Conversation){

@@ -14,6 +14,7 @@ import { ComponentsModule } from '@shared/components/components.module';
 import { SharedModule } from '@shared';
 import {TranslateModule} from "@ngx-translate/core";
 
+
 @NgModule({
     imports: [
         CommonModule,

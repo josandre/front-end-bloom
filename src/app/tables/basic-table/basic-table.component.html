@@ -62,6 +62,10 @@
                 </mat-row>
 
               </table>
+              <div *ngIf="!loading" class="no-results"
+                  [style.display]="resourcesList.length === 0 ? '' : 'none'">
+                  {{'ADMIN.NO_RESULT' | translate}}
+              </div>
               <mat-paginator #paginator
                              [length]="resourcesList.length"
                              [pageSize]="5"
@@ -74,10 +78,7 @@
                 </mat-progress-spinner>
               </div>
 
-              <div *ngIf="!loading" class="no-results"
-                   [style.display]="resourcesList.length === 0 ? '' : 'none'">
-                   {{'ADMIN.NO_RESULT' | translate}}
-              </div>
+
             </div>
           </div>
         </div>

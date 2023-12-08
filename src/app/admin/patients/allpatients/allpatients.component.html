@@ -86,16 +86,17 @@
                 <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
                 </mat-progress-spinner>
               </div>
+              <div *ngIf="!loading" class="no-results"
+              [style.display]="dataSource.data.length === 0 ? '' : 'none'">
+              {{'ADMIN.NO_RESULT' | translate}}
+            </div>
               <mat-paginator #paginator
                              [length]="dataSource.filteredData.length"
                              [pageSize]="5"
                              [pageSizeOptions]="[5, 10, 25]"
                              (page) = "OnPageChange($event)">
               </mat-paginator>
-              <div *ngIf="!loading" class="no-results"
-                [style.display]="dataSource.data.length === 0 ? '' : 'none'">
-                {{'ADMIN.NO_RESULT' | translate}}
-              </div>
+
             </div>
           </div>
         </div>

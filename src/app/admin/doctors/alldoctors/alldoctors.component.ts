@@ -58,8 +58,7 @@ export class AlldoctorsComponent
     super();
     this.paginatorIntl.itemsPerPageLabel = '';
   }
-  @ViewChild(MatPaginator, { static: true })
-  paginator!: MatPaginator;
+  @ViewChild('paginator') paginator: MatPaginator;
   @ViewChild(MatSort, { static: true })
   sort!: MatSort;
 
@@ -90,9 +89,8 @@ export class AlldoctorsComponent
    let filterText: string = filterValue.value
     filterText = filterText.trim();
     filterText = filterText.toLowerCase()
-   //const currentPageSize = this.paginator.pageSize;
    this.dataSource.filter = filterText;
-   this.pageSlice = this.dataSource.filteredData.slice(0,5);
+   this.pageSlice = this.dataSource.filteredData.slice(0,this.paginator.pageSize);
   }
 
   exportExcel() {

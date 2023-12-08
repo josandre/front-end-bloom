@@ -58,8 +58,7 @@ export class AllpatientsComponent
     super();
     this.paginatorIntl.itemsPerPageLabel = '';
   }
-  @ViewChild(MatPaginator, { static: true })
-  paginator!: MatPaginator;
+  @ViewChild('paginator') paginator: MatPaginator;
   @ViewChild(MatSort, { static: true })
   sort!: MatSort;
 
@@ -92,7 +91,7 @@ export class AllpatientsComponent
     filterText = filterText.trim();
     filterText = filterText.toLowerCase()
    this.dataSource.filter = filterText;
-   this.pageSlice = this.dataSource.filteredData.slice(0,5);
+   this.pageSlice = this.dataSource.filteredData.slice(0,this.paginator.pageSize);
   }
 
 

@@ -18,7 +18,7 @@ import { UnsubscribeOnDestroyAdapter } from '@shared';
 import {WebSocketService} from "../../global/services/web-socket.service";
 import {NotificationsService} from "./services/notifications.service";
 import {SystemNotification} from "./models/SystemNotification";
-import {EventCategory} from "../../global/models/eventcategory";
+import {EventCategoryEnum} from "../../calendar/model/event-category-enum";
 
 
 @Component({
@@ -31,9 +31,9 @@ export class HeaderComponent
   implements OnInit, OnDestroy
 {
   public config!: InConfiguration;
-  WORK: EventCategory.WORK;
-  PERSONAL: EventCategory.PERSONAL;
-  IMPORTANT: EventCategory.IMPORTANT;
+  WORK: EventCategoryEnum.WORK;
+  PERSONAL: EventCategoryEnum.PERSONAL;
+  IMPORTANT: EventCategoryEnum.IMPORTANT;
   userImg?: string;
   userName: string;
   homePage?: string;

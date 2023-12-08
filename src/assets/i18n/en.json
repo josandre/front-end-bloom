@@ -617,12 +617,52 @@
         "SEVERE": "Severe",
         "DEBILITATING": "Debilitating",
         "INDETERMINATE": "Indeterminate"
-
       },
       "DELETE_CONFIRMATION": "Are you sure?",
       "DELETE": "Delete"
     }
-
+  },
+  "EVENTS": {
+    "DIALOG": {
+      "TITLE": {
+        "NEW": "New Event",
+        "EDIT": "Edit Event"
+      }
+    },
+    "SNACKBAR": {
+      "SAVE": "Event saved",
+      "DELETE": "Event deleted",
+      "ACTION": {
+        "CLOSE": "Close"
+      }
+    },
+    "MY_CALENDARS": "My Calendars",
+    "ADD": {
+      "LABEL": {
+        "TIME": "Time",
+        "NOTIFICATION_TYPE": "Notification type",
+        "TITLE": "Title",
+        "CATEGORY": "Category",
+        "START_DATE": "Start date",
+        "END_DATE": "End date",
+        "EVENT_DETAILS": "Details"
+      },
+      "EVENT_CATEGORY": {
+        "WORK": "Work",
+        "PERSONAL": "Personal",
+        "IMPORTANT": "Important"
+      },
+      "NOTIFICATION_TYPE": {
+        "DAYS": "Days",
+        "HOURS": "Hours",
+        "MINUTES": "Minutes"
+      },
+      "BUTTON": {
+        "ADD_EVENT": "Add Event",
+        "SAVE": "Save",
+        "CANCEL": "Cancel"
+      }
+    }
   },
   "PROFILE": {
     "SELECTED_PHOTO": "No files selected",

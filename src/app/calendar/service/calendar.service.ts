@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable, throwError} from 'rxjs';
-import {CalendarEvent} from '../model/calendar.model';
+import {CalendarEvent} from '../model/calendar-event.model';
 import {HttpClient, HttpErrorResponse, HttpHeaders,} from '@angular/common/http';
 import {AuthService} from "@core";
 import {API_URL} from "../../../config";

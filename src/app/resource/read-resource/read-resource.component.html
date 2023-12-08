@@ -1,5 +1,5 @@
 <section class="content">
-  
+
   <div class="content-block">
     <div class="block-header">
 
@@ -61,12 +61,8 @@
         </div>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9" *ngIf="taskList.length > 0 || role === 'Doctor'">
-        <div class="center" *ngIf="!checkflag">
-          <app-spinner [isLoading]="!checkflag" [message]="message | translate">
-          </app-spinner>
-        </div>
 
-        <div class="card" *ngIf="checkflag">
+        <div class="card" >
           <div class="boxs mail_listing">
             <div class="inbox-center table-responsive">
               <table class="table table-hover">
@@ -123,7 +119,7 @@
             <div class="header">
               <h1>{{'RESOURCES_HISTORY.HISTORY_TITLE' | translate}}</h1>
             </div>
-  
+
             <div class="content">
               <div class="materialTableHeader">
                 <div class="left">
@@ -140,7 +136,7 @@
                 </div>
                 <div class="right">
                   <ul class="tbl-export-btn">
-    
+
                     <li class="tbl-header-btn">
                       <div class="m-l-10" matTooltip="REFRESH">
                         <button mat-mini-fab color="primary" (click)="refreshHistory()">
@@ -159,31 +155,31 @@
                       <mat-header-cell *matHeaderCellDef mat-sort-header>{{'RESOURCES_HISTORY.COLUMN_DATE' | translate}}</mat-header-cell>
                       <mat-cell *matCellDef="let row">{{row.date}}</mat-cell>
                     </ng-container>
-    
+
                     <!-- User column -->
                     <ng-container matColumnDef="user">
                       <mat-header-cell *matHeaderCellDef mat-sort-header>{{'RESOURCES_HISTORY.COLUMN_USER' | translate}}</mat-header-cell>
                       <mat-cell *matCellDef="let row"> <span class="mobile-label">User:</span>{{row.userName}}</mat-cell>
                     </ng-container>
-                    
+
                     <!-- Action column -->
                     <ng-container matColumnDef="action">
                       <mat-header-cell *matHeaderCellDef mat-sort-header>{{'RESOURCES_HISTORY.COLUMN_ACTION' | translate}}</mat-header-cell>
                       <mat-cell *matCellDef="let row"> <span class="mobile-label">Action:</span>{{row.action}}</mat-cell>
                     </ng-container>
-    
+
                     <!-- Task column -->
                     <ng-container matColumnDef="task">
                       <mat-header-cell *matHeaderCellDef mat-sort-header>{{'RESOURCES_HISTORY.COLUMN_TASK' | translate}}</mat-header-cell>
                       <mat-cell *matCellDef="let row"> <span class="mobile-label">Task:</span>{{row.taskName}}</mat-cell>
                     </ng-container>
-    
+
                     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                     <mat-row *matRowDef="let row; columns: displayedColumns;"
                       [style.cursor]="'pointer'" >
                     </mat-row>
                   </table>
-    
+
                    <!-- Loading spinner -->
                    <div *ngIf="loadingHistory === true" class="tbl-spinner">
                     <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
@@ -200,7 +196,7 @@
                                 (page) = "OnHistoryPageChange($event)">
                   </mat-paginator>
 
-                  
+
                 </div>
               </div>
             </div>

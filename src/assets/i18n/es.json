@@ -844,5 +844,11 @@
     "DOCTOR_SUCCESS":"Cambió el estado del doctor",
     "SERVER_ERROR":"Error del servidor",
     "PATIENT_SUCCESS":"Cambió el estado del usuario"
+  },
+  "ADMIN":{
+    "NO_RESULT":"No se encontró información",
+    "NAME":"Nombre",
+    "USER_NAME":"Nombre de Usuario",
+    "LAST_NAME":"Apellidos"
   }
 }

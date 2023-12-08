@@ -843,6 +843,12 @@
     "SERVER_ERROR":"Server error",
     "PATIENT_SUCCESS":"Patient state changed"
 
+  },
+  "ADMIN":{
+    "NO_RESULT":"No results",
+    "NAME":"Name",
+    "USER_NAME":"Username",
+    "LAST_NAME":"Last Name"
   }
 
 

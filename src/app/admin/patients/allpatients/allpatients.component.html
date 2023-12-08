@@ -79,21 +79,22 @@
                   [style.cursor]="'pointer'" >
                 </mat-row>
               </table>
-              <mat-paginator #paginator
-                             [length]="dataSource.filteredData.length"
-                             [pageSize]="5"
-                             [pageSizeOptions]="[5, 10, 25]"
-                             (page) = "OnPageChange($event)">
-              </mat-paginator>
+              
 
               <!-- Loading spinner -->
               <div *ngIf="loading" class="tbl-spinner">
                 <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
                 </mat-progress-spinner>
               </div>
+              <mat-paginator #paginator
+                             [length]="dataSource.filteredData.length"
+                             [pageSize]="5"
+                             [pageSizeOptions]="[5, 10, 25]"
+                             (page) = "OnPageChange($event)">
+              </mat-paginator>
               <div *ngIf="!loading" class="no-results"
                 [style.display]="dataSource.data.length === 0 ? '' : 'none'">
-                No results
+                {{'ADMIN.NO_RESULT' | translate}}
               </div>
             </div>
           </div>

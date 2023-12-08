@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 import { TranslateService } from "@ngx-translate/core";
 import { MatTableDataSource } from '@angular/material/table';
 import { ResourceHistory } from '../models/ResourceHistory';
-import { PageEvent } from '@angular/material/paginator';
+import { MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
 import { formatDate } from '@angular/common';
 import { AuthService } from '@core';
 
@@ -27,9 +27,11 @@ export class ReadResourceComponent implements OnInit {
     private readonly resourceService: ResourceService,
     private router: Router,
     private snackBar: MatSnackBar,
-    private readonly translate: TranslateService) {
-
+    private readonly translate: TranslateService,
+    private paginatorIntl: MatPaginatorIntl) {
+      this.paginatorIntl.itemsPerPageLabel = '';
   }
+  
   id: string | null;
   resource: Resource;
   patientsList: User[];
@@ -257,7 +259,7 @@ export class ReadResourceComponent implements OnInit {
     this.loadingHistory = true;
     this.historyDataSource = new MatTableDataSource<ResourceHistory>([]);
     this.historyPageSlice = this.historyDataSource.filteredData.slice(0, 5);
-    
+
     this.resourceService.getResourceHistory(this.resource.id)
     .subscribe({
       next: (historyElements) => {
@@ -269,7 +271,7 @@ export class ReadResourceComponent implements OnInit {
             historyElement.action = this.translate.instant('RESOURCES_HISTORY.COMPLETE_TASK');
           }
           
-          historyElement.date = formatDate(historyElement.date, 'yyyy-MM-dd hh:mm', 'en');
+          historyElement.date = formatDate(historyElement.date, 'yyyy-MM-dd HH:mm', 'en');
         });
 
         this.historyDataSource = new MatTableDataSource<ResourceHistory>(historyElements);
@@ -285,6 +287,7 @@ export class ReadResourceComponent implements OnInit {
     filterText = filterText.toLowerCase();
 
     this.historyDataSource.filter = filterText;
+    this.historyPageSlice = this.historyDataSource.filteredData.slice(0,5);
   }
 
   refreshHistory() {

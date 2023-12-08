@@ -91,7 +91,6 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.authService.currentUserValue)
     this.name = this.authService.currentUserValue.firstName + " " + this.authService.currentUserValue.lastName
     this.fetchEvents();
     this.fetchMedicalRecord();

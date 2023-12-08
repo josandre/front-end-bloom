@@ -55,9 +55,11 @@ export class ReadResourceComponent implements OnInit{
                   this.checkflag = true;
                 });
               });
+            }else{
+              if (this.role === 'Doctor'){
+                this.checkflag = true;
+              }
             }
-
-
           }
           sessionStorage.removeItem('resourceId');
           sessionStorage.clear();

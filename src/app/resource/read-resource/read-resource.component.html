@@ -61,7 +61,12 @@
         </div>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9" *ngIf="taskList.length > 0 || role === 'Doctor'">
-        <div class="card">
+        <div class="center" *ngIf="!checkflag">
+          <app-spinner [isLoading]="!checkflag" [message]="message | translate">
+          </app-spinner>
+        </div>
+
+        <div class="card" *ngIf="checkflag">
           <div class="boxs mail_listing">
             <div class="inbox-center table-responsive">
               <table class="table table-hover">

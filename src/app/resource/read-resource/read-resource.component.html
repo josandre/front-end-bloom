@@ -184,6 +184,11 @@
                     <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
                     </mat-progress-spinner>
                   </div>
+                  
+                  <div *ngIf="loadingHistory === false" class="no-results"
+                    [style.display]="historyDataSource.data.length === 0 ? '' : 'none'">
+                    {{'RESOURCES_HISTORY.NO_RESULTS' | translate}}
+                  </div>
 
                   <mat-paginator #paginator
                                 [length]="historyDataSource.filteredData.length"
@@ -191,11 +196,6 @@
                                 [pageSizeOptions]="[5, 10, 25]"
                                 (page) = "OnHistoryPageChange($event)">
                   </mat-paginator>
-
-                  <div *ngIf="loadingHistory === false" class="no-results"
-                    [style.display]="historyDataSource.data.length === 0 ? '' : 'none'">
-                    {{'RESOURCES_HISTORY.NO_RESULTS' | translate}}
-                  </div>
                 </div>
               </div>
             </div>

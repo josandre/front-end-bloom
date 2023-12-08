@@ -239,7 +239,11 @@
       "NOPATIENT": "Please choose at least one patient",
       "MODRES": "Modifying your resource, please wait...",
       "RESMOD": "Resource was modified successfully",
-      "RESNOTMOD": "Resource was not modified"
+      "RESNOTMOD": "Resource was not modified",
+      "MODTASKTITLE": "Modify the task",
+      "MODIFY": "Modify",
+      "CANCEL": "Cancel",
+      "INPUT": "You need to input something!"
     }
   },
   "DASHBOARD_DOCTOR": {

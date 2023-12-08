@@ -239,7 +239,11 @@
       "NOPATIENT": "Por favor seleccione al menos un paciente",
       "MODRES": "Modificando el recurso, por favor espere un momento...",
       "RESMOD": "El recurso ha sido modificado exitosamente",
-      "RESNOTMOD": "El recurso no ha sido modificado"
+      "RESNOTMOD": "El recurso no ha sido modificado",
+      "MODTASKTITLE": "Modificar la tarea",
+      "MODIFY": "Modificar",
+      "CANCEL": "Cancelar",
+      "INPUT": "Por favor ingrese un texto!"
     }
   },
   "DASHBOARD_DOCTOR": {

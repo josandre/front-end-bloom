@@ -1,6 +1,6 @@
 import {RealTimeEventTypeEnum} from "./RealTimeEventTypeEnum";
 import {Message} from "../../apps/chat/models/Message";
-import {CalendarEvent} from "../../calendar/model/calendar.model";
+import {CalendarEvent} from "../../calendar/model/calendar-event.model";
 
 export class RealTimeEvent{
   type: RealTimeEventTypeEnum;

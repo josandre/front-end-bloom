@@ -11,15 +11,17 @@
             <div class="row">
               <div class="col-md-2 col-sm-12 p-l-30">
                 <div class="m-b-25">
-                  <button mat-raised-button color="primary" (click)="addNewEvent()">Add Event</button>
+                  <button mat-raised-button color="primary" (click)="addNewEvent()">
+                    {{'EVENTS.ADD.BUTTON.ADD_EVENT' | translate}}
+                  </button>
                 </div>
-                <p>My Calendars</p>
+                <p>{{'EVENTS.MY_CALENDARS' | translate}}</p>
                 <div class="filter-container">
                   <ul>
                     <li *ngFor="let filter of filters">
                       <mat-checkbox [checked]="filter.checked" [value]="filter.value" color="primary"
                         (change)="changeCategory($event, filter)">
-                        {{filter.value}}
+                        {{'EVENTS.ADD.EVENT_CATEGORY.' + filter.name | translate}}
                       </mat-checkbox>
                     </li>
                   </ul>

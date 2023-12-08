@@ -1,11 +1,11 @@
-import {EventCategory} from "../../../global/models/eventcategory";
+import {EventCategoryEnum} from "../../../calendar/model/event-category-enum";
 
 export class SystemNotification {
   id: number;
   title: string;
   startDate: Date;
   details: string;
-  category: EventCategory;
+  category: EventCategoryEnum;
   status: boolean
 
   constructor(partial?: Partial<SystemNotification>) {

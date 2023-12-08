@@ -1,15 +1,15 @@
-import {EventCategory} from "../../global/models/eventcategory";
+import {EventCategoryEnum} from "./event-category-enum";
 import {NotificationTimeEnum} from "./NotificationTimeEnum";
 
 export class CalendarEvent {
   id: string;
   title: string;
-  category: EventCategory;
+  category: EventCategoryEnum;
   startDate: Date;
   endDate: Date;
   details: string;
   className: string | undefined;
-  time: Number;
+  time: number;
   notificationTime: NotificationTimeEnum;
 
   constructor(partial?: Partial<CalendarEvent>) {

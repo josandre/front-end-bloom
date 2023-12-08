@@ -652,10 +652,48 @@
         "SEVERE": "Severo",
         "DEBILITATING": "Debilitante",
         "INDETERMINATE": "Indeterminado"
-
       },
       "DELETE_CONFIRMATION":"¿Seguro que desea eliminar el historial médico?",
       "DELETE": "Eliminar"
+    }
+  },
+  "EVENTS": {
+    "DIALOG": {
+      "TITLE": {
+        "NEW": "Nuevo Evento",
+        "EDIT": "Editar Evento"
+      }
+    },
+    "SNACKBAR": {
+      "SAVE": "Evento guardado",
+      "DELETE": "Evento eliminado"
+    },
+    "MY_CALENDARS": "Mis Calendarios",
+    "ADD": {
+      "LABEL": {
+        "TIME": "Tiempo",
+        "NOTIFICATION_TYPE": "Tipo de notificación",
+        "TITLE": "Título",
+        "CATEGORY": "Categoría",
+        "START_DATE": "Fecha inicial",
+        "END_DATE": "Fecha final",
+        "EVENT_DETAILS": "Detalles"
+      },
+      "EVENT_CATEGORY": {
+        "WORK": "Trabajo",
+        "PERSONAL": "Personal",
+        "IMPORTANT": "Importante"
+      },
+      "NOTIFICATION_TYPE": {
+        "DAYS": "Días",
+        "HOURS": "Horas",
+        "MINUTES": "Minutos"
+      },
+      "BUTTON": {
+        "ADD_EVENT": "Agregar Evento",
+        "SAVE": "Guardar",
+        "CANCEL": "Cancelar"
+      }
     }
   },
   "PROFILE":{

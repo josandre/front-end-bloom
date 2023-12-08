@@ -2,11 +2,10 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Component, Inject} from '@angular/core';
 import {CalendarService} from '../../service/calendar.service';
 import {FormBuilder, FormControl, FormGroup, Validators,} from '@angular/forms';
-import {CalendarEvent} from '../../model/calendar.model';
-import {EventCategory} from "../../../global/models/eventcategory";
+import {CalendarEvent} from '../../model/calendar-event.model';
+import {EventCategoryEnum} from "../../model/event-category-enum";
 import {NotificationTime} from "../../model/NotificationTime";
 import {NotificationTimeEnum} from "../../model/NotificationTimeEnum";
-import {AuthService} from "@core";
 import {User} from "../../../resource/models/User";
 import {DoctorService} from "../../service/doctor.service";
 
@@ -30,7 +29,7 @@ export class FormDialogComponent {
   word = ''
   patients : Array<User> = [];
 
-  categoryOptions: string[] = Object.keys(EventCategory);
+  categoryOptions: string[] = Object.keys(EventCategoryEnum);
 
   notificationTimes: NotificationTime[] = [
     {value: NotificationTimeEnum.DAYS, viewValue: 'Days'},
@@ -49,12 +48,11 @@ export class FormDialogComponent {
     this.action = data.action;
 
     if (this.action === 'edit') {
-      this.dialogTitle = data.calendar.title;
+      this.dialogTitle = 'EVENTS.DIALOG.TITLE.EDIT';
       this.calendar = data.calendar;
-      console.log("edit", this.calendar)
       this.showDeleteBtn = true;
     } else {
-      this.dialogTitle = 'New Event';
+      this.dialogTitle = 'EVENTS.DIALOG.TITLE.NEW';
       const blankObject = {} as CalendarEvent;
       this.calendar = new CalendarEvent(blankObject);
       this.showDeleteBtn = false;
@@ -105,13 +103,9 @@ export class FormDialogComponent {
     this.dialogRef.close('submit');
   }
 
-
-
   loadPatients(){
     this.doctorService.getPatientsList().subscribe(patients => {
       this.patients = patients;
     })
   }
-
-
 }

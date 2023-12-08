@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ResourceService } from "../services/Resource.Service";
 import { Resource } from "../models/Resource";
 import { User } from "../models/User";
@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 import { TranslateService } from "@ngx-translate/core";
 import { MatTableDataSource } from '@angular/material/table';
 import { ResourceHistory } from '../models/ResourceHistory';
-import { MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
 import { formatDate } from '@angular/common';
 import { AuthService } from '@core';
 
@@ -52,7 +52,7 @@ export class ReadResourceComponent implements OnInit {
     'action',
     'task'
   ];
-
+  @ViewChild('paginator') paginator: MatPaginator;
   historyDataSource: MatTableDataSource<ResourceHistory> = new MatTableDataSource<ResourceHistory>([]);
   historyPageSlice = this.historyDataSource.filteredData.slice(0, 5);
   loadingHistory: boolean = true;
@@ -287,7 +287,7 @@ export class ReadResourceComponent implements OnInit {
     filterText = filterText.toLowerCase();
 
     this.historyDataSource.filter = filterText;
-    this.historyPageSlice = this.historyDataSource.filteredData.slice(0,5);
+    this.historyPageSlice = this.historyDataSource.filteredData.slice(0,this.paginator.pageSize);
   }
 
   refreshHistory() {

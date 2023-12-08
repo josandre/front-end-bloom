@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { ResourceService } from './service/resource.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Resource } from './models/Resource';
@@ -24,7 +24,7 @@ export class BasicTableComponent implements OnInit {
   ];
   currentUser:any;
   message: string = '';
-
+  @ViewChild('paginator') paginator: MatPaginator;
   public pageSlice : Resource[];
   constructor(private readonly resourceService: ResourceService,
               private readonly authService:AuthService,
@@ -87,7 +87,7 @@ export class BasicTableComponent implements OnInit {
     } else {
       this.resourcesList = [...this.originalResourcesList]; // Restaurar la lista original
     }
-    this.pageSlice = this.resourcesList.slice(0,5);
+    this.pageSlice = this.resourcesList.slice(0,this.paginator.pageSize);
     this.loading = false;
   }
   readResourceCheck(id: number) {

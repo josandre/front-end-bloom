@@ -855,5 +855,11 @@
     "COMPLETE_TASK": "Task completed",
     "OPENED_RESOURCE": "Resource opened",
     "HISTORY_TITLE": "History"
+  },
+  "ADMIN":{
+    "NO_RESULT":"No results",
+    "NAME":"Name",
+    "USER_NAME":"Username",
+    "LAST_NAME":"Last Name"
   }
 }

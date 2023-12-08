@@ -2,9 +2,10 @@ import {EventCategory} from "../../../global/models/eventcategory";
 
 export class SystemNotification {
   title: string;
-  date: Date;
+  startDate: Date;
   details: string;
   category: EventCategory;
+  status: boolean
 
   constructor(partial?: Partial<SystemNotification>) {
     if(partial){

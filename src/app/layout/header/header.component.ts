@@ -20,13 +20,6 @@ import {NotificationsService} from "./services/notifications.service";
 import {SystemNotification} from "./models/SystemNotification";
 import {EventCategory} from "../../global/models/eventcategory";
 
-interface Notifications {
-  message: string;
-  time: string;
-  icon: string;
-  color: string;
-  status: string;
-}
 
 @Component({
   selector: 'app-header',
@@ -51,7 +44,8 @@ export class HeaderComponent
   defaultFlag?: string;
   docElement?: HTMLElement;
   isFullScreen = false;
-  notificationsList: Array<SystemNotification>;
+  notificationsList: Array<SystemNotification> = [];
+  notificationsCounter = 0;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -71,59 +65,8 @@ export class HeaderComponent
   listLang = [
     { text: 'English', flag: 'assets/images/flags/us.svg', lang: 'en' },
     { text: 'Spanish', flag: 'assets/images/flags/spain.svg', lang: 'es' },
+  ];
 
-  ];
-  notifications: Notifications[] = [
-    {
-      message: 'Please check your mail',
-      time: '14 mins ago',
-      icon: 'mail',
-      color: 'nfc-green',
-      status: 'msg-unread',
-    },
-    {
-      message: 'New Patient Added..',
-      time: '22 mins ago',
-      icon: 'person_add',
-      color: 'nfc-blue',
-      status: 'msg-read',
-    },
-    {
-      message: 'Your leave is approved!! ',
-      time: '3 hours ago',
-      icon: 'event_available',
-      color: 'nfc-orange',
-      status: 'msg-read',
-    },
-    {
-      message: 'Lets break for lunch...',
-      time: '5 hours ago',
-      icon: 'lunch_dining',
-      color: 'nfc-blue',
-      status: 'msg-read',
-    },
-    {
-      message: 'Patient report generated',
-      time: '14 mins ago',
-      icon: 'description',
-      color: 'nfc-green',
-      status: 'msg-read',
-    },
-    {
-      message: 'Please check your mail',
-      time: '22 mins ago',
-      icon: 'mail',
-      color: 'nfc-red',
-      status: 'msg-read',
-    },
-    {
-      message: 'Salary credited...',
-      time: '3 hours ago',
-      icon: 'paid',
-      color: 'nfc-purple',
-      status: 'msg-read',
-    },
-  ];
 
   ngOnInit() {
     this.userName = this.authService.currentUserValue.firstName +  " " + this.authService.currentUserValue.lastName;
@@ -156,6 +99,15 @@ export class HeaderComponent
 
     this.notificationService.getNotifications().subscribe((notification) => {
       this.notificationsList = notification.list;
+      console.log("endpoint", this.notificationsList)
+    })
+
+    this.webSocketService.notificationReceived$.subscribe((notifications) => {
+
+      this.notificationsList = [...notifications, ...this.notificationsList]
+      console.log("socket", this.notificationsList)
+      console.log("from socket", notifications)
+      this.notificationsCounter ++;
     })
 
   }
@@ -217,5 +169,14 @@ export class HeaderComponent
         this.router.navigate(['/authentication/signin']);
       }
     });
+  }
+
+  startCounter(){
+    this.notificationsCounter = 0;
+
+  }
+
+  getDate(date: Date){
+    return new Date(date).toLocaleDateString()
   }
 }

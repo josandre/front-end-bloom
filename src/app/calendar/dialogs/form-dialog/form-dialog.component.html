@@ -76,13 +76,14 @@
 
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
-            <mat-label>SystemNotification time</mat-label>
+            <mat-label>Notification type</mat-label>
             <mat-select  required formControlName="notificationTime">
               <mat-option *ngFor="let notificationTime of notificationTimes" [value]="notificationTime.value">{{notificationTime.viewValue}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
       </div>
+
 
       <div class="row">
         <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12">
@@ -92,6 +93,7 @@
             <button mat-raised-button color="warn" (click)="dialogRef.close()" tabindex="-1">Cancel</button>
           </div>
         </div>
+
         <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12">
           <div class="example-button-row" *ngIf="showDeleteBtn">
             <button mat-mini-fab aria-label color="warn" (click)="deleteEvent()">
@@ -100,6 +102,8 @@
           </div>
         </div>
       </div>
+
+
 
     </form>
   </div>

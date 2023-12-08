@@ -11,7 +11,6 @@ export class CalendarService {
   private readonly baseUrl = API_URL;
 
   dataChange: BehaviorSubject<CalendarEvent[]> = new BehaviorSubject<CalendarEvent[]>([]);
-  // Temporarily stores data from dialogs
   dialogData!: CalendarEvent;
   constructor(private http: HttpClient,
               private readonly authService: AuthService) {}
@@ -20,7 +19,6 @@ export class CalendarService {
     const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.authService.currentUserValue.token);
     const userId = this.authService.currentUserValue.id;
     const url = `${this.baseUrl}/notification/${userId}`;
-
     return this.http.post(url, event, {headers: header});
   }
 
@@ -28,7 +26,6 @@ export class CalendarService {
     const header = new HttpHeaders().set("Authorization", 'Bearer ' + this.authService.currentUserValue.token);
     const userId = this.authService.currentUserValue.id;
     const url = `${this.baseUrl}/notificationsUser/${userId}`;
-
     return this.http.get<CalendarEvent[]>(url, {headers: header});
   }
 
@@ -65,10 +62,10 @@ export class CalendarService {
   errorHandler(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
-      // Get client-side error
+
       errorMessage = error.error.message;
     } else {
-      // Get server-side error
+
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     console.log(errorMessage);

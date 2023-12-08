@@ -1,4 +1,3 @@
-import {Conversation} from "./Conversation";
 
 export class Message{
   conversationId: number;

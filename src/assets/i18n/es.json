@@ -845,6 +845,17 @@
     "SERVER_ERROR":"Error del servidor",
     "PATIENT_SUCCESS":"Cambió el estado del usuario"
   },
+  "RESOURCES_HISTORY": {
+    "FILTER_TITLE": "Search",
+    "COLUMN_DATE": "Date",
+    "COLUMN_USER": "User",
+    "COLUMN_ACTION": "Action",
+    "COLUMN_TASK": "Task",
+    "NO_RESULTS": "No results",
+    "COMPLETE_TASK": "Task completed",
+    "OPENED_RESOURCE": "Resource opened",
+    "HISTORY_TITLE": "History"
+  },
   "ADMIN":{
     "NO_RESULT":"No se encontró información",
     "NAME":"Nombre",

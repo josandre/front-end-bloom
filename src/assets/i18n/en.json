@@ -844,13 +844,21 @@
     "PATIENT_SUCCESS":"Patient state changed"
 
   },
+  "RESOURCES_HISTORY": {
+    "FILTER_TITLE": "Search",
+    "COLUMN_DATE": "Date",
+    "COLUMN_USER": "User",
+    "COLUMN_ACTION": "Action",
+    "COLUMN_TASK": "Task",
+    "NO_RESULTS": "No results",
+    "COMPLETE_TASK": "Task completed",
+    "OPENED_RESOURCE": "Resource opened",
+    "HISTORY_TITLE": "History"
+  },
   "ADMIN":{
     "NO_RESULT":"No results",
     "NAME":"Name",
     "USER_NAME":"Username",
     "LAST_NAME":"Last Name"
   }
-
-
-
 }

@@ -4,7 +4,7 @@ import {
   Inject,
   ElementRef,
   OnInit,
-  Renderer2,
+  Renderer2, OnDestroy,
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfigService } from '@config';
@@ -28,7 +28,7 @@ import {EventCategory} from "../../global/models/eventcategory";
 })
 export class HeaderComponent
   extends UnsubscribeOnDestroyAdapter
-  implements OnInit
+  implements OnInit, OnDestroy
 {
   public config!: InConfiguration;
   WORK: EventCategory.WORK;
@@ -60,6 +60,7 @@ export class HeaderComponent
     private notificationService: NotificationsService
   ) {
     super();
+
   }
 
   listLang = [
@@ -69,6 +70,7 @@ export class HeaderComponent
 
 
   ngOnInit() {
+
     this.userName = this.authService.currentUserValue.firstName +  " " + this.authService.currentUserValue.lastName;
     this.config = this.configService.configData;
     const userRole = this.authService.currentUserValue.role;
@@ -97,16 +99,25 @@ export class HeaderComponent
       this.flagvalue = val.map((element) => element.flag);
     }
 
+    this.webSocketService.openWebSocket();
+
     this.notificationService.getNotifications().subscribe((notification) => {
       this.notificationsList = notification.list;
       console.log("endpoint", this.notificationsList)
     })
 
-    this.webSocketService.notificationReceived$.subscribe((notifications) => {
+    this.webSocketService.notificationReceived$.subscribe((notification) => {
+      const index = this.notificationsList.findIndex( (n) =>
+        n.id === notification.id)
 
-      this.notificationsList = [...notifications, ...this.notificationsList]
+      if(index >= 0){
+        this.notificationsList[index] = notification
+      }else{
+        this.notificationsList = [notification, ...this.notificationsList]
+      }
+
       console.log("socket", this.notificationsList)
-      console.log("from socket", notifications)
+      console.log("from socket", notification)
       this.notificationsCounter ++;
     })
 
@@ -178,5 +189,14 @@ export class HeaderComponent
 
   getDate(date: Date){
     return new Date(date).toLocaleDateString()
+  }
+
+  getRoleUser(){
+    const role = this.authService.currentUserValue.role;
+    return !(role === "Admin" || role === "Doctor");
+  }
+
+  override ngOnDestroy() {
+    this.webSocketService.closeWebSocket()
   }
 }

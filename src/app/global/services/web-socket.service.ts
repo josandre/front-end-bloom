@@ -16,14 +16,11 @@ export class WebSocketService{
 
   private readonly chatMessages: Map<number, Message[]> = new Map<number, Message[]>();
 
-  private readonly notifications : Set<SystemNotification> = new Set<SystemNotification>();
-
   messageReceived$: Subject<MessageReceivedNotification> = new Subject<MessageReceivedNotification>();
 
-  notificationReceived$: Subject<Set<SystemNotification>> = new Subject<Set<SystemNotification>>();
+  notificationReceived$: Subject<SystemNotification> = new Subject<SystemNotification>();
 
   constructor(private readonly authService: AuthService) {
-    this.openWebSocket();
   }
 
   addConversationsIntoDict(conversationId: number, messages: Message[]) {
@@ -35,7 +32,7 @@ export class WebSocketService{
   }
 
 
-  private openWebSocket() {
+  public openWebSocket() {
     const currentUser = this.authService.currentUserValue
     const userId = currentUser.actualUserId ?? currentUser.id
     this.websocket = new WebSocket(`ws://localhost:8080/app?id=${userId}`)
@@ -45,14 +42,12 @@ export class WebSocketService{
     }
 
     this.websocket.onmessage = (event)=> {
-      console.log("event", event)
       const eventData = JSON.parse(event.data);
       const type = eventData.type;
 
 
       if(type == RealTimeEventTypeEnum.CHAT){
         const message = eventData.data;
-        console.log("message", message)
         const existingMessages = this.chatMessages.get(message.conversationId) ?? [];
         this.chatMessages.set(message.conversationId, [...existingMessages, message])
         const messageReceivedNotification = {
@@ -65,10 +60,7 @@ export class WebSocketService{
 
       if(type == RealTimeEventTypeEnum.NOTIFICATION){
         const notification = eventData.data;
-        console.log("notification", notification)
-        this.notifications.add(notification)
-        console.log("list", this.notifications);
-        this.notificationReceived$.next(this.notifications);
+        this.notificationReceived$.next(notification);
       }
 
     }

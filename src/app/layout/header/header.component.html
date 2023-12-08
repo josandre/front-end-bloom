@@ -29,11 +29,11 @@
 
           <li>
             <button mat-button [matMenuTriggerFor]="notificationMenu" (click)="startCounter()"
+                    *ngIf="getRoleUser()"
                     class="nav-notification-icons" >
               <span *ngIf="notificationsCounter > 0" matBadge="{{notificationsCounter}}" matBadgeColor="warn"></span>
               <i class="material-icons-outlined icon-color margin">
               notifications_active</i>
-
             </button>
             <mat-menu #notificationMenu="matMenu" class="nfc-menu">
               <div class="nfc-header">

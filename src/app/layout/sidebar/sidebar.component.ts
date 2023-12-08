@@ -14,6 +14,7 @@ import { ROUTES } from './sidebar-items';
 import { RouteInfo } from './sidebar.metadata';
 import { AuthService, Role } from '@core';
 import {UploadFileService} from "../../global/upload-file/upload-file.service";
+import {WebSocketService} from "../../global/services/web-socket.service";
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -38,7 +39,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
     public elementRef: ElementRef,
     private authService: AuthService,
     private router: Router,
-    private readonly uploadFileService : UploadFileService
+    private readonly uploadFileService : UploadFileService,
+    private websocketService: WebSocketService
   ) {
     this.elementRef.nativeElement.closest('body');
     this.routerObj = this.router.events.subscribe((event) => {
@@ -146,6 +148,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
         this.router.navigate(['/authentication/signin']);
       }
     });
+
+    this.websocketService.closeWebSocket();
   }
 
 

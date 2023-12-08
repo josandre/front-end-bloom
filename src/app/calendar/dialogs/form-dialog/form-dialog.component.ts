@@ -43,7 +43,6 @@ export class FormDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     public calendarService: CalendarService,
     private fb: FormBuilder,
-    private authService: AuthService,
     private doctorService: DoctorService
   ) {
 
@@ -106,9 +105,7 @@ export class FormDialogComponent {
     this.dialogRef.close('submit');
   }
 
-  getRoleUser(){
-    return this.authService.currentUserValue.role;
-  }
+
 
   loadPatients(){
     this.doctorService.getPatientsList().subscribe(patients => {
@@ -116,8 +113,5 @@ export class FormDialogComponent {
     })
   }
 
-  filter(event: Event){
-
-  }
 
 }

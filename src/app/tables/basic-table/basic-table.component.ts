@@ -26,6 +26,7 @@ export class BasicTableComponent implements OnInit {
   message: string = '';
   @ViewChild('paginator') paginator: MatPaginator;
   public pageSlice : Resource[];
+
   constructor(private readonly resourceService: ResourceService,
               private readonly authService:AuthService,
               private snackBar: MatSnackBar,
@@ -48,10 +49,6 @@ export class BasicTableComponent implements OnInit {
     this.loadData();
   }
 
-  refresh() {
-    this.loadData();
-  }
-
   public loadData() {
     this.loading = true
 
@@ -59,7 +56,7 @@ export class BasicTableComponent implements OnInit {
       resources =>{
         this.loading=false
         this.resourcesList = resources;
-        console.log(resources)
+        console.log("resouces init", this.resourcesList)
         this.originalResourcesList=[...resources]
         this.pageSlice = this.resourcesList.slice(0,5);
         this.loading = false;
@@ -71,10 +68,10 @@ export class BasicTableComponent implements OnInit {
 
   }
 
-
   readResource(id: number){
     sessionStorage.setItem('resourseId', id.toString());
   }
+
   applyFilter(filterValue: any) {
     let filterText: string = filterValue.value;
     filterText = filterText.trim();
@@ -85,51 +82,27 @@ export class BasicTableComponent implements OnInit {
         resource.title.toLowerCase().includes(filterText)
       );
     } else {
-      this.resourcesList = [...this.originalResourcesList]; // Restaurar la lista original
+      this.resourcesList = [...this.originalResourcesList];
     }
     this.pageSlice = this.resourcesList.slice(0,this.paginator.pageSize);
     this.loading = false;
   }
+
   readResourceCheck(id: number) {
-    console.log(id);
     const index = this.selectedResourceIds.indexOf(id);
-
     if (index === -1) {
-      // Si no se encontró el ID en el arreglo, lo añade
       this.selectedResourceIds.push(id);
-      console.log("No estaba seleccionado pero ahora si",id);
     } else {
-      // deselecciona
       this.selectedResourceIds.splice(index, 1);
-      console.log("ya no estoy seleccionado",id);
-
     }
   }
-  deleteResource(){
-    this.resourceService.deleteResourse(this.selectedResourceIds).subscribe((res) => {
-      switch (res) {
-        case 200:{
-          this.openSnackBar("Resource deleted", "Close");
-          // Usar filter para crear una nueva lista que excluya los objetos con los IDs a eliminar
-          this.resourcesList = this.resourcesList.filter(resource => !this.selectedResourceIds.includes(resource.id));
-          this.originalResourcesList=[...this.resourcesList]
-          this.selectedResourceIds = [];
-          // Restablecer la tabla para mostrar todos los datos
-          break;
-        }
-      }
-    }, error => {
-        this.openSnackBar("Something went wrong", "Close" );
 
-        })
-  }
   deleteThisResource(id: number) {
     this.selectedResourceIds = [id];
     this.resourceService.deleteResourse(this.selectedResourceIds).subscribe((res) => {
       switch (res) {
         case 200: {
           this.openSnackBar(this.translate.instant('MENUITEMS.RESOURCESNACK.RESDEL'), "Close");
-          
           const deletedResource = this.resourcesList.find(resource => resource.id === id);
 
           if (deletedResource && this.currentUser?.role === 'Admin') {
@@ -140,11 +113,14 @@ export class BasicTableComponent implements OnInit {
             });
             this.emailNotification.emailNotificate(notification).subscribe();
           }
-        
+
           this.resourcesList = this.resourcesList.filter(resource => !this.selectedResourceIds.includes(resource.id));
+
+
           this.originalResourcesList = [...this.resourcesList]
+          this.pageSlice = this.resourcesList.slice(0,this.paginator.pageSize);
+
           this.selectedResourceIds = [];
-          // Restablecer la tabla para mostrar todos los datos
           break;
         }
       }
@@ -153,12 +129,12 @@ export class BasicTableComponent implements OnInit {
 
     })
   }
+
   openSnackBar(message: string, action: string){
     this.snackBar.open(message, action, {verticalPosition: 'top', horizontalPosition: 'end'})
   }
 
   OnPageChange(event: PageEvent){
-    // console.log(event);
     const startIndex = event.pageIndex * event.pageSize;
     let endIndex = startIndex + event.pageSize;
     if (endIndex > this.resourcesList.length){

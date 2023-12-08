@@ -72,12 +72,11 @@
                              [pageSizeOptions]="[5, 10, 25]"
                              (page) = "OnPageChange($event)">
               </mat-paginator>
-              <!-- Loading spinner -->
+
               <div *ngIf="loading" class="tbl-spinner">
                 <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
                 </mat-progress-spinner>
               </div>
-
 
             </div>
           </div>

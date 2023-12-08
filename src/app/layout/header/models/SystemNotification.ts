@@ -1,6 +1,7 @@
 import {EventCategory} from "../../../global/models/eventcategory";
 
 export class SystemNotification {
+  id: number;
   title: string;
   startDate: Date;
   details: string;

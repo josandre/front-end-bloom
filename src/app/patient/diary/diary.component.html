@@ -3,19 +3,23 @@
     <div class="block-header">
       <!-- breadcrumb -->
       <app-breadcrumb *ngIf="diary !== undefined" [title]="'DIARY_ENTRY.TITLE' | translate"
-                      [active_item]="diary.title | titlecase"></app-breadcrumb>
+                      [active_item]="this.diaryTitle | titlecase"></app-breadcrumb>
+    </div>
+    <div class="row pb-3">
+      <button mat-mini-fab color="primary" class="float-start mx-3" (click)="addEntry()">
+        <mat-icon>add</mat-icon>
+      </button>
     </div>
     <div class="row container-diary">
-
       <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 entries-side">
         <ng-scrollbar visibility="hover" [style.height]="550 + 'px'">
           <div class="card-entries-container">
-            <mat-card class="p-3 card-entry" [ngClass]="{'opened-entry' : entry.id === currentEntryId}"
+            <mat-card class="p-3 card-entry" [ngClass]="{'opened-entry' : entry === currentEntry}"
                       tabindex="0" *ngFor="let entry of entries"
                       (click)="setEditorContent(entry)">
               <div class="row">
                 <div class="col-8">
-                  <div class="entry-content" [innerHTML]="generatePreview(entry.content, 15)">
+                  <div class="entry-content" [innerHTML]="generateEntryPreview(entry.content, 15)">
                   </div>
                 </div>
                 <div class="col-4">
@@ -33,11 +37,8 @@
         </ng-scrollbar>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
-        <div class="card">
-          <div class="m-l-10 p-2">
-            <button mat-mini-fab color="primary" class="float-end mx-3" (click)="addEntry()">
-              <mat-icon>add</mat-icon>
-            </button>
+        <div class="card bg-blue-gradient">
+          <div class="m-l-10 p-1">
             <div class="tool-buttons" *ngIf="!editorHidden">
               <button mat-mini-fab (click)="closeEditor()">
                 <mat-icon>close</mat-icon>
@@ -63,15 +64,38 @@
                 </button>-->
                 <button mat-menu-item (click)="deleteEntry()">
                   <mat-icon class="icon-color">delete</mat-icon>
-                  <span>Delete</span>
+                  <span>{{'DIARY_ENTRY.DELETE.BUTTON' | translate}}</span>
                 </button>
               </mat-menu>
             </div>
           </div>
-          <div *ngIf="generatingPrompt">
-            <mat-progress-bar mode="buffer"></mat-progress-bar>
+          <div *ngIf="generatingPrompt" class="p-0 m-0">
+            <mat-progress-bar color="warn" mode="buffer"></mat-progress-bar>
           </div>
           <div class="row">
+            <div *ngIf="editorHidden && diary !== undefined"
+                 class="diary-details container d-flex align-items-center justify-content-center flex-column">
+              <div class="col-lg-12">
+                <div>
+                  <mat-icon>auto_stories</mat-icon>
+                </div>
+                <div class="mb-3">
+                  <span class="title">{{ this.diaryTitle }}</span>
+                </div>
+                <div>
+                  <button mat-stroked-button class="mb-4" aria-label="Example icon-button with a menu"
+                          (click)="openTitleDialog()">
+                    <mat-icon>more_horiz</mat-icon>
+                  </button>
+                </div>
+                <div class="details-content">
+                  <div class="mb-3">
+                    <span>{{'DIARY_ENTRY.ENTRIES.NUMBER' | translate}} </span>
+                    <span>{{ this.entries?.length }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div [hidden]="editorHidden">
               <div class="col-lg-12">
                 <ckeditor #editor [editor]="Editor" [data]="editorContent">

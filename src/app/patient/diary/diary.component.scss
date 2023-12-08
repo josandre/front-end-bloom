@@ -1,6 +1,6 @@
 :host ::ng-deep .ck-editor__editable_inline {
-  min-height: 465px;
-  max-height: 465px;
+  min-height: 419px;
+  max-height: 419px;
 }
 
 .container-diary {
@@ -21,6 +21,7 @@
   border-radius: 10px;
   padding: 9px 1px 3px 1px;
   margin-bottom: 0;
+  max-height: 520px;
 }
 
 .card-entry {
@@ -49,7 +50,7 @@
   height: 3rem;
   flex: 0 0 auto;
   line-height: 1.2;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 1px 3px;
   border-radius: 10px;
   display: flex;
   -webkit-box-pack: center;
@@ -80,7 +81,7 @@
     margin-right: 50px;
 
     &:hover {
-      background-color: #f2f4f9 !important;
+      background-color: #ebf6f9 !important;
       transition: 0.3s;
     }
   }
@@ -119,6 +120,37 @@
 
 .container-tags {
   background-color: white;
+}
+
+.bg-blue-gradient {
+  background-image: linear-gradient(
+      to right bottom,
+      #c3e5ee, #b5dfea, #a7d8e5,
+      #98d2e1, #89cbdd, #7fc6da,
+      #75c2d7, #6bbdd4, #64bad2,
+      #5cb6d0, #54b3ce, #4cb0cc);
+}
+
+.diary-details {
+  min-height: 505px;
+  max-height: 505px;
+  font-size: 1rem;
+  color: white;
+  text-align: center;
+
+  button {
+    background-color: #3158a7;
+    color: white;
+    width: 18px;
+  }
+
+  .title {
+    font-weight: 600;
+  }
+
+  .details-content {
+    font-weight: 400;
+  }
 }
 
 

@@ -1,3 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 
 
+.dark  {
+  .mat-paginator,
+  .mat-table {
+    background: transparent !important; 
+  }
+  .mat-paginator, .mat-paginator-page-size .mat-select-trigger,
+  .mat-header-cell {
+    color: #fff !important;
+  }
+  .mat-cell, .mat-footer-cell {
+    color: rgb(255 255 255 / 87%) !important;
+  }
+  div:where(.swal2-container) div:where(.swal2-popup),
+  .mat-dialog-container {
+    background: #1a202e !important;
+    color: rgb(255 255 255) !important;
+  } 
+}

@@ -1,17 +1,18 @@
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Component, Inject } from '@angular/core';
-import { CalendarService } from '../../calendar.service';
-import {
-  Validators,
-  FormGroup,
-  FormBuilder, FormControl,
-} from '@angular/forms';
-import { Calendar } from '../../calendar.model';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {Component, Inject} from '@angular/core';
+import {CalendarService} from '../../service/calendar.service';
+import {FormBuilder, FormControl, FormGroup, Validators,} from '@angular/forms';
+import {CalendarEvent} from '../../model/calendar-event.model';
+import {EventCategoryEnum} from "../../model/event-category-enum";
+import {NotificationTime} from "../../model/NotificationTime";
+import {NotificationTimeEnum} from "../../model/NotificationTimeEnum";
+import {User} from "../../../resource/models/User";
+import {DoctorService} from "../../service/doctor.service";
 
 export interface DialogData {
   id: number;
   action: string;
-  calendar: Calendar;
+  calendar: CalendarEvent;
 }
 
 @Component({
@@ -23,62 +24,88 @@ export class FormDialogComponent {
   action: string;
   dialogTitle: string;
   calendarForm: FormGroup;
-  calendar: Calendar;
+  calendar: CalendarEvent;
   showDeleteBtn = false;
+  word = ''
+  patients : Array<User> = [];
+
+  categoryOptions: string[] = Object.keys(EventCategoryEnum);
+
+  notificationTimes: NotificationTime[] = [
+    {value: NotificationTimeEnum.DAYS, viewValue: 'Days'},
+    {value: NotificationTimeEnum.HOURS, viewValue: 'Hours'},
+    {value: NotificationTimeEnum.MINUTES, viewValue: 'Minutes'},
+  ];
+
   constructor(
     public dialogRef: MatDialogRef<FormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     public calendarService: CalendarService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private doctorService: DoctorService
   ) {
-    // Set the defaults
+
     this.action = data.action;
+
     if (this.action === 'edit') {
-      this.dialogTitle = data.calendar.title;
+      this.dialogTitle = 'EVENTS.DIALOG.TITLE.EDIT';
       this.calendar = data.calendar;
       this.showDeleteBtn = true;
     } else {
-      this.dialogTitle = 'New Event';
-      const blankObject = {} as Calendar;
-      this.calendar = new Calendar(blankObject);
+      this.dialogTitle = 'EVENTS.DIALOG.TITLE.NEW';
+      const blankObject = {} as CalendarEvent;
+      this.calendar = new CalendarEvent(blankObject);
       this.showDeleteBtn = false;
     }
 
     this.calendarForm = this.createContactForm();
+    this.loadPatients();
   }
+
   formControl = new FormControl('', [
     Validators.required,
-    // Validators.email,
   ]);
+
   getErrorMessage() {
     return this.formControl.hasError('required')
       ? 'Required field'
-      : this.formControl.hasError('email')
-      ? 'Not a valid email'
       : '';
   }
+
   createContactForm(): FormGroup {
     return this.fb.group({
       id: [this.calendar.id],
       title: [this.calendar.title, [Validators.required]],
       category: [this.calendar.category],
-      startDate: [this.calendar.startDate, [Validators.required]],
-      endDate: [this.calendar.endDate, [Validators.required]],
+      startDate: [new Date(this.calendar.startDate), [Validators.required]],
+      endDate: [new Date(this.calendar.endDate), [Validators.required]],
       details: [this.calendar.details],
+      time: [this.calendar.time, [Validators.required]],
+      notificationTime: [this.calendar.notificationTime, [Validators.required]],
     });
   }
+
   submit() {
-    // emppty stuff
+    // empty stuff
   }
+
   deleteEvent() {
     this.calendarService.deleteCalendar(this.calendarForm.getRawValue());
     this.dialogRef.close('delete');
   }
+
   onNoClick(): void {
     this.dialogRef.close();
   }
+
   public confirmAdd(): void {
     this.calendarService.addUpdateCalendar(this.calendarForm.getRawValue());
     this.dialogRef.close('submit');
+  }
+
+  loadPatients(){
+    this.doctorService.getPatientsList().subscribe(patients => {
+      this.patients = patients;
+    })
   }
 }

@@ -127,14 +127,14 @@
     "APPS": {
       "TEXT": "-- Apps"
     },
-    "CALENDAR": {
-      "TEXT": "Calendar"
-    },
     "TASK": {
       "TEXT": "Task"
     },
     "CONTACTS": {
       "TEXT": "Contacts"
+    },
+    "CALENDAR": {
+      "TITLE": "Calendar"
     },
     "DIARY": {
       "TITLE": "My Diary"
@@ -190,10 +190,13 @@
         "SHOW-TILE-NUMBERS": "Show tile numbers"
       }
     },
+    "PROGRESS-SECTION": {
+      "TITLE": "Progreso Medico"
+    },
     "RESOURCES": {
       "RESOURCES": "Resources",
       "MY-RESOURCES": "My Resources",
-      "READ": "Read Resource",
+      "READ": "Read",
       "CREATE": "Create Resource",
       "MODIFY": "Modify Resource",
       "MY-PATIENTS": "My Patients",
@@ -201,6 +204,7 @@
       "COMPOSE": "Create New Resource",
       "TITLE": "Title",
       "EDIT": "Edit",
+      "DELETE": "Delete",
       "CONTENT": "Content",
       "DATE": "Date",
       "SHOWING": "Showing",
@@ -209,13 +213,37 @@
       "TASKLIST": "Task List",
       "ADDTASK": "Add Task",
       "MODTASK": "Edit Task",
+      "SEARCH": "Search",
+      "SEARCHBYTITLE": "Search by title",
       "MESSAGE": "We are reading your resources",
       "MESSAGE_READ": "We are reading the resource",
       "MESSAGE_UPDATE": "We are updating the resource",
       "MESSAGE_CREATED": "We are creating a new resource"
     },
-    "PROGRESS-SECTION": {
-      "TITLE": "Progreso Medico"
+    "RESOURCESNACK": {
+      "TASKADD": "Task added successfully",
+      "TASKNOTADD": "Task was not added",
+      "TASKMOD": "Task edited successfully",
+      "TASKNOTMOD": "Task was not edited",
+      "TASKDEL": "Task deleted successfully",
+      "TASKNOTDEL": "Task was not deleted",
+      "TASKCHECK": "Task was completed successfully",
+      "TASKNOTCHECK": "Task was not completed",
+      "RESDEL": "Resource deleted",
+      "ERROR": "There was an error",
+      "CREATERES": "Creating a new resource, please wait...",
+      "RESADD": "Resource created successfully",
+      "RESNOTADD": "Resources was not created",
+      "NOCONTENT": "Please fill out the content",
+      "NOTITLE": "Please fill out a title",
+      "NOPATIENT": "Please choose at least one patient",
+      "MODRES": "Modifying your resource, please wait...",
+      "RESMOD": "Resource was modified successfully",
+      "RESNOTMOD": "Resource was not modified",
+      "MODTASKTITLE": "Modify the task",
+      "MODIFY": "Modify",
+      "CANCEL": "Cancel",
+      "INPUT": "You need to input something!"
     }
   },
   "DASHBOARD_DOCTOR": {
@@ -260,6 +288,7 @@
     "BY_DATE": "By Date",
     "NO_RECENT_ATTACKS": "No recent attacks",
     "NO_DATA_FOR_ATTACKS": "No data for attacks recorded.",
+    "NO_DATA_FOR_ANXIETY": "No data for anxiety progress.",
     "ANXIETY_LEVEL": "Anxiety Level",
     "SESSIONS": "Sessions",
     "ANXIETY_ATTACKS": "Anxiety Attacks",
@@ -588,12 +617,52 @@
         "SEVERE": "Severe",
         "DEBILITATING": "Debilitating",
         "INDETERMINATE": "Indeterminate"
-
       },
       "DELETE_CONFIRMATION": "Are you sure?",
       "DELETE": "Delete"
     }
-
+  },
+  "EVENTS": {
+    "DIALOG": {
+      "TITLE": {
+        "NEW": "New Event",
+        "EDIT": "Edit Event"
+      }
+    },
+    "SNACKBAR": {
+      "SAVE": "Event saved",
+      "DELETE": "Event deleted",
+      "ACTION": {
+        "CLOSE": "Close"
+      }
+    },
+    "MY_CALENDARS": "My Calendars",
+    "ADD": {
+      "LABEL": {
+        "TIME": "Time",
+        "NOTIFICATION_TYPE": "Notification type",
+        "TITLE": "Title",
+        "CATEGORY": "Category",
+        "START_DATE": "Start date",
+        "END_DATE": "End date",
+        "EVENT_DETAILS": "Details"
+      },
+      "EVENT_CATEGORY": {
+        "WORK": "Work",
+        "PERSONAL": "Personal",
+        "IMPORTANT": "Important"
+      },
+      "NOTIFICATION_TYPE": {
+        "DAYS": "Days",
+        "HOURS": "Hours",
+        "MINUTES": "Minutes"
+      },
+      "BUTTON": {
+        "ADD_EVENT": "Add Event",
+        "SAVE": "Save",
+        "CANCEL": "Cancel"
+      }
+    }
   },
   "PROFILE": {
     "SELECTED_PHOTO": "No files selected",
@@ -686,7 +755,14 @@
     "CONTENT": "Content",
     "POST_DADE": "Post date",
     "SEARCH_BY": "Search by title",
-    "SEARCH": "Search"
+    "SEARCH": "Search",
+    "SEARCHNAME": "Search by name",
+    "LASTNAME": "Last Name",
+    "NAME": "Name",
+    "USERNAME": "Username",
+    "STATE": "Active",
+    "SEARCH_BY_DOCTOR":"Search doctor",
+    "SEARCH_BY_PATIENT":"Search patient"
   },
   "SING_UP": {
     "TITLE": "Sign Up",
@@ -767,8 +843,8 @@
     "EMAI_VALID":"Please enter a valid email address",
     "RESET":"Reset My Password",
     "LOGIN":"Login?"
-   },
-   "DIARY_ENTRY":{
+  },
+  "DIARY_ENTRY":{
     "TITLE":"My Diary",
     "ACTIONS":{
       "CLOSE":"Close",
@@ -786,8 +862,20 @@
       "ERROR":"Something went wrong while trying to save entry"
     },
     "DELETE":{
+      "BUTTON": "Delete",
       "SUCCESS":"Entry has been deleted",
       "ERROR":"Something went wrong while trying to delete entry"
+    },
+    "EDIT": {
+      "DIALOG": {
+        "TITLE": "Edit Diary Name",
+        "LABEL": "Diary name",
+        "SAVE": "Save",
+        "CANCEL": "Cancel"
+      }
+    },
+    "ENTRIES": {
+      "NUMBER": "Entries"
     }
   },
   "ADMIN_SNACKBAR":{
@@ -796,8 +884,22 @@
     "SERVER_ERROR":"Server error",
     "PATIENT_SUCCESS":"Patient state changed"
 
+  },
+  "RESOURCES_HISTORY": {
+    "FILTER_TITLE": "Search",
+    "COLUMN_DATE": "Date",
+    "COLUMN_USER": "User",
+    "COLUMN_ACTION": "Action",
+    "COLUMN_TASK": "Task",
+    "NO_RESULTS": "No results",
+    "COMPLETE_TASK": "Task completed",
+    "OPENED_RESOURCE": "Resource opened",
+    "HISTORY_TITLE": "History"
+  },
+  "ADMIN":{
+    "NO_RESULT":"No results",
+    "NAME":"Name",
+    "USER_NAME":"Username",
+    "LAST_NAME":"Last Name"
   }
-
-
-
 }

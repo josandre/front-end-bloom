@@ -1,34 +1,23 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
-import {
-  CalendarOptions,
-  DateSelectArg,
-  EventClickArg,
-  EventApi,
-} from '@fullcalendar/core';
-import { EventInput } from '@fullcalendar/core';
+import {Component, OnInit, ViewChild} from '@angular/core'
+import {CalendarOptions, EventClickArg, EventInput,} from '@fullcalendar/core';
+import esLocale from '@fullcalendar/core/locales/es';
+import enLocale from '@fullcalendar/core/locales/en-nz';
+
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 
-import { MatDialog } from '@angular/material/dialog';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { Calendar } from './calendar.model';
-import { FormDialogComponent } from './dialogs/form-dialog/form-dialog.component';
-import { CalendarService } from './calendar.service';
-import {
-  MatSnackBar,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
-} from '@angular/material/snack-bar';
-import { INITIAL_EVENTS } from './events-util';
-import { MatCheckboxChange } from '@angular/material/checkbox';
-import { UnsubscribeOnDestroyAdapter } from '../shared/UnsubscribeOnDestroyAdapter';
-import { Direction } from '@angular/cdk/bidi';
+import {MatDialog} from '@angular/material/dialog';
+import {FormBuilder, FormGroup, Validators,} from '@angular/forms';
+import {CalendarEvent} from './model/calendar-event.model';
+import {FormDialogComponent} from './dialogs/form-dialog/form-dialog.component';
+import {CalendarService} from './service/calendar.service';
+import {MatSnackBar,} from '@angular/material/snack-bar';
+import {MatCheckboxChange} from '@angular/material/checkbox';
+import {UnsubscribeOnDestroyAdapter} from '@shared';
+import {LangChangeEvent, TranslateService} from "@ngx-translate/core";
+
 
 @Component({
   selector: 'app-calendar',
@@ -37,50 +26,76 @@ import { Direction } from '@angular/cdk/bidi';
 })
 export class CalendarComponent
   extends UnsubscribeOnDestroyAdapter
-  implements OnInit
-{
-  @ViewChild('calendar', { static: false })
-  calendar: Calendar | null;
+  implements OnInit {
+  @ViewChild('calendar', {static: false})
+  calendar: CalendarEvent | null;
   public addCusForm: FormGroup;
   dialogTitle: string;
-  filterOptions = 'All';
-  calendarData!: Calendar;
+  calendarData!: CalendarEvent;
   filterItems: string[] = [
-    'work',
-    'personal',
-    'important',
-    'travel',
-    'friends',
+    'WORK',
+    'PERSONAL',
+    'IMPORTANT',
   ];
 
   calendarEvents?: EventInput[];
-  tempEvents?: EventInput[];
 
   public filters: Array<{ name: string; value: string; checked: boolean }> = [
-    { name: 'work', value: 'Work', checked: true },
-    { name: 'personal', value: 'Personal', checked: true },
-    { name: 'important', value: 'Important', checked: true },
-    { name: 'travel', value: 'Travel', checked: true },
-    { name: 'friends', value: 'Friends', checked: true },
+    {name: 'WORK', value: 'Work', checked: true},
+    {name: 'PERSONAL', value: 'Personal', checked: true},
+    {name: 'IMPORTANT', value: 'Important', checked: true},
   ];
 
   constructor(
     private fb: FormBuilder,
     private dialog: MatDialog,
     public calendarService: CalendarService,
+    private translate: TranslateService,
     private snackBar: MatSnackBar
   ) {
     super();
+    this.calendarEvents = [];
     this.dialogTitle = 'Add New Event';
-    const blankObject = {} as Calendar;
-    this.calendar = new Calendar(blankObject);
+    const blankObject = {} as CalendarEvent;
+    this.calendar = new CalendarEvent(blankObject);
+    this.calendarData = new CalendarEvent(blankObject);
     this.addCusForm = this.createCalendarForm(this.calendar);
   }
 
   public ngOnInit(): void {
-    this.calendarEvents = INITIAL_EVENTS;
-    this.tempEvents = this.calendarEvents;
-    this.calendarOptions.initialEvents = this.calendarEvents;
+    this.getEvents();
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.setCurrentLang(event.lang);
+    });
+  }
+
+  private getEvents(): void {
+    this.calendarService.getEvents().subscribe({
+      next: (events => {
+        events.forEach((event) => {
+          const startDate = new Date(event.startDate + "Z")
+          const endDate = new Date(event.endDate + "Z")
+
+          this.calendarEvents?.push({
+            id: `${event.id}`,
+            title: event.title,
+            start: startDate,
+            end: endDate,
+            className: this.getClassNameValue(event.category),
+            groupId: event.category,
+            details: event.details,
+            time: event.time,
+            notificationTime: event.notificationTime
+          })
+        });
+
+        this.calendarOptions.events = this.calendarEvents;
+      }),
+      error: (error => {
+        console.log(error);
+        // snackbar
+      })
+    })
   }
 
   calendarOptions: CalendarOptions = {
@@ -88,8 +103,10 @@ export class CalendarComponent
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
-      right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
+      right: 'dayGridMonth,timeGridWeek,timeGridDay',
     },
+    locale: this.getLocale(),
+    timeZone: 'local',
     initialView: 'dayGridMonth',
     weekends: true,
     editable: true,
@@ -98,35 +115,28 @@ export class CalendarComponent
     dayMaxEvents: true,
     select: this.handleDateSelect.bind(this),
     eventClick: this.handleEventClick.bind(this),
-    eventsSet: this.handleEvents.bind(this),
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  handleDateSelect(selectInfo: DateSelectArg) {
+  handleDateSelect() {
     this.addNewEvent();
   }
 
   addNewEvent() {
-    let tempDirection: Direction;
-    if (localStorage.getItem('isRtl') === 'true') {
-      tempDirection = 'rtl';
-    } else {
-      tempDirection = 'ltr';
-    }
     const dialogRef = this.dialog.open(FormDialogComponent, {
       data: {
         calendar: this.calendar,
         action: 'add',
       },
-      direction: tempDirection,
     });
 
     this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
       if (result === 'submit') {
         this.calendarData = this.calendarService.getDialogData();
-        console.log(this.calendarData.startDate);
+
+        this.createEvent();
+
         this.calendarEvents = this.calendarEvents?.concat({
-          // add new event data. must create new array
+
           id: this.calendarData.id,
           title: this.calendarData.title,
           start: this.calendarData.startDate,
@@ -134,17 +144,34 @@ export class CalendarComponent
           className: this.getClassNameValue(this.calendarData.category),
           groupId: this.calendarData.category,
           details: this.calendarData.details,
+          time: this.calendarData.time,
+          notificationTime: this.calendarData.notificationTime
         });
+
         this.calendarOptions.events = this.calendarEvents;
         this.addCusForm.reset();
-        this.showNotification(
-          'snackbar-success',
-          'Add Record Successfully...!!!',
-          'bottom',
-          'center'
-        );
+
+        this.openSnackBar('EVENTS.SNACKBAR.SAVE', 'EVENTS.SNACKBAR.ACTION.CLOSE');
       }
     });
+  }
+
+  private createEvent() {
+    this.calendarService.createEvent(this.calendarData)
+      .subscribe({
+        next: (response => {
+          switch (response) {
+            case "200": {
+              //snackbar
+              break;
+            }
+          }
+        }),
+        error: (error => {
+          console.log(error);
+          //snackbar
+        })
+      });
   }
 
   changeCategory(event: MatCheckboxChange, filter: { name: string }) {
@@ -157,11 +184,9 @@ export class CalendarComponent
   }
 
   filterEvent(element: string[]) {
-    const list = this.calendarEvents?.filter((x) =>
+    this.calendarOptions.events = this.calendarEvents?.filter((x) =>
       element.map((y?: string) => y).includes(x.groupId)
     );
-
-    this.calendarOptions.events = list;
   }
 
   handleEventClick(clickInfo: EventClickArg) {
@@ -176,19 +201,15 @@ export class CalendarComponent
       startDate: row.event.start,
       endDate: row.event.end,
       details: row.event.extendedProps['details'],
+      time: row.event.extendedProps['time'],
+      notificationTime: row.event.extendedProps['notificationTime']
     };
-    let tempDirection: Direction;
-    if (localStorage.getItem('isRtl') === 'true') {
-      tempDirection = 'rtl';
-    } else {
-      tempDirection = 'ltr';
-    }
+
     const dialogRef = this.dialog.open(FormDialogComponent, {
       data: {
         calendar: calendarData,
         action: 'edit',
       },
-      direction: tempDirection,
     });
 
     this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
@@ -199,35 +220,31 @@ export class CalendarComponent
             this.editEvent(index, this.calendarData);
           }
         }, this);
-        this.showNotification(
-          'black',
-          'Edit Record Successfully...!!!',
-          'bottom',
-          'center'
-        );
+
+        this.openSnackBar('EVENTS.SNACKBAR.SAVE', 'EVENTS.SNACKBAR.ACTION.CLOSE');
+
         this.addCusForm.reset();
       } else if (result === 'delete') {
         this.calendarData = this.calendarService.getDialogData();
+        console.log(Number(calendarData.id));
+
+        this.deleteEvent(Number(calendarData.id));
+
         this.calendarEvents?.forEach((element) => {
           if (this.calendarData.id === element.id) {
             row.event.remove();
           }
         }, this);
 
-        this.showNotification(
-          'snackbar-danger',
-          'Delete Record Successfully...!!!',
-          'bottom',
-          'center'
-        );
+        this.openSnackBar('EVENTS.SNACKBAR.DELETE', 'EVENTS.SNACKBAR.ACTION.CLOSE');
       }
     });
   }
 
-  editEvent(eventIndex: number, calendarData: Calendar) {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  editEvent(eventIndex: number, calendarData: CalendarEvent) {
     const calendarEvents = this.calendarEvents!.slice();
     const singleEvent = Object.assign({}, calendarEvents[eventIndex]);
+
     singleEvent.id = calendarData.id;
     singleEvent.title = calendarData.title;
     singleEvent.start = calendarData.startDate;
@@ -236,17 +253,51 @@ export class CalendarComponent
     singleEvent.groupId = calendarData.category;
     singleEvent['details'] = calendarData.details;
     calendarEvents[eventIndex] = singleEvent;
+
+    this.updateEvent(calendarData);
+
     this.calendarEvents = calendarEvents; // reassign the array
 
     this.calendarOptions.events = calendarEvents;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  handleEvents(events: EventApi[]) {
-    // this.currentEvents = events;
+  private updateEvent(calendarData: CalendarEvent) {
+    this.calendarService.updateEvent(Number(calendarData.id), calendarData)
+      .subscribe({
+        next: (response => {
+          switch (response) {
+            case "200": {
+              //snackbar
+              break;
+            }
+          }
+        }),
+        error: (error => {
+          console.log(error);
+          //snackbar
+        })
+      });
   }
 
-  createCalendarForm(calendar: Calendar): FormGroup {
+  private deleteEvent(eventId: number) {
+    this.calendarService.deleteEvent(eventId)
+      .subscribe({
+        next: (response => {
+          switch (response) {
+            case "200": {
+              //snackbar
+              break;
+            }
+          }
+        }),
+        error: (error => {
+          console.log(error);
+          //snackbar
+        })
+      });
+  }
+
+  createCalendarForm(calendar: CalendarEvent): FormGroup {
     return this.fb.group({
       id: [calendar.id],
       title: [
@@ -263,29 +314,41 @@ export class CalendarComponent
     });
   }
 
-  showNotification(
-    colorName: string,
-    text: string,
-    placementFrom: MatSnackBarVerticalPosition,
-    placementAlign: MatSnackBarHorizontalPosition
-  ) {
-    this.snackBar.open(text, '', {
-      duration: 2000,
-      verticalPosition: placementFrom,
-      horizontalPosition: placementAlign,
-      panelClass: colorName,
-    });
-  }
-
   getClassNameValue(category: string) {
     let className;
 
-    if (category === 'work') className = 'fc-event-success';
-    else if (category === 'personal') className = 'fc-event-warning';
-    else if (category === 'important') className = 'fc-event-primary';
-    else if (category === 'travel') className = 'fc-event-danger';
-    else if (category === 'friends') className = 'fc-event-info';
+    if (category === 'WORK') className = 'fc-event-primary';
+    else if (category === 'PERSONAL') className = 'fc-event-info';
+    else if (category === 'IMPORTANT') className = 'fc-event-danger';
 
     return className;
+  }
+
+  setCurrentLang(lang: string) {
+    if (lang === 'es') {
+      console.log(lang)
+      this.calendarOptions.locale = esLocale;
+    } else {
+      console.log(lang)
+      this.calendarOptions.locale = enLocale;
+    }
+  }
+
+  getLocale() {
+    console.log(this.translate.currentLang)
+    if (this.translate.currentLang === 'es') {
+      return esLocale;
+    }
+    return enLocale;
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.translate.get([message, action]).subscribe((translations: any) => {
+      this.snackBar.open(translations[message], translations[action], {
+        verticalPosition: 'top',
+        horizontalPosition: 'end',
+        duration: 4000
+      })
+    });
   }
 }

@@ -9,23 +9,26 @@ import {
 } from '@danielmoncada/angular-datetime-picker';
 import { CalendarComponent } from './calendar.component';
 import { FormDialogComponent as calFormComponent } from './dialogs/form-dialog/form-dialog.component';
-import { CalendarService } from './calendar.service';
+import { CalendarService } from './service/calendar.service';
 import { ComponentsModule } from '@shared/components/components.module';
 import { SharedModule } from '@shared';
+import {TranslateModule} from "@ngx-translate/core";
+
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    CalendarRoutingModule,
-    FullCalendarModule,
-    FormsModule,
-    ReactiveFormsModule,
-    OwlDateTimeModule,
-    OwlNativeDateTimeModule,
-    ComponentsModule,
-    SharedModule,
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        CalendarRoutingModule,
+        FullCalendarModule,
+        FormsModule,
+        ReactiveFormsModule,
+        OwlDateTimeModule,
+        OwlNativeDateTimeModule,
+        ComponentsModule,
+        SharedModule,
+        TranslateModule,
+    ],
   declarations: [CalendarComponent, calFormComponent],
   providers: [CalendarService],
 })

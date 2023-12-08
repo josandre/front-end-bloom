@@ -7,6 +7,8 @@ import { CommentEditorComponent } from './comment-editor/comment-editor.componen
 import Swal from 'sweetalert2';
 import { TranslateService } from '@ngx-translate/core';
 import { UploadFileService } from 'app/global/upload-file/upload-file.service';
+import { Notificaction } from 'app/admin/notification/EmailNotification';
+import { EmailNotificationService } from 'app/admin/notification/EmailNotificaction.service';
 
 @Component({
   selector: 'app-forum',
@@ -37,13 +39,15 @@ export class ForumComponent implements OnInit {
   currentUser:any;
   currentUserID:number;
   message = 'MENUITEMS.FORUMS.MESSAGE'
+  isAdmin: boolean = false; 
 
   constructor(
     private readonly authService:AuthService,
     private readonly forumService:ForumServiceService,
     private readonly translate:TranslateService,
     private readonly uploadFileService:UploadFileService,
-    private dialogModel: MatDialog
+    private dialogModel: MatDialog,
+    private emailNotification: EmailNotificationService,
   ) { }
 
   ngOnInit(): void {
@@ -83,6 +87,7 @@ export class ForumComponent implements OnInit {
     }
     // Admin check
     if (this.currentUser?.role === 'Admin') {
+      this.isAdmin = true;
       result = true;
     }
 
@@ -101,7 +106,7 @@ export class ForumComponent implements OnInit {
     commentDialog.componentInstance.currentUserID = this.currentUserID;
     commentDialog.componentInstance.forumComponent = this;
   }
-
+ 
   deletePost(): void {
     if (this.currentPost === undefined) {
       return;
@@ -123,13 +128,20 @@ export class ForumComponent implements OnInit {
         this.forumService.deletePost(this.currentPost.id).
         subscribe(
           response => {
+            if (this.currentUser?.role === 'Admin') {
+              let notification = new Notificaction({
+                type: 'Forum Post Deletion',
+                message: `The forum post titled '${this.currentPost.title}' has been deleted by an admin.`,
+                email: this.currentPost.userEmail
+              });
+              this.emailNotification.emailNotificate(notification).subscribe();
+            }
             this.getPosts();
           },
           error => {
             this.getPosts();
           }
         );
-        //Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
       }
     });
   }
@@ -146,6 +158,8 @@ export class ForumComponent implements OnInit {
         this.currentPost = data;
         this.postUserName = this.currentPost?.title;
         this.postLoaded = true;
+
+        console.log(this.currentPost)
 
         this.postEditorTitle = this.currentPost.title;
         this.postEditorContent = this.currentPost.experience;
@@ -183,6 +197,14 @@ export class ForumComponent implements OnInit {
     this.forumService.updatePost(updatedPost).
     subscribe(
       response => {
+        if (this.currentUser?.role === 'Admin') {
+          let notification = new Notificaction({
+            type: 'Forum Post Edition',
+            message: `The forum post titled '${this.currentPost.title}' has been edited by an admin.`,
+            email: this.currentPost.userEmail
+          });
+          this.emailNotification.emailNotificate(notification).subscribe();
+        }
         this.reloadPost();
       },
       error => {

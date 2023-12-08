@@ -9,6 +9,7 @@ import { DeleteDialogComponent } from './medicine-list/dialog/delete/delete.comp
 import { MedicineListService } from './medicine-list/medicine-list.service';
 import { ComponentsModule } from '@shared/components/components.module';
 import { SharedModule } from '@shared';
+import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
   declarations: [
@@ -17,14 +18,15 @@ import { SharedModule } from '@shared';
     FormDialogComponent,
     DeleteDialogComponent,
   ],
-  imports: [
-    CommonModule,
-    PharmacyRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    ComponentsModule,
-    SharedModule,
-  ],
+    imports: [
+        CommonModule,
+        PharmacyRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        ComponentsModule,
+        SharedModule,
+        TranslateModule,
+    ],
   providers: [MedicineListService],
 })
 export class PharmacyModule {}

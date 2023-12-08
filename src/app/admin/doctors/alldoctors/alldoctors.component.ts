@@ -90,7 +90,9 @@ export class AlldoctorsComponent
    let filterText: string = filterValue.value
     filterText = filterText.trim();
     filterText = filterText.toLowerCase()
+   //const currentPageSize = this.paginator.pageSize;
    this.dataSource.filter = filterText;
+   this.pageSlice = this.dataSource.filteredData.slice(0,5);
   }
 
   exportExcel() {
@@ -152,7 +154,7 @@ export class AlldoctorsComponent
   }
 
   OnPageChange(event: PageEvent){
-    // console.log(event);
+// console.log(event);
     const startIndex = event.pageIndex * event.pageSize;
     let endIndex = startIndex + event.pageSize;
     if (endIndex > this.dataSource.filteredData.length){

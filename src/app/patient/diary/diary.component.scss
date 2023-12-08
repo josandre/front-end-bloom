@@ -81,7 +81,7 @@
     margin-right: 50px;
 
     &:hover {
-      background-color: #f2f4f9 !important;
+      background-color: #ebf6f9 !important;
       transition: 0.3s;
     }
   }
@@ -122,12 +122,27 @@
   background-color: white;
 }
 
+.bg-blue-gradient {
+  background-image: linear-gradient(
+      to right bottom,
+      #c3e5ee, #b5dfea, #a7d8e5,
+      #98d2e1, #89cbdd, #7fc6da,
+      #75c2d7, #6bbdd4, #64bad2,
+      #5cb6d0, #54b3ce, #4cb0cc);
+}
+
 .diary-details {
   min-height: 505px;
   max-height: 505px;
-  font-size: 1.1rem;
-  color: #2a3040;
+  font-size: 1rem;
+  color: white;
   text-align: center;
+
+  button {
+    background-color: #3158a7;
+    color: white;
+    width: 18px;
+  }
 
   .title {
     font-weight: 600;

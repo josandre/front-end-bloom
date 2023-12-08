@@ -220,14 +220,15 @@ export class ReadResourceComponent implements OnInit {
 
   modTask(id: number) {
     Swal.fire({
-      title: 'Cambiar el contenido de la tarea',
+      title: this.translate.instant('MENUITEMS.RESOURCESNACK.MODTASKTITLE'),
       input: 'text',
       inputAttributes: {
         autocapitalize: 'off'
       },
-      inputValidator: result => !result && 'You need to input something!',
+      inputValidator: result => !result && this.translate.instant('MENUITEMS.RESOURCESNACK.INPUT'),
       showCancelButton: true,
-      confirmButtonText: 'Modificar',
+      confirmButtonText: this.translate.instant('MENUITEMS.RESOURCESNACK.MODIFY'),
+      cancelButtonText: this.translate.instant('MENUITEMS.RESOURCESNACK.CANCEL'),
       showLoaderOnConfirm: true,
       preConfirm: (dato) => {
         return this.resourceService.modTask(id, dato).subscribe((res: NonNullable<unknown>) => {

@@ -239,7 +239,11 @@
       "NOPATIENT": "Please choose at least one patient",
       "MODRES": "Modifying your resource, please wait...",
       "RESMOD": "Resource was modified successfully",
-      "RESNOTMOD": "Resource was not modified"
+      "RESNOTMOD": "Resource was not modified",
+      "MODTASKTITLE": "Modify the task",
+      "MODIFY": "Modify",
+      "CANCEL": "Cancel",
+      "INPUT": "You need to input something!"
     }
   },
   "DASHBOARD_DOCTOR": {
@@ -715,7 +719,9 @@
     "LASTNAME": "Last Name",
     "NAME": "Name",
     "USERNAME": "Username",
-    "STATE": "Active"
+    "STATE": "Active",
+    "SEARCH_BY_DOCTOR":"Search doctor",
+    "SEARCH_BY_PATIENT":"Search patient"
   },
   "SING_UP": {
     "TITLE": "Sign Up",
@@ -815,8 +821,20 @@
       "ERROR":"Something went wrong while trying to save entry"
     },
     "DELETE":{
+      "BUTTON": "Delete",
       "SUCCESS":"Entry has been deleted",
       "ERROR":"Something went wrong while trying to delete entry"
+    },
+    "EDIT": {
+      "DIALOG": {
+        "TITLE": "Edit Diary Name",
+        "LABEL": "Diary name",
+        "SAVE": "Save",
+        "CANCEL": "Cancel"
+      }
+    },
+    "ENTRIES": {
+      "NUMBER": "Entries"
     }
   },
   "ADMIN_SNACKBAR":{

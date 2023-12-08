@@ -6,8 +6,7 @@ import {Resource} from "../models/Resource";
 import {User} from "../models/User";
 import {Task} from "../models/Task";
 import {AuthService} from "@core";
-import * as url from "url";
-
+import { ResourceHistory } from "../models/ResourceHistory";
 
 
 @Injectable({
@@ -103,5 +102,19 @@ export class ResourceService {
   }
   sessionResource(id: number){
     sessionStorage.setItem('resourseId', id.toString());
+  }
+
+  getResourceHistory(resourceID: number) : Observable<ResourceHistory[]> {
+    console.log('Yeah');
+    const currentUser = this.authenticationService.currentUserValue;
+    const URL = `${this.baseUrl}/resource-history/${resourceID}`;
+    return this.http.get<ResourceHistory[]>(URL, {headers: {'Authorization':  `Bearer ${currentUser.token}`}});
+  }
+
+  saveResourceHistory(data: {id: number, action: number, user: {id: number}, resource: {id: number}}) {
+    const currentUser = this.authenticationService.currentUserValue;
+    const URL = `${this.baseUrl}/resource-history`;
+    console.log(data);
+    return this.http.post(URL, data, {headers: {'Authorization':  `Bearer ${currentUser.token}`}});
   }
 }

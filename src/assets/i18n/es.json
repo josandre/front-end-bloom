@@ -826,5 +826,16 @@
     "DOCTOR_SUCCESS":"Cambió el estado del doctor",
     "SERVER_ERROR":"Error del servidor",
     "PATIENT_SUCCESS":"Cambió el estado del usuario"
+  },
+  "RESOURCES_HISTORY": {
+    "FILTER_TITLE": "Buscar",
+    "COLUMN_DATE": "Fecha",
+    "COLUMN_USER": "Usuario",
+    "COLUMN_ACTION": "Acción",
+    "COLUMN_TASK": "Tarea",
+    "NO_RESULTS": "No hay resultados",
+    "COMPLETE_TASK": "Completó una tarea",
+    "OPENED_RESOURCE": "Abrió el recurso",
+    "HISTORY_TITLE": "Historial"
   }
 }

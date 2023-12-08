@@ -260,7 +260,7 @@ export const ROUTES: RouteInfo[] = [
         class: 'menu-toggle',
         groupTitle: false,
         badge: 'new',
-        badgeClass: '',
+        badgeClass: 'badge bg-cyan sidebar-badge float-end',
         role: ['Doctor'],
         submenu: [
             {
@@ -296,8 +296,8 @@ export const ROUTES: RouteInfo[] = [
         icon: 'edit_note',
         class: '',
         groupTitle: false,
-        badge: '',
-        badgeClass: '',
+        badge: 'new',
+        badgeClass: 'badge bg-cyan sidebar-badge float-end',
         role: ['Patient'],
         submenu: [],
     },

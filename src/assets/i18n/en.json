@@ -817,8 +817,20 @@
       "ERROR":"Something went wrong while trying to save entry"
     },
     "DELETE":{
+      "BUTTON": "Delete",
       "SUCCESS":"Entry has been deleted",
       "ERROR":"Something went wrong while trying to delete entry"
+    },
+    "EDIT": {
+      "DIALOG": {
+        "TITLE": "Edit Diary Name",
+        "LABEL": "Diary name",
+        "SAVE": "Save",
+        "CANCEL": "Cancel"
+      }
+    },
+    "ENTRIES": {
+      "NUMBER": "Entries"
     }
   },
   "ADMIN_SNACKBAR":{

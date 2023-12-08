@@ -846,15 +846,15 @@
     "PATIENT_SUCCESS":"Cambió el estado del usuario"
   },
   "RESOURCES_HISTORY": {
-    "FILTER_TITLE": "Search",
-    "COLUMN_DATE": "Date",
-    "COLUMN_USER": "User",
-    "COLUMN_ACTION": "Action",
-    "COLUMN_TASK": "Task",
-    "NO_RESULTS": "No results",
-    "COMPLETE_TASK": "Task completed",
-    "OPENED_RESOURCE": "Resource opened",
-    "HISTORY_TITLE": "History"
+    "FILTER_TITLE": "Buscar",
+    "COLUMN_DATE": "Fecha",
+    "COLUMN_USER": "Usuario",
+    "COLUMN_ACTION": "Acción",
+    "COLUMN_TASK": "Tarea",
+    "NO_RESULTS": "No hay resultados",
+    "COMPLETE_TASK": "Completó una tarea",
+    "OPENED_RESOURCE": "Abrió el recurso",
+    "HISTORY_TITLE": "Historial"
   },
   "ADMIN":{
     "NO_RESULT":"No se encontró información",

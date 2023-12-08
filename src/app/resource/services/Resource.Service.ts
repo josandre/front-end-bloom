@@ -8,7 +8,6 @@ import {Task} from "../models/Task";
 import {AuthService} from "@core";
 import { ResourceHistory } from "../models/ResourceHistory";
 
-
 @Injectable({
   providedIn: 'root'
 })

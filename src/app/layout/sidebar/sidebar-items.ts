@@ -249,7 +249,7 @@ export const ROUTES: RouteInfo[] = [
         groupTitle: false,
         badge: 'new',
         badgeClass: 'badge bg-cyan sidebar-badge float-end',
-        role: ['Doctor', 'Patient'],
+        role: ['Patient'],
         submenu: [],
     },
     {
@@ -259,7 +259,7 @@ export const ROUTES: RouteInfo[] = [
         icon: 'edit_note',
         class: 'menu-toggle',
         groupTitle: false,
-        badge: '',
+        badge: 'new',
         badgeClass: '',
         role: ['Doctor'],
         submenu: [

@@ -67,14 +67,19 @@ export class CalendarComponent
         this.calendarService.getEvents().subscribe({
             next: (events => {
                 events.forEach((event) => {
+                    const startDate = new Date(event.startDate + "Z")
+                    const endDate = new Date(event.endDate + "Z")
+
                     this.calendarEvents?.push({
                         id: `${event.id}`,
                         title: event.title,
-                        start: event.startDate,
-                        end: event.endDate,
+                        start: startDate,
+                        end: endDate,
                         className: this.getClassNameValue(event.category),
                         groupId: event.category,
                         details: event.details,
+                        time: event.time,
+                        notificationTime: event.notificationTime
                     })
                 });
 
@@ -94,7 +99,7 @@ export class CalendarComponent
             center: 'title',
             right: 'dayGridMonth,timeGridWeek,timeGridDay',
         },
-        timeZone: 'America/Costa_Rica',
+        timeZone: 'local',
         initialView: 'dayGridMonth',
         weekends: true,
         editable: true,
@@ -124,7 +129,7 @@ export class CalendarComponent
                 this.createEvent();
 
                 this.calendarEvents = this.calendarEvents?.concat({
-                    // add new event data. must create new array
+
                     id: this.calendarData.id,
                     title: this.calendarData.title,
                     start: this.calendarData.startDate,
@@ -132,6 +137,8 @@ export class CalendarComponent
                     className: this.getClassNameValue(this.calendarData.category),
                     groupId: this.calendarData.category,
                     details: this.calendarData.details,
+                    time: this.calendarData.time,
+                    notificationTime: this.calendarData.notificationTime
                 });
 
                 this.calendarOptions.events = this.calendarEvents;
@@ -147,6 +154,7 @@ export class CalendarComponent
     }
 
     private createEvent() {
+
         this.calendarService.createEvent(this.calendarData)
             .subscribe({
                 next: (response => {
@@ -184,6 +192,7 @@ export class CalendarComponent
     }
 
     eventClick(row: EventClickArg) {
+
         const calendarData = {
             id: row.event.id,
             title: row.event.title,
@@ -191,7 +200,12 @@ export class CalendarComponent
             startDate: row.event.start,
             endDate: row.event.end,
             details: row.event.extendedProps['details'],
+            time: row.event.extendedProps['time'],
+            notificationTime: row.event.extendedProps['notificationTime']
+
+
         };
+
 
         const dialogRef = this.dialog.open(FormDialogComponent, {
             data: {

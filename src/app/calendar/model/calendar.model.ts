@@ -1,4 +1,5 @@
-import {EventCategory} from "./eventcategory";
+import {EventCategory} from "../../global/models/eventcategory";
+import {NotificationTimeEnum} from "./NotificationTimeEnum";
 
 export class CalendarEvent {
   id: string;
@@ -8,6 +9,8 @@ export class CalendarEvent {
   endDate: Date;
   details: string;
   className: string | undefined;
+  time: Number;
+  notificationTime: NotificationTimeEnum;
 
   constructor(partial?: Partial<CalendarEvent>) {
     if(partial){

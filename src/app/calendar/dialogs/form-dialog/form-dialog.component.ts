@@ -3,7 +3,12 @@ import {Component, Inject} from '@angular/core';
 import {CalendarService} from '../../service/calendar.service';
 import {FormBuilder, FormControl, FormGroup, Validators,} from '@angular/forms';
 import {CalendarEvent} from '../../model/calendar.model';
-import {EventCategory} from "../../model/eventcategory";
+import {EventCategory} from "../../../global/models/eventcategory";
+import {NotificationTime} from "../../model/NotificationTime";
+import {NotificationTimeEnum} from "../../model/NotificationTimeEnum";
+import {AuthService} from "@core";
+import {User} from "../../../resource/models/User";
+import {DoctorService} from "../../service/doctor.service";
 
 export interface DialogData {
   id: number;
@@ -22,20 +27,32 @@ export class FormDialogComponent {
   calendarForm: FormGroup;
   calendar: CalendarEvent;
   showDeleteBtn = false;
+  word = ''
+  patients : Array<User> = [];
 
   categoryOptions: string[] = Object.keys(EventCategory);
+
+  notificationTimes: NotificationTime[] = [
+    {value: NotificationTimeEnum.DAYS, viewValue: 'Days'},
+    {value: NotificationTimeEnum.HOURS, viewValue: 'Hours'},
+    {value: NotificationTimeEnum.MINUTES, viewValue: 'Minutes'},
+  ];
 
   constructor(
     public dialogRef: MatDialogRef<FormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     public calendarService: CalendarService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private doctorService: DoctorService
   ) {
-    // Set the defaults
+
     this.action = data.action;
+
     if (this.action === 'edit') {
       this.dialogTitle = data.calendar.title;
       this.calendar = data.calendar;
+      console.log("edit", this.calendar)
       this.showDeleteBtn = true;
     } else {
       this.dialogTitle = 'New Event';
@@ -45,6 +62,7 @@ export class FormDialogComponent {
     }
 
     this.calendarForm = this.createContactForm();
+    this.loadPatients();
   }
 
   formControl = new FormControl('', [
@@ -56,28 +74,50 @@ export class FormDialogComponent {
       ? 'Required field'
       : '';
   }
+
   createContactForm(): FormGroup {
     return this.fb.group({
       id: [this.calendar.id],
       title: [this.calendar.title, [Validators.required]],
       category: [this.calendar.category],
-      startDate: [this.calendar.startDate, [Validators.required]],
-      endDate: [this.calendar.endDate, [Validators.required]],
+      startDate: [new Date(this.calendar.startDate), [Validators.required]],
+      endDate: [new Date(this.calendar.endDate), [Validators.required]],
       details: [this.calendar.details],
+      time: [this.calendar.time, [Validators.required]],
+      notificationTime: [this.calendar.notificationTime, [Validators.required]],
     });
   }
+
   submit() {
     // empty stuff
   }
+
   deleteEvent() {
     this.calendarService.deleteCalendar(this.calendarForm.getRawValue());
     this.dialogRef.close('delete');
   }
+
   onNoClick(): void {
     this.dialogRef.close();
   }
+
   public confirmAdd(): void {
     this.calendarService.addUpdateCalendar(this.calendarForm.getRawValue());
     this.dialogRef.close('submit');
   }
+
+  getRoleUser(){
+    return this.authService.currentUserValue.role;
+  }
+
+  loadPatients(){
+    this.doctorService.getPatientsList().subscribe(patients => {
+      this.patients = patients;
+    })
+  }
+
+  filter(event: Event){
+
+  }
+
 }
